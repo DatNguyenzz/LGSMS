@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <title>Forgot Password</title>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/lgin_reg_fgpw.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,7 +18,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
-                    <a href="home.html">
+                    <a href="home.jsp">
                         <span class="iconify" data-icon="ic:twotone-gas-meter" style="color: white;" data-width="80" data-height="80"></span>
                         <h2 class="heading-section">LGSMS</h2>
                     </a>
@@ -37,10 +39,10 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                        <a style="color: #fff; text-decoration: underline;" href="register.html">Đăng ký tài khoản mới?</a>
+                        <a style="color: #fff; text-decoration: underline;" href="register.jsp">Đăng ký tài khoản mới?</a>
                     </div>
                     <div class="w-100 text-center">
-                        <p class="login-wrap">Bạn đã có tài khoản? <a style="color: #fff; text-decoration: underline;" href="login.html">Đăng nhập!</a></p>
+                        <p class="login-wrap">Bạn đã có tài khoản? <a style="color: #fff; text-decoration: underline;" href="login.jsp">Đăng nhập!</a></p>
                     </div>
                 </div>
 

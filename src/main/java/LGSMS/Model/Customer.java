@@ -14,16 +14,16 @@ public class Customer extends Account{
 		this.customerID = customerID;
 	}
 
-	public Customer(int account_id, String username, String password, int role_id, boolean is_active, int customerID) {
-		super(account_id, username, password, role_id, is_active);
+	public Customer(int account_id, String username, String password, Role role, boolean is_active, int customerID) {
+		super(account_id, username, password, role, is_active);
 		this.customerID = customerID;
 	}
 
 	public Customer(int profile_id, String image, String fullName, String phone, Date dob, boolean gender,
 			String address, String email, Date created_at, Date updated_at, int account_id, String username,
-			String password, int role_id, boolean is_active, int customerID) {
+			String password, Role role, boolean is_active, int customerID) {
 		super(profile_id, image, fullName, phone, dob, gender, address, email, created_at, updated_at, account_id,
-				username, password, role_id, is_active);
+				username, password, role, is_active);
 		this.customerID = customerID;
 	}
 

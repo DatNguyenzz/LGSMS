@@ -1,8 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="ISO-8859-1">
+	
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Manage Account</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -37,8 +41,8 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-square me-1"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="list-style: none;">
-                            <li><a class="dropdown-item" href="view_profile.html">Hồ sơ của tôi</a></li>
-                            <li><a class="dropdown-item" href="Login.html">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="view_profile.jsp">Hồ sơ của tôi</a></li>
+                            <li><a class="dropdown-item" href="Login.jsp">Đăng xuất</a></li>
                         </ul>
                     </li>
                     </button>
@@ -73,6 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach  items="${accountInfos}" var ="account">
                         <tr>
                             <td>1</td>
                             <td>phuoctq</td>
@@ -88,6 +93,7 @@
                                 <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             </td>
                         </tr>
+                    </c:forEach>
                         <tr>
                             <td>2</td>
                             <td>minhpq</td>
@@ -249,5 +255,6 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
 </body>
+
 
 </html>

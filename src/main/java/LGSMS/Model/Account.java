@@ -6,27 +6,27 @@ public class Account extends Profile{
 	private int account_id;
 	private String username;
 	private String password;
-	private int role_id;
+	private Role role;
 	private boolean is_active;
 	public Account() {
 		super();
 	}
-	public Account(int account_id, String username, String password, int role_id, boolean is_active) {
+	public Account(int account_id, String username, String password, Role role, boolean is_active) {
 		super();
 		this.account_id = account_id;
 		this.username = username;
 		this.password = password;
-		this.role_id = role_id;
+		this.role = role;
 		this.is_active = is_active;
 	}
 	public Account(int profile_id, String image, String fullName, String phone, Date dob, boolean gender,
 			String address, String email, Date created_at, Date updated_at, int account_id, String username,
-			String password, int role_id, boolean is_active) {
+			String password, Role role, boolean is_active) {
 		super(profile_id, image, fullName, phone, dob, gender, address, email, created_at, updated_at);
 		this.account_id = account_id;
 		this.username = username;
 		this.password = password;
-		this.role_id = role_id;
+		this.role = role;
 		this.is_active = is_active;
 	}
 	public int getAccount_id() {
@@ -47,11 +47,11 @@ public class Account extends Profile{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getRole_id() {
-		return role_id;
+	public Role getRole() {
+		return role;
 	}
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	public boolean isIs_active() {
 		return is_active;
