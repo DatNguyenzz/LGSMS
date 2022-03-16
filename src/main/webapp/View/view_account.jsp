@@ -77,24 +77,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach  items="${accountInfos}" var ="account">
+                    <c:forEach  items="${listAcc}" var ="account">
                         <tr>
-                            <td>1</td>
-                            <td>phuoctq</td>
-                            <td>phuoctq@mail.com</td>
-                            <td>Admin</td>
+                            <td>${account.account_id}</td>
+                            <td>${account.username}</td>
+                            <td>${account.email}</td>
+                            <td>${account.role.roleName}</td>
                             <td><label class="switch">
 								<input type="checkbox" checked>
 								<span class="slider round"></span>
 							  </label></td>
-                            <td>20-03-2022</td>
-                            <td>28-03-2022</td>
+                            <td>${account.created_at}</td>
+                            <td>${account.updated_at}</td>
                             <td>
                                 <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             </td>
                         </tr>
                     </c:forEach>
-                        <tr>
+ <%--                        <tr>
                             <td>2</td>
                             <td>minhpq</td>
                             <td>daxua@mail.com</td>
@@ -153,7 +153,7 @@
                             <td>
                                 <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             </td>
-                        </tr>
+                        </tr> --%> 
                     </tbody>
                 </table>
                 <div class="clearfix">

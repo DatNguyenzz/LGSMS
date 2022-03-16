@@ -23,7 +23,7 @@ public class AccountController {
 	  public String showsAccounts(Model model) {
 		List<Account> listAcc= accountDao.getAccounts();;
 
-        model.addAttribute("accountInfos", listAcc);
+        model.addAttribute("listAcc", listAcc);
 
         return "view_account";
     }

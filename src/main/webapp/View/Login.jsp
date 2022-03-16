@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
-                    <a href="home.html">
+                    <a href="home.jsp">
                         <span class="iconify" data-icon="ic:twotone-gas-meter" style="color: white;" data-width="80" data-height="80"></span>
                         <h2 class="heading-section">LGSMS</h2>
                     </a>
@@ -42,15 +42,15 @@
                             </div>
                             <!-- Đăng nhập btn -->
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary submit px-3"><a href="view_profile.html">Đăng nhập</a></button>
+                                <button type="submit" class="form-control btn btn-primary submit px-3"><a href="view_profile.jsp">Đăng nhập</a></button>
                             </div>
                             <div class="form-group w-100 text-center">
-                                <a href="forgot_password.html" style="color: #fff; text-decoration: underline;">Quên mật khẩu?</a>
+                                <a href="forgot_password.jsp" style="color: #fff; text-decoration: underline;">Quên mật khẩu?</a>
                             </div>
                         </form>
                         <!-- URL tạo tài khoản -->
                         <div class="w-100 text-center">
-                            <p>Bạn chưa có tài khoản? <a href="Register.html" style="color: #fff; text-decoration: underline;"><b>Đăng ký
+                            <p>Bạn chưa có tài khoản? <a href="Register.jsps" style="color: #fff; text-decoration: underline;"><b>Đăng ký
 								ngay!</b></a></p>
                         </div>
                     </div>
