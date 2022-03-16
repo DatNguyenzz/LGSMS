@@ -1,0 +1,33 @@
+label {
+    color: rgb(0, 0, 0);
+}
+
+h4 {
+    color: rgb(0, 0, 0)
+}
+
+footer {
+    background-color: rgba(28, 100, 168, 0.521);
+}
+
+footer p,
+h6 {
+    color: white;
+}
+
+.container_profile {
+    margin-left: 15%;
+    margin-right: 15%;
+    border-left: 4px solid #6c757d;
+    border-right: 4px solid #6c757d;
+}
+
+.profile_frame {
+    margin-Left: 10%;
+    margin-right: 10%;
+}
+
+.profile-button {
+    margin-top: 5%;
+    margin-left: 60%;
+}
