@@ -3,7 +3,7 @@ package LGSMS.Model;
 import java.sql.Date;
 
 public class Profile {
-	private int profile_id;
+	private int profileId;
 	private String image;
 	private String fullName;
 	private String phone;
@@ -11,15 +11,15 @@ public class Profile {
 	private boolean gender;
 	private String address;
 	private String email;
-	private Date created_at;
-	private Date updated_at;
+	private Date createdAt;
+	private Date updatedAt;
 	public Profile() {
 		super();
 	}
-	public Profile(int profile_id, String image, String fullName, String phone, Date dob, boolean gender,
+	public Profile(int profileId, String image, String fullName, String phone, Date dob, boolean gender,
 			String address, String email, Date created_at, Date updated_at) {
 		super();
-		this.profile_id = profile_id;
+		this.profileId = profileId;
 		this.image = image;
 		this.fullName = fullName;
 		this.phone = phone;
@@ -27,14 +27,14 @@ public class Profile {
 		this.gender = gender;
 		this.address = address;
 		this.email = email;
-		this.created_at = created_at;
-		this.updated_at = updated_at;
+		this.createdAt = created_at;
+		this.updatedAt = updated_at;
 	}
-	public int getProfile_id() {
-		return profile_id;
+	public int getProfileId() {
+		return profileId;
 	}
-	public void setProfile_id(int profile_id) {
-		this.profile_id = profile_id;
+	public void setProfileId(int profileId) {
+		this.profileId = profileId;
 	}
 	public String getImage() {
 		return image;
@@ -79,16 +79,16 @@ public class Profile {
 		this.email = email;
 	}
 	public Date getCreated_at() {
-		return created_at;
+		return createdAt;
 	}
 	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+		this.createdAt = created_at;
 	}
 	public Date getUpdated_at() {
-		return updated_at;
+		return updatedAt;
 	}
 	public void setUpdated_at(Date updated_at) {
-		this.updated_at = updated_at;
+		this.updatedAt = updated_at;
 	}
 	
 }

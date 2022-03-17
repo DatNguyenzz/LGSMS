@@ -3,6 +3,9 @@ package LGSMS.Dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.sql.Date;
 
@@ -28,10 +31,10 @@ public class AccountDao extends JdbcDaoSupport  {
 	    }
 	 
 	 private static final String BASE_SQL = //
-	            "Select  p.email, p.created_at, p.updated_at, a.account_id, a.username, a.role_id,  a.is_active, r.role_name "
+	            "Select  p.email, p.created_at, p.updated_at, a.account_id, a.username, a.role_id,  a.is_active, r.role_name,p.full_name,p.profile_id "
 	            + "from ((account a inner join profile p on a.profile_id = p.profile_id) inner join role r on a.role_id = r.role_id) ";
 	  
-	  class getAllTheListAccount implements  ResultSetExtractor <List<Account>>{
+	  class extractListAccount implements  ResultSetExtractor <List<Account>>{
 
 		@Override
 		public List<Account> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -39,11 +42,12 @@ public class AccountDao extends JdbcDaoSupport  {
 			 while (rs.next()) {
 				 	
 				 	
-	                int account_id = rs.getInt("account_id");
+	
+				 int account_id = rs.getInt("account_id");
 	                String username = rs.getString("username");
 	                String email = rs.getString("email");
 	                Role role= new Role();
-	                
+	                String fullName= rs.getString("full_name");
 	                int role_id= rs.getInt("role_id");
 	                String role_name= rs.getString("role_name");
 	                Boolean is_active = rs.getBoolean("is_active");
@@ -53,10 +57,10 @@ public class AccountDao extends JdbcDaoSupport  {
 	                role.setRoleName(role_name);
 	                Account acc = new Account();
 	                acc.setAccount_id(account_id);
-	                acc.setUsername(username);
+	                acc.setFullName(fullName);
 	                acc.setEmail(email);
 	                acc.setRole(role);
-	                acc.setIs_active(false);
+	                acc.setIs_active(is_active);
 	                acc.setCreated_at(created_at);
 	                acc.setUpdated_at(updated_at);
 	                list.add(acc);
@@ -67,36 +71,98 @@ public class AccountDao extends JdbcDaoSupport  {
 	  }
 	  
 	  
-	  class getAllTheRole implements  ResultSetExtractor <List<Role>>{
+	   class extractAccountby implements ResultSetExtractor<Account> {
 
-			@Override
-			public List<Role> extractData(ResultSet rs) throws SQLException, DataAccessException {
-				List<Role> list = new ArrayList<Role>();
-				 while (rs.next()) {
-					 	
-					 	
-					 int role_id= rs.getInt("role_id");
-		                String role_name= rs.getString("role_name");
-		                
-		                Role ro = new Role();
-		                ro.setRoleID(role_id);
-		                ro.setRoleName(role_name);
-		                list.add(ro);
-		            }
-		            return list;
-			}
-			  
-		  }
+	        @Override
+	        public Account extractData(ResultSet rs) throws SQLException, DataAccessException {
+	            if (rs.next()) {
+	            	int account_id = rs.getInt("account_id");
+	            	 String fullName= rs.getString("full_name");
+	                String email = rs.getString("email");
+	                Role role= new Role();
+	                
+	                int role_id= rs.getInt("role_id");
+	                String role_name= rs.getString("role_name");
+	                Boolean is_active = rs.getBoolean("is_active");
+	               
+	                Date updated_at= rs.getDate("updated_at");
+	                role.setRoleID(role_id);
+	                role.setRoleName(role_name);
+	                Account acc = new Account();
+	                acc.setAccount_id(account_id);
+	                acc.setFullName(fullName);
+	                acc.setEmail(email);
+	                acc.setRole(role);
+	                acc.setIs_active(is_active);
+	              
+	                acc.setUpdated_at(updated_at);
+	                
+	                return acc;
+	            }
+	            return null;
+	        }
+
+	    }
+	   
+	   class updateAccountby implements ResultSetExtractor<Account> {
+
+	        @Override
+	        public Account extractData(ResultSet rs) throws SQLException, DataAccessException {
+	            if (rs.next()) {
+	            	int account_id = rs.getInt("account_id");
+	            	 String fullName= rs.getString("full_name");
+	                String email = rs.getString("email");
+	                Role role= new Role();
+	                
+	                
+	              int roleId= rs.getInt("role_id"); 
+	               
+	                LocalDate current = LocalDate.now();
+	                
+	                long millis=System.currentTimeMillis();  
+	                java.sql.Date updated_at=new java.sql.Date(millis);
+	                
+	              
+	                
+	                
+	                role.setRoleID(roleId);;
+	                Account acc = new Account();
+	                acc.setAccount_id(account_id);
+	                acc.setFullName(fullName);
+	                acc.setEmail(email);
+	                acc.setRole(role);
+	               
+	                acc.setUpdated_at(updated_at);
+	                
+	                return acc;
+	            }
+	            return null;
+	        }
+
+	    }
 	  
 	   public List<Account> getAccounts() {
 	        String sql = BASE_SQL;
 	                
 
-	        getAllTheListAccount rse = new getAllTheListAccount();
+	        extractListAccount rse = new extractListAccount();
 
 	        // <T> T query(String sql, ResultSetExtractor<T> rse, Object... args)
 	        List<Account> listAcc = this.getJdbcTemplate().query(sql, rse);
 	        return listAcc;
+	    }
+	   
+	   
+	   
+	   public Account getAccountByid(int account_id, String fullName, String email, int roleId, Date updated_at ) {
+	        String sql = "Update account Set roleID=? where account_id=?";
+	                
+
+	        extractAccountby rse = new extractAccountby();
+
+	        
+	        Account acc=this.getJdbcTemplate().query(sql, rse,account_id,fullName, email,roleId,updated_at);
+	        return acc;
 	    }
 	   
 //	   public List<Role> getRole() {
