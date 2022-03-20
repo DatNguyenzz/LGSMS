@@ -1,11 +1,12 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <title>Register</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/css/lgin_reg_fgpw.css">
+    <link rel="stylesheet" href="../css/lgin_reg_fgpw.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
 </head>
@@ -35,7 +36,7 @@
                             <div class="input-control">
                                 <input id="email" name="email" type="text" class="form-control" placeholder="Tài khoản email">
                                 <div class="error"></div>
-                            </div>  
+                            </div>
                             <!-- Nhập mật khẩu -->
                             <div class="input-control">
                                 <input id="password" name="password" type="password" class="form-control" placeholder="Mật khẩu">
@@ -45,7 +46,7 @@
                             <!-- Xác nhận mật khẩu -->
                             <div class="input-control">
                                 <input id="re_password" name="re_password" type="password" class="form-control" placeholder="Xác nhận mật khẩu">
-                                <i class="fa fa-eye field-icon" id="re_togglePassword"  style="margin-top: 29%"></i>
+                                <i class="fa fa-eye field-icon" id="re_togglePassword" style="margin-top: 29%"></i>
                                 <div class="error"></div>
                             </div>
                             <!-- Đăng nhập btn -->
@@ -65,11 +66,11 @@
     </section>
 
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/popper.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/register_validate.js"></script>
- 
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/register_validate.js"></script>
+
 
 </html>

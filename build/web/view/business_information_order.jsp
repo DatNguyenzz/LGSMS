@@ -1,9 +1,10 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
 
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -12,16 +13,14 @@
     <title>LGS - Admin</title>
 
     <!-- Custom fonts for this template -->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/assets/styles/sb-admin-2.min.css" rel="stylesheet">
-    <link href="/css/view_list_account.css" rel="stylesheet">
+    <link href="../assets/styles/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/view_list_account.css" rel="stylesheet">
     <!-- Custom styles for this page -->
-    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -31,7 +30,7 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div include-html="/components/sidebar.html" id="sidebar" style="display: contents;"></div>
+            <div include-html="../components/sidebar.html" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -49,7 +48,7 @@
                     </button>
 
                     <!-- Topbar Navbar -->
-                    <div include-html="/components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                    <div include-html="../components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
 
@@ -77,44 +76,35 @@
                                                 <div class="col-8 col-sm-5">
                                                     <label for="order-code" class="col-form-label">Mã đơn
                                                         hàng:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded"
-                                                        id="order-code">LG240</label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-code">LG240</label>
                                                     <label for="order-price" class="col-form-label">Tổng giá
                                                         tiền:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded"
-                                                        id="order-price">5.489.000đ</label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-price">5.489.000đ</label>
                                                     <label for="staff-order" class="col-form-label">Nhân viên nhận
                                                         đơn:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded"
-                                                        id="staff-order">Truong
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="staff-order">Truong
                                                         Quang Phuoc</label>
                                                     <label for="order-date" class="col-form-label">Ngày nhận
                                                         đơn:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded"
-                                                        id="order-date">10/03/2022</label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-date">10/03/2022</label>
                                                     <label for="cus-note" class="col-form-label">Ghi chú:</label>
-                                                    <textarea class="border border-secondary w-100 p-2 rounded" readonly
-                                                        class="form-control-plaintext" id="order-note" style="resize: none; overflow: auto;"></textarea>
+                                                    <textarea class="border border-secondary w-100 p-2 rounded" readonly class="form-control-plaintext" id="order-note" style="resize: none; overflow: auto;"></textarea>
 
                                                 </div>
                                                 <div class="col-8 col-sm-5">
                                                     <label for="customer-name" class="col-form-label">Tên khách
                                                         hàng:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded"
-                                                        id="customer-name">Truong Gia Viet Anh</label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="customer-name">Truong Gia Viet Anh</label>
 
                                                     <label for="order-address" class="col-form-label">Địa chỉ khách
                                                         hàng:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded"
-                                                        id="order-address">118
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-address">118
                                                         Hồ Tây, Hoàn Kiếm, Hà Nội</label>
                                                     </lable>
                                                     <form id="form" action="business_new_order.html">
                                                         <label for="order-status" class="col-form-label">Trạng
                                                             thái:</label><br>
-                                                        <select name="order-status" id="order-status"
-                                                            class="border border-secondary w-100 p-2 rounded"
-                                                            style="margin-bottom: 8px;">
+                                                        <select name="order-status" id="order-status" class="border border-secondary w-100 p-2 rounded" style="margin-bottom: 8px;">
                                                             <option value="status-1">Đang xử lí</option>
                                                             <option value="status-2">Đã nhận đơn</option>
                                                             <option value="status-3">Đơn bị hủy</option>
@@ -123,13 +113,10 @@
                                                         </select>
                                                         <label for="order-note" class="col-form-label">Nhân viên ghi
                                                             chú:</label>
-                                                        <textarea class="border border-secondary w-100 p-2 rounded"
-                                                            id="order-note" style="resize: none; overflow: auto;"></textarea>
+                                                        <textarea class="border border-secondary w-100 p-2 rounded" id="order-note" style="resize: none; overflow: auto;"></textarea>
                                                         <div style="margin-top: 3%; float: right">
-                                                            <input type="submit"
-                                                                class="btn btn-primary submit px-3"
-                                                                value="Lưu" ></input>
-                                                                <!-- <a href="business_new_order.html"><button type="button" class="btn btn-secondary" >Hủy</button></a> -->
+                                                            <input type="submit" class="btn btn-primary submit px-3" value="Lưu"></input>
+                                                            <!-- <a href="business_new_order.html"><button type="button" class="btn btn-secondary" >Hủy</button></a> -->
                                                         </div>
                                                     </form>
 
@@ -199,22 +186,22 @@
     </a>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/js/demo/datatables-demo.js"></script>
-    <script src="/js/include-html.min.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../js/include-html.min.js"></script>
 </body>
 
 </html>

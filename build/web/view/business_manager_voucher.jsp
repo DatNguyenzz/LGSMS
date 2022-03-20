@@ -1,9 +1,10 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
 
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -12,15 +13,15 @@
     <title>LGS - Manager</title>
 
     <!-- Custom fonts for this template -->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/assets/styles/sb-admin-2.min.css" rel="stylesheet">
-    <link href="/assets/styles/slider_status.css" rel="stylesheet">
-    <link href="/assets/styles/icon_action.css" rel="stylesheet">
+    <link href="../assets/styles/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/styles/slider_status.css" rel="stylesheet">
+    <link href="../assets/styles/icon_action.css" rel="stylesheet">
     <!-- Custom styles for this page -->
-    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -31,7 +32,7 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div include-html="/components/sidebar.html" id="sidebar" style="display: contents;"></div>
+            <div include-html="../components/sidebar.html" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -48,30 +49,31 @@
                             <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Navbar -->
-                    <div include-html="/components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                    <div include-html="../components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Quản lý đơn hàng</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Quản lý phiếu thu</h1>
                     </div>
                     <!-- Page Heading -->
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Danh sách đơn hàng đã hủy</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Danh sách phiếu thu</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Mã đơn hàng</th>
-                                            <th>Ngày tạo đơn</th>
+                                            <th>Mã phiếu</th>
                                             <th>Ngày ghi nhận</th>
-                                            <th>Trạng thái đơn hàng</th>
-                                            <th>Tổng tiền</th>
+                                            <th>Tên khách hàng</th>
+                                            <th>Trạng thái</th>
+                                            <th>Người tạo</th>
+                                            <th>Số tiền thu</th>
                                             <th>Thao tác</th>
                                         </tr>
                                     </thead>
@@ -79,10 +81,25 @@
                                         <tr>
                                             <td>LG01</td>
                                             <td>12/03/2022</td>
-                                            <td>13/03/2022</td>
+                                            <td>Pham Quang Minh</td>
                                             <td>
-                                                <p id="status_reject">Hủy đơn hàng</p>
+                                                <p id="status_complete">Hoàn thành</p>
                                             </td>
+                                            <td>AnhTGV</td>
+                                            <td>499.000</td>
+                                            <td>
+                                                <a href="business_information_order.html" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>LG02</td>
+                                            <td>12/03/2022</td>
+                                            <td>Pham Quang Minh</td>
+                                            <td>
+                                                <p id="status_pending">Đang xử lý</p>
+                                            </td>
+                                            <td>AnhTGV</td>
                                             <td>499.000</td>
                                             <td>
                                                 <a href="business_information_order.html" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
@@ -111,22 +128,22 @@
     </a>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/vendor/Noneed(maybe)/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/Noneed(maybe)/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/js/demo/datatables-demo.js"></script>
-    <script src="/js/include-html.min.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../js/include-html.min.js"></script>
 </body>
 
 </html>

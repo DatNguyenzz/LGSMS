@@ -1,5 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -11,11 +12,11 @@
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/view_profile.css" rel="stylesheet" />
-    <link href="/css/home.css" rel="stylesheet" />
+    <link href="../css/view_profile.css" rel="stylesheet" />
+    <link href="../css/home.css" rel="stylesheet" />
 </head>
 
-<body class="img js-fullHeight" style="background-image: url(../../assets/image/bg4.webp); background-attachment: fixed;">
+<body class="img js-fullHeight" style="background-image: url(../assets/image/bg4.webp); background-attachment: fixed;">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(28, 100, 168, 0.521); border-bottom: 1px solid white;">
         <div class="container px-4 px-lg-5">
@@ -23,23 +24,23 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="home.html">Trang chá»§</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">LiÃªn há»</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="home.html">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Liên hệ</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cá»­a hÃ ng</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cửa hàng</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">Táº¥t cáº£ sáº£n pháº©m</a></li>
+                            <li><a class="dropdown-item" href="#!">Tất cả sản phẩm</a></li>
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
-                            <li><a class="dropdown-item" href="#!">Sáº£n pháº©m bÃ¡n cháº¡y</a></li>
-                            <li><a class="dropdown-item" href="#!">Sáº£n pháº©m má»i</a></li>
+                            <li><a class="dropdown-item" href="#!">Sản phẩm bán chạy</a></li>
+                            <li><a class="dropdown-item" href="#!">Sản phẩm mới</a></li>
                         </ul>
                     </li>
                 </ul>
                 <!-- Navbar-nav with FORM -->
                 <form class="d-flex" action="/somepage">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Nháº­p tá»« khÃ³a...">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Nhập từ khóa...">
                     <button class="btn btn-search" type="submit"><i class="bi bi-search me-1"></i></button>
                 </form>
                 <form class="d-flex">
@@ -59,12 +60,12 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-square me-1"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="list-style: none;">
-                            <li><a class="dropdown-item" href="view_profile.html">Há» sÆ¡ cá»§a tÃ´i</a></li>
-                            <li><a class="dropdown-item" href="#!">Theo dÃµi ÄÆ¡n hÃ ng</a></li>
+                            <li><a class="dropdown-item" href="view_profile.html">Hồ sơ của tôi</a></li>
+                            <li><a class="dropdown-item" href="#!">Theo dõi đơn hàng</a></li>
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
-                            <li><a class="dropdown-item" href="Login.html">ÄÄng xuáº¥t</a></li>
+                            <li><a class="dropdown-item" href="Login.html">Đăng xuất</a></li>
                         </ul>
                     </li>
                     </button>
@@ -76,31 +77,31 @@
         <div class="row">
             <div class="col-md-3 profile_frame">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" src="/assets/image/avatar.jpg" style="border: 2px solid lightgray;">
-                    <span class="font-weight-bold" style="color: rgb(0, 0, 0);">Nguyá»n Quá»c Long</span>
+                    <img class="rounded-circle mt-5" src="../assets/image/avatar.jpg" style="border: 2px solid lightgray;">
+                    <span class="font-weight-bold" style="color: rgb(0, 0, 0);">Nguyễn Quốc Long</span>
                     <span style="display: inline-block;"><input type="file" id="user_avatar" ></span>
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Há» sÆ¡ cá»§a tÃ´i</h4>
+                        <h4 class="text-right">Hồ sơ của tôi</h4>
                     </div>
                     <div class="row mt-3">
-                        <p>Quáº£n lÃ½ thÃ´ng tin Äá» báº£o máº­t tÃ i khoáº£n</p>
-                        <div class="col-md-12"><label class="labels">Há» vÃ  tÃªn*</label><input type="text" class="form-control" placeholder="Nguyen Van A" value=""></div>
-                        <div class="col-md-12"><label class="labels">Sá» Äiá»n thoáº¡i*</label><input type="text" class="form-control" placeholder="098******9" value=""></div>
-                        <div class="col-md-12"><label class="labels">NgÃ y sinh*</label><input type="date" class="form-control" placeholder="" value=""></div>
-                        <div class="col-md-12"><label class="labels" for="gender">Giá»i tÃ­nh*</label>
+                        <p>Quản lý thông tin để bảo mật tài khoản</p>
+                        <div class="col-md-12"><label class="labels">Họ và tên*</label><input type="text" class="form-control" placeholder="Nguyen Van A" value=""></div>
+                        <div class="col-md-12"><label class="labels">Số điện thoại*</label><input type="text" class="form-control" placeholder="098******9" value=""></div>
+                        <div class="col-md-12"><label class="labels">Ngày sinh*</label><input type="date" class="form-control" placeholder="" value=""></div>
+                        <div class="col-md-12"><label class="labels" for="gender">Giới tính*</label>
                             <select name="gender" class="form-control">
 	                            <option value="male">Nam</option>
-	                            <option value="female">Ná»¯</option>
-	                            <option value="other">KhÃ¡c...</option>
+	                            <option value="female">Nữ</option>
+	                            <option value="other">Khác...</option>
                             </select>
                         </div>
-                        <div class="col-md-12"><label class="labels">Äá»a chá»*</label><input type="text" class="form-control" placeholder="nháº­p Äá»a chá» cá»§a báº¡n" value=""></div>
-                        <div class="col-md-12"><label class="labels">Email*</label><input type="text" class="form-control" placeholder="nháº­p Äá»a chá» email cá»§a báº¡n" value=""></div>
-                        <div class="col-md-12 "><button class="btn btn-primary profile-button" type="submit" onclick="confirmFunction()">LÆ°u thÃ´ng tin</button>
+                        <div class="col-md-12"><label class="labels">Địa chỉ*</label><input type="text" class="form-control" placeholder="nhập địa chỉ của bạn" value=""></div>
+                        <div class="col-md-12"><label class="labels">Email*</label><input type="text" class="form-control" placeholder="nhập địa chỉ email của bạn" value=""></div>
+                        <div class="col-md-12 "><button class="btn btn-primary profile-button" type="submit" onclick="confirmFunction()">Lưu thông tin</button>
 
                         </div>
                     </div>
@@ -122,7 +123,7 @@
                             <i class="fas fa-gem me-3"></i>LGSMS
                         </h6>
                         <p>
-                            Äáº¡i lÃ½ phÃ¢n phá»i cÃ¡c sáº£n pháº©m khÃ­ gas hÃ³a lá»ng cá»§a cÃ´ng ty Petrolimex.
+                            Đại lý phân phối các sản phẩm khí gas hóa lỏng của công ty Petrolimex.
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -130,19 +131,19 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 ">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            Sáº£n pháº©m
+                            Sản phẩm
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Táº¥t cáº£ sáº£n pháº©m</a>
+                            <a href="#!" class="text-reset">Tất cả sản phẩm</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Sáº£n pháº©m bÃ¡n cháº¡y</a>
+                            <a href="#!" class="text-reset">Sản phẩm bán chạy</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Sáº£n pháº©m má»i</a>
+                            <a href="#!" class="text-reset">Sản phẩm mới</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Sáº£n pháº©m khuyáº¿n máº¡i</a>
+                            <a href="#!" class="text-reset">Sản phẩm khuyến mại</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -151,19 +152,19 @@
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            ThÃ´ng tin
+                            Thông tin
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">GiÃ¡ gas</a>
+                            <a href="#!" class="text-reset">Giá gas</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Cáº©m nang</a>
+                            <a href="#!" class="text-reset">Cẩm nang</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Äáº·t hÃ ng</a>
+                            <a href="#!" class="text-reset">Đặt hàng</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Há» trá»£</a>
+                            <a href="#!" class="text-reset">Hỗ trợ</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -171,9 +172,9 @@
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4" style="color: rgb(255, 255, 255);">
-                            LiÃªn há»
+                            Liên hệ
                         </h6>
-                        <p style="color: rgb(255, 255, 255);"><i class="bi bi-house-door-fill"></i> 412 Ngá»c Thá»¥y, Long BiÃªn, HÃ  Ná»i</p>
+                        <p style="color: rgb(255, 255, 255);"><i class="bi bi-house-door-fill"></i> 412 Ngọc Thụy, Long Biên, Hà Nội</p>
                         <p style="color: rgb(255, 255, 255);">
                             <i class="bi bi-envelope"></i> vanhsibungas@petro.com
                         </p>
@@ -191,13 +192,13 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="../../js/scripts.js"></script>
-    <script src="../../js/main.js"></script>
+    <script src="../js/scripts.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         function confirmFunction() {
-            if (confirm("Báº¡n cÃ³ cháº¯c cháº¯n vá»i nhá»¯ng thÃ´ng tin nÃ y?")) {
+            if (confirm("Bạn có chắc chắn với những thông tin này?")) {
                 location.reload();
-                alert("LÆ°u thÃ nh cÃ´ng!");
+                alert("Lưu thành công!");
             } else {
                 location.reload();
             }

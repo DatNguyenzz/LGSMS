@@ -1,12 +1,13 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
 
     <title>Forgot Password</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/css/lgin_reg_fgpw.css">
+    <link rel="stylesheet" href="../css/lgin_reg_fgpw.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
 </head>
@@ -25,22 +26,22 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-4" style="background-color: rgba(28, 100, 168, 0.521); border: 5px solid rgb(117, 105, 105);">
                     <div class="text-center">
-                        <h3 class="mb-4 text-center">QuÃÂªn mÃ¡ÂºÂ­t khÃ¡ÂºÂ©u?</h3>
-                        <p class="mb-4">BÃ¡ÂºÂ¡n hÃÂ£y nhÃ¡ÂºÂ­p ÃÂÃ¡Â»Âa chÃ¡Â»Â email ÃÂÃÂ£ ÃÂÃÂng kÃÂ½, chÃÂºng tÃÂ´i sÃ¡ÂºÂ½ gÃ¡Â»Â­i cho bÃ¡ÂºÂ¡n mÃ¡Â»Ât mÃÂ£ xÃÂ¡c nhÃ¡ÂºÂ­n qua email.</p>
+                        <h3 class="mb-4 text-center">Quên mật khẩu?</h3>
+                        <p class="mb-4">Bạn hãy nhập địa chỉ email đã đăng ký, chúng tôi sẽ gửi cho bạn một mã xác nhận qua email.</p>
                     </div>
                     <form id="form" action="">
                         <div class="input-control">
-                            <input id="email" name="email" type="text" class="form-control" placeholder="NhÃ¡ÂºÂ­p ÃÂÃ¡Â»Âa chÃ¡Â»Â email...">
+                            <input id="email" name="email" type="text" class="form-control" placeholder="Nhập địa chỉ email...">
                             <div class="error"></div>
                         </div>
-                        <input type="submit" href="#" class="btn btn-primary btn-user btn-block" value="GÃ¡Â»Â­i mÃÂ£ xÃÂ¡c nhÃ¡ÂºÂ­n"></input>
+                        <input type="submit" href="#" class="btn btn-primary btn-user btn-block" value="Gửi mã xác nhận"></input>
                     </form>
                     <hr>
                     <div class="text-center">
-                        <a style="color: #fff; text-decoration: underline;" href="guest_register.html">ÃÂÃÂng kÃÂ½ tÃÂ i khoÃ¡ÂºÂ£n mÃ¡Â»Âi?</a>
+                        <a style="color: #fff; text-decoration: underline;" href="guest_register.html">Đăng ký tài khoản mới?</a>
                     </div>
                     <div class="w-100 text-center">
-                        <p class="login-wrap">BÃ¡ÂºÂ¡n ÃÂÃÂ£ cÃÂ³ tÃÂ i khoÃ¡ÂºÂ£n? <a style="color: #fff; text-decoration: underline;" href="customer_Login.html">ÃÂÃÂng nhÃ¡ÂºÂ­p!</a></p>
+                        <p class="login-wrap">Bạn đã có tài khoản? <a style="color: #fff; text-decoration: underline;" href="customer_Login.html">Đăng nhập!</a></p>
                     </div>
                 </div>
 
