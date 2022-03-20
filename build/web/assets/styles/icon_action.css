@@ -1,0 +1,32 @@
+.fa-check-circle {
+    color: green;
+}
+
+.fa-times-circle {
+    color: red;
+}
+
+a {
+    padding: 3px;
+}
+
+#status_complete {
+    text-align: center;
+    color: white;
+    background-color: green;
+    border-radius: 25px;
+}
+
+#status_pending {
+    text-align: center;
+    color: white;
+    background-color: gray;
+    border-radius: 25px;
+}
+
+#status_reject {
+    text-align: center;
+    color: white;
+    background-color: rgb(255, 0, 0);
+    border-radius: 25px;
+}
