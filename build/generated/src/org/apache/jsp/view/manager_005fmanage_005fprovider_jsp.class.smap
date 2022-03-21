@@ -1,0 +1,10 @@
+SMAP
+manager_005fmanage_005fprovider_jsp.java
+JSP
+*S JSP
+*F
++ 0 manager_manage_provider.jsp
+view/manager_manage_provider.jsp
+*L
+1,230:44
+*E

@@ -1,0 +1,22 @@
+SMAP
+manager_005fmanage_005fproduct_jsp.java
+JSP
+*S JSP
+*F
++ 0 manager_manage_product.jsp
+view/manager_manage_product.jsp
+*L
+1,31:46
+32,2:78
+33,104:80
+137:184,3
+138:187
+139,2:188,3
+141:194
+142,3:195,3
+145,2:204
+147:206,5
+148,4:211
+152:215,3
+153,43:218
+*E

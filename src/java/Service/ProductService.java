@@ -8,7 +8,6 @@ package Service;
 import DAO.ProductDAO;
 import Model.Product;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -20,5 +19,11 @@ public class ProductService {
     //get list all product from database
     public ArrayList<Product> getAllProduct(){
         return productDAO.getAllProduct();
+    }
+    
+    //add new product to database
+    public boolean addNewProductToDB(Product product){
+        int result = productDAO.addNewProductToDB(product);
+        return result != 0;
     }
 }

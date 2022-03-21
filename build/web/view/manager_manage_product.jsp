@@ -73,7 +73,7 @@
                                     </div>
                                     <!-- Add new product -->
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form action="/LGSMS/ManageProduct" method="POST">
                                             <div class="row" style="width: 100%;">
                                                 <div class="col-sm-12">
                                                     <div class="row">
@@ -84,19 +84,19 @@
                                                         <div class="col-8 col-sm-7">
                                                             <div class="form-group">
                                                                 <label for="product-name" class="col-form-label">Tên sản phẩm:</label>
-                                                                <input type="text" class="form-control" id="product-name">
+                                                                <input type="text" class="form-control" id="product-name" name="product-name">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="product-quantity" class="col-form-label">Số lượng:</label>
-                                                                <input type="text" class="form-control" id="product-quantity">
+                                                                <input type="text" class="form-control" id="product-quantity" name="product-quantity">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="product-price" class="col-form-label">Giá bán:</label>
-                                                                <input type="text" class="form-control" id="product-price">
+                                                                <input type="text" class="form-control" id="product-price" name="product-price">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="product-des" class="col-form-label">Mô tả:</label>
-                                                                <textarea class="form-control" id="product-des"></textarea>
+                                                                <textarea class="form-control" id="product-des" name="product-des"></textarea>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <input type="submit" class="btn btn-primary" value="Thêm"></input>

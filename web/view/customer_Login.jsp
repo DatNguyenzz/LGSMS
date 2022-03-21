@@ -11,7 +11,7 @@
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
 </head>
 
-<body class="img js-fullHeight" style="background-image: url(/assets/image/bg4.webp); background-attachment: fixed;">
+<body class="img js-fullHeight" style="background-image: url(../assets/image/bg4.webp); background-attachment: fixed;">
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
