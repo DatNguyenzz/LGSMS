@@ -1,3 +1,5 @@
+<%@page import="Model.Provider"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -13,25 +15,27 @@
     <title>LGS - Admin</title>
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../assets/styles/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../assets/styles/slider_status.css" rel="stylesheet">
+    <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
+    <link href="assets/styles/slider_status.css" rel="stylesheet">
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
-
+<%
+  ArrayList<Provider> listProvider= (ArrayList<Provider>)request.getAttribute("listProvider");
+%>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div include-html="../components/sidebar.html" id="sidebar" style="display: contents;"></div>
+            <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -48,7 +52,7 @@
                             <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Navbar -->
-                    <div include-html="../components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                    <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
 
@@ -67,30 +71,32 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        
+                                        
+                                        <form action="AddProvider" method="POST">
                                             <div class="row" style="width: 100%;">
                                                 <div class="col-sm-12">
                                                     <div class="row">
                                                         <div class="col-8 col-sm-5 text-center">
-                                                            <img src="../assets/image/img/undraw_posting_photo.svg" alt="..." class="img-thumbnail">
+                                                            <img src="assets/image/img/undraw_posting_photo.svg" alt="..." class="img-thumbnail">
                                                             <button type="button" class="btn btn-primary ">Tải ảnh</button>
                                                         </div>
                                                         <div class="col-8 col-sm-7">
                                                             <div class="form-group">
                                                                 <label for="provider-name" class="col-form-label">Tên nhà cung cấp:</label>
-                                                                <input type="text" class="form-control" id="product-name">
+                                                                <input type="text" class="form-control" id="provider-name" name="provider-name">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="provider-address" class="col-form-label">Địa chỉ:</label>
-                                                                <input type="text" class="form-control" id="provider-address">
+                                                                <input type="text" class="form-control" id="provider-address" name="provider-address">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="provider-email" class="col-form-label">Email:</label>
-                                                                <input type="text" class="form-control" id="provider-email">
+                                                                <input type="text" class="form-control" id="provider-email" name="provider-email">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="provider-phone" class="col-form-label">Điện thoại:</label>
-                                                                <input type="text" class="form-control" id="provider-phone">
+                                                                <input type="text" class="form-control" id="provider-phone" name="provider-phone">
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <input type="submit" class="btn btn-primary" value="Thêm"></input>
@@ -127,23 +133,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <%for(Provider provider : listProvider){%>
                                         <tr>
-                                            <td>AC01</td>
-                                            <td>Petrolimex Gas</td>
-                                            <td>minhpq@daxua</td>
-                                            <td>0123456789</td>
+                                            <td><%=provider.getProviderID()%></td>
+                                            <td><%=provider.getProviderName()%></td>
+                                            <td><%=provider.getProviderEmail()%></td>
+                                            <td><%=provider.getProviderPhone()%></td>
                                             <td>11/03/2022</td>
                                             <td><label class="switch">
-                                                <input type="checkbox" checked>
+                                                <input type="checkbox" <%if(provider.isIsActive()){%>checked<%}%>>
                                                 <span class="slider round"></span>
-                                              </label>
+                                                </label>
                                             </td>
                                             <td>
-                                                <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
+                                                <a href="#editAccountModal" class="edit" onclick="handleClick('<%=provider.getProviderID()%>', '<%=provider.getProviderName()%>', '<%=provider.getProviderEmail()%>', '<%=provider.getProviderPhone()%>', '<%=provider.getProviderAddress()%>')"
+                                                   data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
 
                                         </tr>
-
+                                        <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -166,7 +174,7 @@
     <div id="editAccountModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form action="EditProvider" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title">Chỉnh sửa thông tin nhà cung cấp</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -174,23 +182,23 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Mã nhà cung cấp</label>
-                            <input type="text" class="form-control" required>
+                            <input name="providerID" id="providerID" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Tên nhà cung cấp</label>
-                            <input type="text" class="form-control" required>
+                            <input name="providerName" id="providerName" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Địa chỉ</label>
-                            <input type="text" class="form-control" required>
+                            <input name="address" id="address" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" required>
+                            <input name="email" id="email" type="email" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Điện thoại</label>
-                            <input type="text" class="form-control" required>
+                            <input name="providerPhone" id="providerPhone" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Trạng thái: </label>
@@ -209,22 +217,42 @@
         </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+     <script type="text/javascript">
+	
+	const providerID=document.getElementById("providerID");
+	const providerName=document.getElementById("providerName");
+	const email=document.getElementById("email");
+	const address=document.getElementById("address");
+        const providerPhone=document.getElementById("providerPhone");
+	
+	
+    const handleClick=(idInput, nameInput,emailInput,phoneInput,addressInput)=>{
+    	providerName.value=nameInput;
+        email.value=emailInput;
+   	providerPhone.value=phoneInput;   	
+    	providerID.value=idInput;
+        address.value=addressInput;
+    	
+    }
+    </script>-->
+    
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-demo.js"></script>
-    <script src="../js/include-html.min.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/include-html.min.js"></script>
 </body>
 
 </html>

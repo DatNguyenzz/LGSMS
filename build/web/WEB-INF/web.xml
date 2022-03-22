@@ -12,6 +12,10 @@
         <servlet-name>AuthorizationController</servlet-name>
         <servlet-class>Controller.AuthorizationController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManageProviderController</servlet-name>
+        <servlet-class>Controller.ManageProviderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageProductController</servlet-name>
         <url-pattern>/ManageProduct</url-pattern>
@@ -24,6 +28,12 @@
         <servlet-name>AuthorizationController</servlet-name>
         <url-pattern>/login</url-pattern>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageProviderController</servlet-name>
+        <url-pattern>/ManageProvider</url-pattern>
+        <url-pattern>/EditProvider</url-pattern>
+        <url-pattern>/AddProvider</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

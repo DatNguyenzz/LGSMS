@@ -48,17 +48,17 @@ public class AuthorizationController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = request.getContextPath();
-        if (url.equals("login")) {
+//        if (url.equals("login")) {
             //Get login
             Account acc = (Account) request.getSession().getAttribute("account");
             if (acc == null) {
                 request.getRequestDispatcher("view/login.jsp").forward(request, response);
             } else {
                 response.sendRedirect(request.getContextPath() + "/home");
-            }
-        }else if(url.equals("logout")){
-            //Get logout
-            
+//            }
+//        }else if(url.equals("logout")){
+//            //Get logout
+//            
         }
     }
 
