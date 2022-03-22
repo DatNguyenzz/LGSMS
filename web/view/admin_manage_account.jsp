@@ -23,7 +23,7 @@
         <link href="assets/styles/slider_status.css" rel="stylesheet">
         <!-- Custom styles for this page -->
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+	<link href="assets/styles/custom_box.css" rel="stylesheet">
     </head>
 
     <body id="page-top">
@@ -67,51 +67,116 @@
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Thêm tài khoản</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="form" action="">
-                                                <div class="row" style="width: 100%;">
-                                                    <div class="col-sm-12">
-                                                        <div class="row">
-                                                            <div class="col-8 col-sm-5 text-center">
-                                                                <img src="assets/image/img/undraw_posting_photo.svg" alt="..." class="img-thumbnail">
-                                                                <button type="button" class="btn btn-primary ">Tải ảnh</button>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Thêm tài khoản</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form" action="" onsubmit="confirmFunction()">
+                                            <div class="col-8 col-sm-12" style="text-align: center ;">
+                                                <img src="../assets/image/avatar.jpg" alt="..."
+                                                    class="img-thumbnail"
+                                                    style="height: 200px; width: 200px; border-radius: 50%;">
+                                                <div><input type="file" id="user_avatar" accept="image/png, image/jpeg">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-8 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="user-name" class="col-form-label">Họ và
+                                                                    tên:</label>
+                                                                <input type="text" class="form-control" id="user-name"
+                                                                    required
+                                                                    oninvalid="this.setCustomValidity('Xin hãy nhập tên nhân viên.')"
+                                                                    oninput="this.setCustomValidity('')" />
                                                             </div>
-                                                            <div class="col-8 col-sm-7">
-                                                                <div class="form-group">
-                                                                    <label for="product-name" class="col-form-label">Tên đăng nhập:</label>
-                                                                    <input type="text" class="form-control" id="product-name">
+                                                            <div class="form-group">
+                                                                <label for="staff-phone" class="col-form-label">Số điện
+                                                                    thoại:</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="staff-phone" oninvalid="InvalidPhone(this);"
+                                                                    name="phone" oninput="InvalidPhone(this);"
+                                                                    required="required" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="user-address" class="col-form-label">Họ và
+                                                                    tên:</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="user-address" required
+                                                                    oninvalid="this.setCustomValidity('Xin hãy nhập địa chỉ nhân viên.')"
+                                                                    oninput="this.setCustomValidity('')" />
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="user-dob"
+                                                                            class="col-form-label">Ngày sinh</label>
+                                                                        <input class="form-control" id="user-dob"
+                                                                            name="date" placeholder="MM/DD/YYYY"
+                                                                            type="date" required
+                                                                            oninvalid="this.setCustomValidity('Xin hãy nhập ngày sinh của nhân viên.')"
+                                                                            oninput="this.setCustomValidity('')" />
+                                                                    </div>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label for="product-quantity" class="col-form-label">Email:</label>
-                                                                    <input type="text" class="form-control" id="product-quantity">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label>Vai trò:</label>
-                                                                    <select class="form-control" name="roles" id="roles">
-                                                                        <option value="admin">Admin</option>
-                                                                        <option value="manager">Manager</option>
-                                                                        <option value="business">Business Staff</option>
-                                                                        <option value="customer">Customer</option>
+                                                                <div class="col">
+                                                                    <label for="gender" class="col-form-label">Giới tính:</label>
+                                                                    <select class="form-control" name="gender" id="gender">
+                                                                        <option value="male">Nam</option>
+                                                                        <option value="female">Nữ</option>
                                                                     </select>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <input type="submit" class="btn btn-primary" value="Thêm"></button>
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-8 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="username" class="col-form-label">Tên đăng
+                                                                    nhập:</label>
+                                                                <input type="text" class="form-control" id="username"
+                                                                    required
+                                                                    oninvalid="this.setCustomValidity('Xin hãy nhập tên tài khoản của bạn.')"
+                                                                    oninput="this.setCustomValidity('')" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="user-password" class="col-form-label">Mật khẩu:</label>
+                                                                <input type="text" class="form-control" id="user-password"
+                                                                    required
+                                                                    oninvalid="this.setCustomValidity('Xin hãy nhập mật khẩu cho nhân viên.')"
+                                                                    oninput="this.setCustomValidity('')" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="staff-email"
+                                                                    class="col-form-label">Email:</label>
+                                                                <input type="email" class="form-control"
+                                                                    id="staff-email" oninvalid="InvalidMsg(this);"
+                                                                    name="email" oninput="InvalidMsg(this);"
+                                                                    type="email" required="required" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="staff-roles" class="col-form-label">Vai trò:</label>
+                                                                <select class="form-control" name="roles" id="roles">
+                                                                    <option value="admin">Admin</option>
+                                                                    <option value="manager">Manager</option>
+                                                                    <option value="business">Business Staff</option>
+                                                                    <option value="customer">Customer</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <input type="submit" class="btn btn-primary"
+                                                            value="Thêm"></button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Hủy</button>
                                                     </div>
                                                 </div>
-                                            </form>
-                                        </div>
-
+                                            </div>
+                                        </form>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -181,41 +246,137 @@
         <div id="editAccountModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form method="POST" action="ManageAccount">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Chỉnh sửa tài khoản</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Tên người dùng*</label>
-                            <input id="userName" name="userName" type="text" class="form-control" placeholder="nhập tên người dùng..." required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email*</label>
-                            <input name="email" id="email" type="email" class="form-control" placeholder="nhập địa chỉ email..." required>
-                        </div>
-                        <div class="form-group">
-                            <label>Vai trò</label>
-                            <select class="form-control" name="roles" id="roles">
-                            <option value="1">Admin</option>
-                            <option value="2">Manager</option>
-                            <option value="3">Business Staff</option>
-                            
-                        </select>
-                        </div>
-                        
-                        <div class="form-group">
-			<input id="accountId" name="accountId" type="text" class="form-control" hidden="true">
-                        </div>
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-info" value="Lưu">
-                    </div>
-                </form>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chi tiết tài khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    <form id="form" action="" onsubmit="confirmFunction()">
+                        <div class="col-8 col-sm-12" style="text-align: center ;">
+                            <img src="../assets/image/long.png" alt="..."
+                                class="img-thumbnail"
+                                style="height: 200px; width: 200px; border-radius: 50%;">
+                            <div><input type="file" id="user_avatar" accept="image/png, image/jpeg">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-8 col-sm-6">
+                                        <div class="form-group">
+                                        <label for="staff-code" class="col-form-label">Mã nhân viên:</label>
+                                                <label type="text" class="border border-secondary w-100 rounded label_box" 
+                                                    readonly class="form-control-plaintext"
+                                                    id="staff-code">AC01</label>
+                                                </div>
+                                        <div class="form-group">
+                                            <label for="user-name" class="col-form-label">Họ và
+                                                tên:</label>
+                                            <input type="text" class="form-control" id="user-name" value="Phạm Quang Minh"
+                                                required
+                                                oninvalid="this.setCustomValidity('Xin hãy nhập tên nhân viên.')"
+                                                oninput="this.setCustomValidity('')" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="staff-phone" class="col-form-label">Số điện
+                                                thoại:</label>
+                                            <input type="text" class="form-control" value="0916362047"
+                                                id="staff-phone" oninvalid="InvalidPhone(this);"
+                                                name="phone" oninput="InvalidPhone(this);"
+                                                required="required" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="user-address" class="col-form-label">Địa chỉ:
+                                                </label>
+                                            <input type="text" class="form-control" value="118 Tây Hồ, Hoàn Kiếm, Hà Nội"
+                                                id="user-address" required
+                                                oninvalid="this.setCustomValidity('Xin hãy nhập địa chỉ nhân viên.')"
+                                                oninput="this.setCustomValidity('')" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="user-dob"
+                                                        class="col-form-label">Ngày sinh</label>
+                                                    <input class="form-control" id="user-dob"
+                                                        name="date" placeholder="MM/DD/YYYY" value="2000-10-14"
+                                                        type="date" required
+                                                        oninvalid="this.setCustomValidity('Xin hãy nhập ngày sinh của nhân viên.')"
+                                                        oninput="this.setCustomValidity('')" />
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <label for="gender" class="col-form-label">Giới tính:</label>
+                                                <select class="form-control" name="gender" id="gender">
+                                                    <option value="male">Nam</option>
+                                                    <option value="female">Nữ</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="username" class="col-form-label">Tên đăng
+                                                nhập:</label>
+                                            <input type="text" class="form-control" id="username" value="minhpqdaxua"
+                                                required
+                                                oninvalid="this.setCustomValidity('Xin hãy nhập tên tài khoản của bạn.')"
+                                                oninput="this.setCustomValidity('')" />
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="staff-email"
+                                                class="col-form-label">Email:</label>
+                                            <input type="email" class="form-control" value="minhpq@daxua"
+                                                id="staff-email" oninvalid="InvalidMsg(this);"
+                                                name="email" oninput="InvalidMsg(this);"
+                                                type="email" required="required" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="user-password" class="col-form-label">Mật khẩu:</label><br>
+                                            <button type="button" class="btn btn-primary" style="width: 100%;"
+                                            onclick="confirmChangePass()">Gửi mật khẩu mặc định</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="staff-roles" class="col-form-label">Vai trò:</label>
+                                            <select class="form-control" name="roles" id="roles">
+                                                <option value="admin">Admin</option>
+                                                <option value="manager">Manager</option>
+                                                <option value="business">Business Staff</option>
+                                                <option value="customer">Customer</option>
+                                            </select>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="product-create" class="col-form-label">Ngày
+                                                    tạo:</label>
+                                                <label type="text" class="border border-secondary w-100 rounded label_box"                                                                                                            " 
+                                                readonly class="form-control-plaintext" id="product-create"
+                                                    >11/03/2022</label>
+                                            </div>
+                                            <div class="col">
+                                                <label for="product-update" class="col-form-label"
+                                                    style="text-align: right;">Ngày cập nhật:</label>
+                                                <label type="text" class="border border-secondary w-100 rounded label_box" 
+                                                readonly class="form-control-plaintext" id="product-update"
+                                                    >15/03/2022</label>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary"
+                                        value="Lưu"></button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Hủy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             </div>
         </div>
         <!-- Bootstrap core JavaScript-->
@@ -252,6 +413,8 @@
         <!-- Page level custom scripts -->
         <script src="js/demo/datatables-demo.js"></script>
         <script src="js/include-html.min.js"></script>
+	<script src="js/confirm.js"></script>
+    	<script src="js/staff_validate.js"></script>
     </body>
 
 </html>
