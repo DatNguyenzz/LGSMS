@@ -27,10 +27,10 @@
                     <div class="login-wrap p-0">
                         <h3 class="mb-4 text-center">Đăng Nhập</h3>
                         <!-- Form đăng nhập -->
-                        <form id="form" action="view_profile.html">
-                            <!-- Nhập email -->
+                        <form id="form" action="login">
+                            <!-- Nhập username -->
                             <div class="input-control">
-                                <input id="email" name="email" type="text" class="form-control" placeholder="Tên tài khoản" required oninvalid="this.setCustomValidity('Xin hãy nhập tên tài khoản của bạn.')" oninput="this.setCustomValidity('')" />
+                                <input id="username" name="username" type="text" class="form-control" placeholder="Tên tài khoản" required oninvalid="this.setCustomValidity('Xin hãy nhập tên tài khoản của bạn.')" oninput="this.setCustomValidity('')" />
                                 <div class="error"></div>
                             </div>
                             <!-- Nhập mật khẩu -->

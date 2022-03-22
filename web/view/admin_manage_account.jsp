@@ -182,60 +182,60 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form method="POST" action="ManageAccount">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Chỉnh sửa tài khoản</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Tên người dùng*</label>
-                            <input id="userName" name="userName" type="text" class="form-control" placeholder="nhập tên người dùng..." required>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Chỉnh sửa tài khoản</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="form-group">
-                            <label>Email*</label>
-                            <input name="email" id="email" type="email" class="form-control" placeholder="nhập địa chỉ email..." required>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Tên người dùng*</label>
+                                <input id="userName" name="userName" type="text" class="form-control" placeholder="nhập tên người dùng..." required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email*</label>
+                                <input name="email" id="email" type="email" class="form-control" placeholder="nhập địa chỉ email..." required>
+                            </div>
+                            <div class="form-group">
+                                <label>Vai trò</label>
+                                <select class="form-control" name="roles" id="roles">
+                                    <option value="1">Admin</option>
+                                    <option value="2">Manager</option>
+                                    <option value="3">Business Staff</option>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input id="accountId" name="accountId" type="text" class="form-control" hidden="true">
+                            </div>
+
                         </div>
-                        <div class="form-group">
-                            <label>Vai trò</label>
-                            <select class="form-control" name="roles" id="roles">
-                            <option value="1">Admin</option>
-                            <option value="2">Manager</option>
-                            <option value="3">Business Staff</option>
-                            
-                        </select>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-info" value="Lưu">
                         </div>
-                        
-                        <div class="form-group">
-			<input id="accountId" name="accountId" type="text" class="form-control" hidden="true">
-                        </div>
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-info" value="Lưu">
-                    </div>
-                </form>
+                    </form>
                 </div>
             </div>
         </div>
         <!-- Bootstrap core JavaScript-->
 
         <script type="text/javascript">
-	
-	const roles=document.getElementById("roles");
-	const userName=document.getElementById("userName");
-	const email=document.getElementById("email");
-	const accountid=document.getElementById("accountId");
-	
-	
-    const handleClick=(userNameInput,emailInput,roleInput,idInput)=>{
-    	userName.value=userNameInput;
-        email.value=emailInput;
-   	roles.value=roleInput;   	
-    	accountid.value=idInput;
-    	
-    }
-    </script>
+
+            const roles = document.getElementById("roles");
+            const userName = document.getElementById("userName");
+            const email = document.getElementById("email");
+            const accountid = document.getElementById("accountId");
+
+
+            const handleClick = (userNameInput, emailInput, roleInput, idInput) => {
+                userName.value = userNameInput;
+                email.value = emailInput;
+                roles.value = roleInput;
+                accountid.value = idInput;
+
+            }
+        </script>
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
