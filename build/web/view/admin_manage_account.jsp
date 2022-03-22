@@ -37,7 +37,7 @@
 
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-                <div include-html="components/sidebar.html" id="sidebar" style="display: contents;"></div>
+                <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
@@ -54,7 +54,7 @@
                             <i class="fa fa-bars"></i>
                         </button>
                         <!-- Topbar Navbar -->
-                        <div include-html="components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                        <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                     </nav>
                     <!-- End of Topbar -->
 
@@ -76,7 +76,7 @@
                                     <div class="modal-body">
                                         <form id="form" action="" onsubmit="confirmFunction()">
                                             <div class="col-8 col-sm-12" style="text-align: center ;">
-                                                <img src="../assets/image/avatar.jpg" alt="..."
+                                                <img src="assets/image/avatar.jpg" alt="..."
                                                     class="img-thumbnail"
                                                     style="height: 200px; width: 200px; border-radius: 50%;">
                                                 <div><input type="file" id="user_avatar" accept="image/png, image/jpeg">
@@ -255,7 +255,7 @@
                 <div class="modal-body">
                     <form id="form" action="" onsubmit="confirmFunction()">
                         <div class="col-8 col-sm-12" style="text-align: center ;">
-                            <img src="../assets/image/long.png" alt="..."
+                            <img src="assets/image/long.png" alt="..."
                                 class="img-thumbnail"
                                 style="height: 200px; width: 200px; border-radius: 50%;">
                             <div><input type="file" id="user_avatar" accept="image/png, image/jpeg">
@@ -399,10 +399,7 @@
         </script>
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+        
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
 

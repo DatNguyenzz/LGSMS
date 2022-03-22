@@ -29,7 +29,7 @@ public class AccountDAO {
             + "a.role_id,  a.is_active, r.role_name\n"
             + "FROM Account a\n"
             + "INNER JOIN Profile p ON a.profile_id = p.profile_id\n"
-            + "INNER JOIN Role r on a.role_id = r.role_id";
+            + "INNER JOIN Role r on a.role_id = r.role_id\n";
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();

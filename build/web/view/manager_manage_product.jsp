@@ -36,7 +36,7 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div include-html="components/sidebar.html" id="sidebar" style="display: contents;"></div>
+            <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -53,7 +53,7 @@
                             <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Navbar -->
-                    <div include-html="components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                    <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
 
