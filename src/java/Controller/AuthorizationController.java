@@ -47,18 +47,19 @@ public class AuthorizationController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = request.getContextPath();
-//        if (url.equals("login")) {
+        String url = request.getServletPath();
+        if (url.equals("/login")) {
             //Get login
             Account acc = (Account) request.getSession().getAttribute("account");
             if (acc == null) {
                 request.getRequestDispatcher("view/login.jsp").forward(request, response);
             } else {
                 response.sendRedirect(request.getContextPath() + "/home");
-//            }
-//        }else if(url.equals("logout")){
-//            //Get logout
-//            
+            }
+        }else if(url.equals("/logout")){
+            //Get logut
+            request.getSession().removeAttribute("account");
+            response.sendRedirect(request.getContextPath() + "/login");
         }
     }
 
@@ -80,7 +81,9 @@ public class AuthorizationController extends HttpServlet {
         Account acc = new AccountService().login(username, password);
         if (acc == null) {
             //Login failed
+            request.getRequestDispatcher("view/login.jsp").forward(request, response);
         } else {
+            //Login success
             HttpSession session = request.getSession();
             session.setAttribute("account", acc);
             response.sendRedirect(request.getContextPath() + "/home");
