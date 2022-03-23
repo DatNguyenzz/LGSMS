@@ -217,7 +217,10 @@
                                                 <td><%=account.getUpdatedAt()%></td>
                                                 <td>
                                                     <a href="#editAccountModal" class="edit"
-                                                       onclick="handleClick('<%=account.getUsername()%>', '<%=account.getEmail()%>', '<%=account.getRole().getRoleID()%>', '<%=account.getAccountID()%>')"
+                                                       onclick="handleClick('<%=account.getAccountID()%>','<%=account.getUsername()%>',
+                                                                '<%=account.getFullname()%>', '<%=account.getEmail()%>','<%=account.getPhone()%>'
+                                                                '<%=account.getRole().getRoleID()%>', '<%=account.getDOB()%>', '<%=account.isGender()%>',
+                                                                '<%=account.getCreatedAt()%>', '<%=account.getUpdatedAt()%>')"
                                                        data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
                                                 </td>
 
@@ -382,17 +385,20 @@
         <!-- Bootstrap core JavaScript-->
 
         <script type="text/javascript">
-
-            const roles = document.getElementById("roles");
-            const userName = document.getElementById("userName");
+            const id = document.getElementById("staff-code");
+            const roleID = document.getElementById("roles");
+            const username = document.getElementById("userName");
             const email = document.getElementById("email");
             const accountid = document.getElementById("accountId");
 
 
-            const handleClick = (userNameInput, emailInput, roleInput, idInput) => {
-                userName.value = userNameInput;
+            const handleClick = (idInput, usernameInput, fullnameInput, 
+                                emailInput, phoneInput, addressInput,
+                                roleIdInput, dobInput, genderInput
+                                createdAtInput, updatedAtInput) => {
+                username.value = usernameInput;
                 email.value = emailInput;
-                roles.value = roleInput;
+                roleID.value = roleIdInput;
                 accountid.value = idInput;
 
             }

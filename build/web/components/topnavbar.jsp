@@ -50,7 +50,7 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <a class="dropdown-item" href="<%=request.getContextPath()%>/logout" data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Đăng xuất
                         </a>
                     </li>
@@ -72,7 +72,7 @@
                 <div class="modal-body">Chọn "Đăng xuất" nếu bạn muốn thoát khỏi hệ thống.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                    <a class="btn btn-primary" href="/logout">Đăng xuất</a>
+                    <a class="btn btn-primary" href="<%=request.getContextPath()%>/logout">Đăng xuất</a>
                 </div>
             </div>
         </div>
