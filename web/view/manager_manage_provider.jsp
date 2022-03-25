@@ -73,7 +73,7 @@
                                     <div class="modal-body">
                                         
                                         
-                                        <form action="AddProvider" method="POST">
+                                        <form action="AddProvider" method="POST" onsubmit="confirmFunction()">
                                             <div class="row" style="width: 100%;">
                                                 <div class="col-sm-12">
                                                     <div class="row">
@@ -239,7 +239,7 @@
     
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -253,6 +253,7 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/include-html.min.js"></script>
+    <!--<script src="js/confirm.js"></script>-->
 </body>
 
 </html>

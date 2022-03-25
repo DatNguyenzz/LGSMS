@@ -89,9 +89,9 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="business_new_order.html">Danh sách đơn hàng mới</a>
-            <a class="collapse-item" href="business_accept_order.html">Danh sách đơn chấp nhận</a>
-            <a class="collapse-item" href="business_reject_order.html">Danh sách đơn từ chối</a>
+            <a class="collapse-item" href="<%=request.getContextPath()%>/ManageNewOrder">Danh sách đơn hàng mới</a>
+            <a class="collapse-item" href="<%=request.getContextPath()%>/ManageAcceptOrder">Danh sách đơn chấp nhận</a>
+            <a class="collapse-item" href="<%=request.getContextPath()%>/ManageCancelOrder">Danh sách đơn từ chối</a>
         </div>
     </div>
 </li>

@@ -1,0 +1,10 @@
+SMAP
+business_005faccept_005forder_jsp.java
+JSP
+*S JSP
+*F
++ 0 business_accept_order.jsp
+view/business_accept_order.jsp
+*L
+1,187:44
+*E

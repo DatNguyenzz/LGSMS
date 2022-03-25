@@ -16,6 +16,10 @@
         <servlet-name>ManageProviderController</servlet-name>
         <servlet-class>Controller.ManageProviderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManageOrderController</servlet-name>
+        <servlet-class>Controller.ManageOrderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageProductController</servlet-name>
         <url-pattern>/ManageProduct</url-pattern>
@@ -34,6 +38,13 @@
         <url-pattern>/ManageProvider</url-pattern>
         <url-pattern>/EditProvider</url-pattern>
         <url-pattern>/AddProvider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageOrderController</servlet-name>
+        <url-pattern>/ManageOrder</url-pattern>
+        <url-pattern>/ManageNewOrder</url-pattern>
+        <url-pattern>/ManageCancelOrder</url-pattern>
+        <url-pattern>/ManageAcceptOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

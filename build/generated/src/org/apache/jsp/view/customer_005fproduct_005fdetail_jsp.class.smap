@@ -1,0 +1,10 @@
+SMAP
+customer_005fproduct_005fdetail_jsp.java
+JSP
+*S JSP
+*F
++ 0 customer_product_detail.jsp
+view/customer_product_detail.jsp
+*L
+1,286:44
+*E

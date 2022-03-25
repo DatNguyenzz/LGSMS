@@ -5,6 +5,9 @@
  */
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Dat Nguyen
@@ -15,8 +18,10 @@ public class OrderDetail {
     private int productID;
     private int productQuantity;
     private double price;
+    
 
     public OrderDetail() {
+        
     }
 
     public OrderDetail(int orderDetailID, int orderID, int productID, int productQuantity, double price) {
@@ -26,6 +31,10 @@ public class OrderDetail {
         this.productQuantity = productQuantity;
         this.price = price;
     }
+
+   
+
+    
 
     public void setOrderDetailID(int orderDetailID) {
         this.orderDetailID = orderDetailID;
