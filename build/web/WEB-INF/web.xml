@@ -19,6 +19,8 @@
     <servlet-mapping>
         <servlet-name>ManageAccountController</servlet-name>
         <url-pattern>/ManageAccount</url-pattern>
+        <url-pattern>/EditAccount</url-pattern>
+        <url-pattern>/AddAccount</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AuthorizationController</servlet-name>

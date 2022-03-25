@@ -48,6 +48,7 @@ public class ManageProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Product> listProduct = productService.getAllProduct();
         request.setAttribute("listProduct", listProduct);
@@ -65,6 +66,7 @@ public class ManageProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String productName = request.getParameter("product-name");
         String productImage = "null";

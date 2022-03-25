@@ -10,6 +10,7 @@ import Model.Role;
 import Service.AccountService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author admin
  */
 public class ManageAccountController extends HttpServlet {
+
+    AccountService accountService = new AccountService();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,9 +52,13 @@ public class ManageAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        AccountService accountService = new AccountService();
+
         ArrayList<Account> listAccount = accountService.getAllAccount();
+        ArrayList<Role> listRole = accountService.getAllRole();
+
+        request.setAttribute("listRole", listRole);
         request.setAttribute("listAccount", listAccount);
         request.getRequestDispatcher("view/admin_manage_account.jsp").forward(request, response);
     }
@@ -67,31 +74,48 @@ public class ManageAccountController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            int accountId = Integer.parseInt(request.getParameter("accountId"));
-            String userName = request.getParameter("userName");
-            String email = request.getParameter("email");
-            int roleID = Integer.parseInt(request.getParameter("roles"));
-            Account account = new Account();
-            Role role = new Role();
-            role.setRoleID(roleID);
-            account.setUsername(userName);
-            account.setEmail(email);
-            account.setRole(role);
-            account.setAccountID(accountId);
-
-            AccountService accountService = new AccountService();
-
-            int result = accountService.getAccountUpdate(account);
-            if (result != 0) {
-                response.sendRedirect(request.getContextPath() + "/ManageAccount");
-            } else {
-                response.sendRedirect("123123");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        String url = request.getServletPath();
+        switch (url) {
+            case "/EditAccount": {
+                int accountId = Integer.parseInt(request.getParameter("accountId"));
+                String fullname = request.getParameter("fullname");
+                String phone = request.getParameter("phone");
+                String address = request.getParameter("address");
+                String dob = request.getParameter("dob");
+                Boolean gender = (request.getParameter("gender").equals("true"));
+                String username = request.getParameter("username");
+                String email = request.getParameter("email");
+                int roleId = Integer.parseInt(request.getParameter("role"));
+                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, username, email, roleId)) {
+                    //Update success
+                    response.sendRedirect(request.getContextPath() + "/ManageAccount");
+                } else {
+                    //Update fail
+                }
+                break;
+            }
+            case "/AddAccount": {
+                String fullname = request.getParameter("fullname");
+                String phone = request.getParameter("phone");
+                String address = request.getParameter("address");
+                String dob = request.getParameter("dob");
+                Boolean gender = (request.getParameter("gender").equals("true"));
+                String username = request.getParameter("username");
+                String email = request.getParameter("email");
+                int roleId = Integer.parseInt(request.getParameter("role"));
+                if (accountService.addAccount(fullname, phone, address, dob, gender, username, email, roleId)) {
+                    //Add success
+                    response.sendRedirect(request.getContextPath() + "/ManageAccount");
+                } else {
+                    //Add fail
+                }
+                break;
             }
 
-        } catch (Exception ex) {
-            Logger.getLogger(ManageAccountController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     /**
