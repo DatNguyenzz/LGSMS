@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class AccountDAO {
 
     private static final String BASE_SQL
-            = "SELECT p.profile_id, p.image, p.full_name, p.phone, \n"
+            = "SELECT p.profile_id, p.image_id, p.full_name, p.phone, \n"
             + "p.dob, p.gender, p.address, p.email, p.created_at, \n"
             + "p.updated_at, a.account_id, a.username, a.password, \n"
             + "a.role_id,  a.is_active, r.role_name\n"
@@ -58,7 +58,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImage(rs.getString("image"));
+                acc.setImageID(rs.getInt("image_id"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));
@@ -104,7 +104,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImage(rs.getString("image"));
+                acc.setImageID(rs.getInt("image_id"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));
@@ -149,7 +149,7 @@ public class AccountDAO {
                 + "gender = " + (account.isGender() ? 1 : 0) + ",\n"
                 + "address = N'" + account.getAddress() + "',\n"
                 + "email = '" + account.getEmail() + "',\n"
-                + "updated_at = '" + account.getUpdatedAt() + "'\n"
+                + "updated_at = '" + getCurrentSQLDate() + "'\n"
                 + "FROM Profile p, Account a\n"
                 + "WHERE p.profile_id = a.profile_id\n"
                 + "AND a.account_id = " + account.getAccountID() + ";\n"
@@ -259,7 +259,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImage(rs.getString("image"));
+                acc.setImageID(rs.getInt("image_id"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));

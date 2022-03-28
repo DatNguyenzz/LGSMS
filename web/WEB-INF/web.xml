@@ -15,6 +15,9 @@
     <servlet-mapping>
         <servlet-name>ManageProductController</servlet-name>
         <url-pattern>/ManageProduct</url-pattern>
+        <url-pattern>/ProductInformation</url-pattern>
+        <url-pattern>/AddProduct</url-pattern>
+        <url-pattern>/EditProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManageAccountController</servlet-name>

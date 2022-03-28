@@ -13,7 +13,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -125,6 +124,5 @@ public class AccountService {
         acc.setRole(role);
         int result = accountDao.addNewAccount(acc); 
         return (result != 0);
-        
     }
 }

@@ -7,6 +7,7 @@ package Service;
 
 import DAO.ProductDAO;
 import Model.Product;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -22,8 +23,38 @@ public class ProductService {
     }
     
     //add new product to database
-    public boolean addNewProductToDB(Product product){
+    public boolean addNewProductToDB(String productName, int productImage, int productQuantity, double productPrice, String productDescription) {
+        Product product = new Product();
+        product.setProductName(productName);
+        product.setImageID(productImage);
+        product.setProductInstock(productQuantity);
+        product.setProductInuse(0);
+        product.setProductPrice(productPrice);
+        product.setProductDescription(productDescription);
+        product.setIsActive(true);
         int result = productDAO.addNewProductToDB(product);
-        return result != 0;
+        return (result!=0);
     }
+
+    //get product by ID
+    public Product getProductByID(int productID) {
+        return productDAO.getProductByID(productID);
+    }
+
+    //Update product information
+    public boolean updateProduct(int productID, String productName, int providerID, 
+            int image, double productPrice, boolean productStatus, 
+            String productDescription) {
+        Product product = getProductByID(productID);
+        product.setProductName(productName);
+        product.setProviderID(providerID);
+        product.setImageID(image);
+        product.setProductPrice(productPrice);
+        product.setIsActive(productStatus);
+        product.setProductDescription(productDescription);
+        int result = productDAO.updateProduct(product);
+        return (result != 0);
+        
+    }
+    
 }
