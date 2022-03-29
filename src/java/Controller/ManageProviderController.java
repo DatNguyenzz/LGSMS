@@ -5,12 +5,9 @@
  */
 package Controller;
 
-import Model.Account;
-import Model.Role;
-import Service.AccountService;
+import Model.Provider;
+import Service.ProviderService;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-public class ManageAccountController extends HttpServlet {
+public class ManageProviderController extends HttpServlet {
 
-    AccountService accountService = new AccountService();
+    ProviderService providerService = new ProviderService();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,6 +35,7 @@ public class ManageAccountController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,15 +50,10 @@ public class ManageAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-
-        ArrayList<Account> listAccount = accountService.getAllAccount();
-        ArrayList<Role> listRole = accountService.getAllRole();
-
-        request.setAttribute("listRole", listRole);
-        request.setAttribute("listAccount", listAccount);
-        request.getRequestDispatcher("view/admin_manage_account.jsp").forward(request, response);
+        ArrayList<Provider> listProvider = providerService.getAllProvider();
+        request.setAttribute("listProvider", listProvider);
+        request.getRequestDispatcher("view/manager_manage_provider.jsp").forward(request, response);
     }
 
     /**
@@ -76,46 +69,56 @@ public class ManageAccountController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        String url = request.getServletPath();
-        switch (url) {
-            case "/EditAccount": {
-                int accountId = Integer.parseInt(request.getParameter("accountId"));
-                String fullname = request.getParameter("fullname");
-                String phone = request.getParameter("phone");
-                String address = request.getParameter("address");
-                String dob = request.getParameter("dob");
-                Boolean gender = (request.getParameter("gender").equals("true"));
-                String username = request.getParameter("username");
+        try {
+
+            String url = request.getServletPath();
+            if (url.equals("/EditProvider")) {
+                int providerId = Integer.parseInt(request.getParameter("providerID"));
+                String providerName = request.getParameter("providerName");
                 String email = request.getParameter("email");
-                int roleId = Integer.parseInt(request.getParameter("role"));
-                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, username, email, roleId)) {
-                    //Update success 
-                    response.sendRedirect(request.getContextPath() + "/ManageAccount");
+                String address = request.getParameter("address");
+                String phone = request.getParameter("providerPhone");
+
+                Provider provider = new Provider();
+
+                provider.setProviderID(providerId);
+                provider.setProviderName(providerName);
+                provider.setProviderEmail(email);
+                provider.setProviderAddress(address);
+                provider.setProviderPhone(phone);
+
+                int result = providerService.getPoviderUpdate(provider);
+                if (result != 0) {
+                    response.sendRedirect(request.getContextPath() + "/ManageProvider");
                 } else {
-                    //Update fail
+                    response.sendRedirect("123123");
                 }
-                break;
-            }
-            case "/AddAccount": {
-                String fullname = request.getParameter("fullname");
-                String phone = request.getParameter("phone");
-                String address = request.getParameter("address");
-                String dob = request.getParameter("dob");
-                Boolean gender = (request.getParameter("gender").equals("true"));
-                String username = request.getParameter("username");
-                String email = request.getParameter("email");
-                int roleId = Integer.parseInt(request.getParameter("role"));
-                if (accountService.addAccount(fullname, phone, address, dob, gender, username, email, roleId)) {
+            } else if (url.equals("/AddProvider")) {
+
+                String providerName = request.getParameter("provider-name");
+                String providerPhone = request.getParameter("provider-phone");
+                String providerAddress = request.getParameter("provider-address");
+                String providerEmail = request.getParameter("provider-email");
+                
+                Provider provider = new Provider();
+                provider.setProviderName(providerName);
+                provider.setProviderPhone(providerPhone);
+                provider.setProviderEmail(providerEmail);
+                provider.setProviderAddress(providerAddress);
+                provider.setIsActive(true);
+                if (providerService.addNewProviderToDB(provider)) {
                     //Add success
-                    response.sendRedirect(request.getContextPath() + "/ManageAccount");
+                    response.sendRedirect(request.getContextPath() + "/ManageProvider");
                 } else {
-                    //Add fail
+                    //Add failed
+                    System.err.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                 }
-                break;
+
             }
 
+        } catch (Exception ex) {
+            Logger.getLogger(ManageProviderController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**

@@ -34,6 +34,9 @@ public class ManageProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ArrayList<Product> listProduct = productService.getAllProduct();
+        request.setAttribute("listProduct", listProduct);
+        request.getRequestDispatcher("view/manager_manage_product.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,6 +66,8 @@ public class ManageProductController extends HttpServlet {
                 request.setAttribute("product", product);
                 request.getRequestDispatcher("view/manager_infomation_product.jsp").forward(request, response);
                 break;
+            default:
+                processRequest(request, response);
         }
 
     }
@@ -88,7 +93,7 @@ public class ManageProductController extends HttpServlet {
                 int productQuantity = Integer.parseInt(request.getParameter("product-quantity"));
                 double productPrice = Double.parseDouble(request.getParameter("product-price"));
                 String productDescription = request.getParameter("product-des");
-                if (productService.addNewProductToDB(productName, productImage, 
+                if (productService.addNewProductToDB(productName, productImage,
                         productQuantity, productPrice, productDescription)) {
                     response.sendRedirect(request.getContextPath() + "/ManageProduct");
                 } else {
@@ -97,7 +102,7 @@ public class ManageProductController extends HttpServlet {
                 }
                 break;
             }
-            case "/EditProduct":{
+            case "/EditProduct": {
                 int productID = Integer.parseInt(request.getParameter("productID"));
                 String productName = request.getParameter("productName");
                 int providerID = Integer.parseInt(request.getParameter("providerID"));
@@ -105,35 +110,16 @@ public class ManageProductController extends HttpServlet {
                 double productPrice = Double.parseDouble(request.getParameter("productPrice"));
                 boolean productStatus = Boolean.valueOf(request.getParameter("productStatus"));
                 String productDescription = request.getParameter("productDescription");
-                if(productService.updateProduct(productID, productName, 
-                        providerID, image, productPrice, 
-                        productStatus, productDescription)){
+                if (productService.updateProduct(productID, productName,
+                        providerID, image, productPrice,
+                        productStatus, productDescription)) {
                     response.sendRedirect(request.getContextPath() + "/ManageProduct");
-                }else{
+                } else {
                     //Update failed
                     System.err.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                 }
             }
         }
-
-//        long millis=System.currentTimeMillis();
-//        Date productCreatedAt = new java.sql.Date(millis);
-//        Product product = new Product();
-//        product.setProductName(productName);
-//        product.setProductImage(productImage);
-//        product.setProductInstock(productQuantity);
-//        product.setProductInuse(0);
-//        product.setProductPrice(productPrice);
-//        product.setProductDescription(productDescription);
-//        product.setProductCreatedAt(productCreatedAt);
-//        product.setIsActive(true);
-//        if(productService.addNewProductToDB(product)){
-//            //Add success
-//            response.sendRedirect(request.getContextPath()+"/ManageProduct");
-//        }else{
-//            //Add failed
-//            System.err.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-//        }
     }
 
     /**

@@ -7,9 +7,14 @@
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/AccountDAO.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/AuthorizationController.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageProductController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Service/ProductService.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Model/Account.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/view/manager_manage_product.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/view/manager_infomation_product.jsp</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ProductDAO.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Model/Product.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Service/AccountService.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

@@ -204,24 +204,6 @@ public class AccountDAO {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);
-//            ps.setString(1, acc.getFullname());
-//            ps.setString(2, acc.getPhone());
-//            ps.setDate(3, acc.getDOB());
-//            ps.setBoolean(4, acc.isGender());
-//            ps.setString(5, acc.getAddress());
-//            ps.setString(6, acc.getEmail());
-//            ps.setDate(7, getCurrentSQLDate());
-//            ps.setString(8, acc.getUsername());
-//            ps.setString(9, acc.getPassword());
-//            ps.setInt(10, acc.getRole().getRoleID());
-//            
-//            ps.setString(11, acc.getFullname());
-//            ps.setString(12, acc.getPhone());
-//            ps.setDate(13, acc.getDOB());
-//            ps.setString(14, acc.getAddress());
-//            ps.setString(15, acc.getEmail());
-//            ps.setDate(16, getCurrentSQLDate());
-            
             result = ps.executeUpdate();
         } catch (Exception e) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
