@@ -42,16 +42,12 @@
     <servlet-mapping>
         <servlet-name>ManageOrderController</servlet-name>
         <url-pattern>/ManageOrder</url-pattern>
-<<<<<<< Updated upstream
-        <url-pattern>/ManageNewOrder</url-pattern>
-        <url-pattern>/ManageCancelOrder</url-pattern>
-        <url-pattern>/ManageAcceptOrder</url-pattern>
-=======
+
          <url-pattern>/ManageNewOrder</url-pattern>
         <url-pattern>/ManageCancelOrder</url-pattern>
         <url-pattern>/ManageAcceptOrder</url-pattern>
         <url-pattern>/ViewDetailOrder</url-pattern>
->>>>>>> Stashed changes
+
     </servlet-mapping>
     <session-config>
         <session-timeout>

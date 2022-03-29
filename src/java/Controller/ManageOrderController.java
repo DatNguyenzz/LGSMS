@@ -11,11 +11,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
-<<<<<<< Updated upstream
-=======
+
 import java.util.List;
 import java.util.ListIterator;
->>>>>>> Stashed changes
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,15 +55,7 @@ public class ManageOrderController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);       
         response.setContentType("text/html;charset=UTF-8");
-<<<<<<< Updated upstream
-        String url = request.getServletPath();
-         
-        ArrayList<Orders> listNewOrder;
-        if (url.equals("/ManageNewOrder")) {
-            listNewOrder= orderDao.getOrderByOrderStatus(0);
-            request.setAttribute("listOrder", listNewOrder);
-            request.getRequestDispatcher("view/business_new_order.jsp").forward(request, response);
-=======
+
          Orders orderInfor= new Orders();
      
         String url = request.getServletPath();
@@ -94,22 +85,15 @@ public class ManageOrderController extends HttpServlet {
             }
                
                
->>>>>>> Stashed changes
+
         } else if(url.equals("/ManageCancelOrder")){
             listNewOrder= orderDao.getOrderByOrderStatus(4);
             request.setAttribute("listOrder", listNewOrder);
             request.getRequestDispatcher("view/business_reject_order.jsp").forward(request, response);
         } else if(url.equals("/ManageAcceptOrder")){
-<<<<<<< Updated upstream
-            ArrayList<Integer> list = new ArrayList<Integer>();
-            list.add(1);
-            list.add(3);
-            list.add(2);
-            Iterator<Integer> iterator = list.iterator();
-            listNewOrder= orderDao.getOrderByOrderStatus(iterator.next());
-            request.setAttribute("listOrder", listNewOrder);
-            request.getRequestDispatcher("view/business_accept_order.jsp").forward(request, response);
-=======
+
+       
+
 //            ArrayList<Integer> list = new ArrayList<Integer>();
 //            list.add(3);
 //            list.add(1);
@@ -133,7 +117,7 @@ public class ManageOrderController extends HttpServlet {
             
             request.setAttribute("orderInfor", orderInfor);
             request.getRequestDispatcher("view/business_information_order.jsp").forward(request, response);
->>>>>>> Stashed changes
+
         }
         
        
