@@ -61,12 +61,12 @@ function InvalidPhone(textbox) {
         textbox.setCustomValidity('');
     }
 }
-function InvalidPhone(textbox) {
-    const phoneValue = phone1.value.trim();
+function InvalidPhone1(textbox) {
+    const phoneValue1 = phone1.value.trim();
     // Thông báo nhập số điện thoại
     if (phoneValue === '') {
         textbox.setCustomValidity('Xin hãy nhập số điện thoại.');
-    } else if (!isValidPhone(phoneValue)) {
+    } else if (!isValidPhone(phoneValue1)) {
         textbox.setCustomValidity('Xin hãy nhập đúng số điện thoại.');
     } else {
         textbox.setCustomValidity('');

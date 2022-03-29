@@ -6,6 +6,7 @@
 package Model;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
@@ -21,11 +22,16 @@ public class Orders {
     private String orderNote1;
     private String orderNote2;
     private int bussinessStaffID;
+    private double totalPrice;
+    private List<OrderDetail> orderDetail;
 
     public Orders() {
     }
 
-    public Orders(int orderID, String orderCode, int customerID, int orderStatus, Date orderDate, String customerName, String orderNote1, String orderNote2, int bussinessStaffID) {
+    public Orders(int orderID, String orderCode, int customerID, 
+            int orderStatus, Date orderDate, String customerName, 
+            String orderNote1, String orderNote2, int bussinessStaffID,
+            double totalPrice) {
         this.orderID = orderID;
         this.orderCode = orderCode;
         this.customerID = customerID;
@@ -35,6 +41,8 @@ public class Orders {
         this.orderNote1 = orderNote1;
         this.orderNote2 = orderNote2;
         this.bussinessStaffID = bussinessStaffID;
+        this.totalPrice = totalPrice;
+        
     }
 
     public int getOrderID() {
@@ -108,5 +116,20 @@ public class Orders {
     public void setBussinessStaffID(int bussinessStaffID) {
         this.bussinessStaffID = bussinessStaffID;
     }
-    
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public List<OrderDetail> getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(List<OrderDetail> orderDetail) {
+        this.orderDetail = orderDetail;
+    }
 }

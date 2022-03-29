@@ -29,7 +29,7 @@ public class Account extends Profile{
         this.role = role;
     }
 
-    public Account(int accountID, String username, String password, boolean isActive, Role role, int profileID, String Image, String fullname, String phone, Date DOB, boolean gender, String address, String email, Date createdAt, Date updatedAt) {
+    public Account(int accountID, String username, String password, boolean isActive, Role role, int profileID, int Image, String fullname, String phone, Date DOB, boolean gender, String address, String email, Date createdAt, Date updatedAt) {
         super(profileID, Image, fullname, phone, DOB, gender, address, email, createdAt, updatedAt);
         this.accountID = accountID;
         this.username = username;

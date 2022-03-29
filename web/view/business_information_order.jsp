@@ -1,3 +1,4 @@
+<%@page import="Model.Orders"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -26,6 +27,11 @@
 
 
 <body id="page-top">
+    
+    
+    <%
+            Orders order= (Orders)request.getAttribute("orderInfor");
+    %>
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
@@ -46,7 +52,6 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
                     <!-- Topbar Navbar -->
                     <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                 </nav>
@@ -76,25 +81,24 @@
                                                 <div class="col-8 col-sm-5">
                                                     <label for="order-code" class="col-form-label">Mã đơn
                                                         hàng:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-code">LG240</label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-code" ><%=order.getOrderCode()%></label>
                                                     <label for="order-price" class="col-form-label">Tổng giá
                                                         tiền:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-price">5.489.000đ</label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-price"><%=order.getTotalPrice()%></label>
                                                     <label for="staff-order" class="col-form-label">Nhân viên nhận
                                                         đơn:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="staff-order">Truong
-                                                        Quang Phuoc</label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="staff-order"></label>
                                                     <label for="order-date" class="col-form-label">Ngày nhận
                                                         đơn:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-date">10/03/2022</label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-date"><%=order.getOrderDate()%></label>
                                                     <label for="cus-note" class="col-form-label">Ghi chú:</label>
-                                                    <textarea class="border border-secondary w-100 p-2 rounded" readonly class="form-control-plaintext" id="order-note" style="resize: none; overflow: auto;"></textarea>
+                                                    <textarea class="border border-secondary w-100 p-2 rounded" readonly class="form-control-plaintext" id="order-note" style="resize: none; overflow: auto;"><%=order.getOrderNote1()%></textarea>
 
                                                 </div>
                                                 <div class="col-8 col-sm-5">
                                                     <label for="customer-name" class="col-form-label">Tên khách
                                                         hàng:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="customer-name">Truong Gia Viet Anh</label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="customer-name"><%=order.getCustomerName()%></label>
 
                                                     <label for="order-address" class="col-form-label">Địa chỉ khách
                                                         hàng:</label>

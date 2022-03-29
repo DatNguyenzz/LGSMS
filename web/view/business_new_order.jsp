@@ -1,3 +1,5 @@
+<%@page import="Model.Orders"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -13,26 +15,29 @@
     <title>LGS - Manager</title>
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../assets/styles/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../assets/styles/slider_status.css" rel="stylesheet">
-    <link href="../assets/styles/icon_action.css" rel="stylesheet">
+    <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
+    <link href="assets/styles/slider_status.css" rel="stylesheet">
+    <link href="assets/styles/icon_action.css" rel="stylesheet">
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
+    <%
+        ArrayList<Orders> listOrder = (ArrayList<Orders>)request.getAttribute("listOrder");
+    %>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div include-html="../components/sidebar.html" id="sidebar" style="display: contents;"></div>
+            <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -49,7 +54,7 @@
                             <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Navbar -->
-                    <div include-html="../components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                    <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
@@ -70,28 +75,32 @@
                                         <tr>
                                             <th>Mã đơn hàng</th>
                                             <th>Ngày tạo đơn</th>
-                                            <th>Ngày ghi nhận</th>
+                                            <th>Tên khách hàng</th>
                                             <th>Trạng thái đơn hàng</th>
                                             <th>Tổng tiền</th>
                                             <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <%for(Orders order: listOrder ){%>
                                         <tr>
-                                            <td>LG01</td>
-                                            <td>12/03/2022</td>
-                                            <td>13/03/2022</td>
+                                            <td><%=order.getOrderID()%></td>
+                                            <td><%=order.getOrderDate()%></td>
+                                            <td><%=order.getCustomerName()%></td>
                                             <td>
                                                 <p id="status_pending">Đang xử lý</p>
                                             </td>
-                                            <td>499.000</td>
+                                            <td><%=order.getTotalPrice()%></td>
                                             <td>
-                                                <a href="business_information_voucher.html" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
-                                                <a href="#" class="accept" data-toggle="modal"><i class="fas fa-check-circle" data-toggle="tooltip" title="accept"></i></a>
-                                                <a href="#" class="reject" data-toggle="modal"><i class="fas fa-times-circle" data-toggle="tooltip" title="reject"></i></a>
+
+                                                <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" 
+                                                   class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view" ></i></a>
+                                                <a href="ManageNewOrder?id=<%=order.getOrderID()%>&statusOrder=<%=1%>"  class="accept" ><i class="fas fa-check-circle" data-toggle="tooltip" title="accept"></i></a>
+                                                <a href="ManageNewOrder?id=<%=order.getOrderID()%>&statusOrder=<%=4%>"  class="reject" ><i class="fas fa-times-circle" data-toggle="tooltip" title="reject"></i></a>
 
                                             </td>
                                         </tr>
+                                         <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -115,22 +124,22 @@
     </a>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../vendor/Noneed(maybe)/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/Noneed(maybe)/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-demo.js"></script>
-    <script src="../js/include-html.min.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/include-html.min.js"></script>
 </body>
 
 </html>

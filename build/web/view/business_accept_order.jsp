@@ -1,3 +1,5 @@
+<%@page import="Model.Orders"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -26,7 +28,9 @@
 </head>
 
 <body id="page-top">
-
+ <%
+        ArrayList<Orders> listOrder = (ArrayList<Orders>)request.getAttribute("listOrder");
+    %>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -77,19 +81,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                         <%for(Orders order: listOrder ){%>
                                         <tr>
-                                            <td>LG01</td>
-                                            <td>12/03/2022</td>
+
+                                           <td><%=order.getOrderCode()%></td>
+
+                                            <td><%=order.getOrderDate()%></td>
                                             <td>13/03/2022</td>
                                             <td>
                                                 <p id="status_pending">Đơn được duyệt</p>
                                             </td>
-                                            <td>499.000</td>
+                                            <td><%=order.getTotalPrice()%></td>
                                             <td>
-                                                <a href="business_information_order.html" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+
+                                                <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+
                                                 <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                         </tr>
+                                        <%}%>
                                         <tr>
                                             <td>LG02</td>
                                             <td>12/03/2022</td>
@@ -99,7 +109,7 @@
                                             </td>
                                             <td>499.000</td>
                                             <td>
-                                                <a href="business_information_order.html" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+                                                <a href="business_information_order.jsp" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
                                                 <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                         </tr>
@@ -112,7 +122,7 @@
                                             </td>
                                             <td>499.000</td>
                                             <td>
-                                                <a href="business_information_order.html" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+                                                <a href="business_information_order.jsp" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
                                                 <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                         </tr>
