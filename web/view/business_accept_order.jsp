@@ -83,7 +83,11 @@
                                     <tbody>
                                          <%for(Orders order: listOrder ){%>
                                         <tr>
+<<<<<<< Updated upstream
                                             <td><%=order.getOrderID()%></td>
+=======
+                                           <td><%=order.getOrderCode()%></td>
+>>>>>>> Stashed changes
                                             <td><%=order.getOrderDate()%></td>
                                             <td>13/03/2022</td>
                                             <td>
@@ -91,7 +95,11 @@
                                             </td>
                                             <td><%=order.getTotalPrice()%></td>
                                             <td>
+<<<<<<< Updated upstream
                                                 <a href="business_information_order.jsp" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+=======
+                                                <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+>>>>>>> Stashed changes
                                                 <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
                                             </td>
                                         </tr>

@@ -25,9 +25,15 @@ public class OrderService {
         return orderDao.getOrderByOrderStatus(status);
     }
     
+<<<<<<< Updated upstream
      public ArrayList<OrderDetail> getOrderDetailByOrderID(int id){
         return orderDao.getOrderDetailByOrderId(id);
     }
+=======
+//     public ArrayList<OrderDetail> getOrderDetailByOrderID(int id){
+//        return orderDao.getOrderDetailByOrderId(id);
+//    }
+>>>>>>> Stashed changes
      
      
 }

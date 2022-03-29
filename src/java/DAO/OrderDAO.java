@@ -22,11 +22,22 @@ import java.util.logging.Logger;
  */
 public class OrderDAO {
 
+<<<<<<< Updated upstream
     private static final String BASE_SQL = "SELECT o.order_id, o.order_code, o.customer_id, o.order_status, "
             + "o.order_date, o.customer_name, o.order_note_1, o.order_note_2, o.business_staff_id,"
             + "od.order_detail_id, od.product_id, od.product_quantity, od.price"
             + "From Orders o"
             + "INNER JOIN Order_Detail od on o.order_id = od.order_id ";
+=======
+    private static final String BASE_SQL = "select o.order_id, o.order_code, o.customer_id, o.order_status, \n"
+            + "            o.order_date, o.customer_name, o.order_note_1, o.order_note_2, o.business_staff_id,\n"
+            + "             od.order_detail_id, od.product_id, od.product_quantity, od.price, p.product_id, p.product_name,p.product_price,\n"
+            + "             (SELECT SUM(Price) FROM Order_Detail od\n"
+            + "             WHERE od.order_id = o.order_id) as total_money\n"
+            + "             From Orders o\n"
+            + "             INNER JOIN Order_Detail od on o.order_id = od.order_id\n"
+            + "		    inner join Product p on od.product_id = p.product_id ";
+>>>>>>> Stashed changes
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();
@@ -121,7 +132,11 @@ public class OrderDAO {
         return listOrder;
     }
 
+<<<<<<< Updated upstream
     public ArrayList<OrderDetail> getOrderDetailByOrderId(int id) {
+=======
+ public ArrayList<OrderDetail> getOrderDetailByOrderId(int id) {
+>>>>>>> Stashed changes
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
@@ -137,9 +152,15 @@ public class OrderDAO {
 
                 OrderDetail orderDetail = new OrderDetail();
                 orderDetail.setOrderID(rs.getInt("order_id"));
+<<<<<<< Updated upstream
                 orderDetail.setOrderDetailID(rs.getInt("od.order_detail_id"));
                 orderDetail.setProductID(rs.getInt("od.product_id"));
                 orderDetail.setProductQuantity(rs.getInt("od.product_quantity"));
+=======
+                orderDetail.setOrderDetailID(rs.getInt("order_detail_id"));
+                orderDetail.setProductID(rs.getInt("product_id"));
+                orderDetail.setProductQuantity(rs.getInt("product_quantity"));
+>>>>>>> Stashed changes
                 orderDetail.setPrice(rs.getDouble("price"));
                 listOrderDetail.add(orderDetail);
             }
@@ -160,13 +181,22 @@ public class OrderDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+<<<<<<< Updated upstream
         String sql = BASE_SQL + "Where o.order_id= " + id;
+=======
+        String sql = BASE_SQL
+                + "Where o.order_id= " + id;
+>>>>>>> Stashed changes
 
         try {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             while (rs.next()) {
                 Orders order = new Orders();
                 order.setOrderID(rs.getInt("order_id"));
@@ -178,7 +208,15 @@ public class OrderDAO {
                 order.setBussinessStaffID(rs.getInt("business_staff_id"));
                 order.setOrderNote1(rs.getString("order_note_1"));
                 order.setOrderNote2(rs.getString("order_note_2"));
+<<<<<<< Updated upstream
                 return order;
+=======
+                order.setTotalPrice(rs.getDouble("total_money"));
+
+//                order.setOrderDetail(getOrderDetailByOrderId(rs.getInt("order_id")));
+                return order;
+
+>>>>>>> Stashed changes
             }
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -192,4 +230,39 @@ public class OrderDAO {
         return null;
     }
 
+<<<<<<< Updated upstream
+=======
+    public int updateOrderStatus(Orders order) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        String sql = "UPDATE orders  \n"
+                + "SET  orders.order_status = ? \n"
+                + " WHERE orders.order_id = ?\n";
+
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            ;
+            ps.setInt(1, order.getOrderStatus());
+
+            ps.setInt(2, order.getOrderID());
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+}
+        }
+        return result;
+
+    }
+
+>>>>>>> Stashed changes
 }

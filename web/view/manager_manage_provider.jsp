@@ -1,12 +1,13 @@
 <%@page import="Model.Provider"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
 
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -23,7 +24,11 @@
     <link href="assets/styles/slider_status.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<<<<<<< Updated upstream
 
+=======
+    <link href="assets/styles/custom_box.css" rel="stylesheet">
+>>>>>>> Stashed changes
 </head>
 
 <body id="page-top">
@@ -62,7 +67,7 @@
                         <h1 class="h3 mb-0 text-gray-800">Quản lý nhà cung cấp</h1>
                         <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fas fa-plus fa-sm text-white-50"></i> Thêm nhà cung cấp</button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-dialog modal-dialog-centered " role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Thêm nhà cung cấp</h5>
@@ -71,6 +76,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
+<<<<<<< Updated upstream
                                         
                                         
                                         <form action="AddProvider" method="POST" onsubmit="confirmFunction()">
@@ -103,6 +109,30 @@
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                                                             </div>
                                                         </div>
+=======
+                                        <form action="AddProvider" method="POST" id="form" onsubmit="confirmFunction()">
+                                            <div class="row">
+                                                <div class="col-8 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="provider-name" class="col-form-label">Tên nhà cung cấp:</label>
+                                                        <input type="text" class="form-control" name="provider-name" id="product-name" required oninvalid="this.setCustomValidity('Xin hãy tên nhà cung cấp.')" oninput="this.setCustomValidity('')" /></input>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="provider-address" class="col-form-label">Địa chỉ:</label>
+                                                        <input type="text" class="form-control" name="provider-address" id="provider-address" required oninvalid="this.setCustomValidity('Xin hãy địa chỉ nhà cung cấp.')" oninput="this.setCustomValidity('')" /></input>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="provider-email" class="col-form-label">Email:</label>
+                                                        <input type="text" class="form-control" name="provider-email" id="provider-email" oninvalid="InvalidMsg(this);" name="email" oninput="InvalidMsg(this);"  type="email" required="required" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="provider-phone" class="col-form-label">Điện thoại:</label>
+                                                        <input type="text" class="form-control" name="provider-phone" id="provider-phone"  required="required" />
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <input type="submit" class="btn btn-primary"  value="Thêm"></input>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+>>>>>>> Stashed changes
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,7 +181,11 @@
                                             </td>
 
                                         </tr>
+<<<<<<< Updated upstream
                                         <%}%>
+=======
+                                           <%}%>
+>>>>>>> Stashed changes
                                     </tbody>
                                 </table>
                             </div>
@@ -174,7 +208,11 @@
     <div id="editAccountModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
+<<<<<<< Updated upstream
                 <form action="EditProvider" method="post">
+=======
+                <form id="form" action="EditProvider" method="post" onsubmit="confirmFunction()">
+>>>>>>> Stashed changes
                     <div class="modal-header">
                         <h4 class="modal-title">Chỉnh sửa thông tin nhà cung cấp</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -182,6 +220,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Mã nhà cung cấp</label>
+<<<<<<< Updated upstream
                             <input name="providerID" id="providerID" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
@@ -199,6 +238,27 @@
                         <div class="form-group">
                             <label>Điện thoại</label>
                             <input name="providerPhone" id="providerPhone" type="text" class="form-control" required>
+=======
+                            <input name="providerID" id="providerID" type="text" class="border border-secondary w-100 rounded label_box" 
+                                                    readonly class="form-control-plaintext"></input>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label>Tên nhà cung cấp</label>
+                            <input name="providerName" id="providerName"  type="text" class="form-control" required oninvalid="this.setCustomValidity('Xin hãy tên nhà cung cấp.')" oninput="this.setCustomValidity('')" /></input>
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input name="address" id="address" type="text" class="form-control" required required oninvalid="this.setCustomValidity('Xin hãy địa chỉ nhà cung cấp.')" oninput="this.setCustomValidity('')" /></input>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input name="email" id="email" type="email" class="form-control" oninvalid="InvalidMsg(this);" name="email" oninput="InvalidMsg(this);"  type="email" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label>Điện thoại</label>
+                            <input name="providerPhone" id="providerPhone" type="text" class="form-control"  oninvalid="InvalidPhone(this);" oninput="InvalidPhone(this);" required="required" />
+>>>>>>> Stashed changes
                         </div>
                         <div class="form-group">
                             <label>Trạng thái: </label>
@@ -210,7 +270,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-info" value="Lưu">
+                        <input type="submit" class="btn btn-info"  value="Lưu">
                     </div>
                 </form>
             </div>
@@ -218,7 +278,11 @@
     </div>
     <!-- Bootstrap core JavaScript-->
     
+<<<<<<< Updated upstream
      <script type="text/javascript">
+=======
+    <script type="text/javascript">
+>>>>>>> Stashed changes
 	
 	const providerID=document.getElementById("providerID");
 	const providerName=document.getElementById("providerName");
@@ -235,11 +299,20 @@
         address.value=addressInput;
     	
     }
+<<<<<<< Updated upstream
     </script>-->
     
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     
+=======
+    </script>
+    
+    
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+>>>>>>> Stashed changes
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -253,7 +326,12 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/include-html.min.js"></script>
+<<<<<<< Updated upstream
     <!--<script src="js/confirm.js"></script>-->
+=======
+    <script src="js/confirm.js"></script>
+    <script src="js/staff_validate.js"></script>
+>>>>>>> Stashed changes
 </body>
 
 </html>
