@@ -94,7 +94,7 @@
                                             <td>
 
                                                 <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" 
-                                                   class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view" ss"></i></a>
+                                                   class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view" ></i></a>
                                                 <a href="ManageNewOrder?id=<%=order.getOrderID()%>&statusOrder=<%=1%>"  class="accept" ><i class="fas fa-check-circle" data-toggle="tooltip" title="accept"></i></a>
                                                 <a href="ManageNewOrder?id=<%=order.getOrderID()%>&statusOrder=<%=4%>"  class="reject" ><i class="fas fa-times-circle" data-toggle="tooltip" title="reject"></i></a>
 

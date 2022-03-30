@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Product {
     private int productID;
-    private String productImage;
+    private int imageID;
     private String productName;
     private double productPrice;
     private double productImportPrice;
@@ -23,13 +23,17 @@ public class Product {
     private Date productCreatedAt;
     private Date productUpdatedAt;
     private boolean isActive;
+    private int providerID;
 
     public Product() {
     }
 
-    public Product(int productID, String productImage, String productName, double productPrice, double productImportPrice, int productInstock, int productInuse, String productDescription, Date productCreatedAt, Date productUpdatedAt, boolean isActive) {
+    public Product(int productID, int productImage, String productName, 
+            double productPrice, double productImportPrice, int productInstock, 
+            int productInuse, String productDescription, Date productCreatedAt, 
+            Date productUpdatedAt, boolean isActive, int providerID) {
         this.productID = productID;
-        this.productImage = productImage;
+        this.imageID = productImage;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productImportPrice = productImportPrice;
@@ -39,6 +43,7 @@ public class Product {
         this.productCreatedAt = productCreatedAt;
         this.productUpdatedAt = productUpdatedAt;
         this.isActive = isActive;
+        this.providerID = providerID;
     }
 
     public int getProductID() {
@@ -49,12 +54,12 @@ public class Product {
         this.productID = productID;
     }
 
-    public String getProductImage() {
-        return productImage;
+    public int getImageID() {
+        return imageID;
     }
 
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
+    public void setImageID(int imageID) {
+        this.imageID = imageID;
     }
 
     public String getProductName() {
@@ -128,4 +133,14 @@ public class Product {
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
+
+    public int getProviderID() {
+        return providerID;
+    }
+
+    public void setProviderID(int providerID) {
+        this.providerID = providerID;
+    }
+    
+    
 }

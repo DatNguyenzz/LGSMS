@@ -24,18 +24,16 @@ public class Provider {
     public Provider() {
     }
 
-    public Provider(int providerID, String providerName, String providerPhone, String providerAddress, String providerEmail, boolean isActive, Date createdAt, Date updatedAt) {
+    public Provider(int providerID, String providerName, String providerPhone, 
+            String providerAddress, String providerEmail, boolean isActive,
+            Date createdAt, Date updatedAt) {
         this.providerID = providerID;
         this.providerName = providerName;
         this.providerPhone = providerPhone;
         this.providerAddress = providerAddress;
         this.providerEmail = providerEmail;
         this.isActive = isActive;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
-    
-    
 
     public int getProviderID() {
         return providerID;
@@ -100,6 +98,5 @@ public class Provider {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-    
     
 }

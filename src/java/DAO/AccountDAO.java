@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class AccountDAO {
 
     private static final String BASE_SQL
-            = "SELECT p.profile_id, p.image, p.full_name, p.phone, \n"
+            = "SELECT p.profile_id, p.image_id, p.full_name, p.phone, \n"
             + "p.dob, p.gender, p.address, p.email, p.created_at, \n"
             + "p.updated_at, a.account_id, a.username, a.password, \n"
             + "a.role_id,  a.is_active, r.role_name\n"
@@ -36,6 +36,7 @@ public class AccountDAO {
         return new java.sql.Date(utilDate.getTime());
     }
 
+    //Get list all account
     public ArrayList<Account> getAllAccount() {
         DBContext db = null;
         Connection con = null;
@@ -57,7 +58,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImage(rs.getString("image"));
+                acc.setImageID(rs.getInt("image_id"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));
@@ -81,13 +82,14 @@ public class AccountDAO {
         return listAccount;
     }
 
+    //Get account by id
     public Account getAccountByID(int id) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = BASE_SQL
-                + "WHERE a.acount_id = " + id;
+                + "WHERE a.account_id = " + id;
         try {
             db = new DBContext();
             con = db.getConnection();
@@ -102,7 +104,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImage(rs.getString("image"));
+                acc.setImageID(rs.getInt("image_id"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));
@@ -126,30 +128,36 @@ public class AccountDAO {
         return null;
     }
 
+    //Update account information
     public int updateAccount(Account account) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         int result = 0;
-        String sql = "UPDATE Account  \n"
-                + "SET  Account.username = ?  , Account.role_id = ? \n"
-                + " WHERE Account.account_id = ?\n"
+        String sql
+                = "BEGIN TRANSACTION;\n"
+                + "UPDATE Account\n"
+                + "SET username = '" + account.getUsername() + "',\n"
+                + "role_id = " + account.getRole().getRoleID() + "\n"
+                + "WHERE account_id = " + account.getAccountID() + ";\n"
                 + "\n"
-                + "UPDATE Profile \n"
-                + "set  Profile.email = ?,profile.updated_at = ?\n"
-                + "FROM Profile  INNER JOIN Account  on Account.profile_id = Profile.profile_id\n"
-                + " WHERE Account.account_id = ?";
+                + "UPDATE Profile\n"
+                + "SET full_name = N'" + account.getFullname() + "',\n"
+                + "phone = '" + account.getPhone() + "',\n"
+                + "dob = '" + account.getDOB() + "',\n"
+                + "gender = " + (account.isGender() ? 1 : 0) + ",\n"
+                + "address = N'" + account.getAddress() + "',\n"
+                + "email = '" + account.getEmail() + "',\n"
+                + "updated_at = '" + getCurrentSQLDate() + "'\n"
+                + "FROM Profile p, Account a\n"
+                + "WHERE p.profile_id = a.profile_id\n"
+                + "AND a.account_id = " + account.getAccountID() + ";\n"
+                + "COMMIT;";
         try {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, account.getUsername());
-            ps.setInt(2, account.getRole().getRoleID());
-            ps.setInt(3, account.getAccountID());
-            ps.setString(4, account.getEmail());
-            ps.setDate(5, getCurrentSQLDate());
-            ps.setInt(6, account.getAccountID());
             result = ps.executeUpdate();
         } catch (Exception e) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -161,9 +169,55 @@ public class AccountDAO {
             }
         }
         return result;
-
     }
 
+    //Add new account
+    public int addNewAccount(Account acc) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        String sql
+                = "INSERT INTO Profile (full_name, phone, dob, \n"
+                + "gender, address, email, created_at)\n"
+                + "VALUES(N'" + acc.getFullname() + "', \n"
+                + "'" + acc.getPhone() + "', \n"
+                + "'" + acc.getDOB() + "', \n"
+                + "'" + (acc.isGender()?1:0) + "',\n"
+                + "N'" + acc.getAddress() + "', \n"
+                + "'" + acc.getEmail() + "', \n"
+                + "'" + getCurrentSQLDate() + "');\n"
+                + "INSERT INTO Account(username, password, role_id, profile_id, is_active)\n"
+                + "VALUES('" + acc.getUsername() + "', "
+                + "'" + acc.getPassword() + "', " + acc.getRole().getRoleID() + ", \n"
+                + "(\n"
+                + "	SELECT p.profile_id FROM Profile p\n"
+                + "	WHERE p.full_name = N'" + acc.getFullname() + "'\n"
+                + "	AND p.phone = '" + acc.getPhone() + "'\n"
+                + "	AND p.dob = '" + acc.getDOB() + "'\n"
+                + "	AND p.address = N'" + acc.getAddress() + "'\n"
+                + "	AND p.email = '" + acc.getEmail() + "'\n"
+                + "	AND p.created_at = '" + getCurrentSQLDate() + "'\n"
+                + "), 1)";
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
+
+    //Login 
     public Account getAccountByUsernameAndPassword(String username, String password) {
         DBContext db = null;
         Connection con = null;
@@ -171,13 +225,14 @@ public class AccountDAO {
         ResultSet rs = null;
         String sql = BASE_SQL
                 + "WHERE a.username = '" + username + "'\n"
-                + "AND a.password = '" + password + "'";
+                + "AND a.password = '" + password + "'\n"
+                + "AND a.is_active = 1";
         try {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 Account acc = new Account();
                 acc.setAccountID(rs.getInt("account_id"));
                 acc.setUsername(rs.getString("username"));
@@ -186,7 +241,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImage(rs.getString("image"));
+                acc.setImageID(rs.getInt("image_id"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));
@@ -208,5 +263,36 @@ public class AccountDAO {
             }
         }
         return null;
+    }
+
+    //Get list all role
+    public ArrayList<Role> getAllRole() {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Role";
+        ArrayList<Role> listRole = new ArrayList<>();
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Role role = new Role();
+                role.setRoleID(rs.getInt("role_id"));
+                role.setRoleName(rs.getString("role_name"));
+                listRole.add(role);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return listRole;
     }
 }

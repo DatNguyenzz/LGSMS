@@ -83,9 +83,7 @@
                                     <tbody>
                                          <%for(Orders order: listOrder ){%>
                                         <tr>
-
                                             <td><%=order.getOrderCode()%></td>
-
                                             <td><%=order.getOrderDate()%></td>
                                             <td>13/03/2022</td>
                                             <td>

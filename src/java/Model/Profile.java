@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Profile {
     private int profileID;
-    private String Image;
+    private int imageID;
     private String fullname;
     private String phone;
     private Date DOB;
@@ -26,9 +26,9 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(int profileID, String Image, String fullname, String phone, Date DOB, boolean gender, String address, String email, Date createdAt, Date updatedAt) {
+    public Profile(int profileID, int Image, String fullname, String phone, Date DOB, boolean gender, String address, String email, Date createdAt, Date updatedAt) {
         this.profileID = profileID;
-        this.Image = Image;
+        this.imageID = Image;
         this.fullname = fullname;
         this.phone = phone;
         this.DOB = DOB;
@@ -47,12 +47,12 @@ public class Profile {
         this.profileID = profileID;
     }
 
-    public String getImage() {
-        return Image;
+    public int getImageID() {
+        return imageID;
     }
 
-    public void setImage(String Image) {
-        this.Image = Image;
+    public void setImageID(int imageID) {
+        this.imageID = imageID;
     }
 
     public String getFullname() {

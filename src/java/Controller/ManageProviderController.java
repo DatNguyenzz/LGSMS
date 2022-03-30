@@ -8,12 +8,9 @@ package Controller;
 import Model.Provider;
 import Service.ProviderService;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javafx.util.Duration.millis;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +50,6 @@ public class ManageProviderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Provider> listProvider = providerService.getAllProvider();
         request.setAttribute("listProvider", listProvider);

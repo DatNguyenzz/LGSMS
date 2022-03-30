@@ -24,11 +24,8 @@
     <link href="assets/styles/slider_status.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-<<<<<<< Updated upstream
-
-=======
     <link href="assets/styles/custom_box.css" rel="stylesheet">
->>>>>>> Stashed changes
+
 </head>
 
 <body id="page-top">
@@ -266,7 +263,6 @@
 
     <script src="js/confirm.js"></script>
     <script src="js/staff_validate.js"></script>
-
 </body>
 
 </html>
