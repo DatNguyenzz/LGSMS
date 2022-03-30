@@ -83,11 +83,9 @@
                                     <tbody>
                                          <%for(Orders order: listOrder ){%>
                                         <tr>
-<<<<<<< Updated upstream
-                                            <td><%=order.getOrderID()%></td>
-=======
+
                                             <td><%=order.getOrderCode()%></td>
->>>>>>> Stashed changes
+
                                             <td><%=order.getOrderDate()%></td>
                                             <td>13/03/2022</td>
                                             <td>

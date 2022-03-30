@@ -30,10 +30,6 @@ public class Orders {
         orderDetail= new ArrayList<>();
     }
 
-    public Orders(List<OrderDetail> orderDetail) {
-        this.orderDetail = orderDetail;
-    }
-
     
     public Orders(int orderID, String orderCode, int customerID, int orderStatus, Date orderDate, String customerName, String orderNote1, String orderNote2, int bussinessStaffID, double totalPrice) {
         this.orderID = orderID;

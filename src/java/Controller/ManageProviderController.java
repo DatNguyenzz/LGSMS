@@ -53,6 +53,7 @@ public class ManageProviderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Provider> listProvider = providerService.getAllProvider();
         request.setAttribute("listProvider", listProvider);
@@ -70,6 +71,7 @@ public class ManageProviderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         try {
 

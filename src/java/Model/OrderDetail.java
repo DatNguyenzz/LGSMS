@@ -16,6 +16,7 @@ public class OrderDetail {
     private int orderDetailID;
     private int orderID;
     private int productID;
+    private String productName;
     private int productQuantity;
     private double price;
     
@@ -24,12 +25,41 @@ public class OrderDetail {
         
     }
 
-    public OrderDetail(int orderDetailID, int orderID, int productID, int productQuantity, double price) {
+    public OrderDetail(int orderDetailID, int orderID, int productID,String productName,int productQuantity, double price) {
         this.orderDetailID = orderDetailID;
         this.orderID = orderID;
         this.productID = productID;
+        this.productName = productName;
         this.productQuantity = productQuantity;
         this.price = price;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public int getOrderDetailID() {
+        return orderDetailID;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
    

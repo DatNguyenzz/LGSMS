@@ -76,40 +76,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-<<<<<<< Updated upstream
-                                        
-                                        
-                                        <form action="AddProvider" method="POST" onsubmit="confirmFunction()">
-                                            <div class="row" style="width: 100%;">
-                                                <div class="col-sm-12">
-                                                    <div class="row">
-                                                        <div class="col-8 col-sm-5 text-center">
-                                                            <img src="assets/image/img/undraw_posting_photo.svg" alt="..." class="img-thumbnail">
-                                                            <button type="button" class="btn btn-primary ">Tải ảnh</button>
-                                                        </div>
-                                                        <div class="col-8 col-sm-7">
-                                                            <div class="form-group">
-                                                                <label for="provider-name" class="col-form-label">Tên nhà cung cấp:</label>
-                                                                <input type="text" class="form-control" id="provider-name" name="provider-name">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="provider-address" class="col-form-label">Địa chỉ:</label>
-                                                                <input type="text" class="form-control" id="provider-address" name="provider-address">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="provider-email" class="col-form-label">Email:</label>
-                                                                <input type="text" class="form-control" id="provider-email" name="provider-email">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="provider-phone" class="col-form-label">Điện thoại:</label>
-                                                                <input type="text" class="form-control" id="provider-phone" name="provider-phone">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <input type="submit" class="btn btn-primary" value="Thêm"></input>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                            </div>
-                                                        </div>
-=======
+
                                         <form action="AddProvider" method="POST" id="form" onsubmit="confirmFunction()">
                                             <div class="row">
                                                 <div class="col-8 col-sm-12">
@@ -132,7 +99,7 @@
                                                     <div class="modal-footer">
                                                         <input type="submit" class="btn btn-primary"  value="Thêm"></input>
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
->>>>>>> Stashed changes
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -169,7 +136,7 @@
                                             <td><%=provider.getProviderName()%></td>
                                             <td><%=provider.getProviderEmail()%></td>
                                             <td><%=provider.getProviderPhone()%></td>
-                                            <td>11/03/2022</td>
+                                            <td><%=provider.getCreatedAt()%></td>
                                             <td><label class="switch">
                                                 <input type="checkbox" <%if(provider.isIsActive()){%>checked<%}%>>
                                                 <span class="slider round"></span>
@@ -181,11 +148,9 @@
                                             </td>
 
                                         </tr>
-<<<<<<< Updated upstream
-                                        <%}%>
-=======
+
                                            <%}%>
->>>>>>> Stashed changes
+
                                     </tbody>
                                 </table>
                             </div>
@@ -208,11 +173,9 @@
     <div id="editAccountModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-<<<<<<< Updated upstream
-                <form action="EditProvider" method="post">
-=======
+
                 <form id="form" action="EditProvider" method="post" onsubmit="confirmFunction()">
->>>>>>> Stashed changes
+
                     <div class="modal-header">
                         <h4 class="modal-title">Chỉnh sửa thông tin nhà cung cấp</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -220,25 +183,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Mã nhà cung cấp</label>
-<<<<<<< Updated upstream
-                            <input name="providerID" id="providerID" type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Tên nhà cung cấp</label>
-                            <input name="providerName" id="providerName" type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Địa chỉ</label>
-                            <input name="address" id="address" type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input name="email" id="email" type="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Điện thoại</label>
-                            <input name="providerPhone" id="providerPhone" type="text" class="form-control" required>
-=======
+
                             <input name="providerID" id="providerID" type="text" class="border border-secondary w-100 rounded label_box" 
                                                     readonly class="form-control-plaintext"></input>
                             
@@ -257,8 +202,8 @@
                         </div>
                         <div class="form-group">
                             <label>Điện thoại</label>
-                            <input name="providerPhone" id="providerPhone" type="text" class="form-control"  oninvalid="InvalidPhone(this);" oninput="InvalidPhone(this);" required="required" />
->>>>>>> Stashed changes
+                            <input name="providerPhone" id="providerPhone" type="text" class="form-control"  oninvalid="InvalidPhone1(this);" oninput="InvalidPhone1(this);" required="required" />
+
                         </div>
                         <div class="form-group">
                             <label>Trạng thái: </label>
@@ -278,11 +223,9 @@
     </div>
     <!-- Bootstrap core JavaScript-->
     
-<<<<<<< Updated upstream
-     <script type="text/javascript">
-=======
+
     <script type="text/javascript">
->>>>>>> Stashed changes
+
 	
 	const providerID=document.getElementById("providerID");
 	const providerName=document.getElementById("providerName");
@@ -299,20 +242,14 @@
         address.value=addressInput;
     	
     }
-<<<<<<< Updated upstream
-    </script>-->
-    
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
-=======
+
     </script>
     
     
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
->>>>>>> Stashed changes
+
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -326,12 +263,10 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/include-html.min.js"></script>
-<<<<<<< Updated upstream
-    <!--<script src="js/confirm.js"></script>-->
-=======
+
     <script src="js/confirm.js"></script>
     <script src="js/staff_validate.js"></script>
->>>>>>> Stashed changes
+
 </body>
 
 </html>
