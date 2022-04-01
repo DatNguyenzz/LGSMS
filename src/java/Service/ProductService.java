@@ -24,6 +24,14 @@ public class ProductService {
      public ArrayList<Product> getAllProductIsActive(){
         return productDAO.getProductIactive();
     }
+     
+     public ArrayList<Product> getAllProductFilter(int filter){
+        return productDAO.getProductIactiveWithFilter(filter);
+    }
+     
+     public ArrayList<Product> getSearchProduct(String seach){
+        return productDAO.searchProduct(seach);
+    }
     
     //add new product to database
     public boolean addNewProductToDB(String productName, int productImage, int productQuantity, double productPrice, String productDescription) {

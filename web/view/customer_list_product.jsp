@@ -34,6 +34,20 @@
         %>
     <div class="container d-flex justify-content-center mt-50 mb-50">
         <div class="row">
+            <div class="col-md4 mt-4 ">
+                <form action="CustomerProduct" method="get" class="float-right">
+                    <label for="filter">Bộ lọc <i class="bi bi-funnel-fill"></i>:</label>
+                    <select name="filter" id="filters">
+                      <option value="0">Tất cả sản phẩm</option>
+                      <option value="1">Thấp dến cao</option>
+                      <option value="2">Cao đến thấp</option>
+                      <option value="3">Từ A-Z</option>
+                      <option value="4">Từ Z-A</option>
+                    </select>
+                    <input type="submit" value="Ấn"> 
+                </form>
+            </div>
+            
              <%for (Product product : listProduct) {%>
             <div class="col-md-4 mt-4">
                 <div class="card">

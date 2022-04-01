@@ -30,8 +30,8 @@
 
                     </ul>
                 </div>
-                <form class="d-flex " action="/somepage">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Nhập từ khóa...">
+                <form class="d-flex " action="CustomerProduct" method="post">
+                    <input class="form-control mr-sm-2" type="text" name="searchName" placeholder="Nhập từ khóa...">
                     <button class="btn btn-search nav-link nav-right" type="submit"><i class="bi bi-search me-1"></i></button>
                 </form>
                 <div class="d-flex ">

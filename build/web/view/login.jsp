@@ -49,7 +49,7 @@
                         </form>
                         <!-- URL tạo tài khoản -->
                         <div class="w-100 text-center">
-                            <p>Bạn chưa có tài khoản? <a href="guest_register.html" style="color: #fff; text-decoration: underline;"><b>Đăng ký
+                            <p>Bạn chưa có tài khoản? <a href="Register" style="color: #fff; text-decoration: underline;"><b>Đăng ký
 								ngay!</b></a></p>
                         </div>
                     </div>

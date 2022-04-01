@@ -112,6 +112,103 @@ public class ProductDAO {
         }
         return listProduct;
     }
+     //search product by name
+     public ArrayList<Product> searchProduct(String search) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = BASE_SQL+"where p.is_active =1 and p.product_name LIKE '%"+search+"%'";
+        ArrayList<Product> listProduct = new ArrayList<>();
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("product_id"));
+                p.setImageID(rs.getInt("image_id"));
+                p.setProductName(rs.getString("product_name"));
+                p.setProductPrice(rs.getDouble("product_price"));
+                p.setProductImportPrice(rs.getDouble("product_import_price"));
+                p.setProductInstock(rs.getInt("product_instock"));
+                p.setProductInuse(rs.getInt("product_inuse"));
+                p.setProductDescription(rs.getString("product_description"));
+                p.setProductCreatedAt(rs.getDate("product_created_at"));
+                p.setProductUpdatedAt(rs.getDate("product_updated_at"));
+                p.setIsActive(rs.getBoolean("is_active"));
+                listProduct.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return listProduct;
+    }
+    
+    //filter product
+     public ArrayList<Product> getProductIactiveWithFilter(int filter) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = BASE_SQL+"where p.is_active =1";
+        
+        if(filter==0){
+            sql+="";
+            //lấy tất cả sản phẩm
+        }else if(filter==1){
+            sql+="ORDER BY p.product_price ASC";
+            // lấy sản phẩm theo giá tăng
+        }else if(filter==2){
+            sql+="ORDER BY p.product_price DESC";
+            //lấy sản phẩm theo giá giảm
+        }else if(filter==3){
+            sql+="ORDER BY p.product_name ASC";
+            //lấy sản phẩm tuwf A-Z
+        }else if(filter==4){
+           sql+="ORDER BY p.product_name DESC";
+            //lấy sản phẩm từ Z-A
+        }
+        
+        ArrayList<Product> listProduct = new ArrayList<>();
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("product_id"));
+                p.setImageID(rs.getInt("image_id"));
+                p.setProductName(rs.getString("product_name"));
+                p.setProductPrice(rs.getDouble("product_price"));
+                p.setProductImportPrice(rs.getDouble("product_import_price"));
+                p.setProductInstock(rs.getInt("product_instock"));
+                p.setProductInuse(rs.getInt("product_inuse"));
+                p.setProductDescription(rs.getString("product_description"));
+                p.setProductCreatedAt(rs.getDate("product_created_at"));
+                p.setProductUpdatedAt(rs.getDate("product_updated_at"));
+                p.setIsActive(rs.getBoolean("is_active"));
+                listProduct.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return listProduct;
+    }
 
     //Add new product to database
     public int addNewProductToDB(Product product) {

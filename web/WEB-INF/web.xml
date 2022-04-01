@@ -40,6 +40,8 @@
         <url-pattern>/ManageAccount</url-pattern>
         <url-pattern>/EditAccount</url-pattern>
         <url-pattern>/AddAccount</url-pattern>
+        <url-pattern>/Register</url-pattern>
+       
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AuthorizationController</servlet-name>

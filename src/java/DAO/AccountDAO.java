@@ -216,6 +216,45 @@ public class AccountDAO {
         }
         return result;
     }
+    
+    
+    //Register
+    public int register(Account acc) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        String sql
+                = "INSERT INTO Profile ( \n"
+                + " email, created_at)\n"
+                + "VALUES( \n"     
+                + "'" + acc.getEmail() + "', \n"
+                + "'" + getCurrentSQLDate() + "');\n"
+                + "INSERT INTO Account(username, password, role_id, profile_id, is_active)\n"
+                + "VALUES('" + acc.getUsername() + "', "
+                + "'" + acc.getPassword() + "', " + acc.getRole().getRoleID() + ", \n"
+                + "(\n"
+                + "	SELECT p.profile_id FROM Profile p\n"
+                + "	WHERE \n"              
+                + "	 p.email = '" + acc.getEmail() + "'\n"              
+                + "), 1)";
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
 
     //Login 
     public Account getAccountByUsernameAndPassword(String username, String password) {

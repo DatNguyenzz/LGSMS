@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author admin
  */
 public class CustomerProductController extends HttpServlet {
-ProductService productService = new ProductService();
+
+    ProductService productService = new ProductService();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,7 +38,7 @@ ProductService productService = new ProductService();
         ArrayList<Product> listProduct = productService.getAllProductIsActive();
         request.setAttribute("listProduct", listProduct);
         request.getRequestDispatcher("view/customer_list_product.jsp").forward(request, response);
-       
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,12 +53,28 @@ ProductService productService = new ProductService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String url = request.getServletPath();
         switch (url) {
-            
+            case "/CustomerProduct":
+                ArrayList<Product> listProduct = new ArrayList<>();
+                String filter = request.getParameter("filter");
+
+                if (filter == null) {
+                    listProduct = productService.getAllProductIsActive();
+                    request.setAttribute("listProduct", listProduct);
+                    request.getRequestDispatcher("view/customer_list_product.jsp").forward(request, response);
+                } else {
+                    int filterID = Integer.parseInt(filter);
+                    listProduct = productService.getAllProductFilter(filterID);
+                    request.setAttribute("listProduct", listProduct);
+                    request.getRequestDispatcher("view/customer_list_product.jsp").forward(request, response);
+                }
+
+                break;
+
             case "/CustomerProductInformation":
                 int productID = Integer.parseInt(request.getParameter("productID"));
                 Product product = productService.getProductByID(productID);
@@ -79,17 +97,36 @@ ProductService productService = new ProductService();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+
+        String url = request.getServletPath();
+
+        switch (url) {
+            case "/CustomerProduct":
+
+                String search = request.getParameter("searchName");
+                ArrayList<Product> listProduct = productService.getSearchProduct(search);
+                request.setAttribute("listProduct", listProduct);
+                request.getRequestDispatcher("view/customer_list_product.jsp").forward(request, response);
+                break;
+
+            default:
+                processRequest(request, response);
+
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
+    }
