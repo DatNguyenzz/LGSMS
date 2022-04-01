@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 import java.sql.Date;
@@ -18,7 +13,7 @@ public class Product {
     private double productPrice;
     private double productImportPrice;
     private int productInstock;
-    private int productInuse;
+    private int productEmpty;
     private String productDescription;
     private Date productCreatedAt;
     private Date productUpdatedAt;
@@ -38,7 +33,7 @@ public class Product {
         this.productPrice = productPrice;
         this.productImportPrice = productImportPrice;
         this.productInstock = productInstock;
-        this.productInuse = productInuse;
+        this.productEmpty = productInuse;
         this.productDescription = productDescription;
         this.productCreatedAt = productCreatedAt;
         this.productUpdatedAt = productUpdatedAt;
@@ -94,12 +89,12 @@ public class Product {
         this.productInstock = productInstock;
     }
 
-    public int getProductInuse() {
-        return productInuse;
+    public int getProductEmpty() {
+        return productEmpty;
     }
 
-    public void setProductInuse(int productInuse) {
-        this.productInuse = productInuse;
+    public void setProductEmpty(int productEmpty) {
+        this.productEmpty = productEmpty;
     }
 
     public String getProductDescription() {

@@ -1,14 +1,9 @@
 package Controller;
 
 import Model.Account;
-import Model.Importation;
-import Model.Product;
-import Model.Provider;
-import Service.ImportationService;
-import Service.ProductService;
-import Service.ProviderService;
+import Service.AccountService;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dat Nguyen
  */
-public class ManageImportController extends HttpServlet {
+public class ProfileController extends HttpServlet {
 
-    ImportationService importationService = new ImportationService();
+    AccountService accountService = new AccountService();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +28,7 @@ public class ManageImportController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.getRequestDispatcher("view/staff_view_profile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -48,15 +43,7 @@ public class ManageImportController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        ArrayList<Importation> listImport = importationService.getAllImportation();
-        ArrayList<Product> listProduct = new ProductService().getAllProduct();
-        ArrayList<Provider> listProvider = new ProviderService().getAllProvider();
-
-        request.setAttribute("listImportation", listImport);
-        request.setAttribute("listProduct", listProduct);
-        request.setAttribute("listProvider", listProvider);
-        request.getRequestDispatcher("view/business_manage_import.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -71,28 +58,20 @@ public class ManageImportController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        int productID = Integer.parseInt(request.getParameter("product-id"));
-        int providerID = Integer.parseInt(request.getParameter("provider-id"));
-        int productImportQuantity = Integer.parseInt(request.getParameter("product-quantity"));
-        double importAmount = Double.parseDouble(request.getParameter("import-amount"));
-        String importNote = request.getParameter("import-note");
         Account account = (Account) request.getSession().getAttribute("account");
-        if (request.getParameter("import-from-customer") != null) {
-            //Import from customer
-            if(importationService.importFromCustomer(productID, providerID, 
-                    productImportQuantity, importAmount, importNote, account.getAccountID())){
-                response.sendRedirect(request.getContextPath() + "/ManageImport");
-            }else{
-                
-            }
+        String fullname = request.getParameter("fullname");
+        String phone = request.getParameter("phone");
+        String dob = request.getParameter("dob");
+        boolean gender = Boolean.valueOf(request.getParameter("gender"));
+        String address = request.getParameter("address");
+        String email = request.getParameter("email");
+        if (accountService.updateAccount(account.getAccountID(), fullname, phone, address, dob, gender, account.getUsername(), email, account.getRole().getRoleID())) {
+            //Update success 
+            account = accountService.getAccountByID(account.getAccountID());
+            request.getSession().setAttribute("account", account);
+            response.sendRedirect(request.getContextPath() + "/MyProfile");
         } else {
-            //Import from provider
-            if(importationService.importFromProvider(productID, providerID, 
-                    productImportQuantity, importAmount, importNote, account.getAccountID())){
-                response.sendRedirect(request.getContextPath() + "/ManageImport");
-            }else{
-                
-            }
+            //Update fail
         }
     }
 

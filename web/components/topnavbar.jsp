@@ -33,7 +33,7 @@
             </li>
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/MyProfile" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=account.getFullname()%><br><%=account.getRole().getRoleName()%>
 
                     </span>
@@ -42,7 +42,7 @@
                 <!-- Dropdown - User Information -->
                 <ul class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="<%=request.getContextPath()%>/MyProfile">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Hồ sơ của tôi
                         </a>
                     </li>

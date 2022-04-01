@@ -105,7 +105,7 @@
                                                 <label for="product-stored" class="col-form-label">Số bình rỗng:</label>
                                                 <label type="text" class="border border-secondary w-100 rounded label_box" 
                                                 readonly class="form-control-plaintext" id="product-stored"
-                                                    ><%=product.getProductInuse()%></label>
+                                                    ><%=product.getProductEmpty()%></label>
                                                 <div class="row">
                                                     <div class="col">
                                                         <label for="product-create" class="col-form-label">Ngày
@@ -122,10 +122,8 @@
                                                             ><%=product.getProductUpdatedAt()%></label>
                                                     </div>
                                                 </div>
-
                                                 <!-- <label for="cus-note" class="col-form-label">Ghi chú của khách hàng:</label>
                                                     <textarea class="border border-secondary w-100 p-2 rounded" readonly class="form-control-plaintext" id="order-note" style="resize: none; overflow: auto;"></textarea> -->
-
                                             </div>
                                             <div class="col-8 col-sm-4">
                                                 <label for="product-price" class="col-form-label">Giá bán:</label>

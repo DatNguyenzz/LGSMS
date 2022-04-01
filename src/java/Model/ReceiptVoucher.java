@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 import java.sql.Date;
@@ -19,11 +14,16 @@ public class ReceiptVoucher {
     private double totalMoney;
     private double deposit;
     private String note;
+    private int status;
+    private String customerName;
+    private String staffName;
 
     public ReceiptVoucher() {
     }
 
-    public ReceiptVoucher(int receiptID, int orderID, Date receiptCreatedAt, int bussinessStaffID, double totalMoney, double deposit, String note) {
+    public ReceiptVoucher(int receiptID, int orderID, Date receiptCreatedAt, 
+            int bussinessStaffID, double totalMoney, double deposit, 
+            String note, int status, String customerName, String staffName) {
         this.receiptID = receiptID;
         this.orderID = orderID;
         this.receiptCreatedAt = receiptCreatedAt;
@@ -31,6 +31,9 @@ public class ReceiptVoucher {
         this.totalMoney = totalMoney;
         this.deposit = deposit;
         this.note = note;
+        this.status = status;
+        this.customerName = customerName;
+        this.staffName = staffName;
     }
 
     public int getReceiptID() {
@@ -87,6 +90,30 @@ public class ReceiptVoucher {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
     }
     
 }

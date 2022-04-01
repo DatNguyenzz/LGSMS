@@ -100,33 +100,7 @@
                                             </td>
                                         </tr>
                                         <%}%>
-                                        <tr>
-                                            <td>LG02</td>
-                                            <td>12/03/2022</td>
-                                            <td>13/03/2022</td>
-                                            <td>
-                                                <p id="status_pending">Đang vận chuyển</p>
-                                            </td>
-                                            <td>499.000</td>
-                                            <td>
-                                                <a href="business_information_order.jsp" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
-                                                <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>LG03</td>
-                                            <td>12/03/2022</td>
-                                            <td>13/03/2022</td>
-                                            <td>
-                                                <p id="status_complete">Hoàn thành</p>
-                                            </td>
-                                            <td>499.000</td>
-                                            <td>
-                                                <a href="business_information_order.jsp" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
-                                                <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                                                            </tbody>
                                 </table>
                             </div>
                         </div>

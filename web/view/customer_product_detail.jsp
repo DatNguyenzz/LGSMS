@@ -33,7 +33,7 @@
                             <li>Giá bán: <%=product.getProductPrice()%></li>
                             <li style="color: #ff1313;">Giá khuyến mại: </li>
                             <li>Thương hiệu: Gas Petrolimex</li>
-                            <li>Tình trạng:<% if(product.getProductInstock()>0){ %> Còn hàng<%} else{%> Hết hàng <%}%></li>
+                            <li>Tình trạng: <% if(product.getProductInstock()>0){ %> Còn hàng<%} else{%>Hết hàng <%}%></li>
                             <li>Bảo hành: Có sổ bảo hiểm bình gas</li>
                         </ul>
                         <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">

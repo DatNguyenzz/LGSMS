@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Model.Importation;
@@ -11,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,6 +29,11 @@ public class ImportationDAO {
             + "as staff_name\n"
             + "FROM Importation i";
 
+    public java.sql.Date getCurrentSQLDate() {
+        Date utilDate = new Date();
+        return new java.sql.Date(utilDate.getTime());
+    }
+    
     //get all importation
     public ArrayList<Importation> getAllImportation() {
         DBContext db = null;
@@ -65,6 +66,36 @@ public class ImportationDAO {
             Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listImport;
+    }
+    
+    //Add new import
+    public int addImport(Importation importation) {
+        String sql 
+                = "INSERT INTO Importation (product_id, product_import_quantity, "
+                + "import_date, account_id, provider_id, note, "
+                + "import_amount)\n" 
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, importation.getProductID());
+            ps.setInt(2, importation.getProductImportQuantity());
+            ps.setDate(3, getCurrentSQLDate());
+            ps.setInt(4, importation.getAccountID());
+            ps.setInt(5, importation.getProviderID());
+            ps.setString(6, importation.getNote());
+            ps.setDouble(7, importation.getImportAmount());
+            result = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 
 }

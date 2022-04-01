@@ -1,20 +1,20 @@
 package Controller;
 
-import Model.Account;
-import Service.AccountService;
+import Model.ReceiptVoucher;
+import Service.ReceiptVoucherService;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Dat Nguyen
  */
-public class AuthorizationController extends HttpServlet {
-
+public class ManageReceiptVoucherController extends HttpServlet {
+    ReceiptVoucherService receiptVoucherService = new ReceiptVoucherService();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -26,7 +26,6 @@ public class AuthorizationController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -41,20 +40,9 @@ public class AuthorizationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = request.getServletPath();
-        if (url.equals("/login")) {
-            //Get login
-            Account acc = (Account) request.getSession().getAttribute("account");
-            if (acc == null) {
-                request.getRequestDispatcher("view/login.jsp").forward(request, response);
-            } else {
-                response.sendRedirect(request.getContextPath() + "/home");
-            }
-        }else if(url.equals("/logout")){
-            //Get logut
-            request.getSession().removeAttribute("account");
-            response.sendRedirect(request.getContextPath() + "/login");
-        }
+        ArrayList<ReceiptVoucher> listReceiptVoucher = receiptVoucherService.getAllReceiptVoucher();
+        request.setAttribute("listReceiptVoucher", listReceiptVoucher);
+        request.getRequestDispatcher("view/business_manager_voucher.jsp").forward(request, response);
     }
 
     /**
@@ -68,20 +56,7 @@ public class AuthorizationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        Account acc = new AccountService().login(username, password);
-        if (acc == null) {
-            //Login failed
-            request.getRequestDispatcher("view/login.jsp").forward(request, response);
-        } else {
-            //Login success
-            HttpSession session = request.getSession();
-            session.setAttribute("account", acc);
-            response.sendRedirect(request.getContextPath() + "/StaffHome");
-        }
+        
     }
 
     /**

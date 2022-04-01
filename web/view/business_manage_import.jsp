@@ -1,3 +1,5 @@
+<%@page import="Model.Provider"%>
+<%@page import="Model.Product"%>
 <%@page import="Model.Importation"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,6 +32,8 @@
     </head>
     <%
         ArrayList<Importation> listImport = (ArrayList<Importation>) request.getAttribute("listImportation");
+        ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
+        ArrayList<Provider> listProvider = (ArrayList<Provider>) request.getAttribute("listProvider");
     %>
     <body id="page-top">
 
@@ -77,28 +81,28 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="" id="form" onsubmit="confirmFunction()">
+                                            <form action="<%=request.getContextPath()%>/ManageImport" method="POST" id="form" onsubmit="confirmFunction()">
                                                 <div class="row" style="width: 100%;">
                                                     <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-8 col-sm-12 ">
                                                                 <div class="form-group">
                                                                     <label for="product-name">Tên sản phẩm:</label>
-                                                                    <select name="product-name" id="product-name"
+                                                                    <select name="product-id" id="product-name"
                                                                             class="border border-secondary w-100 label_box rounded">
-                                                                        <option value="product-1">Bình gas 12kg van ngang</option>
-                                                                        <option value="product-2">Bình gas 12kg van chụp</option>
-                                                                        <option value="product-3">Bình gas 45kg công nghiệp</option>
-                                                                        <option value="product-4">Bình gas 13kg van ngang</option>
-                                                                        <option value="product-5">Bình gas 13 van chụp</option>
+                                                                        <%for(Product pro : listProduct){%>
+                                                                        <option value="<%=pro.getProductID()%>"><%=pro.getProductName()%></option>
+                                                                        <%}%>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="provider-name" class="col-form-label">Tên
                                                                         nhà cung cấp:</label>
-                                                                    <select name="provider-name" id="product-status"
+                                                                    <select name="provider-id" id="product-status"
                                                                             class="border border-secondary w-100 label_box rounded">
-                                                                        <option value="provider-1">Petrolimex Gas</option>
+                                                                        <%for(Provider provider : listProvider){%>
+                                                                        <option value="<%=provider.getProviderID()%>"><%=provider.getProviderName()%></option>
+                                                                        <%}%>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
@@ -106,19 +110,22 @@
                                                                     <input type="number" id="product-quantity"
                                                                            name="product-quantity" min="1"
                                                                            class="form-control" required oninvalid="this.setCustomValidity('Xin hãy số lượng sản phẩm.')" oninput="this.setCustomValidity('')" />
-
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="product-price" class="col-form-label">Giá
                                                                         nhập:</label>
-                                                                    <input type="number" class="form-control" min="100"
+                                                                    <input type="number" class="form-control" min="100" name="import-amount"
                                                                            id="product-price" required oninvalid="this.setCustomValidity('Xin hãy nhập tiền sản phẩm.')" oninput="this.setCustomValidity('')" />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="product-note" class="col-form-label">Ghi
                                                                         chú:</label>
-                                                                    <textarea class="form-control"
+                                                                    <textarea class="form-control" name="import-note"
                                                                               id="product-note"></textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="checkbox" id="import-type" name="import-from-customer">
+                                                                    <label for="import-type" class="col-form-label">Nhập hàng từ khách</label>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <input type="submit" class="btn btn-primary"

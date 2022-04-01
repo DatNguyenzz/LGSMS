@@ -39,7 +39,7 @@ public class ProductService {
         product.setProductName(productName);
         product.setImageID(productImage);
         product.setProductInstock(productQuantity);
-        product.setProductInuse(0);
+        product.setProductEmpty(0);
         product.setProductPrice(productPrice);
         product.setProductDescription(productDescription);
         product.setIsActive(true);
