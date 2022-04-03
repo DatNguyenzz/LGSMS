@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/web/view/business_accept_order.jsp</file>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/web/view/staff_view_profile.jsp</file>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/src/java/DAO/ProductDAO.java</file>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/web/view/business_manage_import.jsp</file>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/web/view/manager_manage_provider.jsp</file>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/web/view/customer_product_detail.jsp</file>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/web/components/sidebar.jsp</file>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/web/view/manager_infomation_product.jsp</file>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/src/java/Controller/ManageImportController.java</file>
-            <file>file:/D:/LGSMS_NewClone_30_3/LGSMS/src/java/Service/ImportationService.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
