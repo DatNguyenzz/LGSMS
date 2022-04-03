@@ -9,11 +9,7 @@ import Model.Account;
 import Model.Role;
 import Service.AccountService;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,15 +48,20 @@ public class ManageAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        String url = request.getServletPath();
+        switch (url) {
+            case "/ManageAccount":
+                ArrayList<Account> listAccount = accountService.getAllAccount();
+                ArrayList<Role> listRole = accountService.getAllRole();
 
-        ArrayList<Account> listAccount = accountService.getAllAccount();
-        ArrayList<Role> listRole = accountService.getAllRole();
-
-        request.setAttribute("listRole", listRole);
-        request.setAttribute("listAccount", listAccount);
-        request.getRequestDispatcher("view/admin_manage_account.jsp").forward(request, response);
+                request.setAttribute("listRole", listRole);
+                request.setAttribute("listAccount", listAccount);
+                request.getRequestDispatcher("view/admin_manage_account.jsp").forward(request, response);
+                break;
+            case "/Register":
+                request.getRequestDispatcher("view/guest_register.jsp").forward(request, response);
+                break;
+        }
     }
 
     /**
@@ -111,6 +112,19 @@ public class ManageAccountController extends HttpServlet {
                 } else {
                     //Add fail
                 }
+                break;
+            }
+            case "/Register":{
+                String username = request.getParameter("username");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                              
+                    if(accountService.register(username, email,password, 4)){
+                        response.sendRedirect(request.getContextPath()+"/Register");
+                    }else{
+                        
+                    }
+               
                 break;
             }
 

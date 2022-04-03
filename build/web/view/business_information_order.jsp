@@ -1,3 +1,5 @@
+<%@page import="Model.OrderDetail"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="Model.Orders"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,6 +33,10 @@
     
     <%
             Orders order= (Orders)request.getAttribute("orderInfor");
+    
+        ArrayList<OrderDetail> listOrderDetail = (ArrayList<OrderDetail>)request.getAttribute("listOrderDetail");
+        
+        ArrayList<Orders> listNewOrder = (ArrayList<Orders>)request.getAttribute("listNewOrder");
     %>
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -52,6 +58,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
                     <!-- Topbar Navbar -->
                     <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                 </nav>
@@ -75,7 +82,7 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
 
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <table  class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <div class="row" style="border: 2px solid lightgray;">
                                                 <div class="col-8 col-sm-1"></div>
                                                 <div class="col-8 col-sm-5">
@@ -87,13 +94,14 @@
                                                     <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-price"><%=order.getTotalPrice()%></label>
                                                     <label for="staff-order" class="col-form-label">Nhân viên nhận
                                                         đơn:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="staff-order"></label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="staff-order">Truong
+                                                        Quang Phuoc</label>
                                                     <label for="order-date" class="col-form-label">Ngày nhận
                                                         đơn:</label>
                                                     <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-date"><%=order.getOrderDate()%></label>
                                                     <label for="cus-note" class="col-form-label">Ghi chú:</label>
-                                                    <textarea class="border border-secondary w-100 p-2 rounded" readonly class="form-control-plaintext" id="order-note" style="resize: none; overflow: auto;"><%=order.getOrderNote1()%></textarea>
-
+                                                    <textarea class="border border-secondary w-100 p-2 rounded" readonly class="form-control-plaintext" id="order-note" name="order-note1" style="resize: none; overflow: auto;"><%=order.getOrderNote1()%></textarea>
+                                                    
                                                 </div>
                                                 <div class="col-8 col-sm-5">
                                                     <label for="customer-name" class="col-form-label">Tên khách
@@ -105,19 +113,24 @@
                                                     <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-address">118
                                                         Hồ Tây, Hoàn Kiếm, Hà Nội</label>
                                                     </lable>
-                                                    <form id="form" action="business_new_order.html">
+                                                    
+                                                    <form id="form" action="ViewDetailOrder" method="post">
                                                         <label for="order-status" class="col-form-label">Trạng
                                                             thái:</label><br>
+                                                            
+                                                            <input type="text" class="form-control" hidden="true" name="orderId" value="<%=order.getOrderID()%>"  />
+                                                            
                                                         <select name="order-status" id="order-status" class="border border-secondary w-100 p-2 rounded" style="margin-bottom: 8px;">
-                                                            <option value="status-1">Đang xử lí</option>
-                                                            <option value="status-2">Đã nhận đơn</option>
-                                                            <option value="status-3">Đơn bị hủy</option>
-                                                            <option value="status-4">Đang vận chuyển</option>
-                                                            <option value="status-5">Hoàn thành</option>
+                                                            
+                                                            <option value="0" <%if(order.getOrderStatus() == 0){%>selected<%}%>>Đang xử lí</option>
+                                                            <option value="1" <%if(order.getOrderStatus() == 1){%>selected<%}%>>Đã nhận đơn</option>
+                                                            <option value="2" <%if(order.getOrderStatus() == 2){%>selected<%}%>>Đang vận chuyển</option>
+                                                            <option value="3" <%if(order.getOrderStatus() == 3){%>selected<%}%>>Hoàn thành</option>
+                                                            <option value="4" <%if(order.getOrderStatus() == 4){%>selected<%}%>>Đơn bị hủy</option>s
                                                         </select>
                                                         <label for="order-note" class="col-form-label">Nhân viên ghi
                                                             chú:</label>
-                                                        <textarea class="border border-secondary w-100 p-2 rounded" id="order-note" style="resize: none; overflow: auto;"></textarea>
+                                                        <textarea class="border border-secondary w-100 p-2 rounded" id="order-note" name="order-note2" style="resize: none; overflow: auto;"><%=order.getOrderNote2()%></textarea>
                                                         <div style="margin-top: 3%; float: right">
                                                             <input type="submit" class="btn btn-primary submit px-3" value="Lưu"></input>
                                                             <!-- <a href="business_new_order.html"><button type="button" class="btn btn-secondary" >Hủy</button></a> -->
@@ -128,34 +141,25 @@
                                             </div>
                                             <thead>
                                                 <tr>
-                                                    <th>Ảnh</th>
+                                                   
                                                     <th>Tên sản phẩm</th>
-                                                    <th>Giá bán</th>
                                                     <th>Số lượng</th>
+                                                    <th>Giá bán</th>
                                                     <th>Tổng giá sản phẩm</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <%for(OrderDetail od: listOrderDetail){%>
                                                 <tr>
-                                                    <td><img src=""></td>
-                                                    <td>Bình gas 12kg</td>
-                                                    <td>5</td>
-                                                    <td>499.000</td>
-                                                    <td>2.495.000đ</td>
+                                                    
+                                                    <td><%=od.getProductName()%></td>
+                                                    <td><%=od.getProductQuantity()%></td>
+                                                    <td><%=od.getPrice()%></td>
+                                                    <td><%=(Double)od.getPrice()*od.getProductQuantity()%>đ</td>
 
                                                 </tr>
-                                                <tr>
-                                                    <td><img src=""></td>
-                                                    <td>Bình gas 12kg</td>
-                                                    <td>6</td>
-                                                    <td>499.000</td>
-                                                    <td>2.994.000đ</td>
-
-                                                </tr>
-                                                <tr>
-
-                                                </tr>
+                                               <%}%>
                                             </tbody>
                                         </table>
                                     </div>

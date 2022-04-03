@@ -125,4 +125,19 @@ public class AccountService {
         int result = accountDao.addNewAccount(acc); 
         return (result != 0);
     }
+    
+    //Register
+     public boolean register( String username, 
+            String email,String password, int roleId) {
+        Account acc = new Account();
+        
+        acc.setUsername(username);
+        acc.setPassword(encryptPassword(password));
+        acc.setEmail(email);
+        Role role = new Role();
+        role.setRoleID(roleId);
+        acc.setRole(role);
+        int result = accountDao.register(acc); 
+        return (result != 0);
+    }
 }

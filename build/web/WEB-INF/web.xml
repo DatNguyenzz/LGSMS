@@ -24,6 +24,22 @@
         <servlet-name>ManageOrderController</servlet-name>
         <servlet-class>Controller.ManageOrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerProductController</servlet-name>
+        <servlet-class>Controller.CustomerProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageReceiptVoucherController</servlet-name>
+        <servlet-class>Controller.ManageReceiptVoucherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>Controller.ProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StaffHomeController</servlet-name>
+        <servlet-class>Controller.StaffHomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageProductController</servlet-name>
         <url-pattern>/ManageProduct</url-pattern>
@@ -36,6 +52,7 @@
         <url-pattern>/ManageAccount</url-pattern>
         <url-pattern>/EditAccount</url-pattern>
         <url-pattern>/AddAccount</url-pattern>
+        <url-pattern>/Register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AuthorizationController</servlet-name>
@@ -59,6 +76,23 @@
         <url-pattern>/ManageCancelOrder</url-pattern>
         <url-pattern>/ManageAcceptOrder</url-pattern>
         <url-pattern>/ViewDetailOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerProductController</servlet-name>
+        <url-pattern>/CustomerProduct</url-pattern>
+        <url-pattern>/CustomerProductInformation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageReceiptVoucherController</servlet-name>
+        <url-pattern>/ManageReceiptVoucher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/MyProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffHomeController</servlet-name>
+        <url-pattern>/StaffHome</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

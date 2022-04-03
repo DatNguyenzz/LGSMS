@@ -6,9 +6,12 @@
 package Controller;
 
 import DAO.OrderDAO;
+import Model.OrderDetail;
 import Model.Orders;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -90,8 +93,13 @@ public class ManageOrderController extends HttpServlet {
         } else if (url.equals("/ViewDetailOrder")) {
             int orderId = Integer.parseInt(request.getParameter("id"));
             orderInfor = orderDao.getOrderById(orderId);
+            ArrayList<OrderDetail> listOrderDetail;
 
+            listOrderDetail = orderDao.getOrderDetailByOrderId(orderId);
+            listNewOrder = orderDao.getAllOrders();
             request.setAttribute("orderInfor", orderInfor);
+            request.setAttribute("listOrderDetail", listOrderDetail);
+            request.setAttribute("listNewOrder", listNewOrder);
             request.getRequestDispatcher("view/business_information_order.jsp").forward(request, response);
         }
     }
@@ -107,7 +115,29 @@ public class ManageOrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+
+            int orderID = Integer.parseInt(request.getParameter("orderId"));
+
+            String note2 = request.getParameter("order-note2");
+            int orderStatus = Integer.parseInt(request.getParameter("order-status"));
+
+            Orders order = new Orders();
+            order.setOrderID(orderID);
+
+            order.setOrderNote2(note2);
+            order.setOrderStatus(orderStatus);
+
+            int result = orderDao.updateOrderStatus(order);
+            if (result != 0) {
+                response.sendRedirect(request.getContextPath() + "/ViewDetailOrder?id="+orderID);
+            } else {
+                response.sendRedirect("123123");
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(ManageOrderController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

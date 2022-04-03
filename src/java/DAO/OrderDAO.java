@@ -147,6 +147,7 @@ public class OrderDAO {
 
                 orderDetail.setOrderDetailID(rs.getInt("order_detail_id"));
                 orderDetail.setProductID(rs.getInt("product_id"));
+                orderDetail.setProductName(rs.getString("product_name"));
                 orderDetail.setProductQuantity(rs.getInt("product_quantity"));
 
                 orderDetail.setPrice(rs.getDouble("price"));
@@ -220,17 +221,20 @@ public class OrderDAO {
         ResultSet rs = null;
         int result = 0;
         String sql = "UPDATE orders  \n"
-                + "SET  orders.order_status = ? \n"
+                + "SET  orders.order_status = ?,  orders.order_note_2=? \n"
                 + " WHERE orders.order_id = ?\n";
 
         try {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);
-            ;
+            
             ps.setInt(1, order.getOrderStatus());
+           
+            ps.setString(2, order.getOrderNote2());
+            
 
-            ps.setInt(2, order.getOrderID());
+            ps.setInt(3, order.getOrderID());
             result = ps.executeUpdate();
         } catch (Exception e) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, e);

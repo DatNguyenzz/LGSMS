@@ -7,3 +7,27 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.form-group {
+  margin-bottom: 0px !important;
+}
+.form-group.fail {
+  margin-bottom: 0px !important;
+}
+.form-group.success {
+  margin-bottom: 0px !important;
+}
+
+.form-group.success input {
+  border-color: #09c372;
+}
+
+.form-group.failed input {
+  border-color: #ff3860;
+}
+
+.form-group .fail {
+  color: #ff3860;
+  font-size: 16px;
+  height: 26px;
+  margin-bottom: 0px;
+}

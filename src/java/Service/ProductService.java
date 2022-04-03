@@ -21,6 +21,17 @@ public class ProductService {
     public ArrayList<Product> getAllProduct(){
         return productDAO.getAllProduct();
     }
+     public ArrayList<Product> getAllProductIsActive(){
+        return productDAO.getProductIactive();
+    }
+     
+     public ArrayList<Product> getAllProductFilter(int filter){
+        return productDAO.getProductIactiveWithFilter(filter);
+    }
+     
+     public ArrayList<Product> getSearchProduct(String seach){
+        return productDAO.searchProduct(seach);
+    }
     
     //add new product to database
     public boolean addNewProductToDB(String productName, int productImage, int productQuantity, double productPrice, String productDescription) {
@@ -28,7 +39,7 @@ public class ProductService {
         product.setProductName(productName);
         product.setImageID(productImage);
         product.setProductInstock(productQuantity);
-        product.setProductInuse(0);
+        product.setProductEmpty(0);
         product.setProductPrice(productPrice);
         product.setProductDescription(productDescription);
         product.setIsActive(true);

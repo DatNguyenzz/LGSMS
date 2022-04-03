@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
+import Model.Account;
 import Model.Importation;
+import Model.Product;
+import Model.Provider;
 import Service.ImportationService;
+import Service.ProductService;
+import Service.ProviderService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Dat Nguyen
  */
 public class ManageImportController extends HttpServlet {
+
     ImportationService importationService = new ImportationService();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,7 +33,7 @@ public class ManageImportController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -47,9 +48,14 @@ public class ManageImportController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+
         ArrayList<Importation> listImport = importationService.getAllImportation();
+        ArrayList<Product> listProduct = new ProductService().getAllProduct();
+        ArrayList<Provider> listProvider = new ProviderService().getAllProvider();
+
         request.setAttribute("listImportation", listImport);
+        request.setAttribute("listProduct", listProduct);
+        request.setAttribute("listProvider", listProvider);
         request.getRequestDispatcher("view/business_manage_import.jsp").forward(request, response);
     }
 
@@ -64,7 +70,30 @@ public class ManageImportController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        int productID = Integer.parseInt(request.getParameter("product-id"));
+        int providerID = Integer.parseInt(request.getParameter("provider-id"));
+        int productImportQuantity = Integer.parseInt(request.getParameter("product-quantity"));
+        double importAmount = Double.parseDouble(request.getParameter("import-amount"));
+        String importNote = request.getParameter("import-note");
+        Account account = (Account) request.getSession().getAttribute("account");
+        if (request.getParameter("import-from-customer") != null) {
+            //Import from customer
+            if(importationService.importFromCustomer(productID, providerID, 
+                    productImportQuantity, importAmount, importNote, account.getAccountID())){
+                response.sendRedirect(request.getContextPath() + "/ManageImport");
+            }else{
+                
+            }
+        } else {
+            //Import from provider
+            if(importationService.importFromProvider(productID, providerID, 
+                    productImportQuantity, importAmount, importNote, account.getAccountID())){
+                response.sendRedirect(request.getContextPath() + "/ManageImport");
+            }else{
+                
+            }
+        }
     }
 
     /**

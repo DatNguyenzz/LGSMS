@@ -20,6 +20,7 @@ public class ProviderService {
         return providerDao.getAllProvider();
     }
     
+    
      public int getPoviderUpdate(Provider provider){
        
             return providerDao.updateProvider(provider);

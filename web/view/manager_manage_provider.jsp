@@ -200,7 +200,6 @@
                         <div class="form-group">
                             <label>Điện thoại</label>
                             <input name="providerPhone" id="providerPhone" type="text" class="form-control"  oninvalid="InvalidPhone1(this);" oninput="InvalidPhone1(this);" required="required" />
-
                         </div>
                         <div class="form-group">
                             <label>Trạng thái: </label>
