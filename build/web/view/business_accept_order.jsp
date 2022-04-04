@@ -86,7 +86,7 @@
 
                                            <td><%=order.getOrderCode()%></td>
 
-                                            <td><%=order.getOrderDate()%></td>
+                                            <td><%=order.getCreatedAt()%></td>
                                             <td>13/03/2022</td>
                                             <td>
                                                 <p id="status_pending">Đơn được duyệt</p>

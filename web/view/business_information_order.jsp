@@ -98,7 +98,7 @@
                                                         Quang Phuoc</label>
                                                     <label for="order-date" class="col-form-label">Ngày nhận
                                                         đơn:</label>
-                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-date"><%=order.getOrderDate()%></label>
+                                                    <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-date"><%=order.getCreatedAt()%></label>
                                                     <label for="cus-note" class="col-form-label">Ghi chú:</label>
                                                     <textarea class="border border-secondary w-100 p-2 rounded" readonly class="form-control-plaintext" id="order-note" name="order-note1" style="resize: none; overflow: auto;"><%=order.getOrderNote1()%></textarea>
                                                     

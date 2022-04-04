@@ -85,7 +85,7 @@
                                         <%for(Orders order: listOrder ){%>
                                         <tr>
                                             <td><%=order.getOrderID()%></td>
-                                            <td><%=order.getOrderDate()%></td>
+                                            <td><%=order.getCreatedAt()%></td>
                                             <td><%=order.getCustomerName()%></td>
                                             <td>
                                                 <p id="status_pending">Đang xử lý</p>

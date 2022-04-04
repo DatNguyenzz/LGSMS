@@ -84,7 +84,7 @@
                                          <%for(Orders order: listOrder ){%>
                                         <tr>
                                             <td><%=order.getOrderCode()%></td>
-                                            <td><%=order.getOrderDate()%></td>
+                                            <td><%=order.getCreatedAt()%></td>
                                             <td>13/03/2022</td>
                                             <td>
                                                 <p id="status_reject">Hủy đơn hàng</p>

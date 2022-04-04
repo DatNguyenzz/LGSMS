@@ -86,10 +86,9 @@ public class ManageAccountController extends HttpServlet {
                 String address = request.getParameter("address");
                 String dob = request.getParameter("dob");
                 Boolean gender = (request.getParameter("gender").equals("true"));
-                String username = request.getParameter("username");
                 String email = request.getParameter("email");
                 int roleId = Integer.parseInt(request.getParameter("role"));
-                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, username, email, roleId)) {
+                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId)) {
                     //Update success 
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
@@ -103,10 +102,9 @@ public class ManageAccountController extends HttpServlet {
                 String address = request.getParameter("address");
                 String dob = request.getParameter("dob");
                 Boolean gender = (request.getParameter("gender").equals("true"));
-                String username = request.getParameter("username");
                 String email = request.getParameter("email");
                 int roleId = Integer.parseInt(request.getParameter("role"));
-                if (accountService.addAccount(fullname, phone, address, dob, gender, username, email, roleId)) {
+                if (accountService.addAccount(fullname, phone, address, dob, gender, email, roleId)) {
                     //Add success
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {

@@ -22,34 +22,29 @@ import java.util.logging.Logger;
  */
 public class OrderDAO {
 
-
-    private static final String BASE_SQL = "select o.order_id, o.order_code, o.customer_id, o.order_status, \n"
-            + "            o.order_date, o.customer_name, o.order_note_1, o.order_note_2, o.business_staff_id,\n"
-            + "             od.order_detail_id, od.product_id, od.product_quantity, od.price, p.product_id, p.product_name,p.product_price,\n"
-            + "             (SELECT SUM(Price) FROM Order_Detail od\n"
-            + "             WHERE od.order_id = o.order_id) as total_money\n"
-            + "             From Orders o\n"
-            + "             INNER JOIN Order_Detail od on o.order_id = od.order_id\n"
-            + "		    inner join Product p on od.product_id = p.product_id ";
-
+    private static final String BASE_SQL = "SELECT o.order_id, o.order_code, o.customer_id, \n"
+            + "o.order_status, o.created_at, o.customer_name, \n"
+            + "o.order_note_1, o.order_note_2, o.business_staff_id,\n"
+            + "o.updated_at,\n"
+            + "od.order_detail_id, od.product_id, od.product_quantity, od.price, p.product_id, p.product_name,p.product_price,\n"
+            + "(SELECT SUM(Price) FROM Order_Detail od\n"
+            + "WHERE od.order_id = o.order_id) AS total_money\n"
+            + "FROM Orders o\n"
+            + "INNER JOIN Order_Detail od ON o.order_id = od.order_id\n"
+            + "INNER JOIN Product p ON od.product_id = p.product_id \n";
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();
         return new java.sql.Date(utilDate.getTime());
     }
 
-     public ArrayList<Orders> getAllOrders() {
+    public ArrayList<Orders> getAllOrders() {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT o.order_id, o.order_code, o.customer_id, \n"
-                + "o.order_status, o.order_date, o.customer_name, \n"
-                + "o.order_note_1, o.order_note_2, o.business_staff_id,\n"
-                + "(SELECT SUM(Price) FROM Order_Detail od\n"
-                + "WHERE od.order_id = o.order_id) as total_money\n"
-                + "FROM Orders o\n";
-              
+        String sql = BASE_SQL;
+
         ArrayList<Orders> listOrder = new ArrayList<>();
         try {
             db = new DBContext();
@@ -60,7 +55,8 @@ public class OrderDAO {
                 Orders order = new Orders();
                 order.setOrderID(rs.getInt("order_id"));
                 order.setOrderCode(rs.getString("order_code"));
-                order.setOrderDate(rs.getDate("order_date"));
+                order.setCreatedAt(rs.getDate("created_at"));
+                order.setUpdatedAt(rs.getDate("updated_at"));
                 order.setCustomerName(rs.getString("customer_name"));
                 order.setCustomerID(rs.getInt("customer_id"));
                 order.setOrderStatus(rs.getInt("order_status"));
@@ -81,14 +77,15 @@ public class OrderDAO {
         }
         return listOrder;
     }
-    
+
     public ArrayList<Orders> getOrderByOrderStatus(int id) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT o.order_id, o.order_code, o.customer_id, \n"
-                + "o.order_status, o.order_date, o.customer_name, \n"
+        String sql
+                = "SELECT o.order_id, o.order_code, o.customer_id, \n"
+                + "o.order_status, o.created_at, o.updated_at, o.customer_name, \n"
                 + "o.order_note_1, o.order_note_2, o.business_staff_id,\n"
                 + "(SELECT SUM(Price) FROM Order_Detail od\n"
                 + "WHERE od.order_id = o.order_id) as total_money\n"
@@ -104,7 +101,7 @@ public class OrderDAO {
                 Orders order = new Orders();
                 order.setOrderID(rs.getInt("order_id"));
                 order.setOrderCode(rs.getString("order_code"));
-                order.setOrderDate(rs.getDate("order_date"));
+                order.setCreatedAt(rs.getDate("created_at"));
                 order.setCustomerName(rs.getString("customer_name"));
                 order.setCustomerID(rs.getInt("customer_id"));
                 order.setOrderStatus(rs.getInt("order_status"));
@@ -126,8 +123,7 @@ public class OrderDAO {
         return listOrder;
     }
 
-
- public ArrayList<OrderDetail> getOrderDetailByOrderId(int id) {
+    public ArrayList<OrderDetail> getOrderDetailByOrderId(int id) {
 
         DBContext db = null;
         Connection con = null;
@@ -172,8 +168,7 @@ public class OrderDAO {
         ResultSet rs = null;
 
         String sql = BASE_SQL
-                + "Where o.order_id= " + id;
-
+                + "WHERE o.order_id= " + id;
 
         try {
             db = new DBContext();
@@ -181,12 +176,12 @@ public class OrderDAO {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
-
             while (rs.next()) {
                 Orders order = new Orders();
                 order.setOrderID(rs.getInt("order_id"));
                 order.setOrderCode(rs.getString("order_code"));
-                order.setOrderDate(rs.getDate("order_date"));
+                order.setCreatedAt(rs.getDate("created_at"));
+                order.setUpdatedAt(rs.getDate("updated_at"));
                 order.setCustomerName(rs.getString("customer_name"));
                 order.setCustomerID(rs.getInt("customer_id"));
                 order.setOrderStatus(rs.getInt("order_status"));
@@ -198,7 +193,6 @@ public class OrderDAO {
 
 //                order.setOrderDetail(getOrderDetailByOrderId(rs.getInt("order_id")));
                 return order;
-
 
             }
         } catch (SQLException ex) {
@@ -213,7 +207,6 @@ public class OrderDAO {
         return null;
     }
 
-
     public int updateOrderStatus(Orders order) {
         DBContext db = null;
         Connection con = null;
@@ -221,20 +214,19 @@ public class OrderDAO {
         ResultSet rs = null;
         int result = 0;
         String sql = "UPDATE orders  \n"
-                + "SET  orders.order_status = ?,  orders.order_note_2=? \n"
-                + " WHERE orders.order_id = ?\n";
+                + "SET  orders.order_status = ? ,"
+                + "orders.order_note_2= ? ,"
+                + "orders.updated_at = ? \n"
+                + "WHERE orders.order_id = ? \n";
 
         try {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);
-            
             ps.setInt(1, order.getOrderStatus());
-           
             ps.setString(2, order.getOrderNote2());
-            
-
-            ps.setInt(3, order.getOrderID());
+            ps.setDate(3, getCurrentSQLDate());
+            ps.setInt(4, order.getOrderID());
             result = ps.executeUpdate();
         } catch (Exception e) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -243,11 +235,10 @@ public class OrderDAO {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
                 Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
-}
+            }
         }
         return result;
 
     }
-
 
 }

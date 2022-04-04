@@ -53,12 +53,9 @@ public class CustomerProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         String url = request.getServletPath();
         switch (url) {
-            case "/CustomerProduct":
+            case "/Product":
                 ArrayList<Product> listProduct = new ArrayList<>();
                 String filter = request.getParameter("filter");
 
@@ -72,7 +69,6 @@ public class CustomerProductController extends HttpServlet {
                     request.setAttribute("listProduct", listProduct);
                     request.getRequestDispatcher("view/customer_list_product.jsp").forward(request, response);
                 }
-
                 break;
 
             case "/CustomerProductInformation":
@@ -98,12 +94,11 @@ public class CustomerProductController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
 
         String url = request.getServletPath();
 
         switch (url) {
-            case "/CustomerProduct":
+            case "/Product":
 
                 String search = request.getParameter("searchName");
                 ArrayList<Product> listProduct = productService.getSearchProduct(search);

@@ -114,7 +114,7 @@
                                                                 <div class="form-group">
                                                                     <label for="product-price" class="col-form-label">Giá
                                                                         nhập:</label>
-                                                                    <input type="number" class="form-control" min="100" name="import-amount"
+                                                                    <input type="number" class="form-control" min="100" name="product-import-price"
                                                                            id="product-price" required oninvalid="this.setCustomValidity('Xin hãy nhập tiền sản phẩm.')" oninput="this.setCustomValidity('')" />
                                                                 </div>
                                                                 <div class="form-group">

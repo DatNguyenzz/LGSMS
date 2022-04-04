@@ -36,7 +36,6 @@
                             <!-- Nhập mật khẩu -->
                             <div class="input-control">
                                 <input id="password" name="password" type="password" class="form-control" placeholder="Mật khẩu" required oninvalid="this.setCustomValidity('Xin hãy nhập mật khẩu của bạn.')" oninput="this.setCustomValidity('')" />
-                                <i class="fa fa-eye field-icon" id="togglePassword" style="margin-top: auto;"></i>
                                 <div class="error"></div>
                             </div>
                             <!-- Đăng nhập btn -->

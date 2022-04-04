@@ -6,7 +6,9 @@
 package Controller;
 
 import Model.Product;
+import Model.Provider;
 import Service.ProductService;
+import Service.ProviderService;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -52,7 +54,8 @@ public class ManageProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        ArrayList<Provider> listProvider = new ProviderService().getAllProvider();
+        request.setAttribute("listProvider", listProvider);
         String url = request.getServletPath();
         switch (url) {
             case "/ManageProduct":
@@ -93,8 +96,9 @@ public class ManageProductController extends HttpServlet {
                 int productQuantity = Integer.parseInt(request.getParameter("product-quantity"));
                 double productPrice = Double.parseDouble(request.getParameter("product-price"));
                 String productDescription = request.getParameter("product-des");
+                int providerID = Integer.parseInt(request.getParameter("provider-id"));
                 if (productService.addNewProductToDB(productName, productImage,
-                        productQuantity, productPrice, productDescription)) {
+                        productQuantity, productPrice, productDescription, providerID)) {
                     response.sendRedirect(request.getContextPath() + "/ManageProduct");
                 } else {
                     //Add failed

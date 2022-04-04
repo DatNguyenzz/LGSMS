@@ -129,7 +129,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-8 col-sm-6">
-                                                                <div class="form-group">
+<!--                                                                <div class="form-group">
                                                                     <label for="username" class="col-form-label">Tên đăng
                                                                         nhập:</label>
                                                                     <input type="text" class="form-control" id="username"
@@ -143,7 +143,7 @@
                                                                            readonly
                                                                            oninvalid="this.setCustomValidity('Xin hãy nhập mật khẩu cho nhân viên.')"
                                                                            oninput="this.setCustomValidity('')" />
-                                                                </div>
+                                                                </div>-->
                                                                 <div class="form-group">
                                                                     <label for="staff-email"
                                                                            class="col-form-label">Email:</label>
@@ -319,7 +319,7 @@
                                                 <label for="username" class="col-form-label">Tên đăng
                                                     nhập:</label>
                                                 <input type="text" class="form-control" id="usernameEditInput"
-                                                       required name="username"
+                                                       required name="username" readonly
                                                        oninvalid="this.setCustomValidity('Xin hãy nhập tên tài khoản của bạn.')"
                                                        oninput="this.setCustomValidity('')" />
                                             </div>

@@ -32,7 +32,7 @@
                         <ul class="list-info">
                             <li>Giá bán: <%=product.getProductPrice()%></li>
                             <li style="color: #ff1313;">Giá khuyến mại: </li>
-                            <li>Thương hiệu: Gas Petrolimex</li>
+                            <li>Thương hiệu: <%=product.getProviderName()%></li>
                             <li>Tình trạng: <% if(product.getProductInstock()>0){ %> Còn hàng<%} else{%>Hết hàng <%}%></li>
                             <li>Bảo hành: Có sổ bảo hiểm bình gas</li>
                         </ul>

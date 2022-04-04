@@ -22,7 +22,7 @@ public class ProductService {
         return productDAO.getAllProduct();
     }
      public ArrayList<Product> getAllProductIsActive(){
-        return productDAO.getProductIactive();
+        return productDAO.getProductIsActive();
     }
      
      public ArrayList<Product> getAllProductFilter(int filter){
@@ -34,7 +34,9 @@ public class ProductService {
     }
     
     //add new product to database
-    public boolean addNewProductToDB(String productName, int productImage, int productQuantity, double productPrice, String productDescription) {
+    public boolean addNewProductToDB(String productName, int productImage, 
+            int productQuantity, double productPrice, String productDescription,
+            int providerID) {
         Product product = new Product();
         product.setProductName(productName);
         product.setImageID(productImage);
@@ -43,6 +45,7 @@ public class ProductService {
         product.setProductPrice(productPrice);
         product.setProductDescription(productDescription);
         product.setIsActive(true);
+        product.setProviderID(providerID);
         int result = productDAO.addNewProductToDB(product);
         return (result!=0);
     }

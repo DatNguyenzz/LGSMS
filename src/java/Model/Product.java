@@ -19,6 +19,7 @@ public class Product {
     private Date productUpdatedAt;
     private boolean isActive;
     private int providerID;
+    private String providerName;
 
     public Product() {
     }
@@ -26,7 +27,8 @@ public class Product {
     public Product(int productID, int productImage, String productName, 
             double productPrice, double productImportPrice, int productInstock, 
             int productInuse, String productDescription, Date productCreatedAt, 
-            Date productUpdatedAt, boolean isActive, int providerID) {
+            Date productUpdatedAt, boolean isActive, int providerID,
+            String providerName) {
         this.productID = productID;
         this.imageID = productImage;
         this.productName = productName;
@@ -39,6 +41,7 @@ public class Product {
         this.productUpdatedAt = productUpdatedAt;
         this.isActive = isActive;
         this.providerID = providerID;
+        this.providerName = providerName;
     }
 
     public int getProductID() {
@@ -136,6 +139,12 @@ public class Product {
     public void setProviderID(int providerID) {
         this.providerID = providerID;
     }
-    
-    
+
+    public String getProviderName() {
+        return providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
+    }
 }

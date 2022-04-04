@@ -25,15 +25,15 @@ public class ProductDAO {
             = "SELECT p.product_id, p.image_id, p.product_name, \n"
             + "p.product_price, p.product_import_price, p.product_instock, \n"
             + "p.product_empty, p.product_description, p.product_created_at, \n"
-            + "p.product_updated_at, p.is_active, p.provider_id\n"
-            + "FROM Product p\n";
-
+            + "p.product_updated_at, p.is_active, p.provider_id, pv.provider_name\n"
+            + "FROM Product p\n"
+            + "INNER JOIN Provider pv ON p.provider_id = pv.provider_id \n";
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();
         return new java.sql.Date(utilDate.getTime());
     }
-    
+
     //Get list all product from database
     public ArrayList<Product> getAllProduct() {
         DBContext db = null;
@@ -60,6 +60,8 @@ public class ProductDAO {
                 p.setProductCreatedAt(rs.getDate("product_created_at"));
                 p.setProductUpdatedAt(rs.getDate("product_updated_at"));
                 p.setIsActive(rs.getBoolean("is_active"));
+                p.setProviderID(rs.getInt("provider_id"));
+                p.setProviderName(rs.getString("provider_name"));
                 listProduct.add(p);
             }
         } catch (SQLException ex) {
@@ -73,14 +75,14 @@ public class ProductDAO {
         }
         return listProduct;
     }
-    
-     //Get list all product from database í active
-    public ArrayList<Product> getProductIactive() {
+
+    //Get list all product from database í active
+    public ArrayList<Product> getProductIsActive() {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = BASE_SQL+"where p.is_active =1";
+        String sql = BASE_SQL + "where p.is_active =1";
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
             db = new DBContext();
@@ -100,6 +102,8 @@ public class ProductDAO {
                 p.setProductCreatedAt(rs.getDate("product_created_at"));
                 p.setProductUpdatedAt(rs.getDate("product_updated_at"));
                 p.setIsActive(rs.getBoolean("is_active"));
+                p.setProviderID(rs.getInt("provider_id"));
+                p.setProviderName(rs.getString("provider_name"));
                 listProduct.add(p);
             }
         } catch (SQLException ex) {
@@ -113,13 +117,15 @@ public class ProductDAO {
         }
         return listProduct;
     }
-     //search product by name
-     public ArrayList<Product> searchProduct(String search) {
+    //search product by name
+    public ArrayList<Product> searchProduct(String search) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = BASE_SQL+"where p.is_active =1 and p.product_name LIKE '%"+search+"%'";
+        String sql = BASE_SQL
+                + "WHERE p.is_active = 1 \n"
+                + "AND p.product_name LIKE '%" + search + "%'";
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
             db = new DBContext();
@@ -134,11 +140,13 @@ public class ProductDAO {
                 p.setProductPrice(rs.getDouble("product_price"));
                 p.setProductImportPrice(rs.getDouble("product_import_price"));
                 p.setProductInstock(rs.getInt("product_instock"));
-               p.setProductEmpty(rs.getInt("product_empty"));
+                p.setProductEmpty(rs.getInt("product_empty"));
                 p.setProductDescription(rs.getString("product_description"));
                 p.setProductCreatedAt(rs.getDate("product_created_at"));
                 p.setProductUpdatedAt(rs.getDate("product_updated_at"));
                 p.setIsActive(rs.getBoolean("is_active"));
+                p.setProviderID(rs.getInt("provider_id"));
+                p.setProviderName(rs.getString("provider_name"));
                 listProduct.add(p);
             }
         } catch (SQLException ex) {
@@ -152,32 +160,40 @@ public class ProductDAO {
         }
         return listProduct;
     }
-    
+
     //filter product
-     public ArrayList<Product> getProductIactiveWithFilter(int filter) {
+    public ArrayList<Product> getProductIactiveWithFilter(int filter) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = BASE_SQL+"where p.is_active =1";
-        
-        if(filter==0){
-            sql+="";
-            //lấy tất cả sản phẩm
-        }else if(filter==1){
-            sql+="ORDER BY p.product_price ASC";
-            // lấy sản phẩm theo giá tăng
-        }else if(filter==2){
-            sql+="ORDER BY p.product_price DESC";
-            //lấy sản phẩm theo giá giảm
-        }else if(filter==3){
-            sql+="ORDER BY p.product_name ASC";
-            //lấy sản phẩm tuwf A-Z
-        }else if(filter==4){
-           sql+="ORDER BY p.product_name DESC";
-            //lấy sản phẩm từ Z-A
+        String sql = BASE_SQL + "where p.is_active =1";
+
+        switch (filter) {
+            case 0:
+                sql += "";
+                //lấy tất cả sản phẩm
+                break;
+            case 1:
+                sql += "ORDER BY p.product_price ASC";
+                // lấy sản phẩm theo giá tăng
+                break;
+            case 2:
+                sql += "ORDER BY p.product_price DESC";
+                //lấy sản phẩm theo giá giảm
+                break;
+            case 3:
+                sql += "ORDER BY p.product_name ASC";
+                //lấy sản phẩm tuwf A-Z
+                break;
+            case 4:
+                sql += "ORDER BY p.product_name DESC";
+                //lấy sản phẩm từ Z-A
+                break;
+            default:
+                break;
         }
-        
+
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
             db = new DBContext();
@@ -197,6 +213,8 @@ public class ProductDAO {
                 p.setProductCreatedAt(rs.getDate("product_created_at"));
                 p.setProductUpdatedAt(rs.getDate("product_updated_at"));
                 p.setIsActive(rs.getBoolean("is_active"));
+                p.setProviderID(rs.getInt("provider_id"));
+                p.setProviderName(rs.getString("provider_name"));
                 listProduct.add(p);
             }
         } catch (SQLException ex) {
@@ -219,8 +237,9 @@ public class ProductDAO {
         int result = 0;
         String sql
                 = "INSERT INTO product (image_id, product_name, \n"
-                + "product_price, product_instock, product_inuse, \n"
-                + "product_description, product_created_at, is_active)\n"
+                + "product_price, product_instock, product_empty, \n"
+                + "product_description, product_created_at, is_active, \n"
+                + "provider_id)\n"
                 + "VALUES('" + product.getImageID() + "', "
                 + "N'" + product.getProductName() + "', "
                 + product.getProductPrice() + ", "
@@ -228,7 +247,8 @@ public class ProductDAO {
                 + product.getProductEmpty() + ", "
                 + "N'" + product.getProductDescription() + "', "
                 + "'" + getCurrentSQLDate() + "', "
-                + (product.isIsActive() ? 1 : 0)
+                + (product.isIsActive() ? 1 : 0) + ", "
+                + product.getProviderID()
                 + ")";
         try {
             db = new DBContext();
@@ -282,7 +302,7 @@ public class ProductDAO {
         return null;
     }
 
-   public int updateProduct(Product product) {
+    public int updateProduct(Product product) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
@@ -296,11 +316,11 @@ public class ProductDAO {
                 + "product_import_price = " + product.getProductImportPrice() + ",\n"
                 + "product_instock = " + product.getProductInstock() + ",\n"
                 + "product_empty = " + product.getProductEmpty() + ",\n"
-                + "is_active = " + (product.isIsActive()?1:0) + ",\n"
-                + "product_description = N'"+ product.getProductDescription() + "',\n"
-                + "product_updated_at = '"+ getCurrentSQLDate() + "'\n"
+                + "is_active = " + (product.isIsActive() ? 1 : 0) + ",\n"
+                + "product_description = N'" + product.getProductDescription() + "',\n"
+                + "product_updated_at = '" + getCurrentSQLDate() + "'\n"
                 + "WHERE product_id = " + product.getProductID();
-        try{
+        try {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);

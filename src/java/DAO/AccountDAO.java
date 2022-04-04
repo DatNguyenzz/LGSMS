@@ -334,4 +334,83 @@ public class AccountDAO {
         }
         return listRole;
     }
+    
+    //Get account by username
+    public Account getAccountByUsername(String username){
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = BASE_SQL
+                + "WHERE a.username = '" + username + "'";
+        try{
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                Account acc = new Account();
+                acc.setAccountID(rs.getInt("account_id"));
+                acc.setUsername(rs.getString("username"));
+                Role role = new Role();
+                role.setRoleID(rs.getInt("role_id"));
+                role.setRoleName(rs.getString("role_name"));
+                acc.setRole(role);
+                acc.setProfileID(rs.getInt("profile_id"));
+                acc.setImageID(rs.getInt("image_id"));
+                acc.setFullname(rs.getString("full_name"));
+                acc.setPhone(rs.getString("phone"));
+                acc.setDOB(rs.getDate("dob"));
+                acc.setGender(rs.getBoolean("gender"));
+                acc.setAddress(rs.getString("address"));
+                acc.setEmail(rs.getString("email"));
+                acc.setCreatedAt(rs.getDate("created_at"));
+                acc.setUpdatedAt(rs.getDate("updated_at"));
+                acc.setIsActive(rs.getBoolean("is_active"));
+                return acc;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public Account getAccountByEmail(String email){
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = BASE_SQL
+                + "WHERE p.email = '" + email + "'";
+        try{
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                Account acc = new Account();
+                acc.setAccountID(rs.getInt("account_id"));
+                acc.setUsername(rs.getString("username"));
+                Role role = new Role();
+                role.setRoleID(rs.getInt("role_id"));
+                role.setRoleName(rs.getString("role_name"));
+                acc.setRole(role);
+                acc.setProfileID(rs.getInt("profile_id"));
+                acc.setImageID(rs.getInt("image_id"));
+                acc.setFullname(rs.getString("full_name"));
+                acc.setPhone(rs.getString("phone"));
+                acc.setDOB(rs.getDate("dob"));
+                acc.setGender(rs.getBoolean("gender"));
+                acc.setAddress(rs.getString("address"));
+                acc.setEmail(rs.getString("email"));
+                acc.setCreatedAt(rs.getDate("created_at"));
+                acc.setUpdatedAt(rs.getDate("updated_at"));
+                acc.setIsActive(rs.getBoolean("is_active"));
+                return acc;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

@@ -13,7 +13,8 @@ public class Orders {
     private String orderCode;
     private int customerID;
     private int orderStatus;
-    private Date orderDate;
+    private Date createdAt;
+    private Date updatedAt;
     private String customerName;
     private String orderNote1;
     private String orderNote2;
@@ -25,14 +26,15 @@ public class Orders {
     }
 
     public Orders(int orderID, String orderCode, int customerID, 
-            int orderStatus, Date orderDate, String customerName, 
+            int orderStatus, Date createdAt,Date updatedAt, String customerName, 
             String orderNote1, String orderNote2, int bussinessStaffID,
             double totalPrice) {
         this.orderID = orderID;
         this.orderCode = orderCode;
         this.customerID = customerID;
         this.orderStatus = orderStatus;
-        this.orderDate = orderDate;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
         this.customerName = customerName;
         this.orderNote1 = orderNote1;
         this.orderNote2 = orderNote2;
@@ -73,12 +75,12 @@ public class Orders {
         this.orderStatus = orderStatus;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getCustomerName() {
@@ -127,6 +129,14 @@ public class Orders {
 
     public void setOrderDetail(List<OrderDetail> orderDetail) {
         this.orderDetail = orderDetail;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
     
     public String formatMoneyToVND(double in){

@@ -74,13 +74,13 @@ public class ManageImportController extends HttpServlet {
         int productID = Integer.parseInt(request.getParameter("product-id"));
         int providerID = Integer.parseInt(request.getParameter("provider-id"));
         int productImportQuantity = Integer.parseInt(request.getParameter("product-quantity"));
-        double importAmount = Double.parseDouble(request.getParameter("import-amount"));
+        double productImportPrice = Double.parseDouble(request.getParameter("product-import-price"));
         String importNote = request.getParameter("import-note");
         Account account = (Account) request.getSession().getAttribute("account");
         if (request.getParameter("import-from-customer") != null) {
             //Import from customer
             if(importationService.importFromCustomer(productID, providerID, 
-                    productImportQuantity, importAmount, importNote, account.getAccountID())){
+                    productImportQuantity, productImportPrice, importNote, account.getAccountID())){
                 response.sendRedirect(request.getContextPath() + "/ManageImport");
             }else{
                 
@@ -88,7 +88,7 @@ public class ManageImportController extends HttpServlet {
         } else {
             //Import from provider
             if(importationService.importFromProvider(productID, providerID, 
-                    productImportQuantity, importAmount, importNote, account.getAccountID())){
+                    productImportQuantity, productImportPrice, importNote, account.getAccountID())){
                 response.sendRedirect(request.getContextPath() + "/ManageImport");
             }else{
                 

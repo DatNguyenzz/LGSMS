@@ -1,3 +1,4 @@
+<%@page import="Model.Provider"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,6 +31,7 @@
     <body id="page-top">
         <%
             ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
+            ArrayList<Provider> listProvider = (ArrayList<Provider>) request.getAttribute("listProvider");
         %>
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -87,6 +89,16 @@
                                                                     <input type="text" class="form-control" id="product-name" name="product-name">
                                                                 </div>
                                                                 <div class="form-group">
+                                                                    <label for="product-provider">Tên thương hiệu:</label>
+                                                                    <select name="provider-id" id="product-provider"
+                                                                            class="border border-secondary w-100 label_box rounded">
+                                                                        <%for(Provider pv : listProvider){%>
+                                                                        <option value="<%=pv.getProviderID()%>"><%=pv.getProviderName()%> </option>
+                                                                        <%}%>
+                                                                    </select>
+                                                                </div>
+                                                                <br>
+                                                                <div class="form-group">
                                                                     <label for="product-quantity" class="col-form-label">Số lượng:</label>
                                                                     <input type="text" class="form-control" id="product-quantity" name="product-quantity">
                                                                 </div>
@@ -142,7 +154,7 @@
                                                         <%=product.getProductName()%>
                                                     </a>
                                                 </td>
-                                                <td>!?</td>
+                                                <td><%=product.getProviderName()%></td>
                                                 <td><%=product.getProductInstock()%></td>
                                                 <td><%=product.getProductPrice()%></td>
                                                 <td><%=product.getProductImportPrice()%></td>
