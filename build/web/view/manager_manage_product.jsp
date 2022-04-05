@@ -25,6 +25,8 @@
 
         <!-- Custom styles for this page -->
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <link href="assets/styles/custom_box.css" rel="stylesheet">
+        <link href="css/fnon.min.css" rel="stylesheet">
 
     </head>
 
@@ -45,7 +47,7 @@
             </ul>
             <!-- End of Sidebar -->
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
                 <!-- Main Content -->
                 <div id="content">
                     <!-- Topbar -->
@@ -62,7 +64,7 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Quản lý sản phẩm</h1>
+                            <h1 class="h3 mb-0 text-white">Quản lý sản phẩm</h1>
                             <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fas fa-plus fa-sm text-white-50"></i> Thêm sản phẩm</button>
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -75,7 +77,7 @@
                                         </div>
                                         <!-- Add new product -->
                                         <div class="modal-body">
-                                            <form action="<%=request.getContextPath()%>/AddProduct" method="POST">
+                                            <form action="<%=request.getContextPath()%>/AddProduct" method="POST" id="form">
                                                 <div class="row" style="width: 100%;">
                                                     <div class="col-sm-12">
                                                         <div class="row">
@@ -87,6 +89,7 @@
                                                                 <div class="form-group">
                                                                     <label for="product-name" class="col-form-label">Tên sản phẩm:</label>
                                                                     <input type="text" class="form-control" id="product-name" name="product-name">
+                                                                    <p class="fail"></p>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="product-provider">Tên thương hiệu:</label>
@@ -100,11 +103,13 @@
                                                                 <br>
                                                                 <div class="form-group">
                                                                     <label for="product-quantity" class="col-form-label">Số lượng:</label>
-                                                                    <input type="text" class="form-control" id="product-quantity" name="product-quantity">
+                                                                    <input type="number" class="form-control" id="product-quantity" name="product-quantity">
+                                                                    <p class="fail"></p>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="product-price" class="col-form-label">Giá bán:</label>
-                                                                    <input type="text" class="form-control" id="product-price" name="product-price">
+                                                                    <input type="number" class="form-control" id="product-price" name="product-price">
+                                                                    <p class="fail"></p>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="product-des" class="col-form-label">Mô tả:</label>
@@ -206,6 +211,9 @@
         <!-- Page level custom scripts -->
         <script src="js/demo/datatables-demo.js"></script>
         <script src="js/include-html.min.js"></script>
+        <script src="js/valdation/product_validate.js"></script>
+        <script src="js/valdation/alert.js"></script>
+        <script src="js/fnon.min.js"></script>
     </body>
 
 </html>

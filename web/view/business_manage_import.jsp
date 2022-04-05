@@ -27,8 +27,8 @@
 
         <!-- Custom styles for this page -->
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <link href="assets/styles/table_header.css" rel="stylesheet">
         <link href="assets/styles/custom_box.css" rel="stylesheet">
+        <link href="css/fnon.min.css" rel="stylesheet">
     </head>
     <%
         ArrayList<Importation> listImport = (ArrayList<Importation>) request.getAttribute("listImportation");
@@ -49,7 +49,7 @@
             </ul>
             <!-- End of Sidebar -->
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
                 <!-- Main Content -->
                 <div id="content">
                     <!-- Topbar -->
@@ -66,7 +66,7 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Quản lý kho</h1>
+                            <h1 class="h3 mb-0 text-white">Quản lý kho</h1>
                             <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
                                     data-target="#exampleModal" data-whatever="@getbootstrap"><i
                                     class="fas fa-plus fa-sm text-white-50"></i> Nhập hàng</button>
@@ -81,8 +81,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="<%=request.getContextPath()%>/ManageImport" method="POST" id="form" onsubmit="confirmFunction()">
-                                                <div class="row" style="width: 100%;">
+                                            <form action="<%=request.getContextPath()%>/ManageImport" method="POST" id="form" >
+                                                <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-8 col-sm-12 ">
@@ -90,32 +90,36 @@
                                                                     <label for="product-name">Tên sản phẩm:</label>
                                                                     <select name="product-id" id="product-name"
                                                                             class="border border-secondary w-100 label_box rounded">
-                                                                        <%for(Product pro : listProduct){%>
+                                                                        <%for (Product pro : listProduct) {%>
                                                                         <option value="<%=pro.getProductID()%>"><%=pro.getProductName()%></option>
                                                                         <%}%>
                                                                     </select>
                                                                 </div>
+                                                                <br>
                                                                 <div class="form-group">
                                                                     <label for="provider-name" class="col-form-label">Tên
                                                                         nhà cung cấp:</label>
                                                                     <select name="provider-id" id="product-status"
                                                                             class="border border-secondary w-100 label_box rounded">
-                                                                        <%for(Provider provider : listProvider){%>
+                                                                        <%for (Provider provider : listProvider) {%>
                                                                         <option value="<%=provider.getProviderID()%>"><%=provider.getProviderName()%></option>
                                                                         <%}%>
                                                                     </select>
                                                                 </div>
+                                                                <br>
                                                                 <div class="form-group">
                                                                     <label for="product-quantity">Số lượng:</label>
                                                                     <input type="number" id="product-quantity"
-                                                                           name="product-quantity" min="1"
-                                                                           class="form-control" required oninvalid="this.setCustomValidity('Xin hãy số lượng sản phẩm.')" oninput="this.setCustomValidity('')" />
+                                                                           name="product-quantity" 
+                                                                           class="form-control" />
+                                                                    <div class="fail"></div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="product-price" class="col-form-label">Giá
                                                                         nhập:</label>
-                                                                    <input type="number" class="form-control" min="100" name="product-import-price"
-                                                                           id="product-price" required oninvalid="this.setCustomValidity('Xin hãy nhập tiền sản phẩm.')" oninput="this.setCustomValidity('')" />
+                                                                    <input type="number" class="form-control" name="product-import-price"
+                                                                           id="product-price"/>
+                                                                    <div class="fail"></div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="product-note" class="col-form-label">Ghi
@@ -162,6 +166,7 @@
                                                 <th>Giá nhập lẻ</th>
                                                 <th>Tổng tiền</th>
                                                 <th>Người nhập</th>
+                                                <th>Thao tác</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -174,8 +179,12 @@
                                                 <td><%=(importation.getImportAmount() / importation.getProductImportQuantity())%></td>
                                                 <td><%=importation.getImportAmount()%></td>
                                                 <td><%=importation.getStaffName()%></td>
+                                                <td>
+                                        <a href="#viewImportModal" class="view" onclick=""
+                                           data-toggle="modal"><i class="fas fa-eye" data-toggle="tooltip" title="View"></i></a>
+                                                </td>
                                             </tr>
-                                            <%}%>
+                                        <%}%>
                                         </tbody>
                                     </table>
                                 </div>
@@ -184,7 +193,177 @@
 
                     </div>
                     <!-- /.container-fluid -->
+                    <div class="modal fade" id="viewImportModal" role="dialog" aria-labelledby="viewImportModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Thông tin nhập hàng</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" id="formImportInfo">
+                                        <div class="row">
+                                            <div class="col-sm-12" style="margin: auto;">
+                                                <div class="row">
+                                                    <div class="col-8 col-sm-12" style="margin: auto;">
+                                                        <div class="form-group">
+                                                            <label for="product-name">Tên sản phẩm:</label>
+                                                            <input type="text" id="productNameInfo" name="productNameInfo"
+                                                                   readonly class="form-control" value="Bình gas 12kg van chụp"/>
+                                                            <!-- <select name="product-name" id="product-name" aria-readonly="true"
+                                                                class="border border-secondary w-100 label_box rounded">
+                                                                <option value="product-1">Bình gas 12kg van ngang
+                                                                </option>
+                                                                <option value="product-2">Bình gas 12kg van chụp
+                                                                </option>
+                                                                <option value="product-3">Bình gas 45kg công nghiệp
+                                                                </option>
+                                                                <option value="product-4">Bình gas 13kg van ngang
+                                                                </option>
+                                                                <option value="product-5">Bình gas 13 van chụp
+                                                                </option>
+                                                            </select> -->
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label for="provider-name" class="col-form-label">Tên
+                                                                nhà cung cấp:</label>
+                                                            <input type="text" id="providerNameInfo" name="providerNameInfo"
+                                                                   readonly class="form-control" value="Petrolimex Gas"/>
+                                                            <!-- <select name="provider-name" id="provider-status" aria-readonly="true"
+                                                                class="border border-secondary w-100 label_box rounded">
+                                                                <option value="provider-1">Petrolimex Gas</option>
+                                                            </select> -->
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label for="product-quantity">Số lượng:</label>
+                                                            <input type="number" id="productQuantityInfo" name="productQuantityInfo"
+                                                                   readonly class="form-control" value=""/>
+                                                        </div>
 
+                                                        <div class="form-group">
+                                                            <label for="product-price" class="col-form-label">Giá
+                                                                nhập:</label>
+                                                            <input type="number" readonly class="form-control" id="productPriceInfo" name="productPriceInfo" value=""/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="product-note" class="col-form-label">Ghi
+                                                                chú:</label>
+                                                            <textarea class="form-control" readonly id="product-note"></textarea>
+
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <input type="checkbox" onclick="return false;" checked id="importTypeInfo" name="importTypeInfo"
+                                                                   value="customer">
+                                                            <label for="import-type" class="col-form-label">Nhập hàng từ
+                                                                khách</label>
+                                                        </div>
+                                                        <!-- <br> -->
+                                                        <div class="modal-footer">
+                                                            <!-- <input type="submit" class="btn btn-primary" value="Nhập"></input>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Hủy</button>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div><div class="modal fade" id="viewImportModal" role="dialog" aria-labelledby="viewImportModalLabel"
+                               aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Thông tin nhập hàng</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" id="formImportInfo">
+                                        <div class="row">
+                                            <div class="col-sm-12" style="margin: auto;">
+                                                <div class="row">
+                                                    <div class="col-8 col-sm-12" style="margin: auto;">
+                                                        <div class="form-group">
+                                                            <label for="product-name">Tên sản phẩm:</label>
+                                                            <input type="text" id="productNameInfo" name="productNameInfo"
+                                                                   readonly class="form-control" value="Bình gas 12kg van chụp"/>
+                                                            <!-- <select name="product-name" id="product-name" aria-readonly="true"
+                                                                class="border border-secondary w-100 label_box rounded">
+                                                                <option value="product-1">Bình gas 12kg van ngang
+                                                                </option>
+                                                                <option value="product-2">Bình gas 12kg van chụp
+                                                                </option>
+                                                                <option value="product-3">Bình gas 45kg công nghiệp
+                                                                </option>
+                                                                <option value="product-4">Bình gas 13kg van ngang
+                                                                </option>
+                                                                <option value="product-5">Bình gas 13 van chụp
+                                                                </option>
+                                                            </select> -->
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label for="provider-name" class="col-form-label">Tên
+                                                                nhà cung cấp:</label>
+                                                            <input type="text" id="providerNameInfo" name="providerNameInfo"
+                                                                   readonly class="form-control" value="Petrolimex Gas"/>
+                                                            <!-- <select name="provider-name" id="provider-status" aria-readonly="true"
+                                                                class="border border-secondary w-100 label_box rounded">
+                                                                <option value="provider-1">Petrolimex Gas</option>
+                                                            </select> -->
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label for="product-quantity">Số lượng:</label>
+                                                            <input type="number" id="productQuantityInfo" name="productQuantityInfo"
+                                                                   readonly class="form-control" value=""/>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="product-price" class="col-form-label">Giá
+                                                                nhập:</label>
+                                                            <input type="number" readonly class="form-control" id="productPriceInfo" name="productPriceInfo" value=""/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="product-note" class="col-form-label">Ghi
+                                                                chú:</label>
+                                                            <textarea class="form-control" readonly id="product-note"></textarea>
+
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <input type="checkbox" onclick="return false;" checked id="importTypeInfo" name="importTypeInfo"
+                                                                   value="customer">
+                                                            <label for="import-type" class="col-form-label">Nhập hàng từ
+                                                                khách</label>
+                                                        </div>
+                                                        <!-- <br> -->
+                                                        <div class="modal-footer">
+                                                            <!--                                                    <input type="submit" class="btn btn-primary" value="Nhập"></input>
+                                                                                                                <button type="button" class="btn btn-secondary"
+                                                                                                                        data-dismiss="modal">Hủy</button>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- End of Main Content -->
 
@@ -208,7 +387,6 @@
 
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
-        <script src="js/table_header.js"></script>
         <!-- Page level plugins -->
         <script src="vendor/datatables/jquery.dataTables.min.js"></script>
         <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
@@ -216,7 +394,9 @@
         <!-- Page level custom scripts -->
         <script src="js/demo/datatables-demo.js"></script>
         <script src="js/include-html.min.js"></script>
-        <script src="js/confirm.js"></script>
+        <script src="js/valdation/import_validate.js"></script>
+        <script src="js/valdation/alert.js"></script>
+        <script src="js/fnon.min.js"></script>
     </body>
 
 </html>

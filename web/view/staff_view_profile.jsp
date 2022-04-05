@@ -41,7 +41,7 @@
             </ul>
             <!-- End of Sidebar -->
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
                 <!-- Main Content -->
                 <div id="content">
                     <!-- Topbar -->
@@ -57,9 +57,9 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-                        <div class="row">
+                        <div class="row" style="background-color: rgba(28, 100, 168, 0.521); border: 1px solid rgb(117, 105, 105); color: #f2f2f2">
 
-                            <div class="col-md-5">
+                            <div class="col-md-5" >
                                 <div class="d-flex flex-column align-items-center">
                                     <img class="rounded-circle mt-5" src="assets/image/avatar.jpg" style="border: 2px solid lightgray;">
                                     <span class="font-weight-bold" style="color: rgb(0, 0, 0);"><%=account.getUsername()%></span>
@@ -74,14 +74,14 @@
                                     <form id="form" action="<%=request.getContextPath()%>/MyProfile" method="POST">
                                         <div class="row mt-3">
                                             <div class="form-group">
-                                                <label class="col-form-label">Họ và tên:</label>
+                                                <label class="col-form-label">Họ và tên*:</label>
                                                 <input type="text" class="form-control" name="fullname"
                                                        placeholder="<%=account.getFullname()%>" value="<%=account.getFullname()%>" id="user-name" />
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="labels" class="col-form-label">Số điện thoại*</label>
-                                                <input type="text" class="form-control" name="phone"
+                                                <input type="number" class="form-control" name="phone"
                                                        placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>" id="user-phone">
                                                 <div class="fail"></div>
                                             </div>
@@ -92,14 +92,14 @@
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="labels" for="gender">Giới tính*</label>
+                                                <label class="labels" for="gender">Giới tính</label>
                                                 <select name="gender" class="form-control">
                                                     <option value="true">Nam</option>
                                                     <option value="false"<%if (!account.isGender()) {%>selected<%}%>>Nữ</option>
                                                 </select>
                                             </div>
 
-                                            <br>
+                                                <br><br><br><br>
                                             <div class="form-group">
                                                 <label class="labels">Địa chỉ*</label>
                                                 <input type="text" class="form-control" name="address"
@@ -112,7 +112,8 @@
                                                        placeholder="nhập địa chỉ email của bạn" value="<%=account.getEmail()%>" id="user-email">
                                                 <div class="fail"></div>
                                             </div>
-                                            <div class="col-form-label"><button class="btn btn-primary profile-button" type="submit">Lưu thông tin</button>
+                                            <div class="form-group">
+                                                <input class="btn btn-primary profile-button" type="submit" value="Lưu thông tin"></input>
 
                                             </div>
                                         </div>

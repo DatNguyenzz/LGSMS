@@ -139,6 +139,8 @@ const validateInputs = () => {
     //Thông báo tên nhân viên
     if (nameValue === '') {
         setError(aname, 'Yêu cần nhập họ và tên');
+    }else if (!isValidName(nameValue)) {
+        setError(anameS, 'Yêu cầu nhập tên không dấu');
     } else {
         setSuccess(aname);
     }
