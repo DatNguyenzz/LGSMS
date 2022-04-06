@@ -24,6 +24,7 @@
     <link href="css/view_list_account.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="assets/styles/custom_box.css" rel="stylesheet">
 
 </head>
 
@@ -77,7 +78,11 @@
                         <div class="col-8 col-sm-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Đơn hàng</h6>
+                                    
+                                    <!--Tôi chưa có trang voucher information nên chỉ cần thay href giữ nguyên class với
+                                    link đúng id với nhau nhé -->
+                                    <span class="m-0 font-weight-bold text-primary">Đơn hàng</span>
+                                    <a href="business_information_voucher.html" class="order-voucher">Chuyển phiếu thu</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">

@@ -85,7 +85,7 @@ const validateInputs = () => {
     if (nameValue === '') {
         setError(aname1, 'Yêu cầu nhập tên nhân viên');
     }else if (!isValidName(nameValue)) {
-        setError(aname1, 'Yêu cầu nhập tên không dấu');
+        setError(aname1, 'Yêu cầu nhập tên không có ký tự đặc biệt hoặc số');
     }else {
         setSuccess(aname1);
     }
@@ -155,7 +155,7 @@ const validateInputs1 = () => {
     if (nameValue1 === '') {
         setError1(aname2, 'Yêu cầu nhập tên nhân viên');
     }else if (!isValidName(nameValue1)) {
-        setError1(aname2, 'Yêu cầu nhập tên không dấu');
+        setError1(aname2, 'Yêu cầu nhập tên không có ký tự đặc biệt hoặc số');
     } else {
         setSuccess1(aname2);
     }

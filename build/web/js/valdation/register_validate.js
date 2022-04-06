@@ -71,8 +71,8 @@ const validateInputs = () => {
     //Thông báo nhập mật khẩu
     if (passwordValue === '') {
         setError(password, 'Yêu cầu nhập mật khẩu');
-    } else if (passwordValue.length < 8) {
-        setError(password, 'Mật khẩu tối thiểu 8 kí tự.')
+    } else if (!isValidPass(passwordValue)) {
+        setError(password, 'Mật khẩu tối thiểu 8 kí tự có ít nhất 1 số và 1 chữ hoa.')
     } else {
         setSuccess(password);
     }
@@ -88,6 +88,8 @@ const validateInputs = () => {
     //Thông báo tài khoản
     if (accountValue === '') {
         setError(account, 'Yêu cần nhập tên tài khoản');
+    }   else if (isValidUsername(accountValue)) {
+        setError(account, 'Không được có ký tự đặc biệt')
     } else {
         setSuccess(account);
     }

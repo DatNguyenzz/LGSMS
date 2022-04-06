@@ -140,7 +140,7 @@ const validateInputs = () => {
     if (nameValue === '') {
         setError(aname, 'Yêu cần nhập họ và tên');
     }else if (!isValidName(nameValue)) {
-        setError(anameS, 'Yêu cầu nhập tên không dấu');
+        setError(aname, 'Yêu cầu nhập tên không có ký tự đặc biệt hoặc số');
     } else {
         setSuccess(aname);
     }

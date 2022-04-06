@@ -234,7 +234,7 @@ function confirmChangePass() {
 
 ////Điều kiện tên
 const isValidName = name => {
-    const re = /^([ \u00c0-\u01ffa-zA-Z'\-])+$/  ;
+    const re = /^[^\-\!\[\]\{\}\"\'\>\<\%\^\*\?\/\\\|\,\;\:\+\=\(\)\@\$\&\!\.\#\_0-9]*$/g  ;
     return re.test(String(name).toLowerCase());
 };
 
@@ -247,6 +247,16 @@ const isValidEmail = email => {
 const isValidPhone = phone => {
     const re = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
     return re.test(String(phone).toLowerCase());
+};
+//Điều kiện mật khẩu
+const isValidPass = password => {
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
+    return re.test(String(password));
+};
+//Điều kiện tên đăng nhập
+const isValidUsername = username => {
+    const re = /['\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\]/g;
+    return re.test(String(username));
 };
 
 //Điều kiện pick date

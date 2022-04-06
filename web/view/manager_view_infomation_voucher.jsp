@@ -25,11 +25,11 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../assets/styles/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../css/view_list_account.css" rel="stylesheet">
+    <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/view_list_account.css" rel="stylesheet">
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="../assets/styles/custom_box.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="assets/styles/custom_box.css" rel="stylesheet">
 </head>
 
 
@@ -44,7 +44,7 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div include-html="../components/sidebar.html" id="sidebar" style="display: contents;"></div>
+            <div include-html="components/sidebar.html" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -63,7 +63,7 @@
                     </button>
 
                     <!-- Topbar Navbar -->
-                    <div include-html="../components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                    <div include-html="components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
 
@@ -80,7 +80,11 @@
                         <div class="col-8 col-sm-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Phiếu thu</h6>
+                                    
+                                    <!--Tôi giữ nguyên class với
+                                    link đúng id với nhau nhé -->
+                                    <span class="m-0 font-weight-bold text-primary">Phiếu thu</span>
+                                    <a href="manager_view_information_order.html" class="order-voucher">Chuyển đơn hàng</a>
                                 </div>
                                 <form id="form" action="business_new_order.html">
                                     <div class="card-body">
@@ -180,17 +184,17 @@
     </a>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/include-html.min.js"></script>
+    <script src="js/include-html.min.js"></script>
     <script>
         var deposit = document.getElementById('order-deposit'),
             total = document.getElementById('order-price'),
