@@ -85,6 +85,9 @@
     <servlet-mapping>
         <servlet-name>ManageReceiptVoucherController</servlet-name>
         <url-pattern>/ManageReceiptVoucher</url-pattern>
+        <url-pattern>/ReceiptInfo</url-pattern>
+        <url-pattern>/UpdateReceipt</url-pattern>
+        <url-pattern>/ReceiptInfoByOrderID</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>

@@ -6,8 +6,10 @@
 package Controller;
 
 import DAO.OrderDAO;
+import Model.Account;
 import Model.OrderDetail;
 import Model.Orders;
+import Service.OrderService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -23,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ManageOrderController extends HttpServlet {
 
-    OrderDAO orderDao = new OrderDAO();
+    OrderService orderService = new OrderService();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,9 +38,29 @@ public class ManageOrderController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Orders> listNewOrder = orderDao.getOrderByOrderStatus(0);
-        request.setAttribute("listOrder", listNewOrder);
-        request.getRequestDispatcher("view/business_new_order.jsp").forward(request, response);
+        ArrayList<Orders> listOrder;
+        Account staffAccount = (Account) request.getSession().getAttribute("account");
+        String url = request.getServletPath();
+        int orderId = Integer.parseInt(request.getParameter("id"));
+        switch (url) {
+            case "/ManageNewOrder":
+                int orderStatus = Integer.parseInt(request.getParameter("statusOrder"));
+                if (orderService.updateOrderStatus(orderId, orderStatus, staffAccount.getAccountID())) {
+//                    response.sendRedirect(request.getContextPath() + "/ManageNewOrder");
+                    response.sendRedirect(request.getContextPath() + "/ViewDetailOrder?id=" + orderId);
+                } else {
+                    response.sendRedirect("123123");
+                }
+                break;
+            case "/ViewDetailOrder":
+                Orders order = orderService.getOrderByID(orderId);
+                ArrayList<OrderDetail> listOrderDetailByOrderID = orderService.getListOrderDetailByOrderID(order.getOrderID());
+                request.setAttribute("listOrderDetail", listOrderDetailByOrderID);
+                request.setAttribute("orderInfor", order);
+                request.getRequestDispatcher("view/business_information_order.jsp").forward(request, response);
+                break;
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -53,55 +75,33 @@ public class ManageOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        response.setContentType("text/html;charset=UTF-8");
-
-        Orders orderInfor = new Orders();
-
-        String url = request.getServletPath();
-
-        ArrayList<Orders> listNewOrder;
-        if (url.equals("/ManageNewOrder")) {
-            String paramId = request.getParameter("id");
-            if (paramId != null) {
-                int orderId = Integer.parseInt(paramId);
-                int orderStatus = Integer.parseInt(request.getParameter("statusOrder"));
-                
-
-                orderInfor.setOrderStatus(orderStatus);
-                orderInfor.setOrderID(orderId);
-                int result = orderDao.updateOrderStatus(orderInfor);
-                if (result != 0) {
-                    response.sendRedirect(request.getContextPath() + "/ManageNewOrder");
-                } else {
-                    response.sendRedirect("123123");
-                }
-            } else {
-                processRequest(request, response);
+        Account staffAccount = (Account) request.getSession().getAttribute("account");
+        ArrayList<Orders> listOrder;
+        String paramId = request.getParameter("id");
+        if (paramId != null) {
+            processRequest(request, response);
+        } else {
+            String url = request.getServletPath();
+            switch (url) {
+                case "/ManageNewOrder":
+                    listOrder = orderService.getOrderByOrderStatus(0);
+                    request.setAttribute("listOrder", listOrder);
+                    request.getRequestDispatcher("view/business_new_order.jsp").forward(request, response);
+                    break;
+                case "/ManageCancelOrder":
+                    listOrder = orderService.getOrderByStatusAndStaff(4, staffAccount.getAccountID());
+                    request.setAttribute("listOrder", listOrder);
+                    request.getRequestDispatcher("view/business_reject_order.jsp").forward(request, response);
+                    break;
+                case "/ManageAcceptOrder":
+                    listOrder = orderService.getAllAcceptedOrderByStaff(staffAccount.getAccountID());
+                    request.setAttribute("listOrder", listOrder);
+                    request.getRequestDispatcher("view/business_accept_order.jsp").forward(request, response);
+                    break;
             }
-
-        } else if (url.equals("/ManageCancelOrder")) {
-            listNewOrder = orderDao.getOrderByOrderStatus(4);
-            request.setAttribute("listOrder", listNewOrder);
-            request.getRequestDispatcher("view/business_reject_order.jsp").forward(request, response);
-        } else if (url.equals("/ManageAcceptOrder")) {
-            listNewOrder = orderDao.getOrderByOrderStatus(1);
-            request.setAttribute("listOrder", listNewOrder);
-
-            request.getRequestDispatcher("view/business_accept_order.jsp").forward(request, response);
-
-        } else if (url.equals("/ViewDetailOrder")) {
-            int orderId = Integer.parseInt(request.getParameter("id"));
-            orderInfor = orderDao.getOrderById(orderId);
-            ArrayList<OrderDetail> listOrderDetail;
-
-            listOrderDetail = orderDao.getOrderDetailByOrderId(orderId);
-            listNewOrder = orderDao.getAllOrders();
-            request.setAttribute("orderInfor", orderInfor);
-            request.setAttribute("listOrderDetail", listOrderDetail);
-            request.setAttribute("listNewOrder", listNewOrder);
-            request.getRequestDispatcher("view/business_information_order.jsp").forward(request, response);
         }
+
+//        
     }
 
     /**
@@ -117,21 +117,12 @@ public class ManageOrderController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         try {
-
-            int orderID = Integer.parseInt(request.getParameter("orderId"));
-
+            int orderID = Integer.parseInt(request.getParameter("orderId").trim());
             String note2 = request.getParameter("order-note2");
-            int orderStatus = Integer.parseInt(request.getParameter("order-status"));
+            int orderStatus = Integer.parseInt(request.getParameter("order-status").trim());
 
-            Orders order = new Orders();
-            order.setOrderID(orderID);
-
-            order.setOrderNote2(note2);
-            order.setOrderStatus(orderStatus);
-
-            int result = orderDao.updateOrderStatus(order);
-            if (result != 0) {
-                response.sendRedirect(request.getContextPath() + "/ViewDetailOrder?id="+orderID);
+            if (orderService.updateOrder(orderID, note2, orderStatus)) {
+                response.sendRedirect(request.getContextPath() + "/ViewDetailOrder?id=" + orderID);
             } else {
                 response.sendRedirect("123123");
             }

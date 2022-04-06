@@ -155,7 +155,7 @@ public class AccountService {
         in = removeAccent(in);
         String[] split = in.split(" ");
         String name = split[split.length - 1].toLowerCase();
-        for (int i = 0; i < split.length - 1; i++) {
+        for (int i = 1; i < split.length - 1; i++) {
             name += split[i].subSequence(0, 1).toString().toLowerCase();
         }
         for (int i = 0;; i++) {
