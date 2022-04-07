@@ -224,7 +224,8 @@ public class OrderDAO {
         int result = 0;
         String sql = "UPDATE Orders\n"
                 + "SET business_staff_id = " + staffID + ",\n"
-                + "order_status = " + status + "\n"
+                + "order_status = " + status + "\n,"
+                + "updated_at = '" + getCurrentSQLDate() + "'\n"
                 + "WHERE order_id = " + orderID;
         try {
             db = new DBContext();
