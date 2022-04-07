@@ -40,6 +40,14 @@
         <servlet-name>StaffHomeController</servlet-name>
         <servlet-class>Controller.StaffHomeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShoppingCartController</servlet-name>
+        <servlet-class>Controller.ShoppingCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckOutController</servlet-name>
+        <servlet-class>Controller.CheckOutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageProductController</servlet-name>
         <url-pattern>/ManageProduct</url-pattern>
@@ -85,9 +93,6 @@
     <servlet-mapping>
         <servlet-name>ManageReceiptVoucherController</servlet-name>
         <url-pattern>/ManageReceiptVoucher</url-pattern>
-        <url-pattern>/ReceiptInfo</url-pattern>
-        <url-pattern>/UpdateReceipt</url-pattern>
-        <url-pattern>/ReceiptInfoByOrderID</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
@@ -96,6 +101,16 @@
     <servlet-mapping>
         <servlet-name>StaffHomeController</servlet-name>
         <url-pattern>/StaffHome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShoppingCartController</servlet-name>
+        <url-pattern>/ShoppingCart</url-pattern>
+        <url-pattern>/EditQuantity</url-pattern>
+        <url-pattern>/RemoveProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOutController</servlet-name>
+        <url-pattern>/CheckOut</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

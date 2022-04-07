@@ -5,8 +5,11 @@
  */
 package Controller;
 
+import Model.Account;
 import Model.Product;
+import Model.ShoppingCart;
 import Service.ProductService;
+import Service.ShoppingCartService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -37,7 +40,7 @@ public class CustomerProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Product> listProduct = productService.getAllProductIsActive();
         request.setAttribute("listProduct", listProduct);
-        request.getRequestDispatcher("view/customer_list_product.jsp").forward(request, response);
+        request.getRequestDispatcher("Customer_LGSMS/view/product_list.jsp").forward(request, response);
 
     }
 
@@ -53,22 +56,39 @@ public class CustomerProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
         String url = request.getServletPath();
         switch (url) {
             case "/Product":
                 ArrayList<Product> listProduct = new ArrayList<>();
                 String filter = request.getParameter("filter");
-
+                // filter product
                 if (filter == null) {
                     listProduct = productService.getAllProductIsActive();
                     request.setAttribute("listProduct", listProduct);
-                    request.getRequestDispatcher("view/customer_list_product.jsp").forward(request, response);
+                    request.getRequestDispatcher("Customer_LGSMS/view/product_list.jsp").forward(request, response);
                 } else {
                     int filterID = Integer.parseInt(filter);
                     listProduct = productService.getAllProductFilter(filterID);
                     request.setAttribute("listProduct", listProduct);
-                    request.getRequestDispatcher("view/customer_list_product.jsp").forward(request, response);
+                    request.getRequestDispatcher("Customer_LGSMS/view/product_list.jsp").forward(request, response);
                 }
+
+                // add product to cart
+                Account account = (Account) request.getSession().getAttribute("account");
+                ShoppingCartService cartService = new ShoppingCartService();
+                ShoppingCart shoppingCart = new ShoppingCart();
+                
+                int productId = Integer.parseInt(request.getParameter("productID"));
+                int customerID = account.getAccountID();
+            if (cartService.addProduct(productId, customerID)) {
+
+                        response.sendRedirect(request.getContextPath() + "/Product");
+                    } else {
+                       
+                    }
+
                 break;
 
             case "/CustomerProductInformation":
@@ -94,6 +114,7 @@ public class CustomerProductController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
 
         String url = request.getServletPath();
 
@@ -103,7 +124,7 @@ public class CustomerProductController extends HttpServlet {
                 String search = request.getParameter("searchName");
                 ArrayList<Product> listProduct = productService.getSearchProduct(search);
                 request.setAttribute("listProduct", listProduct);
-                request.getRequestDispatcher("view/customer_list_product.jsp").forward(request, response);
+                request.getRequestDispatcher("Customer_LGSMS/view/product_list.jsp").forward(request, response);
                 break;
 
             default:
@@ -112,16 +133,14 @@ public class CustomerProductController extends HttpServlet {
         }
     }
 
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo
-        
-            () {
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
         return "Short description";
-        }// </editor-fold>
+    }// </editor-fold>
 
-    }
+}

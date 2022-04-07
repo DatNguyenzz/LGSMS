@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        LGSMS-Order-List
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- <link href="/css/style.css" rel="stylesheet" type="text/css"> -->
+    <link href="/css/order.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="header">
+        <div include-html="header.html" id="header"></div>
+    </div>
+    <!-- cart item detail-->
+    <section id="project">
+        <!-- Heading -->
+        <div class="project-heading">
+            <h3>ĐƠN HÀNG CỦA BẠN</h3>
+        </div>
+        <!-- filter -->
+        <ul class="project-filter">
+            <li class="list project-filter-active" data-filter="all">Tất cả</li>
+            <li class="list" data-filter="pending">Chờ xác nhận</li>
+            <li class="list" data-filter="shipping">Đang vận chuyển</li>
+            <li class="list" data-filter="completed">Đã giao</li>
+            <li class="list" data-filter="canceled">Đã hủy</li>
+        </ul>
+
+        <!-- container -->
+        <div class="project-container">
+            <a href="" class="project-box completed">
+                <div class="grid-container">
+                    <div class="item1">
+                        <h3>Mã Đơn Hàng: LG123 <span>|</span> Đã Hoàn Thành</h3>
+                    </div>
+                    <div class="item2">
+                        <img src="/images/buy-1.jpg" alt="work">
+                    </div>
+                    <div class="item3">
+                        <h3>Product Name</h3>
+                        <p>Product Brand</p>
+                        <small>Product quantity</small>
+                    </div>
+                    <div class="item4">
+                        <p>1.290.000đ</p>
+                    </div>
+                    <div class="item5">
+                        <p>Tổng số tiền: <span>1.290.000đ</span></p>
+                        <button class="option3">Mua Lại</button>
+                    </div>
+                </div>
+            </a>
+
+            <a href="" class="project-box shipping">
+                <div class="grid-container">
+                    <div class="item1">
+                        <h3>Mã Đơn Hàng: LG123 <span>|</span> Đang Vận Chuyển</h3>
+                    </div>
+                    <div class="item2">
+                        <img src="/images/buy-2.jpg" alt="work">
+                    </div>
+                    <div class="item3">
+                        <h3>Product Name</h3>
+                        <p>Product Brand</p>
+                        <small>Product quantity</small>
+                    </div>
+                    <div class="item4">
+                        <p>1.290.000đ</p>
+                    </div>
+                    <div class="item5">
+                        <p>Tổng số tiền: <span>1.290.000đ</span></p>
+                        <button class="option3">Mua Lại</button>
+                    </div>
+                </div>
+            </a>
+            <a href="" class="project-box pending">
+                <div class="grid-container">
+                    <div class="item1">
+                        <h3>Mã Đơn Hàng: LG123 <span>|</span> Đang Xử Lý</h3>
+                    </div>
+                    <div class="item2">
+                        <img src="/images/buy-3.jpg" alt="work">
+                    </div>
+                    <div class="item3">
+                        <h3>Product Name</h3>
+                        <p>Product Brand</p>
+                        <small>Product quantity</small>
+                    </div>
+                    <div class="item4">
+                        <p>1.290.000đ</p>
+                    </div>
+                    <div class="item5">
+                        <p>Tổng số tiền: <span>1.290.000đ</span></p>
+                        <button class="option3">Mua Lại</button>
+                    </div>
+                </div>
+            </a>
+            <a href="" class="project-box completed">
+                <div class="grid-container">
+                    <div class="item1">
+                        <h3>Mã Đơn Hàng: LG123 <span>|</span> Đã Hoàn Thành</h3>
+                    </div>
+                    <div class="item2">
+                        <img src="/images/category-1.jpg" alt="work">
+                    </div>
+                    <div class="item3">
+                        <h3>Product Name</h3>
+                        <p>Product Brand</p>
+                        <small>Product quantity</small>
+                    </div>
+                    <div class="item4">
+                        <p>1.290.000đ</p>
+                    </div>
+                    <div class="item5">
+                        <p>Tổng số tiền: <span>1.290.000đ</span></p>
+                        <button class="option3">Mua Lại</button>
+                    </div>
+                </div>
+            </a>
+            <a href="" class="project-box canceled">
+                <div class="grid-container">
+                    <div class="item1">
+                        <h3>Mã Đơn Hàng: LG123 <span>|</span> Đã Hủy</h3>
+                    </div>
+                    <div class="item2">
+                        <img src="/images/category-2.jpg" alt="work">
+                    </div>
+                    <div class="item3">
+                        <h3>Product Name</h3>
+                        <p>Product Brand</p>
+                        <small>Product quantity</small>
+                    </div>
+                    <div class="item4">
+                        <p>1.290.000đ</p>
+                    </div>
+                    <div class="item5">
+                        <p>Tổng số tiền: <span>1.290.000đ</span></p>
+                        <button class="option3">Mua Lại</button>
+                    </div>
+                </div>
+            </a>
+            <a href="" class="project-box pending">
+                <div class="grid-container">
+                    <div class="item1">
+                        <h3>Mã Đơn Hàng: LG123 <span>|</span> Đang Xử Lý</h3>
+                    </div>
+                    <div class="item2">
+                        <img src="/images/category-3.jpg" alt="work">
+                    </div>
+                    <div class="item3">
+                        <h3>Product Name</h3>
+                        <p>Product Brand</p>
+                        <small>Product quantity</small>
+                    </div>
+                    <div class="item4">
+                        <p>1.290.000đ</p>
+                    </div>
+                    <div class="item5">
+                        <p>Tổng số tiền: <span>1.290.000đ</span></p>
+                        <button class="option3">Mua Lại</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div include-html="footer.html" id="footer"></div>
+    <!-- footer-->
+
+    <!-- footer-->
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/include-html.min.js"></script>
+    <script src="/js/order_list.js"></script>
+
+    <script src="/js/jquery.min.js"></script>
+
+
+</body>
+
+</html>

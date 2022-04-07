@@ -87,19 +87,9 @@
                                            <td><%=order.getOrderCode()%></td>
 
                                             <td><%=order.getCreatedAt()%></td>
-                                            <td><%=order.getUpdatedAt()%></td>
+                                            <td>13/03/2022</td>
                                             <td>
-                                                <%switch(order.getOrderStatus()){
-                                                    case 1:{%>
-                                                        <p id="status_pending">Đơn được duyệt</p>
-                                                    <%break;}
-                                                    case 2:{%>
-                                                    <p id="status_pending">Đang vận chuyển</p>
-                                                    <%break;}
-                                                    case 3:{%>
-                                                    <p id="status_complete">Hoàn thành</p>
-                                                <%break;}}%>
-                                                
+                                                <p id="status_pending">Đơn được duyệt</p>
                                             </td>
                                             <td><%=order.getTotalPrice()%></td>
                                             <td>

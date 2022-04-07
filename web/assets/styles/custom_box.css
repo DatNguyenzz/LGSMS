@@ -30,13 +30,4 @@ input::-webkit-inner-spin-button {
   font-size: 16px;
   height: 26px;
   margin-bottom: 0px;
-  }
-.order-voucher {
-  background-color: #4e73df;
-  float: right;
-  border-radius: 0.35rem;
-  color: white;
-  padding: 6px 9px;
-  text-align: center;
-  text-decoration: none;
 }

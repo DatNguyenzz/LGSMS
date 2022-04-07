@@ -20,8 +20,6 @@ public class Orders {
     private String orderNote2;
     private int bussinessStaffID;
     private double totalPrice;
-    private String customerPhone;
-    private String customerAddress;
     private List<OrderDetail> orderDetail;
 
     public Orders() {
@@ -30,7 +28,7 @@ public class Orders {
     public Orders(int orderID, String orderCode, int customerID, 
             int orderStatus, Date createdAt,Date updatedAt, String customerName, 
             String orderNote1, String orderNote2, int bussinessStaffID,
-            double totalPrice, String customerPhone, String customerAddress) {
+            double totalPrice) {
         this.orderID = orderID;
         this.orderCode = orderCode;
         this.customerID = customerID;
@@ -42,8 +40,7 @@ public class Orders {
         this.orderNote2 = orderNote2;
         this.bussinessStaffID = bussinessStaffID;
         this.totalPrice = totalPrice;
-        this.customerPhone = customerPhone;
-        this.customerAddress = customerAddress;
+        
     }
 
     public int getOrderID() {
@@ -140,22 +137,6 @@ public class Orders {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public String getCustomerPhone() {
-        return customerPhone;
-    }
-
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
-    }
-
-    public String getCustomerAddress() {
-        return customerAddress;
-    }
-
-    public void setCustomerAddress(String customerAddress) {
-        this.customerAddress = customerAddress;
     }
     
     public String formatMoneyToVND(double in){

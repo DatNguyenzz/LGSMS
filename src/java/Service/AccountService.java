@@ -108,6 +108,22 @@ public class AccountService {
         int result = accountDao.updateAccount(acc);
         return (result != 0);
     }
+    
+    
+    public boolean updateAccountForCheckOut(int accountId, String fullname, String phone,
+            String address, 
+            String email, int roleId) {
+        Account acc = getAccountByID(accountId);
+        acc.setFullname(fullname);
+        acc.setPhone(phone);
+        acc.setAddress(address);
+        
+        acc.setEmail(email);
+        acc.getRole().setRoleID(roleId);
+        
+        int result = accountDao.updateAccount(acc);
+        return (result != 0);
+    }
 
     //Add new account to database
     public boolean addAccount(String fullname, String phone, String address,
@@ -155,7 +171,7 @@ public class AccountService {
         in = removeAccent(in);
         String[] split = in.split(" ");
         String name = split[split.length - 1].toLowerCase();
-        for (int i = 1; i < split.length - 1; i++) {
+        for (int i = 0; i < split.length - 1; i++) {
             name += split[i].subSequence(0, 1).toString().toLowerCase();
         }
         for (int i = 0;; i++) {
