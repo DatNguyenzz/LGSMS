@@ -3,18 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageAccountController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/web/view/admin_manage_account.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/view/business_new_order.jsp</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/AccountDAO.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ProfileController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/view/business_information_order.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Model/Orders.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageOrderController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/web/view/customer_product_detail.jsp</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/web/view/customer_list_product.jsp</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ProductDAO.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Model/Product.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/CustomerProductController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Service/AccountService.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Service/OrderService.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageReceiptVoucherController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/OrderDAO.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Service/ReceiptVoucherService.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/view/business_manage_voucher.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/view/business_accept_order.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ReceiptVoucherDAO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -62,10 +62,6 @@ public class OrderDetail {
         return price;
     }
 
-   
-
-    
-
     public void setOrderDetailID(int orderDetailID) {
         this.orderDetailID = orderDetailID;
     }
