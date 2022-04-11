@@ -22,6 +22,7 @@
     <!-- Custom styles for this template -->
     <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
     <link href="assets/styles/slider_status.css" rel="stylesheet">
+    <link href="assets/styles/icon_action.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="assets/styles/custom_box.css" rel="stylesheet">
@@ -139,10 +140,9 @@
                                             <td><%=provider.getProviderEmail()%></td>
                                             <td><%=provider.getProviderPhone()%></td>
                                             <td><%=provider.getCreatedAt()%></td>
-                                            <td><label class="switch">
-                                                <input type="checkbox" <%if(provider.isIsActive()){%>checked<%}%>>
-                                                <span class="slider round"></span>
-                                                </label>
+                                            <td>>
+                                                <p id="status_complete">Đang hoạt động</p>
+                                                <p hidden id="status_reject">Ngừng hoạt động</p>
                                             </td>
                                             <td>
                                                 <a href="#editAccountModal" class="edit" onclick="handleClick('<%=provider.getProviderID()%>', '<%=provider.getProviderName()%>', '<%=provider.getProviderEmail()%>', '<%=provider.getProviderPhone()%>', '<%=provider.getProviderAddress()%>')"

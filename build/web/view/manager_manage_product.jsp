@@ -22,6 +22,7 @@
         <!-- Custom styles for this template -->
         <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
         <link href="assets/styles/slider_status.css" rel="stylesheet">
+        <link href="assets/styles/icon_action.css" rel="stylesheet">
 
         <!-- Custom styles for this page -->
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -164,9 +165,9 @@
                                                 <td><%=product.getProductPrice()%></td>
                                                 <td><%=product.getProductImportPrice()%></td>
                                                 <td>
-                                                    <label class="switch">
-                                                        <input type="checkbox" <%if (product.isIsActive()) {%>checked<%}%>>
-                                                        <span class="slider round"></span>
+                                                    <label>
+                                                        <p id="status_complete">Đang hoạt động</p>
+                                                        <p hidden id="status_reject">Ngừng hoạt động</p>
                                                     </label>
                                                 </td>
                                             </tr>

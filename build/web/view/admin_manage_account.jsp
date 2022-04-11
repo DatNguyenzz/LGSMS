@@ -22,6 +22,7 @@
         <!-- Custom styles for this template -->
         <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
         <link href="assets/styles/slider_status.css" rel="stylesheet">
+        <link href="assets/styles/icon_action.css" rel="stylesheet">
         <!-- Custom styles for this page -->
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -108,7 +109,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-8 col-sm-6">
-                                                                
+
                                                                 <div class="form-group">
                                                                     <label for="staff-email"
                                                                            class="col-form-label">Email*:</label>
@@ -188,10 +189,9 @@
                                                 <td><%=account.getUsername()%></td>
                                                 <td><%=account.getEmail()%></td>
                                                 <td><%=account.getRole().getRoleName()%></td>
-                                                <td><label class="switch">
-                                                        <input type="checkbox" <%if (account.isIsActive()) {%>checked<%}%>>
-                                                        <span class="slider round"></span>
-                                                    </label>
+                                                <td>
+                                                    <p id="status_complete">Đang hoạt động</p>
+                                                    <p hidden id="status_reject">Ngừng hoạt động</p>
                                                 </td>
                                                 <td><%=account.getCreatedAt()%></td>
                                                 <td><%=account.getUpdatedAt()%></td>
@@ -248,13 +248,12 @@
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-8 col-sm-6">
-                                                <div class="form-group">
+                                                <div class="form-group" hidden>
                                                     <label for="staff-code" class="col-form-label">Mã nhân viên:</label>
                                                     <input type="text" class="border border-secondary w-100 rounded label_box" 
                                                            readonly class="form-control-plaintext" name="accountId"
                                                            id="accountIdEditInput">
                                                 </div>
-                                                <br>
                                                 <div class="form-group">
                                                     <label for="user-name" class="col-form-label">Họ và
                                                         tên*:</label>
@@ -276,6 +275,14 @@
                                                            id="addressEditInput" name="address"/>
                                                     <div class="fail"></div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="staff-status" class="col-form-label">Trạng thái:</label>
+                                                    <select class="form-control" name="staff-status" id="roles">
+                                                        <option value="status-1">Hoạt động</option>
+                                                        <option value="status-2">Ngừng hoạt động</option>
+                                                    </select>
+                                                </div>
+                                                <br>
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
