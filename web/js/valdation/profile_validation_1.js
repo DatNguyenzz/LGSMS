@@ -11,33 +11,7 @@ const form1 = document.getElementById('form1');
 const oldpass = document.getElementById('old-password');
 const newpass = document.getElementById('new-password');
 const repass = document.getElementById('re-password');
-//Điều kiện email
-const isValidEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-//Điều kiện số điện thoại
-const isValidPhone = phone => {
-    const re = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
-    return re.test(String(phone).toLowerCase());
-}
-//Xét điều kiện để hiện thông báo lỗi form add
-const setError = (element, message) => {
-    const inputControl = element.parentNode;
-    const errorDisplay = inputControl.querySelector('.fail');
-    errorDisplay.innerText = message;
-    inputControl.classList.add('failed');
-    inputControl.classList.remove('success')
-}
-//Xét điều kiện để hiện thông báo thành công form add
-const setSuccess = element => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.fail');
-    errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('failed');
-    x = x + 1;   
-};
+
 
 //Chạy hàm validate form add
 form.addEventListener('submit', e => {

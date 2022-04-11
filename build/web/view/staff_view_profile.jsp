@@ -22,7 +22,7 @@
         <link href="assets/styles/slider_status.css" rel="stylesheet">
         <!-- Custom styles for this page -->
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <link href="css/my_account.css" rel="stylesheet">
+        <link href="css/my_account_1.css" rel="stylesheet">
         <link href="css/fnon.min.css" rel="stylesheet">
         <link href="assets/styles/custom_box.css" rel="stylesheet">
     </head>
@@ -112,12 +112,12 @@
                                                        placeholder="nhập địa chỉ email của bạn" value="<%=account.getEmail()%>" id="user-email" maxlength="50">
                                                 <div class="fail"></div>
                                             </div>
-                                            <div class="form-group">
-                                                <input class="btn btn-primary profile-button" type="submit"
-                                                       value="Lưu thông tin"></input>
+                                                <div style="display: flex; justify-content: flex-end">
                                                 <input class="btn btn-primary profile-button" style="margin-right: 5%;"
                                                        type="button"data-toggle="modal" data-target="#changePassModal" value="Đổi mật khẩu"
-                                                       />
+                                                       ></input>
+                                                <input class="btn btn-primary profile-button" type="submit"
+                                                       value="Lưu thông tin"></input>
 
                                             </div>
                                         </div>
@@ -213,6 +213,7 @@
         <script src="js/demo/datatables-demo.js "></script>
         <script src="js/include-html.min.js "></script>
         <script src="js/fnon.min.js"></script>
+        <script src="js/valdation/alert.js"></script>
         <script src="js/valdation/profile_validation_1.js"></script>
     </body>
 
