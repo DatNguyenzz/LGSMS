@@ -17,9 +17,18 @@ import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -190,4 +199,90 @@ public class AccountService {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("");
     }
+    
+    public static void send(String to, String sub,
+            String msg, final String user, final String pass) {
+        //create an instance of Properties Class   
+        Properties props = new Properties();
+
+        /* Specifies the IP address of your default mail server
+     	   for e.g if you are using gmail server as an email sever
+           you will pass smtp.gmail.com as value of mail.smtp host. 
+           As shown here in the code. 
+           Change accordingly, if your email id is not a gmail id
+         */
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        //below mentioned mail.smtp.port is optional
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        /* Pass Properties object(props) and Authenticator object   
+           for authentication to Session instance 
+         */
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(user, pass);
+            }
+        });
+
+        try {
+
+            /* Create an instance of MimeMessage, 
+ 	      it accept MIME types and headers 
+             */
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(user));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject(sub);
+            message.setContent(msg, "text/html");
+
+            /* Transport class is used to deliver the message to the recipients */
+            Transport.send(message);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public String randomPassword() {
+        String characters = "AWERTYUIOPSDFGHJKLZXCVBNM1234567890";
+
+        String randomPass = "";
+        int legth = 6;
+        Random rand = new Random();
+
+        char[] text = new char[legth];
+        for (int i = 0; i < legth; i++) {
+            text[i] = characters.charAt(rand.nextInt(characters.length()));
+        }
+
+        for (int i = 0; i < text.length; i++) {
+            randomPass += text[i];
+        }
+        return randomPass;
+    }
+    
+    public Account getAccountByEmail( String email){
+        
+         return accountDao.getAccountByEmail( email);
+     }
+    
+     public boolean isEmailExist(String email){
+         return accountDao.isEmailExist(email);
+     }
+     // doi mk cu thanh mat khau random
+     public int updatePass( String email, String password) {
+        return  accountDao.updatePass(email, encryptPassword(password));
+     }
+     
+     // change password
+     public int changePass(int id, String oldpassword, String newPassword){
+         if(encryptPassword(oldpassword).equalsIgnoreCase(getAccountByID(id).getPassword())){
+              return accountDao.updateAccountPassword(id, encryptPassword(newPassword));
+         }
+         else return 0;
+        
+     }
 }

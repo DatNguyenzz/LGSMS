@@ -61,6 +61,7 @@
         <url-pattern>/EditAccount</url-pattern>
         <url-pattern>/AddAccount</url-pattern>
         <url-pattern>/Register</url-pattern>
+        <url-pattern>/ForgotPassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AuthorizationController</servlet-name>

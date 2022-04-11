@@ -413,4 +413,102 @@ public class AccountDAO {
         }
         return null;
     }
+    
+     //forgotPassword
+    public int updatePass( String email, String password) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        String sql
+                = "UPDATE Account\n"
+                + "SET password = '"+ password+"'\n"
+                + "FROM Account a\n"
+                + "INNER JOIN Profile p ON a.profile_id = p.profile_id\n"
+                + "WHERE \n"
+                + " p.email ='"+email+"'";
+
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
+    
+    // kiểm tra userrname có tồn tại ko
+     public boolean isEmailExist(String email){
+          DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = BASE_SQL
+                + "WHERE p.email = '" + email + "'\n"
+                
+                + "AND a.is_active = 1";
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+        
+            
+            if (!rs.isBeforeFirst()) {
+               return false;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return true;
+     }
+     
+     //Update account information
+    public int updateAccountPassword(int id, String password) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        String sql
+                = "BEGIN TRANSACTION;\n"
+                + "UPDATE Account\n"
+                + "SET password = '" +  password + "',\n"
+              
+                + "WHERE account_id = " + id + ";\n"
+                + "\n"
+               
+                + "COMMIT;";
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
 }
