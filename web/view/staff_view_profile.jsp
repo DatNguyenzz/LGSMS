@@ -117,9 +117,70 @@
                                             </div>
                                         </div>
                                     </form>
+                                                <input class="btn btn-primary "  
+                                                       type="button" data-toggle="modal" data-target="#changePassModal" value="Đổi mật khẩu">
                                 </div>
                             </div>
 
+                        </div>
+                    </div>
+                                                
+                    <div class="modal fade" id="changePassModal" tabindex="-1" role="dialog"
+                         aria-labelledby="changePassLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="<%=request.getContextPath()%>/ChangePassword" method="POST" id="form1">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-8 col-sm-12 ">
+                                                        <input type="text" class="form-control"
+                                                               id="accid" name="accid" hidden="true" value="<%=account.getAccountID()%>" />
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="old-password">Mật khẩu cũ*:</label>
+                                                            <input type="text" id="old-password"
+                                                                   name="old-password" class="form-control" />
+                                                            <div class="fail"></div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="new-password" class="col-form-label">Mặt khẩu mới*:</label>
+                                                            <input type="text" class="form-control"
+                                                                   id="new-password" name="new-password"/>
+                                                            <div class="fail"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="re-password" class="col-form-label">Xác nhận mặt khẩu mới*:</label>
+                                                            <input type="text" class="form-control"
+                                                                   id="re-password" name="re-password"/>
+                                                            <div class="fail"></div>
+
+                                                        </div>
+                                                        <br>
+                                                        <!-- <br> -->
+                                                        <div class="modal-footer">
+                                                            <input type="submit" class="btn btn-primary"
+                                                                   value="Nhập" form="form1">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Hủy</button>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                     <!-- /.container-fluid -->

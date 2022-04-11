@@ -99,6 +99,7 @@ public class AccountDAO {
                 Account acc = new Account();
                 acc.setAccountID(rs.getInt("account_id"));
                 acc.setUsername(rs.getString("username"));
+                acc.setPassword(rs.getString("password"));
                 Role role = new Role();
                 role.setRoleID(rs.getInt("role_id"));
                 role.setRoleName(rs.getString("role_name"));
@@ -480,21 +481,19 @@ public class AccountDAO {
      }
      
      //Update account information
-    public int updateAccountPassword(int id, String password) {
+    public int updateAccountPassword(int id, String password) {     
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         int result = 0;
         String sql
-                = "BEGIN TRANSACTION;\n"
-                + "UPDATE Account\n"
-                + "SET password = '" +  password + "',\n"
-              
-                + "WHERE account_id = " + id + ";\n"
-                + "\n"
-               
-                + "COMMIT;";
+
+                = "UPDATE Account\n"
+                + "SET password = '"+ password+"'\n"
+                         
+                + "WHERE account_id = " + id ;
+
         try {
             db = new DBContext();
             con = db.getConnection();

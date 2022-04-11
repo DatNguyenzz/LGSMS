@@ -57,9 +57,28 @@ public class ShoppingCartController extends HttpServlet {
                 ArrayList<ShoppingCart> listCart = new ArrayList<>();
                 int customerID = account.getAccountID();
                 listCart = cartService.getCartByCusID(customerID);
-                Double total = cartService.totalPriceInCart(listCart);
+
+//                Double total = cartService.totalPriceInCart(listCart);
+//                request.setAttribute("listCart", listCart);
+//                request.setAttribute("total", total);
+
+                
+                if(listCart.isEmpty()){
+                    String nonCart="No item in cart";
+                    request.setAttribute("nonCart",nonCart);
+                     Double total = 0.0;
+                    request.setAttribute("total", total);
+                }else{
+                   Double total = cartService.totalPriceInCart(listCart);
+                    request.setAttribute("total", total);
+                   
+                }
+                  
+                   
+                
                 request.setAttribute("listCart", listCart);
-                request.setAttribute("total", total);
+                
+
                 request.getRequestDispatcher("Customer_LGSMS/view/cart.jsp").forward(request, response);
                 break;
             case "/EditQuantity":

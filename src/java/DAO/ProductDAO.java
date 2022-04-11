@@ -264,7 +264,7 @@ public class ProductDAO {
     //Get product by ID from database
     public Product getProductByID(int productID) {
         String sql = BASE_SQL
-                + "WHERE p.product_id = " + productID;
+                + "WHERE p.is_active =1 AND p.product_id = " + productID;
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
@@ -288,6 +288,7 @@ public class ProductDAO {
                 p.setProductUpdatedAt(rs.getDate("product_updated_at"));
                 p.setIsActive(rs.getBoolean("is_active"));
                 p.setProviderID(rs.getInt("provider_id"));
+                p.setProviderName(rs.getString("provider_name"));
                 return p;
             }
         } catch (SQLException ex) {
@@ -300,6 +301,49 @@ public class ProductDAO {
             }
         }
         return null;
+    }
+    
+    //get product by providerID
+    public ArrayList<Product> getProductByProviderID(int providerID) {
+        String sql = BASE_SQL
+                + "WHERE p.is_active =1 AND p.provider_id = " + providerID;
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Product> listProduct = new ArrayList<>();
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("product_id"));
+                p.setImageID(rs.getInt("image_id"));
+                p.setProductName(rs.getString("product_name"));
+                p.setProductPrice(rs.getDouble("product_price"));
+                p.setProductImportPrice(rs.getDouble("product_import_price"));
+                p.setProductInstock(rs.getInt("product_instock"));
+                p.setProductEmpty(rs.getInt("product_empty"));
+                p.setProductDescription(rs.getString("product_description"));
+                p.setProductCreatedAt(rs.getDate("product_created_at"));
+                p.setProductUpdatedAt(rs.getDate("product_updated_at"));
+                p.setIsActive(rs.getBoolean("is_active"));
+                p.setProviderID(rs.getInt("provider_id"));
+                p.setProviderName(rs.getString("provider_name"));
+                listProduct.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return listProduct;
     }
 
     public int updateProduct(Product product) {

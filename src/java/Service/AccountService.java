@@ -155,7 +155,7 @@ public class AccountService {
             acc.setRole(role);
             int result = accountDao.addNewAccount(acc);
             return (result != 0);
-        }else{
+        } else {
             return false;
         }
     }
@@ -199,7 +199,56 @@ public class AccountService {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("");
     }
-    
+
+
+  
+
+    public String randomPassword() {
+        String characters = "AWERTYUIOPSDFGHJKLZXCVBNM1234567890";
+
+        String randomPass = "";
+        int legth = 6;
+        Random rand = new Random();
+
+        char[] text = new char[legth];
+        for (int i = 0; i < legth; i++) {
+            text[i] = characters.charAt(rand.nextInt(characters.length()));
+        }
+
+        for (int i = 0; i < text.length; i++) {
+            randomPass += text[i];
+        }
+        return randomPass;
+    }
+
+    public Account getAccountByEmail(String email) {
+
+        return accountDao.getAccountByEmail(email);
+    }
+
+    public boolean isEmailExist(String email) {
+        return accountDao.isEmailExist(email);
+    }
+    // doi mk cu thanh mat khau random
+
+    public int updatePass(String email, String password) {
+        return accountDao.updatePass(email, encryptPassword(password));
+    }
+
+    // change password
+    public int changePass(int id, String oldpassword, String newPassword) {
+        String encryOldPass =encryptPassword(oldpassword);
+        String passOnDB = getAccountByID(id).getPassword();
+        
+        if (encryOldPass.equals(passOnDB)) {
+            return accountDao.updateAccountPassword(id, encryptPassword(newPassword));
+        } else {
+            return 0;
+        }
+
+    }
+
+
     public static void send(String to, String sub,
             String msg, final String user, final String pass) {
         //create an instance of Properties Class   
@@ -245,44 +294,5 @@ public class AccountService {
             e.printStackTrace();
         }
     }
-    
-    public String randomPassword() {
-        String characters = "AWERTYUIOPSDFGHJKLZXCVBNM1234567890";
 
-        String randomPass = "";
-        int legth = 6;
-        Random rand = new Random();
-
-        char[] text = new char[legth];
-        for (int i = 0; i < legth; i++) {
-            text[i] = characters.charAt(rand.nextInt(characters.length()));
-        }
-
-        for (int i = 0; i < text.length; i++) {
-            randomPass += text[i];
-        }
-        return randomPass;
-    }
-    
-    public Account getAccountByEmail( String email){
-        
-         return accountDao.getAccountByEmail( email);
-     }
-    
-     public boolean isEmailExist(String email){
-         return accountDao.isEmailExist(email);
-     }
-     // doi mk cu thanh mat khau random
-     public int updatePass( String email, String password) {
-        return  accountDao.updatePass(email, encryptPassword(password));
-     }
-     
-     // change password
-     public int changePass(int id, String oldpassword, String newPassword){
-         if(encryptPassword(oldpassword).equalsIgnoreCase(getAccountByID(id).getPassword())){
-              return accountDao.updateAccountPassword(id, encryptPassword(newPassword));
-         }
-         else return 0;
-        
-     }
 }

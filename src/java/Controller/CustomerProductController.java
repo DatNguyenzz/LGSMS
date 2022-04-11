@@ -93,9 +93,17 @@ public class CustomerProductController extends HttpServlet {
 
             case "/CustomerProductInformation":
                 int productID = Integer.parseInt(request.getParameter("productID"));
+                int providerID= Integer.parseInt(request.getParameter("providerID"));
                 Product product = productService.getProductByID(productID);
+                
+                
+                ArrayList<Product> listProductOfProvider ;
+                listProductOfProvider = productService.getProductByProviderID(providerID);
+                
                 request.setAttribute("product", product);
-                request.getRequestDispatcher("view/customer_product_detail.jsp").forward(request, response);
+                request.setAttribute("productByProvider", listProductOfProvider);
+                
+                request.getRequestDispatcher("Customer_LGSMS/view/product_detail.jsp").forward(request, response);
                 break;
             default:
                 processRequest(request, response);

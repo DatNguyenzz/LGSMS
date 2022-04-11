@@ -57,7 +57,9 @@
                             <a href="" class="option2">
                                 Mua ngay
                             </a>
-                            <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=product.getProductID()%>" class="option3">
+
+                            <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=product.getProductID()%>&providerID=<%=product.getProviderID()%>" class="option3">
+
                                 Xem chi tiết
                             </a>
                         </div>

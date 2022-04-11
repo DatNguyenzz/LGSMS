@@ -128,7 +128,7 @@ public class ManageAccountController extends HttpServlet {
                
                 break;
             }
-            
+
             case "/ForgotPassword":{
                 
                 String email = request.getParameter("email");
