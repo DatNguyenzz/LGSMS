@@ -14,37 +14,7 @@ form.addEventListener('submit', e => {
         document.getElementById("form").submit();
     }
 });
-//Xét điều kiện để hiện thông báo lỗi
-const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success')
-    x = 0;
-}
-//Xét điều kiện để hiện thông báo thành công
-const setSuccess = element => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
-    x = x + 1;
-    
 };
-//Điều kiện email
-const isValidEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-//Điều kiện số điện thoại
-const isValidPhone = phone => {
-    const re = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
-    return re.test(String(phone).toLowerCase());
-}
 //Trim input và các thông báo
 const validateInputs = () => {
     // const phoneValue = phone.value.trim();

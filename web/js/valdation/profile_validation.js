@@ -7,6 +7,10 @@ const phone = document.getElementById('user-phone');
 const address = document.getElementById('user-address');
 const dob = document.getElementById('user-dob');
 
+const form1 = document.getElementById('form1');
+const oldpass = document.getElementById('old-password');
+const newpass = document.getElementById('new-password');
+const repass = document.getElementById('re-password');
 //Điều kiện email
 const isValidEmail = email => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -41,66 +45,7 @@ form.addEventListener('submit', e => {
     x = 0;
     validateInputs();
     if (x == 5) {
-        Fnon.Ask.Danger({
-            width: 'nl', // sm//lg//nl//xl
-            // closeButton: true,
-            animation: 'slide-top',//'fade', 'slide-top', 'slide-bottom', 'slide-right' and 'slide-left'
-            closeButton: false,
-            // callback: undefined,
-            // icon: undefined,
-            // iconColor: '#4e73df',
-            // showIcon: true,
-            message: 'Bạn có chắc chắn lưu thay đổi này?',
-
-            title: 'Thông báo xác nhận',
-            titleColor: '#fff',
-            titleBackground: '#4e73df',
-
-            btnOkText: 'Lưu',
-            btnOkColor: '#fff',
-            btnOkBackground: '#4e73df',
-            btnOkShadow: 'rgba(0, 0, 0, 0.5)',
-            btnOkBorderColor: '#d4d4d4',
-
-            btnCancelText: 'Hủy',
-            btnCancelColor: '#fff',
-            btnCancelBackground: '#4e73df',
-            btnCancelShadow: 'rgba(0, 0, 0, 0.5)',
-            btnCancelBorderColor: '#d4d4d4',
-
-            color: '#2b2b2b',
-            background: 'rgba(0, 0, 0, 0.1)',
-            callback: (result) => {
-                if (result == true) {
-                    Fnon.Alert.Dark({
-                        message: 'Đã lưu thành công',
-                        title: 'Xác nhận',
-                        titleBackground: '#4e73df',
-                        btnOkColor: '#fff',
-                        btnOkBackground: '#4e73df',
-                        color: '#2b2b2b',
-                        background: 'rgba(0, 0, 0, 0.1)',
-                        width: 'nl', // sm, lg, nl, xl
-                        // closeButton: true,
-                        animation: 'slide-top', // 'fade', 'slide-top', 'slide-bottom', 'slide-right' and 'slide-left'
-                        // closeButton: false,
-                        // icon: undefined,
-                        // iconColor: '#000',
-                        // showIcon: false,
-                        btnOkText: 'Ok',
-                        btnOkColor: '#fff',
-                        btnOkBackground: '#4e73df',
-                        btnOkShadow: 'rgba(0, 0, 0, 0.5)',
-                        btnOkBorderColor: '#d4d4d4',
-                        callback: () => {
-                            document.getElementById("form").submit();
-                        }
-                    });
-                } else {
-                    x = 0;
-                }
-            }
-        });
+        alertFunction();
     }
 });
 
@@ -150,4 +95,44 @@ const validateInputs = () => {
     } else {
         setSuccess(dob);
     }
+};
+
+form1.addEventListener('submit', e => {
+    e.preventDefault();
+    y = 0;
+    validateInputs1();
+    if (y == 3) {
+        alertFunction();
+    }
+});
+
+//Trim input và các thông báo form add
+const validateInputs1 = () => {
+    const oldValue = oldpass.value.trim();
+    const newValue = newpass.value.trim();
+    const reValue = repass.value.trim();
+
+    //Thông báo nhập mật khẩu cũ
+    if (oldValue === '') {
+        setError1(oldpass, 'Yêu cầu nhập mật khẩu');
+    } else {
+        setOkay1(oldpass);
+    }
+    //Thông báo nhập mật khẩu
+    if (newValue === '') {
+        setError1(newpass, 'Yêu cầu nhập mật khẩu');
+    } else if (!isValidPass(newValue)) {
+        setError1(newpass, 'Mật khẩu tối thiểu 8 kí tự có ít nhất 1 số và 1 chữ hoa.')
+    } else {
+        setOkay1(newpass);
+    }
+    //Thông báo xác nhận mật khảu
+    if (reValue === '') {
+        setError1(repass, 'Yêu cầu xác nhận mật khẩu');
+    } else if (reValue !== newValue) {
+        setError1(repass, "Không trùng với mật khẩu");
+    } else {
+        setOkay1(repass);
+    }
+
 };

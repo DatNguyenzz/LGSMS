@@ -99,7 +99,7 @@
                                                 </select>
                                             </div>
 
-                                                <br><br><br><br>
+                                            <br><br><br><br>
                                             <div class="form-group">
                                                 <label class="labels">Địa chỉ*</label>
                                                 <input type="text" class="form-control" name="address"
@@ -113,7 +113,11 @@
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
-                                                <input class="btn btn-primary profile-button" type="submit" value="Lưu thông tin"></input>
+                                                <input class="btn btn-primary profile-button" type="submit"
+                                                       value="Lưu thông tin"></input>
+                                                <input class="btn btn-primary profile-button" style="margin-right: 5%;"
+                                                       type="button"data-toggle="modal" data-target="#changePassModal" value="Đổi mật khẩu"
+                                                       />
 
                                             </div>
                                         </div>
@@ -128,6 +132,60 @@
                 <!-- End of Main Content -->
             </div>
             <!-- End of Content Wrapper -->
+            <div class="modal fade" id="changePassModal" tabindex="-1" role="dialog"
+                 aria-labelledby="changePassLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="form1">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-8 col-sm-12 ">
+                                                <div class="form-group">
+                                                    <label for="old-password">Mật khẩu cũ:</label>
+                                                    <input type="text" id="old-password"
+                                                           name="old-password" class="form-control" maxlength="25"/>
+                                                    <div class="fail"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="new-password" class="col-form-label">Mặt khẩu mới:</label>
+                                                    <input type="text" class="form-control"
+                                                           id="new-password" name="new-password" maxlength="25"/>
+                                                    <div class="fail"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="re-password" class="col-form-label">Xác nhận mặt khẩu mới:</label>
+                                                    <input type="text" class="form-control"
+                                                           id="re-password" name="re-password" maxlength="25"/>
+                                                    <div class="fail"></div>
+
+                                                </div>
+                                                <br>
+                                                <!-- <br> -->
+                                                <div class="modal-footer">
+                                                    <input type="submit" class="btn btn-primary"
+                                                           value="Nhập"></input>
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- End of Page Wrapper -->
 
@@ -155,7 +213,7 @@
         <script src="js/demo/datatables-demo.js "></script>
         <script src="js/include-html.min.js "></script>
         <script src="js/fnon.min.js"></script>
-        <script src="js/valdation/profile_validation.js"></script>
+        <script src="js/valdation/profile_validation_1.js"></script>
     </body>
 
 </body>
