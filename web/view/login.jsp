@@ -43,7 +43,7 @@
                                 <input type="submit" class="form-control btn btn-primary submit px-3" value="Đăng nhập"></input>
                             </div>
                             <div class="form-group w-100 text-center">
-                                <a href="forgot_password.html" style="color: #fff; text-decoration: underline;">Quên mật khẩu?</a>
+                                <a href="ForgotPassword" style="color: #fff; text-decoration: underline;">Quên mật khẩu?</a>
                             </div>
                         </form>
                         <!-- URL tạo tài khoản -->

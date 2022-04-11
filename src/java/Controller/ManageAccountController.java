@@ -62,7 +62,7 @@ public class ManageAccountController extends HttpServlet {
                 request.getRequestDispatcher("view/guest_register.jsp").forward(request, response);
                 break;
             case "/ForgotPassword":
-                request.getRequestDispatcher("view/customer_forgot_password.jsp").forward(request, response);
+                request.getRequestDispatcher("Customer_LGSMS/view/forgotPassword.jsp").forward(request, response);
                 break;
         }
     }
@@ -155,7 +155,7 @@ public class ManageAccountController extends HttpServlet {
                    
                      accountService.send(email, subject, message, "lgsmsvanhsibun@gmail.com", "vanhsibun123");
                      
-                    response.sendRedirect(request.getContextPath()+"/ForgotPassword");
+                    response.sendRedirect(request.getContextPath()+"/login");
 
                 }else{
                     
