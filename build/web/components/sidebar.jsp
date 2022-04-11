@@ -79,6 +79,42 @@
         </div>
     </div>
 </li>
+    <!-- Nav Item - Manager view Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+            <i class="bi bi-calendar-check-fill"></i>
+            <span>Đơn hàng</span>
+        </a>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="manager_view_order.jsp">Danh sách đơn hàng</a>
+            </div>
+        </div>
+    </li>
+    <!-- Nav Item - Manager view Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+            <i class="bi bi-calendar-check-fill"></i>
+            <span>Phiếu thu</span>
+        </a>
+        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="Manager_view_voucher.html">Danh sách phiếu thu</a>
+            </div>
+        </div>
+    </li>
+    <!-- Nav Item - Manager order import Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+            <i class="bi bi-calendar-check-fill"></i>
+            <span>Phiếu nhập hàng</span>
+        </a>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="">Danh sách phiếu nhập</a>
+            </div>
+        </div>
+    </li>
 <%}%>
 <%if (account.getRole().getRoleID() == 3) {%>
 <!-- Nav Item - Business Staff Menu -->
@@ -109,6 +145,20 @@
     </div>
 </li>
 <%}%>
+<%if (account.getRole().getRoleID() == 4) {%>
+       <!-- Nav Item - Provider buy Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+            <i class="bi bi-calendar-check-fill"></i>
+            <span>Phiếu mua hàng</span>
+        </a>
+        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="">Danh sách phiếu mua</a>
+            </div>
+        </div>
+    </li>
+    <%}%>
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 <!-- Bootstrap core JavaScript-->

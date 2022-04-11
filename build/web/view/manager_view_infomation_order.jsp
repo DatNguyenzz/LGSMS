@@ -82,7 +82,9 @@
                                     <!--Tôi giữ nguyên class với
                                     link đúng id với nhau nhé -->
                                     <span class="m-0 font-weight-bold text-primary">Đơn hàng</span>
-                                    <a href="manager_view_information_voucher.html" class="order-voucher">Chuyển phiếu thu</a>
+                                    <a href="manager_view_information_voucher.jsp"<td>
+                                                <a href="manager_view_information_order.jsp" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+                                            </td>" class="order-voucher">Chuyển phiếu thu</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">

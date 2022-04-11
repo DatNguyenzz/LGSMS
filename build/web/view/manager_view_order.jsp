@@ -91,11 +91,14 @@
                                                 <p id="status_pending">Đang xử lý</p>
                                             </td>
                                             <td><%=order.getTotalPrice()%></td>
+<!--                                            <td>
+
+                                                <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" 
+                                                   class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view" ></i></a>
+
+                                            </td>-->
                                             <td>
-
-<!--                                                <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" 
-                                                   class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view" ></i></a>-->
-
+                                                <a href="manager_view_information_order.jsp" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
                                             </td>
                                         </tr>
                                          <%}%>

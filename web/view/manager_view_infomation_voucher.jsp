@@ -84,9 +84,9 @@
                                     <!--Tôi giữ nguyên class với
                                     link đúng id với nhau nhé -->
                                     <span class="m-0 font-weight-bold text-primary">Phiếu thu</span>
-                                    <a href="manager_view_information_order.html" class="order-voucher">Chuyển đơn hàng</a>
+                                    <a href="manager_view_information_order.jsp" class="order-voucher">Chuyển đơn hàng</a>
                                 </div>
-                                <form id="form" action="business_new_order.html">
+                                <form id="form" action="business_new_order.jsp">
                                     <div class="card-body">
                                         <!-- <div class="table-responsive"> -->
                                         <div class="row">
@@ -107,7 +107,7 @@
                                                     bình (VNĐ):</label>
                                                 <input type="number" readonly
                                                     class="border border-secondary w-100 p-2 rounded" id="order-deposit"
-                                                    value="" />
+                                                    value="500000" />
                                                 <br><br>
                                             
                                             <label for="staff-order" class="col-form-label">Nhân viên nhận
@@ -200,16 +200,16 @@
             total = document.getElementById('order-price'),
             payment = document.getElementById('cus-pay');
         const num = 0;
-        payment.value = total.value
-        deposit.onchange = function () {
-            if (deposit.value == "") {
-                var result = parseFloat(total.value) - parseFloat(num);
-                payment.value = result;
-            } else {
-                var result = parseFloat(total.value) - parseFloat(deposit.value);
-                payment.value = !isNaN(result) ? result : '';
-            }
-        };
+        payment.value = total.value - deposit.value;
+//        deposit.onchange = function () {
+//            if (deposit.value == "") {
+//                var result = parseFloat(total.value) - parseFloat(num);
+//                payment.value = result;
+//            } else {
+//                var result = parseFloat(total.value) - parseFloat(deposit.value);
+//                payment.value = !isNaN(result) ? result : '';
+//            }
+//        };
     </script>
 </body>
 

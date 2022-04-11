@@ -97,7 +97,7 @@
                                                 <%}%>
                                             </td>
                                             <td>
-                                                <a href="business_information_order.html" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+                                                <a href="manager_view_information_voucher.jsp" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
                                             </td>
                                         </tr>
                                         <%}%>
