@@ -149,9 +149,7 @@
                                                               <%if(receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2){%> 
                                                                disabled
                                                                <%}%>
-                                                        id="order-note" style="resize: none; overflow: auto;">
-                                                                  <%=receiptVoucher.getNote()%>
-                                                    </textarea>
+                                                        id="order-note" style="resize: none; overflow: auto;"><%=receiptVoucher.getNote()%></textarea>
                                                 </div>
                                             </div>
                                             <div class="row justify-content-around">
