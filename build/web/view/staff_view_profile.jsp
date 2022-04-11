@@ -76,13 +76,13 @@
                                             <div class="form-group">
                                                 <label class="col-form-label">Họ và tên*:</label>
                                                 <input type="text" class="form-control" name="fullname"
-                                                       placeholder="<%=account.getFullname()%>" value="<%=account.getFullname()%>" id="user-name" />
+                                                       placeholder="<%=account.getFullname()%>" value="<%=account.getFullname()%>" id="user-name" maxlength="50"/>
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="labels" class="col-form-label">Số điện thoại*</label>
                                                 <input type="number" class="form-control" name="phone"
-                                                       placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>" id="user-phone">
+                                                       placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>" id="user-phone" maxlength="15">
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
@@ -103,13 +103,13 @@
                                             <div class="form-group">
                                                 <label class="labels">Địa chỉ*</label>
                                                 <input type="text" class="form-control" name="address"
-                                                       placeholder="nhập địa chỉ của bạn" value="<%=account.getAddress()%>" id="user-address">
+                                                       placeholder="nhập địa chỉ của bạn" value="<%=account.getAddress()%>" id="user-address" maxlength="255">
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="labels">Email*</label>
                                                 <input type="text" class="form-control" name="email"
-                                                       placeholder="nhập địa chỉ email của bạn" value="<%=account.getEmail()%>" id="user-email">
+                                                       placeholder="nhập địa chỉ email của bạn" value="<%=account.getEmail()%>" id="user-email" maxlength="50">
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">

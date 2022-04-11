@@ -135,7 +135,7 @@
                                                         </select>
                                                         <label for="order-note" class="col-form-label">Nhân viên ghi
                                                             chú:</label>
-                                                        <textarea class="border border-secondary w-100 p-2 rounded" id="order-note" name="order-note2" style="resize: none; overflow: auto;"><%=order.getOrderNote2()%></textarea>
+                                                        <textarea class="border border-secondary w-100 p-2 rounded" id="order-note" name="order-note2" style="resize: none; overflow: auto;" maxlength="500"><%=order.getOrderNote2()%></textarea>
                                                         <div style="margin-top: 3%; float: right">
                                                             <input type="submit" class="btn btn-primary submit px-3" value="Lưu"></input>
                                                             <!-- <a href="business_new_order.html"><button type="button" class="btn btn-secondary" >Hủy</button></a> -->

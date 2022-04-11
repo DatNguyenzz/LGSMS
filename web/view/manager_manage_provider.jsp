@@ -81,22 +81,22 @@
                                                 <div class="col-8 col-sm-12">
                                                     <div class="form-group">
                                                         <label for="provider-name" class="col-form-label">Tên nhà cung cấp:</label>
-                                                        <input type="text" class="form-control" name="provider-name" id="provider-name" />
+                                                        <input type="text" class="form-control" name="provider-name" id="provider-name" maxlength="50"/>
                                                         <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="provider-address" class="col-form-label">Địa chỉ:</label>
-                                                        <input type="text" class="form-control" name="provider-address" id="provider-address"/>
+                                                        <input type="text" class="form-control" name="provider-address" id="provider-address" maxlength="255"/>
                                                         <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="provider-email" class="col-form-label">Email:</label>
-                                                        <input type="text" class="form-control" name="provider-email" id="provider-email" name="email"/>
+                                                        <input type="text" class="form-control" name="provider-email" id="provider-email" name="email" maxlength="50"/>
                                                         <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="provider-phone" class="col-form-label">Điện thoại:</label>
-                                                        <input type="text" class="form-control" name="provider-phone" id="provider-phone" />
+                                                        <input type="text" class="form-control" name="provider-phone" id="provider-phone" maxlength="15"/>
                                                         <p class="fail"></p>
                                                     </div>
                                                     <div class="modal-footer">
@@ -193,22 +193,22 @@
                         <br>
                         <div class="form-group">
                             <label>Tên nhà cung cấp</label>
-                            <input name="providerName" id="providerName"  type="text" class="form-control" />
+                            <input name="providerName" id="providerName"  type="text" class="form-control" maxlength="50"/>
                             <p class="fail"></p>
                         </div>
                         <div class="form-group">
                             <label>Địa chỉ</label>
-                            <input name="address" id="address" type="text" class="form-control" />
+                            <input name="address" id="address" type="text" class="form-control" maxlength="255"/>
                             <p class="fail"></p>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input name="email" id="email" type="email" class="form-control"name="email"/>
+                            <input name="email" id="email" type="email" class="form-control"name="email" maxlength="50"/>
                             <p class="fail"></p>
                         </div>
                         <div class="form-group">
                             <label>Điện thoại</label>
-                            <input name="providerPhone" id="providerPhone" type="text" class="form-control"/>
+                            <input name="providerPhone" id="providerPhone" type="text" class="form-control" maxlength="15"/>
                             <p class="fail"></p>
                         </div>
                         <div class="form-group">

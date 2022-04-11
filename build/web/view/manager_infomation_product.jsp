@@ -98,7 +98,7 @@
                                                     <div class="form-group">
                                                         <label for="product-name" class="col-form-label">Tên sản phẩm:</label>
                                                         <input type="text" class="form-control" id="product-name" name="productName"
-                                                               value="<%=product.getProductName()%>" />
+                                                               value="<%=product.getProductName()%>" maxlength="50"/>
                                                         <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">
@@ -150,7 +150,7 @@
                                                     <div class="form-group">
                                                         <label for="product-price" class="col-form-label">Giá bán:</label>
                                                         <input type="number" class="form-control" id="product-price" min="1"
-                                                               value="<%=product.getProductPrice()%>" name="productPrice"/>
+                                                               value="<%=product.getProductPrice()%>" name="productPrice" maxlength="25"/>
                                                         <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">

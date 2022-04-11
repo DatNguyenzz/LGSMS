@@ -91,20 +91,20 @@
                                                                     <label for="user-name" class="col-form-label">Họ và
                                                                         tên*:</label>
                                                                     <input type="text" class="form-control" id="user-name"
-                                                                           name="fullname"/>
+                                                                           name="fullname" maxlength="50"/>
                                                                     <div class="fail"></div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="staff-phone" class="col-form-label">Số điện
                                                                         thoại*:</label>
                                                                     <input type="text" class="form-control"
-                                                                           id="staff-phone1" name="phone" />
+                                                                           id="staff-phone1" name="phone" maxlength="15"/>
                                                                     <div class="fail"></div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="user-address" class="col-form-label">Địa chỉ*:</label>
                                                                     <input type="text" class="form-control"
-                                                                           id="user-address" name="address"/>
+                                                                           id="user-address" name="address" maxlength="255"/>
                                                                     <div class="fail"></div>
                                                                 </div>
                                                             </div>
@@ -114,7 +114,7 @@
                                                                     <label for="staff-email"
                                                                            class="col-form-label">Email*:</label>
                                                                     <input type="email" class="form-control"
-                                                                           id="staff-email" name="email" />
+                                                                           id="staff-email" name="email" maxlength="50"/>
                                                                     <div class="fail"></div>
                                                                 </div>
                                                                 <div class="row">
@@ -258,21 +258,21 @@
                                                     <label for="user-name" class="col-form-label">Họ và
                                                         tên*:</label>
                                                     <input type="text" class="form-control" id="fullnameEditInput"
-                                                           name="fullname"/>
+                                                           name="fullname" maxlength="50"/>
                                                     <div class="fail"></div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="staff-phone" class="col-form-label">Số điện
                                                         thoại*:</label>
                                                     <input type="text" class="form-control"
-                                                           id="staff-phone" name="phone"/>
+                                                           id="staff-phone" name="phone" maxlength="15"/>
                                                     <div class="fail"></div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="user-address" class="col-form-label">Địa chỉ*:
                                                     </label>
                                                     <input type="text" class="form-control"
-                                                           id="addressEditInput" name="address"/>
+                                                           id="addressEditInput" name="address" maxlength="255"/>
                                                     <div class="fail"></div>
                                                 </div>
                                                 <div class="form-group">
@@ -308,7 +308,7 @@
                                                     <label for="username" class="col-form-label">Tên đăng
                                                         nhập*:</label>
                                                     <input type="text" class="form-control" id="usernameEditInput"
-                                                           name="username" readonly/>
+                                                           name="username" readonly maxlength="50"/>
                                                     <br>
                                                 </div>
 
@@ -316,7 +316,7 @@
                                                     <label for="staff-email"
                                                            class="col-form-label">Email:</label>
                                                     <input type="email" class="form-control"
-                                                           id="emailEditInput" name="email" />
+                                                           id="emailEditInput" name="email" maxlength="50"/>
                                                     <div class="fail"></div>
                                                 </div>
                                                 <div class="form-group">

@@ -89,7 +89,7 @@
                                                             <div class="col-8 col-sm-7">
                                                                 <div class="form-group">
                                                                     <label for="product-name" class="col-form-label">Tên sản phẩm:</label>
-                                                                    <input type="text" class="form-control" id="product-name" name="product-name">
+                                                                    <input type="text" class="form-control" id="product-name" name="product-name" maxlength="50">
                                                                     <p class="fail"></p>
                                                                 </div>
                                                                 <div class="form-group">
@@ -104,17 +104,17 @@
                                                                 <br>
                                                                 <div class="form-group">
                                                                     <label for="product-quantity" class="col-form-label">Số lượng:</label>
-                                                                    <input type="number" class="form-control" id="product-quantity" name="product-quantity">
+                                                                    <input type="number" class="form-control" id="product-quantity" name="product-quantity" maxlength="25">
                                                                     <p class="fail"></p>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="product-price" class="col-form-label">Giá bán:</label>
-                                                                    <input type="number" class="form-control" id="product-price" name="product-price">
+                                                                    <input type="number" class="form-control" id="product-price" name="product-price" maxlength="25">
                                                                     <p class="fail"></p>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="product-des" class="col-form-label">Mô tả:</label>
-                                                                    <textarea class="form-control" id="product-des" name="product-des"></textarea>
+                                                                    <textarea class="form-control" id="product-des" name="product-des" maxlength="500"></textarea>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <input type="submit" class="btn btn-primary" value="Thêm"></input>
