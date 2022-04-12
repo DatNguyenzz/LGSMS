@@ -54,6 +54,11 @@ public class ProductService {
     public Product getProductByID(int productID) {
         return productDAO.getProductByID(productID);
     }
+    
+     //get product by provider ID
+    public ArrayList<Product> getProductByProviderID(int providerID) {
+        return productDAO.getProductByProviderID(providerID);
+    }
 
     //Update product information
     public boolean updateProduct(int productID, String productName, int providerID, 

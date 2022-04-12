@@ -29,12 +29,12 @@
         <link href="css/fnon.min.css" rel="stylesheet">
         <link href="assets/styles/custom_box.css" rel="stylesheet">
     </head>
-<%
-    ReceiptVoucher receiptVoucher = (ReceiptVoucher) request.getAttribute("receiptVoucher");
-    String[] listReceiptStatus = {"Đang xử lý", "Đã hoàn thành", "Đã hủy"};
-    Double orderTotalMoney = (Double)request.getAttribute("orderTotalMoney");
+    <%
+        ReceiptVoucher receiptVoucher = (ReceiptVoucher) request.getAttribute("receiptVoucher");
+        String[] listReceiptStatus = {"Đang xử lý", "Đã hoàn thành", "Đã hủy"};
+        Double orderTotalMoney = (Double) request.getAttribute("orderTotalMoney");
 
-%>    
+    %>    
     <body id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -77,7 +77,7 @@
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <span class="m-0 font-weight-bold text-primary">Phiếu thu</span>
-                                    <a href="<%=request.getContextPath()%>/ViewDetailOrder?id=<%=receiptVoucher.getOrderID()%>" class="order-voucher">Xem đơn hàng</a>
+                                        <a href="<%=request.getContextPath()%>/ViewDetailOrder?id=<%=receiptVoucher.getOrderID()%>" class="order-voucher">Xem đơn hàng</a>
                                     </div>
                                     <form id="form" action="<%=request.getContextPath()%>/UpdateReceipt" method="POST">
                                         <div class="card-body">
@@ -101,18 +101,18 @@
                                                             bình (VNĐ):</label>
                                                         <input type="number" value="<%=receiptVoucher.getDeposit()%>"
                                                                class="form-control border border-secondary p-2 rounded"
-                                                               <%if(receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2){%> 
+                                                               <%if (receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2) {%> 
                                                                disabled
                                                                <%}%>
                                                                id="order-deposit" name="deposit"/>
                                                         <div class="fail"></div>
                                                     </div>
-                                                    <label for="staff-order" class="col-form-label">Nhân viên nhận
-                                                        đơn:</label>
-                                                    <input type="text" readonly
-                                                           class="border border-secondary w-100 p-2 rounded" id="staff-order"
-                                                           value="<%=receiptVoucher.getStaffName()%>" />
-                                                    <br><br>
+                                                    <!--                                                    <label for="staff-order" class="col-form-label">Nhân viên nhận
+                                                                                                            đơn:</label>
+                                                                                                        <input type="text" readonly
+                                                                                                               class="border border-secondary w-100 p-2 rounded" id="staff-order"
+                                                                                                               value="<%=receiptVoucher.getStaffName()%>" />
+                                                                                                        <br><br>-->
                                                     <label for="order-date" class="col-form-label">Ngày nhận
                                                         đơn:</label>
                                                     <input type="text" readonly
@@ -120,11 +120,11 @@
                                                            value="<%=receiptVoucher.getReceiptCreatedAt()%>" />
                                                 </div>
                                                 <div class="col-8 col-sm-5">
-                                                    <label for="voucher-code" class="col-form-label">Mã phiếu thu:</label>
-                                                    <input type="text" readonly name="receipt-id"
+                                                    <!--<label for="voucher-code" class="col-form-label">Mã phiếu thu:</label>-->
+                                                    <input type="text" readonly name="receipt-id" hidden
                                                            class="border border-secondary w-100 p-2 rounded" id="voucher-code"
                                                            value="<%=receiptVoucher.getReceiptID()%>" />
-                                                    <br><br>
+<!--                                                    <br><br>-->
                                                     <label for="customer-name" class="col-form-label">Tên khách
                                                         hàng:</label>
                                                     <input type="text" readonly
@@ -135,21 +135,21 @@
                                                         thái:</label><br>
                                                     <select name="receipt-status" id="order-status"
                                                             class="border border-secondary w-100 p-2 rounded">
-                                                        <% for(int i=0; i<listReceiptStatus.length;i++){%>
-                                                        <option value="<%=i%>" <%if(i==receiptVoucher.getStatus()){%>selected<%}%>
-                                                                <%if(i<receiptVoucher.getStatus() || receiptVoucher.getStatus() == 1){%> disabled<%}%>  >
+                                                        <% for (int i = 0; i < listReceiptStatus.length; i++) {%>
+                                                        <option value="<%=i%>" <%if (i == receiptVoucher.getStatus()) {%>selected<%}%>
+                                                                <%if (i < receiptVoucher.getStatus() || receiptVoucher.getStatus() == 1) {%> disabled<%}%>  >
                                                             <%=listReceiptStatus[i].toString()%>
                                                         </option>
                                                         <%}%>
-                                                        
+
                                                     </select>
                                                     <br><br>
                                                     <label for="order-note" class="col-form-label">Ghi chú:</label>
                                                     <textarea class="border border-secondary w-100 p-2 rounded" name="note"
-                                                              <%if(receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2){%> 
-                                                               disabled
-                                                               <%}%>
-                                                        id="order-note" style="resize: none; overflow: auto;"><%=receiptVoucher.getNote()%></textarea>
+                                                              <%if (receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2) {%> 
+                                                              disabled
+                                                              <%}%>
+                                                              id="order-note" style="resize: none; overflow: auto;"><%=(receiptVoucher.getNote() != null) ? receiptVoucher.getNote() : ""%></textarea>
                                                 </div>
                                             </div>
                                             <div class="row justify-content-around">
@@ -163,7 +163,7 @@
                                                     </div>
                                                     <div style="margin-top: 2%; float: right">
                                                         <input type="submit" class="btn btn-primary submit px-3" 
-                                                               <%if(receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2){%> 
+                                                               <%if (receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2) {%> 
                                                                disabled
                                                                <%}%>
                                                                value="Lưu" onclick="confirmFunction()"></input>
@@ -206,20 +206,20 @@
 <script src="js/fnon.min.js"></script>
 <script src="js/valdation/alert.js"></script>
 <script>
-                                                    var deposit = document.getElementById('order-deposit'),
-                                                            total = document.getElementById('order-price'),
-                                                            payment = document.getElementById('cus-pay');
-                                                    const num = 0;
+                                                                   var deposit = document.getElementById('order-deposit'),
+                                                                           total = document.getElementById('order-price'),
+                                                                           payment = document.getElementById('cus-pay');
+                                                                   const num = 0;
 //                                                    payment.value = total.value
-                                                    deposit.onchange = function () {
-                                                        if (deposit.value == "") {
-                                                            var result = parseFloat(total.value) - parseFloat(num);
-                                                            payment.value = result;
-                                                        } else {
-                                                            var result = parseFloat(total.value) - parseFloat(deposit.value);
-                                                            payment.value = !isNaN(result) ? result : '';
-                                                        }
-                                                    };
+                                                                   deposit.onchange = function () {
+                                                                       if (deposit.value == "") {
+                                                                           var result = parseFloat(total.value) - parseFloat(num);
+                                                                           payment.value = result;
+                                                                       } else {
+                                                                           var result = parseFloat(total.value) - parseFloat(deposit.value);
+                                                                           payment.value = !isNaN(result) ? result : '';
+                                                                       }
+                                                                   };
 </script>
 </body>
 

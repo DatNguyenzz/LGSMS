@@ -22,9 +22,11 @@
     <!-- Custom styles for this template -->
     <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
     <link href="assets/styles/slider_status.css" rel="stylesheet">
+    <link href="assets/styles/icon_action.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="assets/styles/custom_box.css" rel="stylesheet">
+    <link href="css/fnon.min.css" rel="stylesheet">
 
 </head>
 
@@ -44,7 +46,7 @@
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
@@ -61,7 +63,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Quản lý nhà cung cấp</h1>
+                        <h1 class="h3 mb-0 text-white">Quản lý nhà cung cấp</h1>
                         <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fas fa-plus fa-sm text-white-50"></i> Thêm nhà cung cấp</button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered " role="document">
@@ -74,24 +76,28 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <form action="AddProvider" method="POST" id="form" onsubmit="confirmFunction()">
+                                        <form action="AddProvider" method="POST" id="form">
                                             <div class="row">
                                                 <div class="col-8 col-sm-12">
                                                     <div class="form-group">
                                                         <label for="provider-name" class="col-form-label">Tên nhà cung cấp:</label>
-                                                        <input type="text" class="form-control" name="provider-name" id="product-name" required oninvalid="this.setCustomValidity('Xin hãy tên nhà cung cấp.')" oninput="this.setCustomValidity('')" /></input>
+                                                        <input type="text" class="form-control" name="provider-name" id="provider-name" maxlength="50"/>
+                                                        <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="provider-address" class="col-form-label">Địa chỉ:</label>
-                                                        <input type="text" class="form-control" name="provider-address" id="provider-address" required oninvalid="this.setCustomValidity('Xin hãy địa chỉ nhà cung cấp.')" oninput="this.setCustomValidity('')" /></input>
+                                                        <input type="text" class="form-control" name="provider-address" id="provider-address" maxlength="500"/>
+                                                        <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="provider-email" class="col-form-label">Email:</label>
-                                                        <input type="text" class="form-control" name="provider-email" id="provider-email" oninvalid="InvalidMsg(this);" name="email" oninput="InvalidMsg(this);"  type="email" required="required" />
+                                                        <input type="text" class="form-control" name="provider-email" id="provider-email" name="email" maxlength="80"/>
+                                                        <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="provider-phone" class="col-form-label">Điện thoại:</label>
-                                                        <input type="text" class="form-control" name="provider-phone" id="provider-phone"  required="required" />
+                                                        <input type="text" class="form-control" name="provider-phone" id="provider-phone" maxlength="15"/>
+                                                        <p class="fail"></p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <input type="submit" class="btn btn-primary"  value="Thêm"></input>
@@ -134,10 +140,12 @@
                                             <td><%=provider.getProviderEmail()%></td>
                                             <td><%=provider.getProviderPhone()%></td>
                                             <td><%=provider.getCreatedAt()%></td>
-                                            <td><label class="switch">
-                                                <input type="checkbox" <%if(provider.isIsActive()){%>checked<%}%>>
-                                                <span class="slider round"></span>
-                                                </label>
+                                            <td>
+                                            <%if(provider.isIsActive()){%>
+                                            <p id="status_complete">Đang hoạt động</p>
+                                            <%}else{%>
+                                            <p id="status_reject">Ngừng hoạt động</p>
+                                            <%}%>
                                             </td>
                                             <td>
                                                 <a href="#editAccountModal" class="edit" onclick="handleClick('<%=provider.getProviderID()%>', '<%=provider.getProviderName()%>', '<%=provider.getProviderEmail()%>', '<%=provider.getProviderPhone()%>', '<%=provider.getProviderAddress()%>')"
@@ -168,10 +176,10 @@
     </a>
     <!-- Edit Modal HTML -->
     <div id="editAccountModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ">
 
-                <form id="form" action="EditProvider" method="post" onsubmit="confirmFunction()">
+                <form id="form1" action="EditProvider" method="post">
 
                     <div class="modal-header">
                         <h4 class="modal-title">Chỉnh sửa thông tin nhà cung cấp</h4>
@@ -185,21 +193,26 @@
                                                     readonly class="form-control-plaintext"></input>
                             
                         </div>
+                        <br>
                         <div class="form-group">
                             <label>Tên nhà cung cấp</label>
-                            <input name="providerName" id="providerName"  type="text" class="form-control" required oninvalid="this.setCustomValidity('Xin hãy tên nhà cung cấp.')" oninput="this.setCustomValidity('')" /></input>
+                            <input name="providerName" id="providerName"  type="text" class="form-control" maxlength="50"/>
+                            <p class="fail"></p>
                         </div>
                         <div class="form-group">
                             <label>Địa chỉ</label>
-                            <input name="address" id="address" type="text" class="form-control" required required oninvalid="this.setCustomValidity('Xin hãy địa chỉ nhà cung cấp.')" oninput="this.setCustomValidity('')" /></input>
+                            <input name="address" id="address" type="text" class="form-control" maxlength="500"/>
+                            <p class="fail"></p>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input name="email" id="email" type="email" class="form-control" oninvalid="InvalidMsg(this);" name="email" oninput="InvalidMsg(this);"  type="email" required="required" />
+                            <input name="email" id="email" type="email" class="form-control"name="email" maxlength="80"/>
+                            <p class="fail"></p>
                         </div>
                         <div class="form-group">
                             <label>Điện thoại</label>
-                            <input name="providerPhone" id="providerPhone" type="text" class="form-control"  oninvalid="InvalidPhone1(this);" oninput="InvalidPhone1(this);" required="required" />
+                            <input name="providerPhone" id="providerPhone" type="text" class="form-control" maxlength="15"/>
+                            <p class="fail"></p>
                         </div>
                         <div class="form-group">
                             <label>Trạng thái: </label>
@@ -210,8 +223,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-info"  value="Lưu">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
+                        <input type="submit" class="btn btn-primary"  value="Lưu">
                     </div>
                 </form>
             </div>
@@ -259,9 +272,9 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/include-html.min.js"></script>
-
-    <script src="js/confirm.js"></script>
-    <script src="js/staff_validate.js"></script>
+    <script src="js/valdation/provider_validate.js"></script>
+    <script src="js/valdation/alert.js"></script>
+    <script src="js/fnon.min.js"></script>
 </body>
 
 </html>

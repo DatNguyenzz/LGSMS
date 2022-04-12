@@ -34,22 +34,22 @@
         <!-- Page Wrapper -->
         <div id="wrapper">
 
-            <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-                <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-            </ul>
-            <!-- End of Sidebar -->
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
-                <!-- Main Content -->
-                <div id="content">
-                    <!-- Topbar -->
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                        <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
                         <!-- Topbar Navbar -->
@@ -59,7 +59,7 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Quản lý đơn hàng</h1>
+                            <h1 class="h3 mb-0 text-white">Quản lý đơn hàng</h1>
                         </div>
                         <!-- Page Heading -->
                         <!-- DataTales Example -->
@@ -100,9 +100,10 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- /.container-fluid -->
 
                 </div>
                 <!-- End of Main Content -->

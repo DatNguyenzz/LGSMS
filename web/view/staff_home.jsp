@@ -38,7 +38,7 @@
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column" style="background-image: url(/assets/image/bg4.webp); background-size: cover; ">
+        <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->

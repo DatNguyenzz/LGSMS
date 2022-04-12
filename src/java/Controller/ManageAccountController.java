@@ -61,6 +61,9 @@ public class ManageAccountController extends HttpServlet {
             case "/Register":
                 request.getRequestDispatcher("view/guest_register.jsp").forward(request, response);
                 break;
+            case "/ForgotPassword":
+                request.getRequestDispatcher("Customer_LGSMS/view/forgotPassword.jsp").forward(request, response);
+                break;
         }
     }
 
@@ -123,6 +126,41 @@ public class ManageAccountController extends HttpServlet {
                         
                     }
                
+                break;
+            }
+
+            case "/ForgotPassword":{
+                
+                String email = request.getParameter("email");
+                String password = accountService.randomPassword();
+                String subject = "Forgot password.";
+                String message = "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "\n"
+                + "<head>\n"
+                        + "<meta charset=\"UTF-8\">\n"
+                + "</head>\n"
+                + "\n"
+                + "<body>\n"
+                + "    <h3 style=\"color: blue;\">Forgot password.</h3>\n"
+                + "    <div>Full tên Name :"+accountService.getAccountByEmail( email).getFullname() +"</div>\n"
+                + "    <div>Password : "+password+"</div>\n"        
+                + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
+                + "\n"
+                + "</body>\n"
+                + "\n"
+                + "</html>";
+               
+               
+                if(accountService.isEmailExist(email)){
+                    accountService.updatePass(email, password);
+                     accountService.send(email, subject, message, "lgsmsvanhsibun@gmail.com", "vanhsibun123");
+                     
+                    response.sendRedirect(request.getContextPath()+"/login");
+
+                }else{
+                    
+                }
                 break;
             }
 

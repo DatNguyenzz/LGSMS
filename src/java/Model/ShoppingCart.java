@@ -14,16 +14,28 @@ public class ShoppingCart {
     private int productID;
     private int productQuantity;
     private int customerID;
+    private Product product;
 
     public ShoppingCart() {
     }
 
-    public ShoppingCart(int cartID, int productID, int productQuantity, int customerID) {
+    public ShoppingCart(int cartID, int productID, int productQuantity, int customerID,Product product ) {
         this.cartID = cartID;
         this.productID = productID;
         this.productQuantity = productQuantity;
         this.customerID = customerID;
+        this.product = product;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+    
+    
 
     public int getCartID() {
         return cartID;

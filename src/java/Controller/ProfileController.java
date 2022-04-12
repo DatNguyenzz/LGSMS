@@ -58,20 +58,40 @@ public class ProfileController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        String url = request.getServletPath();
         Account account = (Account) request.getSession().getAttribute("account");
-        String fullname = request.getParameter("fullname");
-        String phone = request.getParameter("phone");
-        String dob = request.getParameter("dob");
-        boolean gender = Boolean.valueOf(request.getParameter("gender"));
-        String address = request.getParameter("address");
-        String email = request.getParameter("email");
-        if (accountService.updateAccount(account.getAccountID(), fullname, phone, address, dob, gender, email, account.getRole().getRoleID())) {
-            //Update success 
-            account = accountService.getAccountByID(account.getAccountID());
-            request.getSession().setAttribute("account", account);
-            response.sendRedirect(request.getContextPath() + "/MyProfile");
-        } else {
-            //Update fail
+
+        switch (url) {
+            case "/MyProfile": {
+                String fullname = request.getParameter("fullname");
+                String phone = request.getParameter("phone");
+                String dob = request.getParameter("dob");
+                boolean gender = Boolean.valueOf(request.getParameter("gender"));
+                String address = request.getParameter("address");
+                String email = request.getParameter("email");
+                if (accountService.updateAccount(account.getAccountID(), fullname, phone, address, dob, gender, email, account.getRole().getRoleID())) {
+                    //Update success 
+                    account = accountService.getAccountByID(account.getAccountID());
+                    request.getSession().setAttribute("account", account);
+                    response.sendRedirect(request.getContextPath() + "/MyProfile");
+                } else {
+                    //Update fail
+                }
+                break;
+            }
+            case "/ChangePassword": {
+                int id = account.getAccountID();
+                String newPassword = request.getParameter("new-password");
+                String oldPassword = request.getParameter("old-password");
+
+                if (accountService.changePass(id, oldPassword, newPassword) != 0) {
+                    response.sendRedirect(request.getContextPath() + "/MyProfile");
+                } else {
+                    
+                }
+                break;
+            }
+
         }
     }
 

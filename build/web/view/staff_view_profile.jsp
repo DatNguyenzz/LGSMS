@@ -22,7 +22,7 @@
         <link href="assets/styles/slider_status.css" rel="stylesheet">
         <!-- Custom styles for this page -->
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <link href="css/my_account.css" rel="stylesheet">
+        <link href="css/my_account_1.css" rel="stylesheet">
         <link href="css/fnon.min.css" rel="stylesheet">
         <link href="assets/styles/custom_box.css" rel="stylesheet">
     </head>
@@ -41,7 +41,7 @@
             </ul>
             <!-- End of Sidebar -->
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
                 <!-- Main Content -->
                 <div id="content">
                     <!-- Topbar -->
@@ -57,12 +57,12 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-                        <div class="row">
+                        <div class="row" style="background-color: rgba(28, 100, 168, 0.521); border: 1px solid rgb(117, 105, 105); color: #f2f2f2">
 
-                            <div class="col-md-5">
+                            <div class="col-md-5" >
                                 <div class="d-flex flex-column align-items-center">
                                     <img class="rounded-circle mt-5" src="assets/image/avatar.jpg" style="border: 2px solid lightgray;">
-                                    <span class="font-weight-bold" style="color: rgb(0, 0, 0);"><%=account.getUsername()%></span>
+                                    <span class="font-weight-bold" style="color: rgb(255, 255, 255);"><%=account.getUsername()%></span>
                                     <span><input type="file" id="user_avatar" accept="image/png, image/jpeg"></span>
                                 </div>
                             </div>
@@ -74,15 +74,15 @@
                                     <form id="form" action="<%=request.getContextPath()%>/MyProfile" method="POST">
                                         <div class="row mt-3">
                                             <div class="form-group">
-                                                <label class="col-form-label">Họ và tên:</label>
+                                                <label class="col-form-label">Họ và tên*:</label>
                                                 <input type="text" class="form-control" name="fullname"
-                                                       placeholder="<%=account.getFullname()%>" value="<%=account.getFullname()%>" id="user-name" />
+                                                       placeholder="<%=account.getFullname()%>" value="<%=account.getFullname()%>" id="user-name" maxlength="50"/>
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="labels" class="col-form-label">Số điện thoại*</label>
-                                                <input type="text" class="form-control" name="phone"
-                                                       placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>" id="user-phone">
+                                                <input type="number" class="form-control" name="phone"
+                                                       placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>" id="user-phone" maxlength="15">
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
@@ -92,31 +92,36 @@
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="labels" for="gender">Giới tính*</label>
+                                                <label class="labels" for="gender">Giới tính</label>
                                                 <select name="gender" class="form-control">
                                                     <option value="true">Nam</option>
                                                     <option value="false"<%if (!account.isGender()) {%>selected<%}%>>Nữ</option>
                                                 </select>
                                             </div>
 
-                                            <br>
+                                            <br><br><br><br>
                                             <div class="form-group">
                                                 <label class="labels">Địa chỉ*</label>
                                                 <input type="text" class="form-control" name="address"
-                                                       placeholder="nhập địa chỉ của bạn" value="<%=account.getAddress()%>" id="user-address">
+                                                       placeholder="nhập địa chỉ của bạn" value="<%=account.getAddress()%>" id="user-address" maxlength="500">
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="labels">Email*</label>
                                                 <input type="text" class="form-control" name="email"
-                                                       placeholder="nhập địa chỉ email của bạn" value="<%=account.getEmail()%>" id="user-email">
+                                                       placeholder="nhập địa chỉ email của bạn" value="<%=account.getEmail()%>" id="user-email" maxlength="80">
                                                 <div class="fail"></div>
                                             </div>
-                                            <div class="col-form-label"><button class="btn btn-primary profile-button" type="submit">Lưu thông tin</button>
+                                                <div style="display: flex; justify-content: flex-end">
+                                                
+                                                <input class="btn btn-primary profile-button" type="submit"
+                                                       value="Lưu thông tin" form="form">
 
                                             </div>
                                         </div>
                                     </form>
+                                    <input class="btn btn-primary profile-button" style="margin-right: 5%;"
+                                                       type="button"data-toggle="modal" data-target="#changePassModal" value="Đổi mật khẩu">
                                 </div>
                             </div>
 
@@ -127,6 +132,63 @@
                 <!-- End of Main Content -->
             </div>
             <!-- End of Content Wrapper -->
+            <div class="modal fade" id="changePassModal" tabindex="-1" role="dialog"
+                 aria-labelledby="changePassLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="<%=request.getContextPath()%>/ChangePassword" method="POST" id="form1">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-8 col-sm-12 ">
+                                            <input type="text" class="form-control"
+                                                               id="accid" name="accid" hidden="true" value="<%=account.getAccountID()%>" />
+                                                        
+                                                <div class="form-group">
+                                                    <label for="old-password">Mật khẩu cũ:</label>
+                                                    <input type="text" id="old-password"
+                                                           name="old-password" class="form-control" maxlength="25"/>
+                                                    <div class="fail"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="new-password" class="col-form-label">Mật khẩu mới:</label>
+                                                    <input type="text" class="form-control"
+                                                           id="new-password" name="new-password" maxlength="25"/>
+                                                    <div class="fail"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="re-password" class="col-form-label">Xác nhận mật khẩu mới:</label>
+                                                    <input type="text" class="form-control"
+                                                           id="re-password" name="re-password" maxlength="25"/>
+                                                    <div class="fail"></div>
+
+                                                </div>
+                                                <br>
+                                                <!-- <br> -->
+                                                <div class="modal-footer">
+                                                    <input type="submit" class="btn btn-primary"
+                                                           value="Nhập"form="form1">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- End of Page Wrapper -->
 
@@ -154,7 +216,8 @@
         <script src="js/demo/datatables-demo.js "></script>
         <script src="js/include-html.min.js "></script>
         <script src="js/fnon.min.js"></script>
-        <script src="js/valdation/profile_validation.js"></script>
+        <script src="js/valdation/alert.js"></script>
+        <script src="js/valdation/profile_validation_1.js"></script>
     </body>
 
 </body>

@@ -99,6 +99,7 @@ public class AccountDAO {
                 Account acc = new Account();
                 acc.setAccountID(rs.getInt("account_id"));
                 acc.setUsername(rs.getString("username"));
+                acc.setPassword(rs.getString("password"));
                 Role role = new Role();
                 role.setRoleID(rs.getInt("role_id"));
                 role.setRoleName(rs.getString("role_name"));
@@ -184,7 +185,7 @@ public class AccountDAO {
                 + "VALUES(N'" + acc.getFullname() + "', \n"
                 + "'" + acc.getPhone() + "', \n"
                 + "'" + acc.getDOB() + "', \n"
-                + "'" + (acc.isGender()?1:0) + "',\n"
+                + "'" + (acc.isGender() ? 1 : 0) + "',\n"
                 + "N'" + acc.getAddress() + "', \n"
                 + "'" + acc.getEmail() + "', \n"
                 + "'" + getCurrentSQLDate() + "');\n"
@@ -217,7 +218,6 @@ public class AccountDAO {
         return result;
     }
     
-    
     //Register
     public int register(Account acc) {
         DBContext db = null;
@@ -228,7 +228,7 @@ public class AccountDAO {
         String sql
                 = "INSERT INTO Profile ( \n"
                 + " email, created_at)\n"
-                + "VALUES( \n"     
+                + "VALUES( \n"
                 + "'" + acc.getEmail() + "', \n"
                 + "'" + getCurrentSQLDate() + "');\n"
                 + "INSERT INTO Account(username, password, role_id, profile_id, is_active)\n"
@@ -236,8 +236,8 @@ public class AccountDAO {
                 + "'" + acc.getPassword() + "', " + acc.getRole().getRoleID() + ", \n"
                 + "(\n"
                 + "	SELECT p.profile_id FROM Profile p\n"
-                + "	WHERE \n"              
-                + "	 p.email = '" + acc.getEmail() + "'\n"              
+                + "	WHERE \n"
+                + "	 p.email = '" + acc.getEmail() + "'\n"
                 + "), 1)";
         try {
             db = new DBContext();
@@ -334,21 +334,21 @@ public class AccountDAO {
         }
         return listRole;
     }
-    
+
     //Get account by username
-    public Account getAccountByUsername(String username){
+    public Account getAccountByUsername(String username) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = BASE_SQL
                 + "WHERE a.username = '" + username + "'";
-        try{
+        try {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 Account acc = new Account();
                 acc.setAccountID(rs.getInt("account_id"));
                 acc.setUsername(rs.getString("username"));
@@ -374,20 +374,20 @@ public class AccountDAO {
         }
         return null;
     }
-    
-    public Account getAccountByEmail(String email){
+
+    public Account getAccountByEmail(String email) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = BASE_SQL
                 + "WHERE p.email = '" + email + "'";
-        try{
+        try {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 Account acc = new Account();
                 acc.setAccountID(rs.getInt("account_id"));
                 acc.setUsername(rs.getString("username"));
@@ -412,5 +412,95 @@ public class AccountDAO {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    //forgotPassword
+    public int updatePass(String email, String password) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        String sql
+                = "UPDATE Account\n"
+                + "SET password = '" + password + "'\n"
+                + "FROM Account a\n"
+                + "INNER JOIN Profile p ON a.profile_id = p.profile_id\n"
+                + "WHERE \n"
+                + " p.email ='" + email + "'";
+
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
+
+    // kiểm tra email có tồn tại ko
+    public boolean isEmailExist(String email) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = BASE_SQL
+                + "WHERE p.email = '" + email + "'\n"
+                + "AND a.is_active = 1";
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                return false;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return true;
+    }
+
+    //Update account information
+    public int updateAccountPassword(int id, String password) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        String sql
+                = "UPDATE Account\n"
+                + "SET password = '" + password + "'\n"
+                + "WHERE account_id = " + id;
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
     }
 }

@@ -5,70 +5,71 @@
 <!DOCTYPE html>
 <html lang="vi">
 
-    <head>
+<head>
 
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <title>LGS - Admin</title>
+    <title>LGS - Admin</title>
 
-        <!-- Custom fonts for this template -->
-        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-        <!-- Custom styles for this template -->
-        <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
-        <link href="css/view_list_account.css" rel="stylesheet">
-        <!-- Custom styles for this page -->
-        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <link href="assets/styles/custom_box.css" rel="stylesheet">
-    </head>
+    <!-- Custom styles for this template -->
+    <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/view_list_account.css" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="assets/styles/custom_box.css" rel="stylesheet">
+
+</head>
+
+
+<body id="page-top">
+    
+    
     <%
         Orders order = (Orders) request.getAttribute("orderInfor");
         ArrayList<OrderDetail> listOrderDetail = (ArrayList<OrderDetail>) request.getAttribute("listOrderDetail");
         String[] listOrderStatus = {"Đang xử lý", "Đã nhận đơn", "Đang vận chuyển", "Hoàn thành", "Đơn bị hủy"};
     %>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
-    <body id="page-top">
+                    <!-- Topbar Navbar -->
+                    <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
+                </nav>
+                <!-- End of Topbar -->
 
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-
-        <!-- Page Wrapper -->
-        <div id="wrapper">
-            <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-                <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-            </ul>
-            <!-- End of Sidebar -->
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
-                <!-- Main Content -->
-                <div id="content">
-                    <!-- Topbar -->
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                        <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-
-                        <!-- Topbar Navbar -->
-                        <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
-                    </nav>
-                    <!-- End of Topbar -->
-
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
-
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Chi tiết đơn hàng</h1>
-                        </div>
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-white">Chi tiết đơn hàng</h1>
+                    </div>
 
                         <!-- DataTales Example -->
                         <div class="row" style="width: 100%;">
@@ -98,8 +99,8 @@
                                                         <label for="order-date" class="col-form-label">Ngày tạo
                                                             đơn:</label>
                                                         <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-date"><%=order.getCreatedAt()%></label>
-                                                        <label for="cus-note" class="col-form-label">Ghi chú:</label>
-                                                        <textarea class="border border-secondary w-100 p-2 rounded" readonly class="form-control-plaintext" id="order-note" name="order-note1" style="resize: none; overflow: auto;"><%=order.getOrderNote1()%></textarea>
+                                                        <label for="cus-note" class="col-form-label">Ghi chú khách hàng:</label>
+                                                        <textarea class="border border-secondary w-100 p-2 rounded" readonly class="form-control-plaintext" id="order-note" name="order-note1" style="resize: none; overflow: auto;"><%=(order.getOrderNote1()!=null)?order.getOrderNote1():""%></textarea>
 
                                                     </div>
                                                     <div class="col-8 col-sm-5">
@@ -129,13 +130,12 @@
                                                                 <%}%>
 
                                                             </select>
-                                                            <label for="order-note" class="col-form-label">Nhân viên ghi
-                                                                chú:</label>
+                                                            <label for="order-note" class="col-form-label">Ghi chú nhân viên:</label>
                                                             <textarea class="border border-secondary w-100 p-2 rounded" 
                                                                       <%if(order.getOrderStatus()== 3 || order.getOrderStatus() == 4){%> 
                                                                disabled
                                                                <%}%>
-                                                                      id="order-note" name="order-note2" style="resize: none; overflow: auto;"><%=order.getOrderNote2()%></textarea>
+                                                                      id="order-note" name="order-note2" style="resize: none; overflow: auto;"><%=(order.getOrderNote2()!=null)?order.getOrderNote2():""%></textarea>
                                                             <div style="margin-top: 3%; float: right">
                                                                 <input type="submit" class="btn btn-primary submit px-3" value="Lưu"
                                                                        <%if(order.getOrderStatus()== 3 || order.getOrderStatus() == 4){%> 
