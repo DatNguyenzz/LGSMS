@@ -258,7 +258,7 @@
                                                         </div>
                                                         <br>
                                                         <div class="form-group">
-                                                            <input type="checkbox" onclick="return false;" checked id="importTypeInfo" name="importTypeInfo"
+                                                            <input type="checkbox" checked id="importTypeInfo" name="importTypeInfo"
                                                                    value="customer">
                                                             <label for="import-type" class="col-form-label">Nhập hàng từ
                                                                 khách</label>
@@ -311,6 +311,8 @@
         <script src="js/valdation/import_validate.js"></script>
         <script src="js/valdation/alert.js"></script>
         <script src="js/fnon.min.js"></script>
+        <script>$("#import-type-info").click(function() { return false; });
+        </script>
     </body>
 
 </html>

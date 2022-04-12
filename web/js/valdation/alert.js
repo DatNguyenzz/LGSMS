@@ -27,7 +27,7 @@ function alertFunction() {
             if (result === true) {
                 document.getElementById("form").submit();
 //                document.getElementById("form1").submit();
-                sessionStorage.setItem('alert', true);
+//                sessionStorage.setItem('alert', true);
             } else {
                 Fnon.Hint.Dark('Đã hủy thao tác', {
                     fontFamily:'"Quicksand", sans-serif',
@@ -83,7 +83,7 @@ function alertFunction1() {
             if (result === true) {
 //                document.getElementById("form").submit();
                 document.getElementById("form1").submit();
-                sessionStorage.setItem('alert', true);
+//                sessionStorage.setItem('alert', true);
             } else {
                 Fnon.Hint.Dark('Đã hủy thao tác', {
                     fontFamily:'"Quicksand", sans-serif',
@@ -109,31 +109,31 @@ function alertFunction1() {
         }
     });
 }
-$(function () {
-    if (sessionStorage.getItem('alert') !== "false") {
-        Fnon.Alert.Dark({
-            message: 'Đã lưu thành công',
-            title: 'Xác nhận',
-            titleBackground: '#4e73df',
-            btnOkColor: '#fff',
-            btnOkBackground: '#4e73df',
-            color: '#2b2b2b',
-            background: 'rgba(0, 0, 0, 0.1)',
-            width: 'nl',
-            animation: 'slide-top',
-
-            btnOkText: 'Ok',
-            btnOkColor: '#fff',
-            btnOkBackground: '#4e73df',
-            btnOkShadow: 'rgba(0, 0, 0, 0.5)',
-            btnOkBorderColor: '#d4d4d4',
-            callback: () => {
-            }
-        });
-        sessionStorage.setItem('alert', false);
-    }
-}
-);
+//$(function () {
+//    if (sessionStorage.getItem('alert') !== "false") {
+//        Fnon.Alert.Dark({
+//            message: 'Đã lưu thành công',
+//            title: 'Xác nhận',
+//            titleBackground: '#4e73df',
+//            btnOkColor: '#fff',
+//            btnOkBackground: '#4e73df',
+//            color: '#2b2b2b',
+//            background: 'rgba(0, 0, 0, 0.1)',
+//            width: 'nl',
+//            animation: 'slide-top',
+//
+//            btnOkText: 'Ok',
+//            btnOkColor: '#fff',
+//            btnOkBackground: '#4e73df',
+//            btnOkShadow: 'rgba(0, 0, 0, 0.5)',
+//            btnOkBorderColor: '#d4d4d4',
+//            callback: () => {
+//            }
+//        });
+//        sessionStorage.setItem('alert', false);
+//    }
+//}
+//);
 
 function confirmFunction() {
     alertFunction();
