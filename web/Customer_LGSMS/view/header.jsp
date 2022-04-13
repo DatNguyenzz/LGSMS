@@ -27,9 +27,9 @@
                             </form>
                             </div>
                             <ol>
-                                <li><a href="#" class="fas fa-home">trang chủ</a></li>
-                                <li><a href="Product">Sản phẩm</a></li>
-                                <li><a href="ShoppingCart" class="fas fa-shopping-cart">Giỏ hàng </a></li>
+                                <li><a href="<%=request.getContextPath()%>/" class="fas fa-home">trang chủ</a></li>
+                                <li><a href="<%=request.getContextPath()%>/Product">Sản phẩm</a></li>
+                                <li><a href="<%=request.getContextPath()%>/ShoppingCart" class="fas fa-shopping-cart">Giỏ hàng </a></li>
                                 <li><a href="#">Tài khoản</a></li>
                                 <li>
                                     <div class="dropdown">
@@ -38,9 +38,9 @@
 
                                             <a href="#">Tài Khoản Của Tôi</a>
 
-                                            <a href="#">Đơn mua</a>
+                                            <a href="<%=request.getContextPath()%>/TrackOrder">Đơn mua</a>
                                             <hr>
-                                            <a href="#">Đăng xuất</a>
+                                            <a href="<%=request.getContextPath()%>/logout">Đăng xuất</a>
                                         </div>
                                     </div>
                                 </li>

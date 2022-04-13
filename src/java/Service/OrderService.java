@@ -74,5 +74,8 @@ public class OrderService {
         order.setOrderStatus(orderStatus);
         return (orderDao.updateOrderStatus(order) != 0);
     }
-
+    
+    public ArrayList<Orders> getListOrdersByCusId(int id){
+        return orderDao.getListOrderByCusID(id);
+    }
 }
