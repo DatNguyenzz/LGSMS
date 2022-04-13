@@ -8,9 +8,9 @@ package Controller;
 import Model.Account;
 import Model.ShoppingCart;
 import Service.AccountService;
+import Service.OrderService;
 import Service.ShoppingCartService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CheckOutController extends HttpServlet {
 
-    AccountService accountService = new AccountService();
+    OrderService orderService = new OrderService();
     ShoppingCartService cartService = new ShoppingCartService();
 
     /**
@@ -58,10 +58,9 @@ public class CheckOutController extends HttpServlet {
         switch (url) {
             case "/CheckOut":
                 Account account = (Account) request.getSession().getAttribute("account");
-                ArrayList<ShoppingCart> listCart = new ArrayList<>();
                 int customerID = account.getAccountID();
-                listCart = cartService.getCartByCusID(customerID);
-                Double total = cartService.totalPriceInCart(listCart);
+                ArrayList<ShoppingCart> listCart = cartService.getCartByCusID(customerID);
+                double total = cartService.totalPriceInCart(listCart);
 
                 request.setAttribute("listCart", listCart);
                 request.setAttribute("total", total);
@@ -91,16 +90,13 @@ public class CheckOutController extends HttpServlet {
         String phone = request.getParameter("phone");
 
         String address = request.getParameter("address");
-        String email = request.getParameter("email");
+        String note = request.getParameter("note");
 
-//        if (accountService.updateAccountForCheckOut(account.getAccountID(), fullname, phone, address, email, account.getRole().getRoleID())) {
-//            //Update success 
-//            account = accountService.getAccountByID(account.getAccountID());
-//            request.getSession().setAttribute("account", account);
-//            response.sendRedirect(request.getContextPath() + "/CheckOut");
-//        } else {
-//            //Update fail
-//        }
+        if(orderService.createNewOrder(account.getAccountID(), fullname, phone, address, note)){
+            request.getRequestDispatcher("success");
+        }else{
+            
+        }
     }
 
     /**

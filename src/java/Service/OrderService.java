@@ -8,6 +8,7 @@ package Service;
 import DAO.OrderDAO;
 import Model.OrderDetail;
 import Model.Orders;
+import Model.ShoppingCart;
 import java.util.ArrayList;
 
 /**
@@ -73,6 +74,49 @@ public class OrderService {
         order.setOrderNote2(note2);
         order.setOrderStatus(orderStatus);
         return (orderDao.updateOrderStatus(order) != 0);
+    }
+
+    //Customer create new order
+    public boolean createNewOrder(int accountID, String fullname, String phone, String address, String note) {
+        ShoppingCartService cartService = new ShoppingCartService();
+        ArrayList<ShoppingCart> listCartByCusID = cartService.getCartByCusID(accountID);
+        Orders order = new Orders();
+        order.setCustomerID(accountID);
+        order.setCustomerName(fullname);
+        order.setCustomerPhone(phone);
+        order.setCustomerAddress(address);
+        order.setOrderNote1(note);
+        order.setOrderCode(genOrderCode());
+        order.setOrderStatus(0);
+        ArrayList<OrderDetail> listOrderDetail = new ArrayList<>();
+        for(ShoppingCart cart : listCartByCusID){
+            OrderDetail od = new OrderDetail();
+            od.setOrderID(accountID);
+            od.setProductID(cart.getProductID());
+            od.setProductQuantity(cart.getProductQuantity());
+            od.setPrice(cart.getProduct().getProductPrice() * cart.getProductQuantity());
+            od.setProductName(cart.getProduct().getProductName());
+            listOrderDetail.add(od);
+        }
+        order.setOrderDetail(listOrderDetail);
+        return (orderDao.createNewOrder(order) != 0);
+        
+    }
+    
+    //GENERATE ORDERCODE
+    public String genOrderCode(){
+        String[] stringDate = orderDao.getCurrentSQLDate().toString().split("-");
+        String code=  "DH" + stringDate[2] + stringDate[1] + stringDate[0];
+        for(int i=0;;i++){
+            Orders o = getOrderByOrderCode(code + i);
+            if(o == null)
+                return code + i;
+        }
+    }
+    
+    //Get order by order code
+    public Orders getOrderByOrderCode(String code){
+        return orderDao.getOrderByOrderCode(code);
     }
 
 }

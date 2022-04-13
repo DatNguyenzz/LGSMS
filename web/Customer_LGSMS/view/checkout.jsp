@@ -41,8 +41,6 @@
                             <input type="text" id="fname" name="name" placeholder="<%=account.getFullname()%>"  value="<%=account.getFullname()%>">
                             <label for="phone"><i class="fa fa-phone"></i> Điện thoại*</label>
                             <input type="text" id="phone" name="phone" placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>">
-                            <label for="email"><i class="fa fa-envelope"></i> Email<small>(tùy chọn)</small></label>
-                            <input type="text" id="email" name="email" value="<%=account.getEmail()%>" placeholder="<%=account.getEmail()%>">
                             <label for="adr"><i class="fa fa-address-card"></i> Địa chỉ*</label>
                             <input type="text" id="adr" name="address" placeholder="<%=account.getAddress()%>" value="<%=account.getAddress()%>">
                             <label for="note"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ghi chú<small>(tùy chọn)</small></label>

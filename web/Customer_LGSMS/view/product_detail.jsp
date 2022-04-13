@@ -110,7 +110,7 @@
 
     </div>
     <!-- footer-->
-    <div include-html="Customer_LGSMS//view/footer.jsp" id="footer"></div>
+    <div include-html="Customer_LGSMS/view/footer.jsp" id="footer"></div>
     <!-- footer-->
 
     <!-- footer-->

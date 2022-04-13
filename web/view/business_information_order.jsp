@@ -107,7 +107,9 @@
                                                         <label for="customer-name" class="col-form-label">Tên khách
                                                             hàng:</label>
                                                         <label type="text" class="border border-secondary w-100 p-2 rounded" id="customer-name"><%=order.getCustomerName()%></label>
-
+                                                        <label for="order-address" class="col-form-label">Số điện thoại khách hàng:</label>
+                                                        <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-address"><%=order.getCustomerPhone()%></label>
+                                                        
                                                         <label for="order-address" class="col-form-label">Địa chỉ khách
                                                             hàng:</label>
                                                         <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-address"><%=order.getCustomerAddress()%></label>

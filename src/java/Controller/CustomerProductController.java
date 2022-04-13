@@ -79,15 +79,15 @@ public class CustomerProductController extends HttpServlet {
                 Account account = (Account) request.getSession().getAttribute("account");
                 ShoppingCartService cartService = new ShoppingCartService();
                 ShoppingCart shoppingCart = new ShoppingCart();
-                
+
                 int productId = Integer.parseInt(request.getParameter("productID"));
                 int customerID = account.getAccountID();
-            if (cartService.addProduct(productId, customerID)) {
+                if (cartService.addProduct(productId, customerID)) {
 
-                        response.sendRedirect(request.getContextPath() + "/Product");
-                    } else {
-                       
-                    }
+                    response.sendRedirect(request.getContextPath() + "/Product");
+                } else {
+
+                }
 
                 break;
 
@@ -95,15 +95,14 @@ public class CustomerProductController extends HttpServlet {
                 int productID = Integer.parseInt(request.getParameter("productID"));
 //                int providerID= Integer.parseInt(request.getParameter("providerID"));
                 Product product = productService.getProductByID(productID);
-                
-                
-                ArrayList<Product> listProductOfProvider ;
+
+                ArrayList<Product> listProductOfProvider;
                 int providerID = product.getProviderID();
                 listProductOfProvider = productService.getProductByProviderID(providerID);
-                
+
                 request.setAttribute("product", product);
                 request.setAttribute("productByProvider", listProductOfProvider);
-                
+
                 request.getRequestDispatcher("Customer_LGSMS/view/product_detail.jsp").forward(request, response);
                 break;
             default:

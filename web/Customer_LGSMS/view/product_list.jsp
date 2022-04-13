@@ -31,7 +31,7 @@
                 <h2 class="">Tất cả sản phẩm
                     <hr>
                 </h2>
-                <form action="Product" method="get" class="float-right">
+                <form action="<%=request.getContextPath()%>/Product" method="GET" class="float-right">
                     <label for="filter">Bộ lọc <i class="bi bi-funnel-fill"></i>:</label>
                     <select name="filter" id="filters">
                         <option value="0">Tất cả sản phẩm</option>
@@ -84,7 +84,7 @@
 
         </div>
     <!-- footer-->
-    <div include-html="Customer_LGSMS//view/footer.jsp" id="footer"></div>
+    <div include-html="Customer_LGSMS/view/footer.jsp" id="footer"></div>
     <!-- footer-->
 
     <!-- footer-->

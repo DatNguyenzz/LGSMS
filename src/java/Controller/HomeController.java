@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dat Nguyen
  */
-public class StaffHomeController extends HttpServlet {
+public class HomeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +38,15 @@ public class StaffHomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = request.getServletPath();
+        switch(url){
+            case "/Home": //Home page
+                request.getRequestDispatcher("Customer_LGSMS/view/home.jsp").forward(request, response);
+                break;
+            case "/StaffHome":
+                request.getRequestDispatcher("view/staff_home.jsp").forward(request, response);
+                break;
+        }
     }
 
     /**

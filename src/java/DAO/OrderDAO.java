@@ -135,7 +135,7 @@ public class OrderDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql 
+        String sql
                 = "SELECT od.order_detail_id, od.order_id, od.price, od.product_id, od.product_quantity,\n"
                 + "(SELECT p.product_name FROM Product p WHERE p.product_id = od.product_id) AS product_name\n"
                 + "FROM Order_Detail od\n"
@@ -200,7 +200,6 @@ public class OrderDAO {
                 order.setCustomerPhone(rs.getString("phone"));
                 order.setCustomerAddress(rs.getString("address"));
 
-//                order.setOrderDetail(getOrderDetailByOrderId(rs.getInt("order_id")));
                 return order;
 
             }
@@ -357,5 +356,99 @@ public class OrderDAO {
             }
         }
         return listOrder;
+    }
+
+    //Customer create new order
+    public int createNewOrder(Orders order) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql
+                = "BEGIN TRANSACTION;\n"
+                + "\n"
+                + "INSERT INTO Orders (order_code, customer_id, customer_name, \n"
+                + "phone, address, created_at, order_status, order_note_1)\n"
+                + "VALUES ('" + order.getOrderCode() + "',\n"
+                + order.getCustomerID() + ",\n"
+                + "N'" + order.getCustomerName() + "',\n"
+                + "'" + order.getCustomerPhone() + "',\n"
+                + "N'" + order.getCustomerAddress() + "',\n"
+                + "'" + getCurrentSQLDate() + "',\n"
+                + "0,N'" + order.getOrderNote1() + "');\n"
+                + "\n";
+        ArrayList<OrderDetail> listOrderDetails = (ArrayList<OrderDetail>) order.getOrderDetail();
+        for (OrderDetail od : listOrderDetails) {
+            sql += "INSERT INTO Order_Detail (order_id, product_id, product_quantity, price)\n"
+                    + "VALUES (\n"
+                    + "(SELECT order_id FROM Orders WHERE order_code = '" + order.getOrderCode() + "'),\n"
+                    + od.getProductID() +", " + od.getProductQuantity() + ", "
+                    + od.getPrice() + ");\n"
+                    + "\n";
+        }
+        sql += "COMMIT;";
+        int result = 0;
+        try{
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
+
+    public Orders getOrderByOrderCode(String code) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = BASE_SQL
+                + "WHERE o.order_code= '" + code + "'";
+
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Orders order = new Orders();
+                order.setOrderID(rs.getInt("order_id"));
+                order.setOrderCode(rs.getString("order_code"));
+                order.setCreatedAt(rs.getDate("created_at"));
+                order.setUpdatedAt(rs.getDate("updated_at"));
+                order.setCustomerName(rs.getString("customer_name"));
+                order.setCustomerID(rs.getInt("customer_id"));
+                order.setOrderStatus(rs.getInt("order_status"));
+                order.setBussinessStaffID(rs.getInt("business_staff_id"));
+                order.setOrderNote1(rs.getString("order_note_1"));
+                order.setOrderNote2(rs.getString("order_note_2"));
+
+                order.setTotalPrice(rs.getDouble("total_money"));
+                order.setCustomerPhone(rs.getString("phone"));
+                order.setCustomerAddress(rs.getString("address"));
+
+                return order;
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
     }
 }

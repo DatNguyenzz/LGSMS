@@ -84,7 +84,7 @@
                                     <tbody>
                                         <%for(Orders order: listOrder ){%>
                                         <tr>
-                                            <td><%=order.getOrderID()%></td>
+                                            <td><%=order.getOrderCode()%></td>
                                             <td><%=order.getCreatedAt()%></td>
                                             <td><%=order.getCustomerName()%></td>
                                             <td>

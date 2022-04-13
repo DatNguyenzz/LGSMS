@@ -37,10 +37,10 @@
         <servlet-class>Controller.ProfileController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StaffHomeController</servlet-name>
-        <servlet-class>Controller.StaffHomeController</servlet-class>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>Controller.HomeController</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>ShoppingCartController</servlet-name>
         <servlet-class>Controller.ShoppingCartController</servlet-class>
     </servlet>
@@ -104,10 +104,11 @@
         <url-pattern>/ChangePassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>StaffHomeController</servlet-name>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/Home</url-pattern>
         <url-pattern>/StaffHome</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ShoppingCartController</servlet-name>
         <url-pattern>/ShoppingCart</url-pattern>
         <url-pattern>/EditQuantity</url-pattern>
