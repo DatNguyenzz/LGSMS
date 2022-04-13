@@ -48,6 +48,14 @@
         <servlet-name>CheckOutController</servlet-name>
         <servlet-class>Controller.CheckOutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TrackOrderController</servlet-name>
+        <servlet-class>Controller.TrackOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageReportController</servlet-name>
+        <servlet-class>Controller.ManageReportController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageProductController</servlet-name>
         <url-pattern>/ManageProduct</url-pattern>
@@ -117,6 +125,15 @@
     <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>
         <url-pattern>/CheckOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrackOrderController</servlet-name>
+        <url-pattern>/TrackOrder</url-pattern>
+        <url-pattern>/OrderDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageReportController</servlet-name>
+        <url-pattern>/ManageReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

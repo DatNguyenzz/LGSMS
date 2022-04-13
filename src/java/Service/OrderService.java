@@ -119,4 +119,8 @@ public class OrderService {
         return orderDao.getOrderByOrderCode(code);
     }
 
+    
+    public ArrayList<Orders> getListOrdersByCusId(int id){
+        return orderDao.getListOrderByCusID(id);
+    }
 }

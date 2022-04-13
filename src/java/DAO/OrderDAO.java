@@ -26,13 +26,23 @@ public class OrderDAO {
             = "SELECT o.order_id, o.order_code, o.customer_id, \n"
             + "o.order_status, o.created_at, o.customer_name, \n"
             + "o.order_note_1, o.order_note_2, o.business_staff_id,\n"
-            + "o.updated_at, o.phone, o.address,\n"
-            //            + "od.order_detail_id, od.product_id, od.product_quantity, od.price, p.product_id, p.product_name,p.product_price,\n"
+            + "o.updated_at,o.phone,o.address,\n"
+            + "od.order_detail_id, od.product_id, od.product_quantity, od.price, p.product_id, p.product_name,p.product_price,\n"
             + "(SELECT SUM(Price) FROM Order_Detail od\n"
             + "WHERE od.order_id = o.order_id) AS total_money\n"
-            + "FROM Orders o\n" //            + "INNER JOIN Order_Detail od ON o.order_id = od.order_id\n"
-            //            + "INNER JOIN Product p ON od.product_id = p.product_id \n"
-            ;
+            + "FROM Orders o\n"
+            + "INNER JOIN Order_Detail od ON o.order_id = od.order_id\n"
+            + "INNER JOIN Product p ON od.product_id = p.product_id \n";
+//            = "SELECT o.order_id, o.order_code, o.customer_id, \n"
+//            + "o.order_status, o.created_at, o.customer_name, \n"
+//            + "o.order_note_1, o.order_note_2, o.business_staff_id,\n"
+//            + "o.updated_at, o.phone, o.address,\n"
+//            //            + "od.order_detail_id, od.product_id, od.product_quantity, od.price, p.product_id, p.product_name,p.product_price,\n"
+//            + "(SELECT SUM(Price) FROM Order_Detail od\n"
+//            + "WHERE od.order_id = o.order_id) AS total_money\n"
+//            + "FROM Orders o\n" //            + "INNER JOIN Order_Detail od ON o.order_id = od.order_id\n"
+//            //            + "INNER JOIN Product p ON od.product_id = p.product_id \n"
+//            ;
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();
@@ -357,7 +367,63 @@ public class OrderDAO {
         }
         return listOrder;
     }
+    
+    //Get list all order create by customer id
+    public ArrayList<Orders> getListOrderByCusID(int id) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql
+                = BASE_SQL
+                + "WHERE o.customer_id =" + id;
+        ArrayList<Orders> listOrder = new ArrayList<>();
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Orders order = new Orders();
+                order.setOrderID(rs.getInt("order_id"));
+                order.setOrderCode(rs.getString("order_code"));
+                order.setCreatedAt(rs.getDate("created_at"));
+                order.setCustomerName(rs.getString("customer_name"));
+                order.setCustomerID(rs.getInt("customer_id"));
+                order.setOrderStatus(rs.getInt("order_status"));
+                order.setBussinessStaffID(rs.getInt("business_staff_id"));
+                order.setOrderNote1(rs.getString("order_note_1"));
+                order.setOrderNote2(rs.getString("order_note_2"));
+                order.setTotalPrice(rs.getDouble("total_money"));
 
+                ArrayList<OrderDetail> listOrderDetail = new ArrayList<>();
+                OrderDetail od = new OrderDetail();
+                od.setOrderDetailID(rs.getInt("order_detail_id"));
+                od.setOrderID(rs.getInt("order_id"));
+                od.setPrice(rs.getDouble("price"));
+                od.setProductID(rs.getInt("product_id"));
+                od.setProductName(rs.getString("product_name"));
+                od.setProductQuantity(rs.getInt("product_quantity"));
+
+                listOrderDetail.add(od);
+
+                order.setOrderDetail(listOrderDetail);
+
+                listOrder.add(order);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return listOrder;
+    }
+    
     //Customer create new order
     public int createNewOrder(Orders order) {
         DBContext db = null;
