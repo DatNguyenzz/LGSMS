@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Model.Account"%>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -15,28 +16,32 @@
 
         <link href="Customer_LGSMS/css/header.css" rel="stylesheet" type="text/css">
     </head>
-
+    <%
+        Account account = (Account) request.getSession().getAttribute("account");
+    %>
     <body>
         <input type="checkbox" id="check">
         <nav>
             <div class="icon">LGS <b style="color: red;">M</b>S</div>
             <div class="search_box">
-                <form action="Product" method="post">
+                <form action="<%=request.getContextPath()%>/Product" method="post">
                     <input type="search" name="searchName" placeholder="Nhập từ khóa....">
                     <button  type="submit" class="button-search"><i class="fas fa-search"></i></<button>
                             </form>
                             </div>
                             <ol>
-                                <li><a href="<%=request.getContextPath()%>/" class="fas fa-home">trang chủ</a></li>
+                                <li><a href="<%=request.getContextPath()%>/Home" class="fas fa-home">Trang chủ</a></li>
                                 <li><a href="<%=request.getContextPath()%>/Product">Sản phẩm</a></li>
                                 <li><a href="<%=request.getContextPath()%>/ShoppingCart" class="fas fa-shopping-cart">Giỏ hàng </a></li>
-                                <li><a href="#">Tài khoản</a></li>
+                                <%if(account == null){%>
+                                <li><a href="<%=request.getContextPath()%>/login">Đăng nhập</a></li>
+                                <%}else{%>
                                 <li>
                                     <div class="dropdown">
                                         <a href="#" class="dropbtn fas fa-user-alt" onclick="toggleMenu()"></a>
                                         <div id="myDropdown" class="dropdown-content">
 
-                                            <a href="#">Tài Khoản Của Tôi</a>
+                                            <a href="<%=request.getContextPath()%>/MyProfile">Tài Khoản Của Tôi</a>
 
                                             <a href="<%=request.getContextPath()%>/TrackOrder">Đơn mua</a>
                                             <hr>
@@ -44,6 +49,7 @@
                                         </div>
                                     </div>
                                 </li>
+                                <%}%>
                             </ol>
                             <label for="check" class="bar">
                                 <span class="fa fa-bars" id="bars"></span>
