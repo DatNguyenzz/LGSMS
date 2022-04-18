@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.ReceiptVoucher"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -28,6 +29,7 @@
     </head>
     <%
         ArrayList<ReceiptVoucher> listReceiptVoucher = (ArrayList<ReceiptVoucher>) request.getAttribute("listReceiptVoucher");
+        FormatNumber formatNumber = new FormatNumber();
     %>
     <body id="page-top">
 
@@ -87,7 +89,7 @@
                                                 <td><%=rv.getReceiptID()%></td>
                                                 <td><%=rv.getReceiptCreatedAt()%></td>
                                                 <td><%=rv.getCustomerName()%></td>
-                                                <td><%=rv.getTotalMoney()%></td>
+                                                <td><%=formatNumber.formatDoubleToVND(rv.getTotalMoney())%></td>
                                                 <td><%=rv.getStaffName()%></td>
                                                 <td>
                                                     <%switch (rv.getStatus()) {

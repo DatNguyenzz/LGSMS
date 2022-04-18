@@ -250,7 +250,7 @@ const isValidPhone = phone => {
 };
 //Điều kiện mật khẩu
 const isValidPass = password => {
-    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
+    const re = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
     return re.test(String(password));
 };
 //Điều kiện tên đăng nhập

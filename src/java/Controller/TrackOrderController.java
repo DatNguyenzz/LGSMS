@@ -70,13 +70,15 @@ public class TrackOrderController extends HttpServlet {
             case "/OrderDetail":
                 int orderID = Integer.parseInt(request.getParameter("orderID"));
                 Orders order = orderService.getOrderByID(orderID);
-                ReceiptVoucher receiptVoucher = receiptVoucherService.getReceiptVoucherByOrderID(orderID);
-
+                if(order.getOrderStatus() > 0){
+                    ReceiptVoucher receiptVoucher = receiptVoucherService.getReceiptVoucherByOrderID(orderID);
+                    request.setAttribute("receiptVoucher", receiptVoucher);
+                }
                 ArrayList<OrderDetail> listOrderDetail = orderService.getOrderDetailByOrderID(orderID);
                 request.setAttribute("listOrderDetail", listOrderDetail);
                 request.setAttribute("order", order);
 
-                request.setAttribute("receiptVoucher", receiptVoucher);
+                
                 request.getRequestDispatcher("Customer_LGSMS/view/order_detail.jsp").forward(request, response);
 
                 break;

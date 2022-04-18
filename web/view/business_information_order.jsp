@@ -1,6 +1,7 @@
 <%@page import="Model.OrderDetail"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Orders"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -36,6 +37,7 @@
         Orders order = (Orders) request.getAttribute("orderInfor");
         ArrayList<OrderDetail> listOrderDetail = (ArrayList<OrderDetail>) request.getAttribute("listOrderDetail");
         String[] listOrderStatus = {"Đang xử lý", "Đã nhận đơn", "Đang vận chuyển", "Hoàn thành", "Đơn bị hủy"};
+        FormatNumber formatNumber = new FormatNumber();
     %>
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -91,7 +93,7 @@
                                                         <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-code" ><%=order.getOrderCode()%></label>
                                                         <label for="order-price" class="col-form-label">Tổng giá
                                                             tiền:</label>
-                                                        <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-price"><%=order.getTotalPrice()%></label>
+                                                        <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-price"><%=formatNumber.formatDoubleToVND(order.getTotalPrice())%></label>
 <!--                                                        <label for="staff-order" class="col-form-label">Nhân viên nhận
                                                             đơn:</label>
                                                         <label type="text" class="border border-secondary w-100 p-2 rounded" id="staff-order">Truong
@@ -166,15 +168,15 @@
                                                         <td><%=od.getProductID()%></td>
                                                         <td><%=od.getProductName()%></td>
                                                         <td><%=od.getProductQuantity()%></td>
-                                                        <td><%=od.getPrice()/od.getProductQuantity()%></td>
-                                                        <td><%=od.getPrice()%></td>
+                                                        <td><%=formatNumber.formatDoubleToVND(od.getPrice()/od.getProductQuantity())%></td>
+                                                        <td><%=formatNumber.formatDoubleToVND(od.getPrice())%></td>
                                                         <%sum+=od.getPrice();%>
                                                     </tr>
                                                     <%}%>
                                                 <tfoot>
                                                     <tr>
                                                         <td colSpan="4" style="text-align: right;"><b>Tổng thành tiền:</b></td>
-                                                        <td><%=sum%></td>
+                                                        <td><%=formatNumber.formatDoubleToVND(sum)%></td>
                                                     </tr>
                                                 </tfoot>
                                                 </tbody>

@@ -371,5 +371,31 @@ public class ShoppingCartDAO {
         }
         return result;
     }
+
+    public int clearCartForCusByID(int accountID) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        String sql
+                = "DELETE FROM Shopping_Cart\n"
+                + "WHERE customer_id = " + accountID;
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(ShoppingCartDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(ShoppingCartDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
      
 }

@@ -1,6 +1,7 @@
 <%@page import="Model.Orders"%>
 <%@page import="Model.OrderDetail"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -22,10 +23,8 @@
     <body>
 
         <%
-    
-    ArrayList<Orders> listOrder = (ArrayList<Orders>)request.getAttribute("listOrder");
-
-
+            ArrayList<Orders> listOrder = (ArrayList<Orders>)request.getAttribute("listOrder");
+            FormatNumber  formatNumber = new FormatNumber();
         %>
         <div class="header">
             <div include-html="Customer_LGSMS/view/header.jsp" id="header"></div>
@@ -70,16 +69,15 @@
                             <img src="Customer_LGSMS/images/buy-1.jpg" alt="work">
                         </div>
                         <div class="item3">
-                            <h3><%=order.getOrderDetail().get(0).getProductName()%></h3>
-                            <p>Product Brand</p>
-                            <small><%=order.getOrderDetail().get(0).getProductQuantity()%></small>
+                            <h3>Sản phẩm: <%=order.getOrderDetail().get(0).getProductName()%></h3>
+                            <p>Số lượng: <%=order.getOrderDetail().get(0).getProductQuantity()%></p>
                         </div>
                         <div class="item4">
-                            <p><%=order.getOrderDetail().get(0).getProductQuantity()*order.getOrderDetail().get(0).getPrice()%></p>
+                            <p><%=formatNumber.formatDoubleToVND(order.getOrderDetail().get(0).getPrice())%></p>
                         </div>
 
                         <div class="item5">
-                            <p>Tổng số tiền: <span><%=order.getTotalPrice()%></span></p>
+                            <p>Tổng số tiền: <span><%=formatNumber.formatDoubleToVND(order.getTotalPrice())%></span></p>
                             <button class="option3">Mua Lại</button>
                         </div>
 

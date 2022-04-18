@@ -26,7 +26,7 @@
     <body id="page-top">
         <!-- Sidebar -->
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home_staff.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%=request.getContextPath()%>/StaffHome">
             <div class="sidebar-brand-icon">
                 <i class="iconify" data-icon="ic:twotone-gas-meter" style="color: white;" data-width="50" data-height="50"></i>
             </div>
@@ -87,7 +87,7 @@
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="manager_view_order.jsp">Danh sách đơn hàng</a>
+                <a class="collapse-item" href="<%=request.getContextPath()%>/ManageOrder">Danh sách đơn hàng</a>
             </div>
         </div>
     </li>

@@ -121,6 +121,7 @@
         <url-pattern>/ShoppingCart</url-pattern>
         <url-pattern>/EditQuantity</url-pattern>
         <url-pattern>/RemoveProduct</url-pattern>
+        <url-pattern>/AddProductToCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>

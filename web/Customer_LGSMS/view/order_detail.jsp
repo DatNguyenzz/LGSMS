@@ -2,6 +2,7 @@
 <%@page import="Model.ReceiptVoucher"%>
 <%@page import="Model.OrderDetail"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -27,10 +28,9 @@
     <%
     Orders order =(Orders)request.getAttribute("order");
     ArrayList<OrderDetail> listOrderDetail = (ArrayList<OrderDetail>)request.getAttribute("listOrderDetail");
-    double price=1;
-    double totalPrice =0;
-     ReceiptVoucher receiptVoucher=  (ReceiptVoucher)request.getAttribute("receiptVoucher");
-        %>
+    ReceiptVoucher receiptVoucher=  (ReceiptVoucher)request.getAttribute("receiptVoucher");
+    FormatNumber formatNumber = new FormatNumber();
+    %>
     <div class="header">
         <div include-html="Customer_LGSMS/view/header.jsp" id="header"></div>
     </div>
@@ -94,45 +94,46 @@
                                     <thead>
                                         <tr>
                                             <th width="8%"></th>
-                                            <th width="10%">Mã sản phẩm</th>
+                                            <th width="10%">#</th>
                                             <th width="20%">Tên sản phẩm</th>
-                                            <th width="20%">Thương hiệu</th>
                                             <th width="8%">Số lượng</th>
                                             <th width="10%">Giá </th>
                                             <th width="10%">Thành tiền</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%for(OrderDetail od : listOrderDetail ){
-                                        price=(double)od.getProductQuantity()*od.getPrice();
-                                        totalPrice += (double)od.getProductQuantity()*od.getPrice();
+                                        <%
+                                            int count = 0;
+                                            for(OrderDetail od : listOrderDetail ){
+                                                count++;
                                         %>
                                         <tr>
                                             <td><img src="Customer_LGSMS/assets/image/gastank12kg_vanngang.jpg" width="70" height="70">
                                             </td>
-                                            <td></td>
+                                            <td><%=count%></td>
                                             <td><%=od.getProductName()%></td>
-                                            <td>Petrolimex Gas</td>
                                             <td><%=od.getProductQuantity()%></td>
-                                            <td><%=od.getPrice() / od.getProductQuantity()%></td>
-                                            <td><%=od.getPrice()%></td>
+                                            <td><%=formatNumber.formatDouble(od.getPrice() / od.getProductQuantity())%></td>
+                                            <td><%=formatNumber.formatDouble(od.getPrice())%></td>
                                             
                                         </tr>
                                         <%}%>
                                         
                                         <tfoot>
                                             <tr>
-                                                <td colSpan="6" style="text-align: right;">Tổng tiền hàng</td>
-                                                <td><%=order.getTotalPrice()%></td>
-                                            </tr>                                           
+                                                <td colSpan="5" style="text-align: right;">Tổng tiền hàng</td>
+                                                <td><%=formatNumber.formatDouble(order.getTotalPrice())%></td>
+                                            </tr>
+                                            <%if(receiptVoucher!=null){%>
                                             <tr>
-                                                <td colSpan="6" style="text-align: right;">Tiền cọc bình</td>
-                                                <td><%=receiptVoucher.getDeposit()%></td>
+                                                <td colSpan="5" style="text-align: right;">Chiết khấu</td>
+                                                <td><%=formatNumber.formatDouble(receiptVoucher.getDeposit())%></td>
                                             </tr>
                                             <tr>
-                                                <td colSpan="6" style="text-align: right;">Tổng số tiền</td>
-                                                <td><%=receiptVoucher.getTotalMoney()%></td>
+                                                <td colSpan="5" style="text-align: right;">Tổng số tiền</td>
+                                                <td><%=formatNumber.formatDoubleToVND(receiptVoucher.getTotalMoney())%></td>
                                             </tr>
+                                            <%}%>
                                         </tfoot>
                                     </tbody>
                                 </table>

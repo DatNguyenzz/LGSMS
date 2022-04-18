@@ -27,7 +27,7 @@ public class ImportationDAO {
             + "(SELECT p.full_name FROM Account a INNER JOIN Profile p "
             + "ON a.profile_id = p.profile_id WHERE a.account_id = i.account_id) "
             + "as staff_name\n"
-            + "FROM Importation i";
+            + "FROM Importation i\n";
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();
