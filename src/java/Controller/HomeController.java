@@ -1,6 +1,9 @@
 package Controller;
 
+import Model.Product;
+import Service.ProductService;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +44,9 @@ public class HomeController extends HttpServlet {
         String url = request.getServletPath();
         switch(url){
             case "/Home": //Home page
+                ProductService productService = new ProductService();
+                ArrayList<Product> listProduct = productService.getAllProductIsActive();
+                request.setAttribute("listProduct", listProduct);
                 request.getRequestDispatcher("Customer_LGSMS/view/home.jsp").forward(request, response);
                 break;
             case "/StaffHome":

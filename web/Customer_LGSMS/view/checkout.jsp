@@ -1,6 +1,7 @@
 <%@page import="Model.Account"%>
 <%@page import="Model.ShoppingCart"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -23,7 +24,7 @@
 <body>
      <%
         Account account = (Account) request.getSession().getAttribute("account");
-        
+        FormatNumber formatNumber = new FormatNumber();
         ArrayList<ShoppingCart> listCart = (ArrayList<ShoppingCart>) request.getAttribute("listCart");
     %>
     <div class="header">
@@ -56,16 +57,21 @@
            
             <div class="container-checkout">
                 <h4>Giỏ hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b><%=listCart.size()%></b></span></h4>
-                 <%for (ShoppingCart cart : listCart) {%>
-               
-                <p><a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=cart.getProductID()%>"><%=cart.getProduct().getProductName()%> x <%=cart.getProductQuantity()%> </a>
-                    <span class="price"><%=cart.getProduct().getProductPrice()%></span></p>
-               
+                <% 
+                    double sum = 0;
+                    for (ShoppingCart cart : listCart) {
+                        sum += cart.getProduct().getProductPrice() * cart.getProductQuantity();
+                %>
+                <p>
+                    <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=cart.getProductID()%>">
+                        <%=cart.getProduct().getProductName()%> x <%=cart.getProductQuantity()%> 
+                    </a>
+                    <span class="price"><%=formatNumber.formatDouble(cart.getProduct().getProductPrice())%></span>
+                </p>
                 <hr>
-                 <%}%>
-                <p>Tổng tiền sản phẩm <span class="price" style="color:black"><b><%=request.getAttribute("total")%></b></span></p>
+                <%}%>
                
-                <p>Tổng tạm số tiền <span class="price" style="color:black"><b><%=request.getAttribute("total")%></b></span></p>
+                <p>Tổng tạm số tiền <span class="price" style="color:black"><b><%=formatNumber.formatDoubleToVND(sum)%></b></span></p>
             </div>
             
         </div>

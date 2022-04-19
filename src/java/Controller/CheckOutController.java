@@ -93,7 +93,7 @@ public class CheckOutController extends HttpServlet {
         String note = request.getParameter("note");
 
         if(orderService.createNewOrder(account.getAccountID(), fullname, phone, address, note)){
-            request.getRequestDispatcher("success");
+            request.getRequestDispatcher(request.getContextPath() + "/TrackOrder").forward(request, response);
         }else{
             
         }

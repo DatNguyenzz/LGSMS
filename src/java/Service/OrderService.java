@@ -32,7 +32,7 @@ public class OrderService {
     }
 
     public ArrayList<OrderDetail> getOrderDetailByOrderID(int id) {
-        return orderDao.getOrderDetailByOrderId(id);
+        return orderDao.getListOrderDetailByOrderId(id);
     }
 
     //Get all accepted order by staff id
@@ -66,7 +66,7 @@ public class OrderService {
     }
 
     public ArrayList<OrderDetail> getListOrderDetailByOrderID(int orderID) {
-        return orderDao.getOrderDetailByOrderId(orderID);
+        return orderDao.getListOrderDetailByOrderId(orderID);
     }
 
     public boolean updateOrder(int orderID, String note2, int orderStatus) {
@@ -99,8 +99,13 @@ public class OrderService {
             listOrderDetail.add(od);
         }
         order.setOrderDetail(listOrderDetail);
-        return (orderDao.createNewOrder(order) != 0);
-        
+        if(orderDao.createNewOrder(order) != 0){
+            //Clear cart if create order success
+            boolean flag = new ShoppingCartService().clearCartForCusByID(accountID);
+            return true;
+        }else{
+            return false;
+        }
     }
     
     //GENERATE ORDERCODE
@@ -122,5 +127,10 @@ public class OrderService {
     
     public ArrayList<Orders> getListOrdersByCusId(int id){
         return orderDao.getListOrderByCusID(id);
+    }
+    
+    //Get name of staff who confirm the order
+    public String getStaffNameByOrderID(int orderId) {
+        return orderDao.getStaffCodeByOrderID(orderId);
     }
 }

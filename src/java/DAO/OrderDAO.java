@@ -26,23 +26,14 @@ public class OrderDAO {
             = "SELECT o.order_id, o.order_code, o.customer_id, \n"
             + "o.order_status, o.created_at, o.customer_name, \n"
             + "o.order_note_1, o.order_note_2, o.business_staff_id,\n"
-            + "o.updated_at,o.phone,o.address,\n"
-            + "od.order_detail_id, od.product_id, od.product_quantity, od.price, p.product_id, p.product_name,p.product_price,\n"
+            + "o.updated_at, o.phone, o.address,\n"
+            //            + "od.order_detail_id, od.product_id, od.product_quantity, od.price, p.product_id, p.product_name,p.product_price,\n"
             + "(SELECT SUM(Price) FROM Order_Detail od\n"
             + "WHERE od.order_id = o.order_id) AS total_money\n"
-            + "FROM Orders o\n"
-            + "INNER JOIN Order_Detail od ON o.order_id = od.order_id\n"
-            + "INNER JOIN Product p ON od.product_id = p.product_id \n";
-//            = "SELECT o.order_id, o.order_code, o.customer_id, \n"
-//            + "o.order_status, o.created_at, o.customer_name, \n"
-//            + "o.order_note_1, o.order_note_2, o.business_staff_id,\n"
-//            + "o.updated_at, o.phone, o.address,\n"
-//            //            + "od.order_detail_id, od.product_id, od.product_quantity, od.price, p.product_id, p.product_name,p.product_price,\n"
-//            + "(SELECT SUM(Price) FROM Order_Detail od\n"
-//            + "WHERE od.order_id = o.order_id) AS total_money\n"
-//            + "FROM Orders o\n" //            + "INNER JOIN Order_Detail od ON o.order_id = od.order_id\n"
-//            //            + "INNER JOIN Product p ON od.product_id = p.product_id \n"
-//            ;
+            + "FROM Orders o\n" //            
+            //            + "INNER JOIN Order_Detail od ON o.order_id = od.order_id\n"
+            //            + "INNER JOIN Product p ON od.product_id = p.product_id \n"
+            ;
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();
@@ -91,7 +82,7 @@ public class OrderDAO {
         return listOrder;
     }
 
-    public ArrayList<Orders> getOrderByOrderStatus(int id) {
+    public ArrayList<Orders> getOrderByOrderStatus(int status) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
@@ -104,7 +95,7 @@ public class OrderDAO {
                 + "(SELECT SUM(Price) FROM Order_Detail od\n"
                 + "WHERE od.order_id = o.order_id) as total_money\n"
                 + "FROM Orders o\n"
-                + "WHERE o.order_status =" + id;
+                + "WHERE o.order_status =" + status;
         ArrayList<Orders> listOrder = new ArrayList<>();
         try {
             db = new DBContext();
@@ -140,7 +131,7 @@ public class OrderDAO {
         return listOrder;
     }
 
-    public ArrayList<OrderDetail> getOrderDetailByOrderId(int id) {
+    public ArrayList<OrderDetail> getListOrderDetailByOrderId(int id) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
@@ -367,7 +358,7 @@ public class OrderDAO {
         }
         return listOrder;
     }
-    
+
     //Get list all order create by customer id
     public ArrayList<Orders> getListOrderByCusID(int id) {
         DBContext db = null;
@@ -396,21 +387,9 @@ public class OrderDAO {
                 order.setOrderNote2(rs.getString("order_note_2"));
                 order.setTotalPrice(rs.getDouble("total_money"));
 
-                ArrayList<OrderDetail> listOrderDetail = new ArrayList<>();
-                OrderDetail od = new OrderDetail();
-                od.setOrderDetailID(rs.getInt("order_detail_id"));
-                od.setOrderID(rs.getInt("order_id"));
-                od.setPrice(rs.getDouble("price"));
-                od.setProductID(rs.getInt("product_id"));
-                od.setProductName(rs.getString("product_name"));
-                od.setProductQuantity(rs.getInt("product_quantity"));
-
-                listOrderDetail.add(od);
-
+                ArrayList<OrderDetail> listOrderDetail = getListOrderDetailByOrderId(rs.getInt("order_id"));
                 order.setOrderDetail(listOrderDetail);
-
                 listOrder.add(order);
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -423,7 +402,7 @@ public class OrderDAO {
         }
         return listOrder;
     }
-    
+
     //Customer create new order
     public int createNewOrder(Orders order) {
         DBContext db = null;
@@ -448,20 +427,20 @@ public class OrderDAO {
             sql += "INSERT INTO Order_Detail (order_id, product_id, product_quantity, price)\n"
                     + "VALUES (\n"
                     + "(SELECT order_id FROM Orders WHERE order_code = '" + order.getOrderCode() + "'),\n"
-                    + od.getProductID() +", " + od.getProductQuantity() + ", "
+                    + od.getProductID() + ", " + od.getProductQuantity() + ", "
                     + od.getPrice() + ");\n"
                     + "\n";
         }
         sql += "COMMIT;";
         int result = 0;
-        try{
+        try {
             db = new DBContext();
             con = db.getConnection();
             ps = con.prepareStatement(sql);
             result = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
@@ -514,6 +493,30 @@ public class OrderDAO {
             } catch (SQLException ex) {
                 Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        return null;
+    }
+
+    public String getStaffCodeByOrderID(int orderId) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT a.username\n"
+                + "FROM Orders o, Account a\n"
+                + "WHERE o.business_staff_id = a.account_id\n"
+                + "AND o.order_id = 1 ";
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getString("username");
+            }
+        }catch(SQLException ex){
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

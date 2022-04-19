@@ -25,7 +25,7 @@
             <div class="icon">LGS <b style="color: red;">M</b>S</div>
             <div class="search_box">
                 <form action="<%=request.getContextPath()%>/Product" method="post">
-                    <input type="search" name="searchName" placeholder="Nhập từ khóa....">
+                    <input type="search" name="searchName" placeholder="Nhập từ khóa...." required>
                     <button  type="submit" class="button-search"><i class="fas fa-search"></i></<button>
                             </form>
                             </div>

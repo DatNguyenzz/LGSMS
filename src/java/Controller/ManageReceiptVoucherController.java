@@ -56,8 +56,10 @@ public class ManageReceiptVoucherController extends HttpServlet {
                 int receiptID = Integer.parseInt(request.getParameter("id").trim());
                 ReceiptVoucher receiptVoucher = receiptVoucherService.getReceiptVoucherByID(receiptID);
                 Orders order = new OrderService().getOrderByID(receiptVoucher.getOrderID());
+                String orderCode = order.getOrderCode();
                 double orderTotalMoney = order.getTotalPrice();
                 request.setAttribute("receiptVoucher", receiptVoucher);
+                request.setAttribute("orderCode", orderCode);
                 request.setAttribute("orderTotalMoney", orderTotalMoney);
                 request.getRequestDispatcher("view/business_information_voucher.jsp").forward(request, response);
                 break;
@@ -66,8 +68,10 @@ public class ManageReceiptVoucherController extends HttpServlet {
                 int orderID = Integer.parseInt(request.getParameter("id").trim());
                 ReceiptVoucher receiptVoucher = receiptVoucherService.getReceiptVoucherByOrderID(orderID);
                 Orders order = new OrderService().getOrderByID(orderID);
+                String orderCode = order.getOrderCode();
                 double orderTotalMoney = order.getTotalPrice();
                 request.setAttribute("receiptVoucher", receiptVoucher);
+                request.setAttribute("orderCode", orderCode);
                 request.setAttribute("orderTotalMoney", orderTotalMoney);
                 request.getRequestDispatcher("view/business_information_voucher.jsp").forward(request, response);
                 break;
