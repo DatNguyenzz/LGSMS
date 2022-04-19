@@ -22,12 +22,12 @@
     <title>LGS - Manager</title>
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 
     <!-- Custom styles for this template -->
-    <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
+<link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
     <link href="assets/styles/icon_action.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
@@ -47,7 +47,7 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
+<div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -55,7 +55,7 @@
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight"
-            style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
+style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
@@ -65,7 +65,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Navbar -->
-                    <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
+<div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
@@ -77,7 +77,7 @@
                     <!-- Page Heading -->
                     <!-- DataTales Example -->
                     <div class="row">
-                        <div class="col-xl-12 col-lg-8">
+<div class="col-xl-12 col-lg-8">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Danh sách hàng nhập</h6>
@@ -114,7 +114,6 @@
                             </div>
                         </div>
                         <!-- <div class="col-xl-6 col-lg-8"> -->
-                        
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -134,7 +133,7 @@
         </a>
 
         <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->

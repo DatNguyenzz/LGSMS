@@ -4,8 +4,6 @@
     Author     : Minh
 --%>
 
-<%@page import="Model.Orders"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -21,30 +19,28 @@
     <title>LGS - Manager</title>
 
     <!-- Custom fonts for this template -->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 
     <!-- Custom styles for this template -->
-<link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
-    <link href="assets/styles/icon_action.css" rel="stylesheet">
+    <link href="../assets/styles/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/styles/icon_action.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="assets/styles/custom_box.css" rel="stylesheet">
-    <link href="css/statistic.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../assets/styles/custom_box.css" rel="stylesheet">
+    <link href="../css/statistic.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
-<%
-    ArrayList<Orders> listOrder = (ArrayList<Orders>) request.getAttribute("listOrder");
-%>
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-<div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
+            <div include-html="../components/sidebar.html" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -52,7 +48,7 @@
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight"
-style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
+            style="background-image: url(../assets/image/fac2.jpg); background-size: cover;">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
@@ -62,7 +58,7 @@ style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
                         <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Navbar -->
-                    <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
+                    <div include-html="../components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
@@ -84,21 +80,25 @@ style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
                                         <tr>
                                             <th>Ngày</th>
                                             <th>Mã đơn hàng</th>
+                                            <th class="payment">Tiền hàng</th>
                                             <th class="payment">Thành tiền</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        <%for (Orders order : listOrder){%>
                                         <tr>
-                                            <td><%=order.getUpdatedAt()%></td>
-                                            <td><%=order.getOrderCode()%></td>
-                                           
-                                            <td class="payment"><%=order.getTotalPrice()%></td>
+                                            <td>06/04/2022</td>
+                                            <td>LG240</td>
+                                            <td class="payment">5.489.000</td>
+                                            <td class="payment">5.489.000</td>
                                         </tr>
-                                        <%}%>
                                     </tbody>
-                                    
+                                    <tfoot>
+                                        <tr>
+                                            <td colSpan="2" style="font-size: 18px; color: #4e73df;"><b>Tổng:</b></td>
+                                            <td class="payment">5.489.000</td>
+                                            <td class="payment">5.489.000</td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
@@ -122,21 +122,21 @@ style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
     </a>
 
     <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/Noneed(maybe)/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/Noneed(maybe)/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/include-html.min.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../js/include-html.min.js"></script>
 </body>
 
 </html>

@@ -4,13 +4,13 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Apr 13, 2022, 10:03:57 PM
-    Author     : admin
-*/
-
+.header{
+    text-align: left;
+}
 .top{
     text-align: center;
 }
-.header{
-    text-align: left;
+.payment{
+    text-align: right;
+
 }
