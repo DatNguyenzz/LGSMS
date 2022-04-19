@@ -5,7 +5,11 @@
  */
 package Controller;
 
+import Model.Importation;
+import Model.Orders;
 import Model.Report;
+import Service.ImportationService;
+import Service.OrderService;
 import Service.ReportService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,6 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ManageReportController extends HttpServlet {
 
     ReportService reportService = new ReportService();
+    ImportationService importationService = new ImportationService();
+    OrderService orderService = new OrderService();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,14 +56,44 @@ public class ManageReportController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Report> listReport = reportService.getListReportByMonth();
-        Report reportByMonthNow = reportService.getReportByMonthNow();
-        Report reportByQuarterNow = reportService.getReportByQuarterNow();
-        
-        request.setAttribute("listReport", listReport);
-        request.setAttribute("reportByMonthNow", reportByMonthNow);
-        request.setAttribute("reportByQuarterNow", reportByQuarterNow);
-        request.getRequestDispatcher("view/revenue_statistic.jsp").forward(request, response);
+        String url = request.getServletPath();
+        switch (url) {
+            case "/ManageReport":
+                ArrayList<Report> listRevenues = reportService.getListRevenuesByMonth();
+                ArrayList<Report> listCost = reportService.getListCostByMonth();
+                ArrayList<Double> listBenefit = reportService.getListBenefitByMonth();
+                Report revenuesByMonthNow = reportService.getRevenuesByMonthNow();
+                Report revenuesByQuarterNow = reportService.getRevenuesByQuarterNow();
+                Report costByQuarterBefore = reportService.getCostByQuarterBefore();
+                Report revenuesByQuarterBefore = reportService.getRevenuesByQuarterBefore();
+                Report costByQuarterNow = reportService.getCostByQuarterNow();
+
+                request.setAttribute("listRevenues", listRevenues);
+                request.setAttribute("listCost", listCost);
+                request.setAttribute("revenuesByMonthNow", revenuesByMonthNow);
+                request.setAttribute("revenuesByQuarterNow", revenuesByQuarterNow);
+                request.setAttribute("listBenefit", listBenefit);
+                request.setAttribute("costByQuarterBefore", costByQuarterBefore);
+                request.setAttribute("costByQuarterNow", costByQuarterNow);
+                request.setAttribute("revenuesByQuarterBefore", revenuesByQuarterBefore);
+                request.getRequestDispatcher("view/revenue_statistic.jsp").forward(request, response);
+                break;
+            case "/ManageReportProduct":
+                ArrayList<Importation> listImport = importationService.getAllImportation();
+                request.setAttribute("listImportation", listImport);
+                request.getRequestDispatcher("view/statistic_import.jsp").forward(request, response);
+                break;
+            case "/ManageReportOrder":
+                ArrayList<Orders> listOrder = orderService.getOrderByOrderStatus(3);
+                 request.setAttribute("listOrder", listOrder);
+                 request.getRequestDispatcher("view/statistic_order.jsp").forward(request, response);
+                break;
+                    
+
+            default:
+                processRequest(request, response);
+        }
+
     }
 
     /**

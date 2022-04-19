@@ -1,6 +1,5 @@
 <%@page import="Model.Report"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,35 +15,42 @@
         <title>LGS - Manager</title>
 
         <!-- Custom fonts for this template-->
-        <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="../assets/styles/sb-admin-2.min.css" rel="stylesheet">
-        <link href="../css/statistic.css" rel="stylesheet">
+        <link href="assets/styles/sb-admin-2.min.css" rel="stylesheet">
+        <link href="css/statistic.css" rel="stylesheet">
 
     </head>
 
     <body id="page-top">
-        
+
         <%
-        ArrayList<Report> listReport  = (ArrayList<Report>) request.getAttribute("listReport");
-         Report reportByMonthNow = (Report)request.getAttribute("reportByMonthNow");
-        Report reportByQuarterNow = (Report)request.getAttribute("reportByQuarterNow");
-        
+            ArrayList<Report> listRevenues = (ArrayList<Report>) request.getAttribute("listRevenues");
+            ArrayList<Report> listCost = (ArrayList<Report>) request.getAttribute("listCost");
+            ArrayList<Double> listBenefit = (ArrayList<Double>) request.getAttribute("listBenefit");
+            
+            Report revenuesByMonthNow = (Report) request.getAttribute("revenuesByMonthNow");
+            Report revenuesByQuarterNow = (Report) request.getAttribute("revenuesByQuarterNow");
+            
+            Report revenuesByQuarterBefore = (Report) request.getAttribute("revenuesByQuarterBefore");
+            Report costByQuarterBefore = (Report) request.getAttribute("costByQuarterBefore");
+            Report costByQuarterNow = (Report) request.getAttribute("costByQuarterNow");
+
         %>
         <!-- Page Wrapper -->
         <div id="wrapper">
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-                <div include-html="../components/sidebar.html" id="sidebar" style="display: contents;"></div>
+                <div include-html="components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
             </ul>
             <!-- End of Sidebar -->
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(../assets/image/fac2.jpg); background-size: cover;">
+            <div id="content-wrapper" class="d-flex flex-column" class="img js-fullheight" style="background-image: url(assets/image/fac2.jpg); background-size: cover;">
                 <!-- Main Content -->
                 <div id="content">
                     <!-- Topbar -->
@@ -55,7 +61,7 @@
                         </button>
 
                         <!-- Topbar Navbar -->
-                        <div include-html="../components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                        <div include-html="components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                     </nav>
                     <!-- End of Topbar -->
                     <!-- Begin Page Content -->
@@ -76,8 +82,8 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Thu nhập (Hàng tháng)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%=reportByMonthNow.getRevenue()%></div>
+                                                    Thu nhập (Tháng này)</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%=revenuesByMonthNow.getRevenue()%></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -93,8 +99,8 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Thu nhập (Hàng quý)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%=reportByQuarterNow.getRevenue()%></div>
+                                                    Thu nhập (Quý này)</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%=revenuesByQuarterNow.getRevenue()%></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -162,25 +168,25 @@
                                             </tr>
                                             <tr>
                                                 <td class="header">&emsp;  Tiền hàng bán ra</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>100%</td>
+                                                <td><%=revenuesByQuarterBefore.getRevenue()%></td>
+                                                <td><%=revenuesByQuarterNow.getRevenue()%></td>
+                                                <td><%=revenuesByQuarterBefore.getRevenue()/revenuesByQuarterNow.getRevenue()*100%>%</td>
                                             </tr>
                                             <tr>
                                                 <td class="header"><b>2. Chi phí bán hàng</b></td>
-
+                                                
                                             </tr>
                                             <tr>
                                                 <td class="header">&emsp;  Tiền hàng nhập</td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>100%</td>
+                                                <td><%=costByQuarterBefore.getCost()%></td>
+                                                <td><%=costByQuarterNow.getCost()%></td>
+                                                <td><%=costByQuarterBefore.getCost()/costByQuarterNow.getCost()*100%>%</td>
                                             </tr>
                                             <tr>
                                                 <td class="header" style="font-size: 18px; color: #4e73df;"><b>Lợi nhuận</b></td>
-                                                <td>0</td>
-                                                <td>0</td>
-                                                <td>100%</td>
+                                                <td><%=revenuesByQuarterBefore.getRevenue()-costByQuarterBefore.getCost()%></td>
+                                                <td><%=revenuesByQuarterNow.getRevenue()-costByQuarterNow.getCost()%></td>
+                                                <td><%=(revenuesByQuarterBefore.getRevenue()-costByQuarterBefore.getCost())/(revenuesByQuarterNow.getRevenue()-costByQuarterNow.getCost())*100 %>%</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -207,17 +213,17 @@
         </a>
 
         <!-- Bootstrap core JavaScript-->
-        <script src="../vendor/jquery/jquery.min.js"></script>
-        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
-        <script src="../vendor/Noneed(maybe)/jquery-easing/jquery.easing.min.js"></script>
+        <script src="vendor/Noneed(maybe)/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="../js/sb-admin-2.min.js"></script>
+        <script src="js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
-        <script src="../vendor/chart.js/Chart.min.js"></script>
+        <script src="vendor/chart.js/Chart.min.js"></script>
 
         <!-- Page level custom scripts -->
         <script>
@@ -251,7 +257,20 @@
                 return s.join(dec);
             }
 
-// Area Chart Example
+
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+            <%  String data = "";
+                for (int i = 0; i < 12; i++) {
+                    
+                        data +=String.valueOf(listBenefit.get(i)) ;
+            
+                    if (i != 11) {
+                        data += ",";
+                    }
+                }%>
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+            // Area Chart Example
             var ctx = document.getElementById("myAreaChart");
             var myLineChart = new Chart(ctx, {
                 type: 'line',
@@ -270,7 +289,7 @@
                             pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                             pointHitRadius: 10,
                             pointBorderWidth: 2,
-                            data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+                            data: [<%=data%>]
                         }],
                 },
                 options: {
@@ -298,6 +317,7 @@
                             }],
                         yAxes: [{
                                 ticks: {
+                                   
                                     maxTicksLimit: 5,
                                     padding: 10,
                                     // Include a dollar sign in the ticks
@@ -342,7 +362,7 @@
             });
 
         </script>
-        <script src="../js/demo/chart-pie-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
         <script >
             // Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -372,19 +392,33 @@
                 }
                 return s.join(dec);
             }
+ //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$           
+            
+             <%  String data2 = "";
+                for (int i = 0; i < 12; i++) {
+                    if (listRevenues.get(i) == null) {
+                        data2 += "0";
+                    } else {
+                        data2 += listRevenues.get(i).getRevenue();
+                    }
+                    if (i != 11) {
+                        data2 += ",";
+                    }
+                }%>
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 // Bar Chart Example
             var ctx = document.getElementById("myBarChart");
             var myBarChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["January", "February", "March", "April", "May", "June"],
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                     datasets: [{
                             label: "Revenue",
                             backgroundColor: "#4e73df",
                             hoverBackgroundColor: "#2e59d9",
                             borderColor: "#4e73df",
-                            data: [4215, 5312, 6251, 7841, 9821, 14984],
+                            data: [<%=data2%>],
                         }],
                 },
                 options: {
@@ -407,14 +441,14 @@
                                     drawBorder: false
                                 },
                                 ticks: {
-                                    maxTicksLimit: 6
+                                    maxTicksLimit: 12
                                 },
                                 maxBarThickness: 25,
                             }],
                         yAxes: [{
                                 ticks: {
                                     min: 0,
-                                    max: 15000,
+                                    max: 20000000,
                                     maxTicksLimit: 5,
                                     padding: 10,
                                     // Include a dollar sign in the ticks
@@ -457,8 +491,8 @@
             });
 
         </script>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/include-html.min.js"></script>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/include-html.min.js"></script>
     </body>
 
 

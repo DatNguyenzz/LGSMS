@@ -134,6 +134,8 @@
     <servlet-mapping>
         <servlet-name>ManageReportController</servlet-name>
         <url-pattern>/ManageReport</url-pattern>
+        <url-pattern>/ManageReportProduct</url-pattern>
+        <url-pattern>/ManageReportOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

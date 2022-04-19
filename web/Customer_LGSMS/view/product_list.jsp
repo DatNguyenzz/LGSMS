@@ -39,6 +39,7 @@
                         <option value="2">Cao đến thấp</option>
                         <option value="3">Từ A-Z</option>
                         <option value="4">Từ Z-A</option>
+                        <option value="5">Sản phẩm bán chạy</option>
                     </select>
                     <input type="submit" value="Ấn" > 
                 </form>
