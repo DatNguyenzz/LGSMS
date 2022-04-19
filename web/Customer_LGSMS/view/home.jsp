@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Product"%>
+<%@page import="Model.Account"%>
 <%@page import="Utility.FormatNumber"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -21,6 +22,7 @@
     <%
         ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
         FormatNumber formatNumber = new FormatNumber();
+        Account account = (Account) request.getSession().getAttribute("account");
     %>
     <body>
         <div class="header">
@@ -40,9 +42,11 @@
                     <div class="box">
                         <div class="option_container">
                             <div class="options">
+                                <%if(account!=null){%>
                                 <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=listProduct.get(i).getProductID()%>" class="option1">
                                     Thêm vào giỏ
                                 </a>
+                                <%}%>
                                 <a href="" class="option2">
                                     Mua ngay
                                 </a>

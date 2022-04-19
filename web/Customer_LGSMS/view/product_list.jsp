@@ -1,4 +1,5 @@
 <%@page import="Model.Product"%>
+<%@page import="Model.Account"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,6 +27,7 @@
         <%
             ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
             FormatNumber formatNumber = new FormatNumber();
+            Account account = (Account) request.getSession().getAttribute("account");
         %>
         <!-- Feature product-->
         <div class="small-container product_section">
@@ -57,9 +59,11 @@
                 <div class="box">
                     <div class="option_container">
                         <div class="options">
+                            <%if(account!=null){%>
                             <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=product.getProductID()%>" class="option1">
                                 Thêm vào giỏ
                             </a>
+                            <%}%>
                             <a href="" class="option2">
                                 Mua ngay
                             </a>

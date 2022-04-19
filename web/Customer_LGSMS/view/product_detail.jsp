@@ -38,7 +38,7 @@
             <div class="col-2">
                 <h1><%=product.getProductName()%></h1>
                 <p> <%=product.getProviderName()%></p>
-                <small> <% if(product.getProductInstock()>0){ %> Còn hàng<%} else{%>Hết hàng <%}%></small>
+                <small> <% if(product.getProductInstock()>0){%> Còn hàng<%} else{%>Hết hàng <%}%></small>
                 <h4><%= formatNumber.formatDoubleToVND(product.getProductPrice()) %></h4>
                 
                 <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=product.getProductID()%>" class="btn"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>

@@ -3,26 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ShoppingCartDAO.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ProfileController.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/AuthorizationController.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/TrackOrderController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/staff_home.jsp</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/components/topnavbar.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageImportController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ReportDAO.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageReceiptVoucherController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/revenue_statistic.jsp</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ShoppingCartController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ProductDAO.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/vendor/datatables/jquery.dataTables.min.js</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/manager_manage_provider.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/admin_manage_account.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/manager_view_order.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/business_manage_voucher.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/business_manage_import.jsp</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageAccountController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/login.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/staff_view_profile.jsp</file>
             <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/components/sidebar.jsp</file>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageOrderController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Service/ProductService.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Service/OrderService.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ImportationDAO.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/OrderDAO.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/HomeController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/CustomerProductController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Model/Report.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageProductController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/business_information_order.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageReportController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/CheckOutController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageProviderController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/business_information_voucher.jsp</file>
         </group>
     </open-files>
 </project-private>

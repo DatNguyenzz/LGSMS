@@ -32,10 +32,11 @@
                             <ol>
                                 <li><a href="<%=request.getContextPath()%>/Home" class="fas fa-home">Trang chủ</a></li>
                                 <li><a href="<%=request.getContextPath()%>/Product">Sản phẩm</a></li>
-                                <li><a href="<%=request.getContextPath()%>/ShoppingCart" class="fas fa-shopping-cart">Giỏ hàng </a></li>
+                                
                                 <%if(account == null){%>
                                 <li><a href="<%=request.getContextPath()%>/login">Đăng nhập</a></li>
                                 <%}else{%>
+                                <li><a href="<%=request.getContextPath()%>/ShoppingCart" class="fas fa-shopping-cart">Giỏ hàng</a></li>
                                 <li>
                                     <div class="dropdown">
                                         <a href="#" class="dropbtn fas fa-user-alt" onclick="toggleMenu()"></a>
