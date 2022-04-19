@@ -28,7 +28,7 @@ public class ProfileController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("view/staff_view_profile.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -43,7 +43,25 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = request.getServletPath();
+        Account acc = (Account) request.getSession().getAttribute("account");
+        switch (url) {
+            case "/MyProfile":
+                if (acc.getRole().getRoleID() == 4 || acc.getRole().getRoleName().equals("Customer")) {
+                    request.getRequestDispatcher("Customer_LGSMS/view/profile.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("view/staff_view_profile.jsp").forward(request, response);
+                }
+                break;
+            case "/ChangePassword":
+                if (acc.getRole().getRoleID() == 4 || acc.getRole().getRoleName().equals("Customer")) {
+                    request.getRequestDispatcher("Customer_LGSMS/view/profile_changePassword.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("view/staff_view_profile.jsp").forward(request, response);
+                }
+                break;
+        }
+
     }
 
     /**
@@ -87,7 +105,7 @@ public class ProfileController extends HttpServlet {
                 if (accountService.changePass(id, oldPassword, newPassword) != 0) {
                     response.sendRedirect(request.getContextPath() + "/MyProfile");
                 } else {
-                    
+
                 }
                 break;
             }

@@ -1,6 +1,6 @@
 <%@page import="Model.ShoppingCart"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.text.DecimalFormat"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -25,9 +25,9 @@
 
 
         <%
-                    ArrayList<ShoppingCart> listCart = (ArrayList<ShoppingCart>) request.getAttribute("listCart");
-                    double totalMoney = 0;
-                    DecimalFormat formatter = new DecimalFormat("###,###,###.##");
+            ArrayList<ShoppingCart> listCart = (ArrayList<ShoppingCart>) request.getAttribute("listCart");
+            double totalMoney = 0;
+            FormatNumber formatNumber = new FormatNumber();
         %>
 
         <!-- cart item detail-->
@@ -62,7 +62,7 @@
                             <img src="Customer_LGSMS/images/buy-1.jpg">
                             <div class="">
                                 <p><%=cart.getProduct().getProductName()%> </p>
-                                <small> <%=cart.getProduct().getProductPrice()%></small><br>
+                                <small> <%=formatNumber.formatDoubleToVND(cart.getProduct().getProductPrice())%></small><br>
                                 <a href="RemoveProduct?idCart=<%=cart.getCartID()%>">Xóa</a>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             <button class="plus"><a href="EditQuantity?num=1&id=<%=cart.getCartID()%>">+</a></button> 
                         </div>
                     </td>
-                    <td><%=cart.getProduct().getProductPrice() * cart.getProductQuantity()%></td>
+                    <td><%=formatNumber.formatDoubleToVND(cart.getProduct().getProductPrice() * cart.getProductQuantity())%></td>
 
                 </tr>
                 <%}}%>
@@ -84,8 +84,7 @@
             <div class="total-price">
                 <table>
                     <tr>
-                        <%String money = formatter.format(totalMoney);%>
-                        <td>Tổng tiền sản phẩm: <%=money%> VND</td>
+                        <td>Tổng tiền sản phẩm: <%=formatNumber.formatDoubleToVND(totalMoney)%></td>
                     </tr>
 
                     <tr>

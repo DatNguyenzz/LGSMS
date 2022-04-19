@@ -35,7 +35,7 @@
                             <span>Đặt Lại Mật Khẩu</span>
                             <hr id="indicator-forgot">
                         </div>
-                        <form action="ForgotPassword" method="post">
+                        <form action="<%=request.getContextPath()%>/ForgotPassword" method="post">
                             <input type="email" name="email" placeholder="Nhập địa chỉ email của bạn">
                             <button type="submit"  class="btn">Gửi Email</button>
                         </form>

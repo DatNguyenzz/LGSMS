@@ -8,6 +8,7 @@ package Service;
 import DAO.OrderDAO;
 import Model.OrderDetail;
 import Model.Orders;
+import Model.ShoppingCart;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +32,7 @@ public class OrderService {
     }
 
     public ArrayList<OrderDetail> getOrderDetailByOrderID(int id) {
-        return orderDao.getOrderDetailByOrderId(id);
+        return orderDao.getListOrderDetailByOrderId(id);
     }
 
     //Get all accepted order by staff id
@@ -65,7 +66,7 @@ public class OrderService {
     }
 
     public ArrayList<OrderDetail> getListOrderDetailByOrderID(int orderID) {
-        return orderDao.getOrderDetailByOrderId(orderID);
+        return orderDao.getListOrderDetailByOrderId(orderID);
     }
 
     public boolean updateOrder(int orderID, String note2, int orderStatus) {
@@ -75,4 +76,61 @@ public class OrderService {
         return (orderDao.updateOrderStatus(order) != 0);
     }
 
+    //Customer create new order
+    public boolean createNewOrder(int accountID, String fullname, String phone, String address, String note) {
+        ShoppingCartService cartService = new ShoppingCartService();
+        ArrayList<ShoppingCart> listCartByCusID = cartService.getCartByCusID(accountID);
+        Orders order = new Orders();
+        order.setCustomerID(accountID);
+        order.setCustomerName(fullname);
+        order.setCustomerPhone(phone);
+        order.setCustomerAddress(address);
+        order.setOrderNote1(note);
+        order.setOrderCode(genOrderCode());
+        order.setOrderStatus(0);
+        ArrayList<OrderDetail> listOrderDetail = new ArrayList<>();
+        for(ShoppingCart cart : listCartByCusID){
+            OrderDetail od = new OrderDetail();
+            od.setOrderID(accountID);
+            od.setProductID(cart.getProductID());
+            od.setProductQuantity(cart.getProductQuantity());
+            od.setPrice(cart.getProduct().getProductPrice() * cart.getProductQuantity());
+            od.setProductName(cart.getProduct().getProductName());
+            listOrderDetail.add(od);
+        }
+        order.setOrderDetail(listOrderDetail);
+        if(orderDao.createNewOrder(order) != 0){
+            //Clear cart if create order success
+            boolean flag = new ShoppingCartService().clearCartForCusByID(accountID);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    //GENERATE ORDERCODE
+    public String genOrderCode(){
+        String[] stringDate = orderDao.getCurrentSQLDate().toString().split("-");
+        String code=  "DH" + stringDate[2] + stringDate[1] + stringDate[0];
+        for(int i=0;;i++){
+            Orders o = getOrderByOrderCode(code + i);
+            if(o == null)
+                return code + i;
+        }
+    }
+    
+    //Get order by order code
+    public Orders getOrderByOrderCode(String code){
+        return orderDao.getOrderByOrderCode(code);
+    }
+
+    
+    public ArrayList<Orders> getListOrdersByCusId(int id){
+        return orderDao.getListOrderByCusID(id);
+    }
+    
+    //Get name of staff who confirm the order
+    public String getStaffNameByOrderID(int orderId) {
+        return orderDao.getStaffCodeByOrderID(orderId);
+    }
 }

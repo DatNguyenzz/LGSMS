@@ -26,7 +26,7 @@
     <body id="page-top">
         <!-- Sidebar -->
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home_staff.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%=request.getContextPath()%>/StaffHome">
             <div class="sidebar-brand-icon">
                 <i class="iconify" data-icon="ic:twotone-gas-meter" style="color: white;" data-width="50" data-height="50"></i>
             </div>
@@ -36,9 +36,17 @@
         <hr class="sidebar-divider my-0">
         <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <i class="fas fa-fw fa-cog"></i>
             <span>Thống kê</span></a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="<%=request.getContextPath()%>/ManageReport">Doanh thu và lợi nhuận</a>
+                <a class="collapse-item" href="<%=request.getContextPath()%>/ManageReportProduct">Hàng nhập</a>
+                <a class="collapse-item" href="<%=request.getContextPath()%>/ManageReportOrder">Đơn hàng hoàn thành</a>
+                
+            </div>
+        </div>
     </li>
 
     <!-- Divider -->
@@ -87,7 +95,7 @@
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="manager_view_order.jsp">Danh sách đơn hàng</a>
+                <a class="collapse-item" href="<%=request.getContextPath()%>/ManageOrder">Danh sách đơn hàng</a>
             </div>
         </div>
     </li>

@@ -37,16 +37,24 @@
         <servlet-class>Controller.ProfileController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StaffHomeController</servlet-name>
-        <servlet-class>Controller.StaffHomeController</servlet-class>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>Controller.HomeController</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>ShoppingCartController</servlet-name>
         <servlet-class>Controller.ShoppingCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CheckOutController</servlet-name>
         <servlet-class>Controller.CheckOutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TrackOrderController</servlet-name>
+        <servlet-class>Controller.TrackOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageReportController</servlet-name>
+        <servlet-class>Controller.ManageReportController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ManageProductController</servlet-name>
@@ -104,18 +112,31 @@
         <url-pattern>/ChangePassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>StaffHomeController</servlet-name>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/Home</url-pattern>
         <url-pattern>/StaffHome</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ShoppingCartController</servlet-name>
         <url-pattern>/ShoppingCart</url-pattern>
         <url-pattern>/EditQuantity</url-pattern>
         <url-pattern>/RemoveProduct</url-pattern>
+        <url-pattern>/AddProductToCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>
         <url-pattern>/CheckOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrackOrderController</servlet-name>
+        <url-pattern>/TrackOrder</url-pattern>
+        <url-pattern>/OrderDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageReportController</servlet-name>
+        <url-pattern>/ManageReport</url-pattern>
+        <url-pattern>/ManageReportProduct</url-pattern>
+        <url-pattern>/ManageReportOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

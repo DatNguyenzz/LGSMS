@@ -1,4 +1,5 @@
 <%@page import="Model.Orders"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,6 +31,7 @@
 <body id="page-top">
     <%
         ArrayList<Orders> listOrder = (ArrayList<Orders>)request.getAttribute("listOrder");
+        FormatNumber formatNumber = new FormatNumber();
     %>
 
     <!-- Page Wrapper -->
@@ -76,28 +78,28 @@
                                             <th>Mã đơn hàng</th>
                                             <th>Ngày tạo đơn</th>
                                             <th>Tên khách hàng</th>
-                                            <th>Trạng thái đơn hàng</th>
                                             <th>Tổng tiền</th>
+                                            <th>Trạng thái đơn hàng</th>
                                             <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <%for(Orders order: listOrder ){%>
                                         <tr>
-                                            <td><%=order.getOrderID()%></td>
+                                            <td><%=order.getOrderCode()%></td>
                                             <td><%=order.getCreatedAt()%></td>
                                             <td><%=order.getCustomerName()%></td>
+                                            <td><%=formatNumber.formatDoubleToVND(order.getTotalPrice())%></td>
                                             <td>
                                                 <p id="status_pending">Đang xử lý</p>
                                             </td>
-                                            <td><%=order.getTotalPrice()%></td>
                                             <td>
 
                                                 <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" 
                                                    class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view" ></i></a>
-                                                <a href="ManageNewOrder?id=<%=order.getOrderID()%>&statusOrder=1"  class="accept" ><i class="fas fa-check-circle" data-toggle="tooltip" title="accept"></i></a>
-                                                <a href="ManageNewOrder?id=<%=order.getOrderID()%>&statusOrder=4"  class="reject" ><i class="fas fa-times-circle" data-toggle="tooltip" title="reject"></i></a>
-
+                                                <a href="ManageNewOrder?id=<%=order.getOrderID()%>&statusOrder=1"  class="accept" >
+                                                    <i class="fas fa-check-circle" data-toggle="tooltip" title="accept"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                          <%}%>

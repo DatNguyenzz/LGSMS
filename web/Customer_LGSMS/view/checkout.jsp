@@ -1,6 +1,7 @@
 <%@page import="Model.Account"%>
 <%@page import="Model.ShoppingCart"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -23,7 +24,7 @@
 <body>
      <%
         Account account = (Account) request.getSession().getAttribute("account");
-        
+        FormatNumber formatNumber = new FormatNumber();
         ArrayList<ShoppingCart> listCart = (ArrayList<ShoppingCart>) request.getAttribute("listCart");
     %>
     <div class="header">
@@ -41,8 +42,6 @@
                             <input type="text" id="fname" name="name" placeholder="<%=account.getFullname()%>"  value="<%=account.getFullname()%>">
                             <label for="phone"><i class="fa fa-phone"></i> Điện thoại*</label>
                             <input type="text" id="phone" name="phone" placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>">
-                            <label for="email"><i class="fa fa-envelope"></i> Email<small>(tùy chọn)</small></label>
-                            <input type="text" id="email" name="email" value="<%=account.getEmail()%>" placeholder="<%=account.getEmail()%>">
                             <label for="adr"><i class="fa fa-address-card"></i> Địa chỉ*</label>
                             <input type="text" id="adr" name="address" placeholder="<%=account.getAddress()%>" value="<%=account.getAddress()%>">
                             <label for="note"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ghi chú<small>(tùy chọn)</small></label>
@@ -58,16 +57,21 @@
            
             <div class="container-checkout">
                 <h4>Giỏ hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b><%=listCart.size()%></b></span></h4>
-                 <%for (ShoppingCart cart : listCart) {%>
-               
-                <p><a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=cart.getProductID()%>"><%=cart.getProduct().getProductName()%> x <%=cart.getProductQuantity()%> </a>
-                    <span class="price"><%=cart.getProduct().getProductPrice()%></span></p>
-               
+                <% 
+                    double sum = 0;
+                    for (ShoppingCart cart : listCart) {
+                        sum += cart.getProduct().getProductPrice() * cart.getProductQuantity();
+                %>
+                <p>
+                    <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=cart.getProductID()%>">
+                        <%=cart.getProduct().getProductName()%> x <%=cart.getProductQuantity()%> 
+                    </a>
+                    <span class="price"><%=formatNumber.formatDouble(cart.getProduct().getProductPrice())%></span>
+                </p>
                 <hr>
-                 <%}%>
-                <p>Tổng tiền sản phẩm <span class="price" style="color:black"><b><%=request.getAttribute("total")%></b></span></p>
+                <%}%>
                
-                <p>Tổng tạm số tiền <span class="price" style="color:black"><b><%=request.getAttribute("total")%></b></span></p>
+                <p>Tổng tạm số tiền <span class="price" style="color:black"><b><%=formatNumber.formatDoubleToVND(sum)%></b></span></p>
             </div>
             
         </div>

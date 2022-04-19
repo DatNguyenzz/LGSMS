@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.ReceiptVoucher"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -32,8 +33,9 @@
     <%
         ReceiptVoucher receiptVoucher = (ReceiptVoucher) request.getAttribute("receiptVoucher");
         String[] listReceiptStatus = {"Đang xử lý", "Đã hoàn thành", "Đã hủy"};
+        String orderCode = (String) request.getAttribute("orderCode");
         Double orderTotalMoney = (Double) request.getAttribute("orderTotalMoney");
-
+        DecimalFormat formatter = new DecimalFormat("#########.##");
     %>    
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -88,18 +90,18 @@
                                                     <label for="order-code" class="col-form-label">Mã đơn
                                                         hàng:</label>
                                                     <input type="text" class="border border-secondary w-100 p-2 rounded"
-                                                           id="order-code" readonly value="<%=receiptVoucher.getOrderID()%>" />
+                                                           id="order-code" readonly value="<%=orderCode%>" />
                                                     <br><br>
                                                     <label for="order-price" class="col-form-label">Tổng giá
                                                         tiền (VNĐ):</label>
                                                     <input type="number" readonly
                                                            class="border border-secondary w-100 p-2 rounded" id="order-price"
-                                                           value="<%=orderTotalMoney%>"/>
+                                                           value="<%=formatter.format(orderTotalMoney)%>"/>
                                                     <br><br>
                                                     <div class="form-group">
                                                         <label for="order-deposit" class="col-form-label">Tiền cọc vỏ
                                                             bình (VNĐ):</label>
-                                                        <input type="number" value="<%=receiptVoucher.getDeposit()%>"
+                                                        <input type="number" value="<%=formatter.format(receiptVoucher.getDeposit())%>"
                                                                class="form-control border border-secondary p-2 rounded"
                                                                <%if (receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2) {%> 
                                                                disabled
@@ -159,14 +161,14 @@
                                                         <label for="cus-pay" style="float: right;"
                                                                class="col-form-label">Tổng tiền khách phải trả (VNĐ):</label>
                                                         <input type="number" style="text-align: right;font-size: 36px;" readonly name="total-money"
-                                                               class="form-control bg-white border-0" id="cus-pay" value="<%=receiptVoucher.getTotalMoney()%>" />
+                                                               class="form-control bg-white border-0" id="cus-pay" value="<%=formatter.format(receiptVoucher.getTotalMoney())%>" />
                                                     </div>
                                                     <div style="margin-top: 2%; float: right">
-                                                        <input type="submit" class="btn btn-primary submit px-3" 
+                                                        <input type="button" class="btn btn-primary submit px-3" 
                                                                <%if (receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2) {%> 
                                                                disabled
                                                                <%}%>
-                                                               value="Lưu" onclick="confirmFunction()"></input>
+                                                               value="Lưu" onclick="alertFunction()"></input>
                                                     </div>
                                                 </div>
                                             </div>

@@ -52,12 +52,10 @@ public class ShoppingCartController extends HttpServlet {
             throws ServletException, IOException {
         String url = request.getServletPath();
         switch (url) {
-            case "/ShoppingCart":
+            case "/ShoppingCart": {
                 Account account = (Account) request.getSession().getAttribute("account");
-                ArrayList<ShoppingCart> listCart = new ArrayList<>();
                 int customerID = account.getAccountID();
-                listCart = cartService.getCartByCusID(customerID);
-
+                ArrayList<ShoppingCart> listCart = cartService.getCartByCusID(customerID);
 //                Double total = cartService.totalPriceInCart(listCart);
 //                request.setAttribute("listCart", listCart);
 //                request.setAttribute("total", total);
@@ -76,7 +74,8 @@ public class ShoppingCartController extends HttpServlet {
 
                 request.getRequestDispatcher("Customer_LGSMS/view/cart.jsp").forward(request, response);
                 break;
-            case "/EditQuantity":
+            }
+            case "/EditQuantity": {
                 int cartID = Integer.parseInt(request.getParameter("id"));
                 int quantity = Integer.parseInt(request.getParameter("num"));
                 if (cartService.updateProductQuantityByCartID(cartID, quantity)) {
@@ -86,16 +85,29 @@ public class ShoppingCartController extends HttpServlet {
                 }
 
                 break;
-
-            case "/RemoveProduct":
+            }
+            case "/RemoveProduct": {
                 int cartId = Integer.parseInt(request.getParameter("idCart"));
                 if (cartService.deleteCartByID(cartId)) {
                     response.sendRedirect(request.getContextPath() + "/ShoppingCart");
-                }else{
-                    
+                } else {
+
                 }
                 break;
+            }
+            case "/AddProductToCart": { // add product to cart
+                //Add for customer - Add to database
+                Account account = (Account) request.getSession().getAttribute("account");
+                ShoppingCartService cartService = new ShoppingCartService();
+                int productId = Integer.parseInt(request.getParameter("productID"));
+                int customerID = account.getAccountID();
+                if (cartService.addProduct(productId, customerID)) {
+                    response.sendRedirect(request.getHeader("referer"));
+                } else {
 
+                }
+                break;
+            }
             default:
                 processRequest(request, response);
         }

@@ -49,12 +49,12 @@ public class AuthorizationController extends HttpServlet {
             if (acc == null) {
                 request.getRequestDispatcher("view/login.jsp").forward(request, response);
             } else {
-                response.sendRedirect(request.getContextPath() + "/home");
+                response.sendRedirect(request.getContextPath() + "/Home");
             }
-        }else if(url.equals("/logout")){
+        } else if (url.equals("/logout")) {
             //Get logut
             request.getSession().removeAttribute("account");
-            response.sendRedirect(request.getContextPath() + "/login");
+            response.sendRedirect(request.getContextPath() + "/Home");
         }
     }
 
@@ -81,7 +81,11 @@ public class AuthorizationController extends HttpServlet {
             //Login success
             HttpSession session = request.getSession();
             session.setAttribute("account", acc);
-            response.sendRedirect(request.getContextPath() + "/StaffHome");
+            if (acc.getRole().getRoleID() == 4 || acc.getRole().getRoleName().equals("Customer")) {
+                response.sendRedirect(request.getContextPath() + "/Home");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/StaffHome");
+            }
         }
     }
 

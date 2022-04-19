@@ -4,10 +4,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Apr 13, 2022, 9:47:19 PM
-    Author     : Minh
-*/
-
 .header{
     text-align: left;
 }
@@ -16,4 +12,5 @@ and open the template in the editor.
 }
 .payment{
     text-align: right;
+
 }

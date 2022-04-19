@@ -117,6 +117,7 @@ public class ProductDAO {
         }
         return listProduct;
     }
+
     //search product by name
     public ArrayList<Product> searchProduct(String search) {
         DBContext db = null;
@@ -167,29 +168,46 @@ public class ProductDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = BASE_SQL + "where p.is_active =1";
+        String sql = "";
 
         switch (filter) {
             case 0:
-                sql += "";
+                sql += BASE_SQL + "where p.is_active =1";
                 //lấy tất cả sản phẩm
                 break;
             case 1:
-                sql += "ORDER BY p.product_price ASC";
+                sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_price ASC";
                 // lấy sản phẩm theo giá tăng
                 break;
             case 2:
-                sql += "ORDER BY p.product_price DESC";
+                sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_price DESC";
                 //lấy sản phẩm theo giá giảm
                 break;
             case 3:
-                sql += "ORDER BY p.product_name ASC";
+                sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_name ASC";
                 //lấy sản phẩm tuwf A-Z
                 break;
             case 4:
-                sql += "ORDER BY p.product_name DESC";
+                sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_name DESC";
                 //lấy sản phẩm từ Z-A
                 break;
+            case 5:
+                sql 
+                        = "SELECT p.product_id, p.image_id, p.product_name, \n"
+                        + "p.product_price, p.product_import_price, p.product_instock, \n"
+                        + "p.product_empty, p.product_description, p.product_created_at, \n"
+                        + "p.product_updated_at, p.is_active, p.provider_id, pv.provider_name,\n"
+                        + "(SELECT SUM(od.product_quantity) \n"
+                        + "FROM Order_Detail od INNER JOIN Orders o\n"
+                        + "ON od.order_id = o.order_id\n"
+                        + "WHERE od.product_id = p.product_id\n"
+                        + "AND o.order_status = 3) as sold\n"
+                        + "FROM Product p\n"
+                        + "INNER JOIN Provider pv ON p.provider_id = pv.provider_id \n"
+                        + "ORDER BY sold DESC";
+                //lấy sản phẩm từ Z-A
+                break;
+
             default:
                 break;
         }
@@ -302,7 +320,7 @@ public class ProductDAO {
         }
         return null;
     }
-    
+
     //get product by providerID
     public ArrayList<Product> getProductByProviderID(int providerID) {
         String sql = BASE_SQL

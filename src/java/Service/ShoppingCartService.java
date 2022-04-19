@@ -99,4 +99,8 @@ public class ShoppingCartService {
     public Double totalPriceInCart(ArrayList<ShoppingCart> cartList) {
         return cartDao.getTotalCartPrice(cartList);
     }
+
+    boolean clearCartForCusByID(int accountID) {
+        return (cartDao.clearCartForCusByID(accountID)!=0);
+    }
 }

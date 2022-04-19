@@ -1,5 +1,6 @@
 <%@page import="Model.Orders"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -30,6 +31,7 @@
     <body id="page-top">
         <%
             ArrayList<Orders> listOrder = (ArrayList<Orders>) request.getAttribute("listOrder");
+            FormatNumber formatNumber = new FormatNumber();
         %>
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -75,8 +77,8 @@
                                                 <th>Mã đơn hàng</th>
                                                 <th>Ngày tạo đơn</th>
                                                 <th>Ngày ghi nhận</th>
-                                                <th>Trạng thái đơn hàng</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Trạng thái đơn hàng</th>
                                                 <th>Thao tác</th>
                                             </tr>
                                         </thead>
@@ -86,10 +88,11 @@
                                                 <td><%=order.getOrderCode()%></td>
                                                 <td><%=order.getCreatedAt()%></td>
                                                 <td><%=order.getUpdatedAt()%></td>
+                                                
+                                                <td><%=formatNumber.formatDoubleToVND(order.getTotalPrice())%></td>
                                                 <td>
                                                     <p id="status_reject">Hủy đơn hàng</p>
                                                 </td>
-                                                <td><%=order.getTotalPrice()%></td>
                                                 <td>
                                                     <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
                                                 </td>

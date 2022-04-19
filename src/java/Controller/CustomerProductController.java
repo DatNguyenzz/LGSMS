@@ -74,36 +74,20 @@ public class CustomerProductController extends HttpServlet {
                     request.setAttribute("listProduct", listProduct);
                     request.getRequestDispatcher("Customer_LGSMS/view/product_list.jsp").forward(request, response);
                 }
-
-                // add product to cart
-                Account account = (Account) request.getSession().getAttribute("account");
-                ShoppingCartService cartService = new ShoppingCartService();
-                ShoppingCart shoppingCart = new ShoppingCart();
-                
-                int productId = Integer.parseInt(request.getParameter("productID"));
-                int customerID = account.getAccountID();
-            if (cartService.addProduct(productId, customerID)) {
-
-                        response.sendRedirect(request.getContextPath() + "/Product");
-                    } else {
-                       
-                    }
-
                 break;
 
             case "/CustomerProductInformation":
                 int productID = Integer.parseInt(request.getParameter("productID"));
 //                int providerID= Integer.parseInt(request.getParameter("providerID"));
                 Product product = productService.getProductByID(productID);
-                
-                
-                ArrayList<Product> listProductOfProvider ;
+
+                ArrayList<Product> listProductOfProvider;
                 int providerID = product.getProviderID();
                 listProductOfProvider = productService.getProductByProviderID(providerID);
-                
+
                 request.setAttribute("product", product);
                 request.setAttribute("productByProvider", listProductOfProvider);
-                
+
                 request.getRequestDispatcher("Customer_LGSMS/view/product_detail.jsp").forward(request, response);
                 break;
             default:
@@ -123,13 +107,10 @@ public class CustomerProductController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-
         String url = request.getServletPath();
 
         switch (url) {
             case "/Product":
-
                 String search = request.getParameter("searchName");
                 ArrayList<Product> listProduct = productService.getSearchProduct(search);
                 request.setAttribute("listProduct", listProduct);
