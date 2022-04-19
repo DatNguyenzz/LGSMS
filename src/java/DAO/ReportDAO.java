@@ -27,7 +27,7 @@ public class ReportDAO {
             + " where r.voucher_status=1 "
           ;
 
-    private static final String BASE_SQL_Cost = " Select Month(i.import_date) as 'monthI', DATEPART(quarter, i.import_date) as 'quarterI', \n"
+    private static final String BASE_SQL_Cost = " Select Month(i.created_at) as 'monthI', DATEPART(quarter, i.created_at) as 'quarterI', \n"
             + " sum(i.import_amount) as cost\n"
             + "  from Importation i\n"
             + " where i.import_status =1";
@@ -127,8 +127,8 @@ public class ReportDAO {
         ResultSet rs = null;
 
         String sql = BASE_SQL_Cost
-                + "AND Month(i.import_date)= " + month
-                + " group by Month(i.import_date),DATEPART(quarter, i.import_date)";
+                + "AND Month(i.created_at)= " + month
+                + " group by Month(i.created_at),DATEPART(quarter, i.created_at)";
 
         try {
             db = new DBContext();
@@ -167,8 +167,8 @@ public class ReportDAO {
         ResultSet rs = null;
 
         String sql = BASE_SQL_Cost
-                + "AND DATEPART(quarter, i.import_date)= " + quarter
-                + "group by Month(r.i.import_date),DATEPART(quarter, i.import_date)";
+                + "AND DATEPART(quarter, i.created_at)= " + quarter
+                + "group by Month(r.i.created_at),DATEPART(quarter, i.created_at)";
 
         try {
             db = new DBContext();
@@ -373,8 +373,8 @@ public class ReportDAO {
         ResultSet rs = null;
 
         String sql = BASE_SQL_Cost
-                + " AND Month(i.import_date)= Month("+getCurrentSQLDate()+")\n"
-                + "  group by Month(i.import_date),DATEPART(quarter, i.import_date)";
+                + " AND Month(i.created_at)= Month("+getCurrentSQLDate()+")\n"
+                + "  group by Month(i.created_at),DATEPART(quarter, i.created_at)";
 
         try {
             db = new DBContext();
@@ -414,8 +414,8 @@ public class ReportDAO {
         ResultSet rs = null;
 
         String sql = BASE_SQL_Cost
-                + "AND DATEPART(quarter, i.import_date)=DATEPART(quarter,"+getCurrentSQLDate()+")"
-                + "group by Month(i.import_date),DATEPART(quarter, i.import_date)";
+                + "AND DATEPART(quarter, i.created_at)=DATEPART(quarter,"+getCurrentSQLDate()+")"
+                + "group by Month(i.created_at),DATEPART(quarter, i.created_at)";
 
         try {
             db = new DBContext();
@@ -455,8 +455,8 @@ public class ReportDAO {
         ResultSet rs = null;
 
         String sql = BASE_SQL_Cost
-                + "AND DATEPART(quarter, i.import_date)=DATEPART(quarter,"+getCurrentSQLDate()+")-1"
-                + "group by Month(i.import_date),DATEPART(quarter, i.import_date)";
+                + "AND DATEPART(quarter, i.created_at)=DATEPART(quarter,"+getCurrentSQLDate()+")-1"
+                + "group by Month(i.created_at),DATEPART(quarter, i.created_at)";
 
         try {
             db = new DBContext();

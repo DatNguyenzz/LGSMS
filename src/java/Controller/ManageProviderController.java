@@ -53,7 +53,7 @@ public class ManageProviderController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Provider> listProvider = providerService.getAllProvider();
         request.setAttribute("listProvider", listProvider);
-        request.getRequestDispatcher("view/manager_manage_provider.jsp").forward(request, response);
+        request.getRequestDispatcher("Staff_LGSMS/view/manager_manage_provider.jsp").forward(request, response);
     }
 
     /**
@@ -68,7 +68,6 @@ public class ManageProviderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         try {
 
             String url = request.getServletPath();

@@ -76,17 +76,17 @@ public class ManageReportController extends HttpServlet {
                 request.setAttribute("costByQuarterBefore", costByQuarterBefore);
                 request.setAttribute("costByQuarterNow", costByQuarterNow);
                 request.setAttribute("revenuesByQuarterBefore", revenuesByQuarterBefore);
-                request.getRequestDispatcher("view/revenue_statistic.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/revenue_statistic.jsp").forward(request, response);
                 break;
             case "/ManageReportProduct":
                 ArrayList<Importation> listImport = importationService.getAllImportation();
                 request.setAttribute("listImportation", listImport);
-                request.getRequestDispatcher("view/statistic_import.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/statistic_import.jsp").forward(request, response);
                 break;
             case "/ManageReportOrder":
                 ArrayList<Orders> listOrder = orderService.getOrderByOrderStatus(3);
                  request.setAttribute("listOrder", listOrder);
-                 request.getRequestDispatcher("view/statistic_order.jsp").forward(request, response);
+                 request.getRequestDispatcher("Staff_LGSMS/view/statistic_order.jsp").forward(request, response);
                 break;
                     
 

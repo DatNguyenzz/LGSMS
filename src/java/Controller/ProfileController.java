@@ -50,14 +50,14 @@ public class ProfileController extends HttpServlet {
                 if (acc.getRole().getRoleID() == 4 || acc.getRole().getRoleName().equals("Customer")) {
                     request.getRequestDispatcher("Customer_LGSMS/view/profile.jsp").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("view/staff_view_profile.jsp").forward(request, response);
+                    request.getRequestDispatcher("Staff_LGSMS/view/staff_view_profile.jsp").forward(request, response);
                 }
                 break;
             case "/ChangePassword":
                 if (acc.getRole().getRoleID() == 4 || acc.getRole().getRoleName().equals("Customer")) {
                     request.getRequestDispatcher("Customer_LGSMS/view/profile_changePassword.jsp").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("view/staff_view_profile.jsp").forward(request, response);
+                    request.getRequestDispatcher("Staff_LGSMS/view/staff_view_profile.jsp").forward(request, response);
                 }
                 break;
         }

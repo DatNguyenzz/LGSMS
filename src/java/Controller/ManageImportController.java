@@ -56,7 +56,7 @@ public class ManageImportController extends HttpServlet {
         request.setAttribute("listImportation", listImport);
         request.setAttribute("listProduct", listProduct);
         request.setAttribute("listProvider", listProvider);
-        request.getRequestDispatcher("view/business_manage_import.jsp").forward(request, response);
+        request.getRequestDispatcher("Staff_LGSMS/view/business_manage_import.jsp").forward(request, response);
     }
 
     /**

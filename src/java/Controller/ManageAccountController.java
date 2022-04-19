@@ -56,10 +56,10 @@ public class ManageAccountController extends HttpServlet {
 
                 request.setAttribute("listRole", listRole);
                 request.setAttribute("listAccount", listAccount);
-                request.getRequestDispatcher("view/admin_manage_account.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/admin_manage_account.jsp").forward(request, response);
                 break;
             case "/Register":
-                request.getRequestDispatcher("view/guest_register.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/guest_register.jsp").forward(request, response);
                 break;
             case "/ForgotPassword":
                 request.getRequestDispatcher("Customer_LGSMS/view/forgotPassword.jsp").forward(request, response);
@@ -79,7 +79,6 @@ public class ManageAccountController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         String url = request.getServletPath();
         switch (url) {
             case "/EditAccount": {

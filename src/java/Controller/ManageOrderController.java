@@ -60,9 +60,9 @@ public class ManageOrderController extends HttpServlet {
                 if(staffAccount.getRole().getRoleID() == 2 || staffAccount.getRole().getRoleName().equalsIgnoreCase("Manager")){
                     String staffName = orderService.getStaffNameByOrderID(orderId);
                     request.setAttribute("staffName", staffName);
-                    request.getRequestDispatcher("view/manager_view_infomation_order.jsp").forward(request, response);
+                    request.getRequestDispatcher("Staff_LGSMS/view/manager_view_infomation_order.jsp").forward(request, response);
                 }else{
-                    request.getRequestDispatcher("view/business_information_order.jsp").forward(request, response);
+                    request.getRequestDispatcher("Staff_LGSMS/view/business_information_order.jsp").forward(request, response);
                 }
                 
                 break;
@@ -93,22 +93,22 @@ public class ManageOrderController extends HttpServlet {
                 case "/ManageNewOrder":
                     listOrder = orderService.getOrderByOrderStatus(0);
                     request.setAttribute("listOrder", listOrder);
-                    request.getRequestDispatcher("view/business_new_order.jsp").forward(request, response);
+                    request.getRequestDispatcher("Staff_LGSMS/view/business_new_order.jsp").forward(request, response);
                     break;
                 case "/ManageCancelOrder":
                     listOrder = orderService.getOrderByStatusAndStaff(4, staffAccount.getAccountID());
                     request.setAttribute("listOrder", listOrder);
-                    request.getRequestDispatcher("view/business_reject_order.jsp").forward(request, response);
+                    request.getRequestDispatcher("Staff_LGSMS/view/business_reject_order.jsp").forward(request, response);
                     break;
                 case "/ManageAcceptOrder":
                     listOrder = orderService.getAllAcceptedOrderByStaff(staffAccount.getAccountID());
                     request.setAttribute("listOrder", listOrder);
-                    request.getRequestDispatcher("view/business_accept_order.jsp").forward(request, response);
+                    request.getRequestDispatcher("Staff_LGSMS/view/business_accept_order.jsp").forward(request, response);
                     break;
                 case "/ManageOrder":
                     listOrder = orderService.getAllOrders();
                     request.setAttribute("listOrder", listOrder);
-                    request.getRequestDispatcher("view/manager_view_order.jsp").forward(request, response);
+                    request.getRequestDispatcher("Staff_LGSMS/view/manager_view_order.jsp").forward(request, response);
                     break;
             }
         }

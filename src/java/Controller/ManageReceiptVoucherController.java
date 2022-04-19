@@ -49,7 +49,7 @@ public class ManageReceiptVoucherController extends HttpServlet {
             case "/ManageReceiptVoucher": {
                 ArrayList<ReceiptVoucher> listReceiptVoucher = receiptVoucherService.getAllReceiptVoucher();
                 request.setAttribute("listReceiptVoucher", listReceiptVoucher);
-                request.getRequestDispatcher("view/business_manage_voucher.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/business_manage_voucher.jsp").forward(request, response);
                 break;
             }
             case "/ReceiptInfo": {
@@ -61,7 +61,7 @@ public class ManageReceiptVoucherController extends HttpServlet {
                 request.setAttribute("receiptVoucher", receiptVoucher);
                 request.setAttribute("orderCode", orderCode);
                 request.setAttribute("orderTotalMoney", orderTotalMoney);
-                request.getRequestDispatcher("view/business_information_voucher.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/business_information_voucher.jsp").forward(request, response);
                 break;
             }
             case "/ReceiptInfoByOrderID": {
@@ -73,7 +73,7 @@ public class ManageReceiptVoucherController extends HttpServlet {
                 request.setAttribute("receiptVoucher", receiptVoucher);
                 request.setAttribute("orderCode", orderCode);
                 request.setAttribute("orderTotalMoney", orderTotalMoney);
-                request.getRequestDispatcher("view/business_information_voucher.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/business_information_voucher.jsp").forward(request, response);
                 break;
             }
         }

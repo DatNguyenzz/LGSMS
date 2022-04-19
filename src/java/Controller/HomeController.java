@@ -50,7 +50,7 @@ public class HomeController extends HttpServlet {
                 request.getRequestDispatcher("Customer_LGSMS/view/home.jsp").forward(request, response);
                 break;
             case "/StaffHome":
-                request.getRequestDispatcher("view/staff_home.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/staff_home.jsp").forward(request, response);
                 break;
         }
     }

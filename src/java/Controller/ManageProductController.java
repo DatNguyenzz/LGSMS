@@ -35,10 +35,9 @@ public class ManageProductController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         ArrayList<Product> listProduct = productService.getAllProduct();
         request.setAttribute("listProduct", listProduct);
-        request.getRequestDispatcher("view/manager_manage_product.jsp").forward(request, response);
+        request.getRequestDispatcher("Staff_LGSMS/view/manager_manage_product.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,13 +60,13 @@ public class ManageProductController extends HttpServlet {
             case "/ManageProduct":
                 ArrayList<Product> listProduct = productService.getAllProduct();
                 request.setAttribute("listProduct", listProduct);
-                request.getRequestDispatcher("view/manager_manage_product.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/manager_manage_product.jsp").forward(request, response);
                 break;
             case "/ProductInformation":
                 int productID = Integer.parseInt(request.getParameter("productID"));
                 Product product = productService.getProductByID(productID);
                 request.setAttribute("product", product);
-                request.getRequestDispatcher("view/manager_infomation_product.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/manager_infomation_product.jsp").forward(request, response);
                 break;
             default:
                 processRequest(request, response);
@@ -87,7 +86,6 @@ public class ManageProductController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         String url = request.getServletPath();
         switch (url) {
             case "/AddProduct": {

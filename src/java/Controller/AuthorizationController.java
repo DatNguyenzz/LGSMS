@@ -26,8 +26,6 @@ public class AuthorizationController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        //Hi there
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -47,7 +45,7 @@ public class AuthorizationController extends HttpServlet {
             //Get login
             Account acc = (Account) request.getSession().getAttribute("account");
             if (acc == null) {
-                request.getRequestDispatcher("view/login.jsp").forward(request, response);
+                request.getRequestDispatcher("Staff_LGSMS/view/login.jsp").forward(request, response);
             } else {
                 response.sendRedirect(request.getContextPath() + "/Home");
             }
@@ -69,14 +67,12 @@ public class AuthorizationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         Account acc = new AccountService().login(username, password);
         if (acc == null) {
             //Login failed
-            request.getRequestDispatcher("view/login.jsp").forward(request, response);
+            request.getRequestDispatcher("Staff_LGSMS/view/login.jsp").forward(request, response);
         } else {
             //Login success
             HttpSession session = request.getSession();

@@ -3,8 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/LGSMS_13_4-2022/LGSMS/src/java/Controller/ManageReceiptVoucherController.java</file>
-            <file>file:/D:/LGSMS_13_4-2022/LGSMS/src/java/Controller/CheckOrderController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ShoppingCartDAO.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ProfileController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/AuthorizationController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/TrackOrderController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/staff_home.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/components/topnavbar.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageReceiptVoucherController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ShoppingCartController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ProductDAO.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageAccountController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/login.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/components/sidebar.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageOrderController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Service/ProductService.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Service/OrderService.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/ImportationDAO.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/DAO/OrderDAO.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/HomeController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/CustomerProductController.java</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Model/Report.java</file>
         </group>
     </open-files>
 </project-private>
