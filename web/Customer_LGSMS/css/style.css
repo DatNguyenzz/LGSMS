@@ -33,6 +33,13 @@ body {
     justify-content: space-around;
 }
 
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 .col-2 {
     flex-basis: 50%;
     min-width: 300px;
@@ -119,6 +126,8 @@ body {
 .detail-box h5 {
     font-size: 16px;
     font-weight: 700;
+    width: 280px; 
+    word-break: keep-all;
 }
 
 .col-1,
@@ -259,6 +268,9 @@ h4 {
     font-size: 14px;
 }
 
+.p1 {
+    font-size: 16px;
+}
 
 /* Feature offer */
 
@@ -498,7 +510,6 @@ ul li {
 
 .option3:hover {
     background-position: right center;
-    /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
@@ -521,7 +532,6 @@ ul li {
 
 .option2:hover {
     background-position: right center;
-    /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
@@ -544,7 +554,6 @@ ul li {
 
 .option1:hover {
     background-position: right center;
-    /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
@@ -614,7 +623,9 @@ select {
 
 
 /* product detail */
-
+.single-product a{
+ text-decoration: none;
+}
 .single-product {
     margin-top: 30px;
 }
@@ -633,6 +644,21 @@ select {
     font-weight: bold;
 }
 
+.single-product .btn-add{
+    display: inline-block;
+    background: linear-gradient(135deg, #f34079 40%, #fc894d);
+    color: white;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.5s;
+}
+
+.single-product .btn-add:hover {
+    background: linear-gradient(135deg, #ff5289 40%, #fc955e);
+    
+}
 .single-product input {
     width: 50px;
     height: 40px;
@@ -1099,7 +1125,6 @@ form input {
     /* margin: 10px 0; */
     padding: 0 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 form .btn {

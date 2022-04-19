@@ -1,7 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Product"%>
 <%@page import="Utility.FormatNumber"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -9,9 +9,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
-            LGSMS-Home
+            LGSMS-Product Detail
         </title>
-        
+        <!--    <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+            <link href="Customer_LGSMS/css/style.css" rel="stylesheet" type="text/css">-->
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -21,54 +26,58 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
         <link href="Customer_LGSMS/css/product_slider.css" rel="stylesheet">
     </head>
-    <%
-        ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
-        FormatNumber formatNumber = new FormatNumber();
-    %>
+
     <body>
+
+        <%
+            Product product = (Product) request.getAttribute("product");
+            ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("productByProvider");
+            FormatNumber formatNumber = new FormatNumber();
+        %>
         <div class="header">
             <div include-html="Customer_LGSMS/view/header.jsp" id="header"></div>
-<!--            <div class="banner" style="background-image: url(Customer_LGSMS/images/bg4.webp);">
-            </div>-->
         </div>
-        <div ><img src="Customer_LGSMS/images/slide-1.jpg" style="width:100%; height: 450px;"></div>
-        <!-- Feature Why Section -->
-        <div include-html="Customer_LGSMS/view/why_us.jsp" id="whyus"></div>
+        <!-- Feature product detail-->
+        <div class="small-container single-product">
+            <div class="row">
+                <div class="col-2">
+                    <img src="Customer_LGSMS/images/gallery-1.jpg" width="100%" id="productImg">
+
+                </div>
+                <div class="col-2">
+                    <h1><%=product.getProductName()%></h1>
+                    <p> <%=product.getProviderName()%></p>
+                    <small> <% if(product.getProductInstock()>0){ %> Còn hàng<%} else{%>Hết hàng <%}%></small>
+                    <h4><%= formatNumber.formatDoubleToVND(product.getProductPrice()) %></h4>
+
+                    <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=product.getProductID()%>" class="btn"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
+                    <a href="" class="btn-buynow">Mua Ngay</a>
+                </div>
+            </div>
+
+        </div>
+        <!--Product detail-->
+        <div id="product_detail">
+            <%= product.getProductDescription()%>
+        </div>
+        <!-- title-->
+        <div class="small-container">
+            <div class="row-1 row-2">
+                <h2>Sản phẩm tương tự</h2>
+                <!--<a href="<%=request.getContextPath()%>/Product"><p>Xem thêm</p></a>-->
+            </div>
+        </div>
+        <!-- Feature product-->
+
         <!-- Item slider-->
         <div class="container ">
             <div class="row ">
-                <h2 class="title ">Sản phẩm</h2>
-                <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom: 20px;" >
+                
+                <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom: 20px;">
                     <div class="carousel carousel-showmanymoveone slide" id="itemslider">
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="box"> 
-                                    <div class="col-xs-12 col-sm-6 col-md-2">
-                                        <div class="option_container">
-                                            <div class="options">
-                                            <a href="" class="option1">
-                                                Thêm vào giỏ
-                                            </a>
-                                            <a href="" class="option2">
-                                                Mua ngay
-                                            </a>
-                                            <a href="" class="option3">
-                                                Chi tiết
-                                            </a>
-                                        </div>
-                                    </div>
-                                        <img src="Customer_LGSMS/images/product-1.jpg" class="img-responsive center-block" alt="">
-                                        <h5>
-                                            
-                                        </h5>
-
-                                        <h6>
-                                            
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div><%for(int i=0;i<5;i++){%>
-                            <div class="item">
+                            
+                            <div class="item active"><%for(int i=0;i<6;i++){%>
                                 <div class="box"> 
                                     <div class="col-xs-12 col-sm-6 col-md-2">
                                         <div class="option_container">
@@ -94,8 +103,8 @@
                                         </h6>
                                     </div>
                                 </div>
-                                    
-                            </div> <%if(i == listProduct.size()-1){break;} }%>   
+                                     <%if(i == listProduct.size()-1){break;} }%>   
+                            </div>
                         </div>
                         <div id="slider-control">
                             <a class="left carousel-control" href="#itemslider" data-slide="prev"><img
@@ -110,26 +119,11 @@
                 
             </div>
         </div>
-        <!-- Feature offer-->
-        <div class="offer ">
-            <div class="small-container ">
-                <div class="row ">
-                    <div class="col-2 ">
-                        <img src="Customer_LGSMS/images/exclusive.png " class="offer-img ">
-                    </div>
-                    <div class="col-2 ">
-                        <p>Sản phẩm được lựa chọn nhiều nhất</p>
-                        <h1>Bình gas 12kg</h1>
-                        <small>Là loại bình gas phổ biến trong mỗi gia đình, cho chất lượng lửa xanh, tiết kiệm nhiên liệu, độ bền cao, chống cháy nổ tốt</small><br>
-                        <a href=" " class="btn ">Mua Ngay</a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- footer-->
         <div include-html="Customer_LGSMS/view/footer.jsp" id="footer"></div>
-        <!--js for toggle menu-->
-        <!-- <script src="/js/header.js"></script> -->
+        <!-- footer-->
+
+        <!-- footer-->
         <script src="Customer_LGSMS/js/jquery-3.6.0.min.js"></script>
         <script src="Customer_LGSMS/js/include-html.min.js"></script>
 
@@ -137,6 +131,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+
     </body>
 
 </html>

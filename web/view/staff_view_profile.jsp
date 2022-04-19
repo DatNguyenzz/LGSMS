@@ -112,16 +112,19 @@
                                                        placeholder="nhập địa chỉ email của bạn" value="<%=account.getEmail()%>" id="user-email" maxlength="80">
                                                 <div class="fail"></div>
                                             </div>
-                                                <div style="display: flex; justify-content: flex-end">
                                                 
+                                                
+                                                
+
+                                            
+                                        </div>
+                                                <div style="display: flex; justify-content: flex-end">
                                                 <input class="btn btn-primary profile-button" type="submit"
                                                        value="Lưu thông tin" form="form">
-
-                                            </div>
-                                        </div>
                                     </form>
-                                    <input class="btn btn-primary profile-button" style="margin-right: 5%;"
+                                    <input class="btn btn-primary profile-button" style="margin-left: 5%;"
                                                        type="button"data-toggle="modal" data-target="#changePassModal" value="Đổi mật khẩu">
+                                                </div>
                                 </div>
                             </div>
 

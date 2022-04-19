@@ -28,7 +28,7 @@
             FormatNumber formatNumber = new FormatNumber();
         %>
         <!-- Feature product-->
-        <div class="small-container product_section">
+        <div class="container product_section">
             <div class="row row-2">
                 <h1 class="">Sản phẩm
                     <hr>

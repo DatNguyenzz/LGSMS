@@ -183,13 +183,14 @@
                                                 <td><%=costByQuarterBefore.getCost()/costByQuarterNow.getCost()*100%>%</td>
                                             </tr>
                                             <tr>
-                                                <td class="header" style="font-size: 18px; color: #4e73df;"><b>Lợi nhuận</b></td>
+                                                <td class="header" style="font-size: 18px; color: #4e73df;"><b>Lợi nhuận</b>
+                                                </td>
                                                 <td><%=revenuesByQuarterBefore.getRevenue()-costByQuarterBefore.getCost()%></td>
                                                 <td><%=revenuesByQuarterNow.getRevenue()-costByQuarterNow.getCost()%></td>
                                                 <td><%=(revenuesByQuarterBefore.getRevenue()-costByQuarterBefore.getCost())/(revenuesByQuarterNow.getRevenue()-costByQuarterNow.getCost())*100 %>%</td>
                                             </tr>
                                         </tbody>
-                                    </table>
+                                    </table><p>Lợi nhuận = Tiền hàng bán ra - Tiền hàng nhập</p>
                                 </div>
                             </div>
                         </div>
@@ -322,7 +323,7 @@
                                     padding: 10,
                                     // Include a dollar sign in the ticks
                                     callback: function (value, index, values) {
-                                        return '$' + number_format(value);
+                                        return  number_format(value) + ' VNĐ';
                                     }
                                 },
                                 gridLines: {
@@ -354,7 +355,7 @@
                         callbacks: {
                             label: function (tooltipItem, chart) {
                                 var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                                return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                                return datasetLabel + number_format(tooltipItem.yLabel) + ': VNĐ';
                             }
                         }
                     }
@@ -453,7 +454,7 @@
                                     padding: 10,
                                     // Include a dollar sign in the ticks
                                     callback: function (value, index, values) {
-                                        return '$' + number_format(value);
+                                        return number_format(value) + ' VNĐ';  
                                     }
                                 },
                                 gridLines: {

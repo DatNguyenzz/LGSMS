@@ -1,3 +1,10 @@
+<%-- 
+    Document   : slider
+    Created on : Apr 19, 2022, 11:58:34 PM
+    Author     : Minh
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
 
