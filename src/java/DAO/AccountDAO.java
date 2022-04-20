@@ -26,10 +26,12 @@ public class AccountDAO {
             = "SELECT p.profile_id, p.image_id, p.full_name, p.phone, \n"
             + "p.dob, p.gender, p.address, p.email, p.created_at, \n"
             + "p.updated_at, a.account_id, a.username, a.password, \n"
-            + "a.role_id,  a.is_active, r.role_name\n"
+            + "a.role_id,  a.is_active, r.role_name, \n"
+            + "i.image_path, i.image_name\n"
             + "FROM Account a\n"
             + "INNER JOIN Profile p ON a.profile_id = p.profile_id\n"
-            + "INNER JOIN Role r on a.role_id = r.role_id\n";
+            + "INNER JOIN Role r on a.role_id = r.role_id\n"
+            + "INNER JOIN Image i ON i.image_id = p.image_id\n";
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();
@@ -58,7 +60,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImageID(rs.getInt("image_id"));
+                acc.setImagePath(rs.getString("image_path"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));
@@ -105,7 +107,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImageID(rs.getInt("image_id"));
+                acc.setImagePath(rs.getString("image_path"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));
@@ -280,7 +282,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImageID(rs.getInt("image_id"));
+                acc.setImagePath(rs.getString("image_path"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));
@@ -357,7 +359,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImageID(rs.getInt("image_id"));
+                acc.setImagePath(rs.getString("image_path"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));
@@ -396,7 +398,7 @@ public class AccountDAO {
                 role.setRoleName(rs.getString("role_name"));
                 acc.setRole(role);
                 acc.setProfileID(rs.getInt("profile_id"));
-                acc.setImageID(rs.getInt("image_id"));
+                acc.setImagePath(rs.getString("image_path"));
                 acc.setFullname(rs.getString("full_name"));
                 acc.setPhone(rs.getString("phone"));
                 acc.setDOB(rs.getDate("dob"));

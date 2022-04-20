@@ -25,9 +25,11 @@ public class ProductDAO {
             = "SELECT p.product_id, p.image_id, p.product_name, \n"
             + "p.product_price, p.product_import_price, p.product_instock, \n"
             + "p.product_empty, p.product_description, p.product_created_at, \n"
-            + "p.product_updated_at, p.is_active, p.provider_id, pv.provider_name\n"
+            + "p.product_updated_at, p.is_active, p.provider_id, pv.provider_name\n,"
+            + "i.image_path, i.image_name\n"
             + "FROM Product p\n"
-            + "INNER JOIN Provider pv ON p.provider_id = pv.provider_id \n";
+            + "INNER JOIN Provider pv ON p.provider_id = pv.provider_id \n"
+            + "INNER JOIN Image i ON p.image_id = i.image_id \n";
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();
@@ -50,7 +52,7 @@ public class ProductDAO {
             while (rs.next()) {
                 Product p = new Product();
                 p.setProductID(rs.getInt("product_id"));
-                p.setImageID(rs.getInt("image_id"));
+                p.setImagePath(rs.getString("image_path"));
                 p.setProductName(rs.getString("product_name"));
                 p.setProductPrice(rs.getDouble("product_price"));
                 p.setProductImportPrice(rs.getDouble("product_import_price"));
@@ -92,7 +94,7 @@ public class ProductDAO {
             while (rs.next()) {
                 Product p = new Product();
                 p.setProductID(rs.getInt("product_id"));
-                p.setImageID(rs.getInt("image_id"));
+                p.setImagePath(rs.getString("image_path"));
                 p.setProductName(rs.getString("product_name"));
                 p.setProductPrice(rs.getDouble("product_price"));
                 p.setProductImportPrice(rs.getDouble("product_import_price"));
@@ -136,7 +138,7 @@ public class ProductDAO {
             while (rs.next()) {
                 Product p = new Product();
                 p.setProductID(rs.getInt("product_id"));
-                p.setImageID(rs.getInt("image_id"));
+                p.setImagePath(rs.getString("image_path"));
                 p.setProductName(rs.getString("product_name"));
                 p.setProductPrice(rs.getDouble("product_price"));
                 p.setProductImportPrice(rs.getDouble("product_import_price"));
@@ -221,7 +223,7 @@ public class ProductDAO {
             while (rs.next()) {
                 Product p = new Product();
                 p.setProductID(rs.getInt("product_id"));
-                p.setImageID(rs.getInt("image_id"));
+                p.setImagePath(rs.getString("image_path"));
                 p.setProductName(rs.getString("product_name"));
                 p.setProductPrice(rs.getDouble("product_price"));
                 p.setProductImportPrice(rs.getDouble("product_import_price"));
@@ -258,7 +260,7 @@ public class ProductDAO {
                 + "product_price, product_instock, product_empty, \n"
                 + "product_description, product_created_at, is_active, \n"
                 + "provider_id)\n"
-                + "VALUES('" + product.getImageID() + "', "
+                + "VALUES('" + product.getImagePath() + "', "
                 + "N'" + product.getProductName() + "', "
                 + product.getProductPrice() + ", "
                 + product.getProductInstock() + ", "
@@ -295,7 +297,7 @@ public class ProductDAO {
             while (rs.next()) {
                 Product p = new Product();
                 p.setProductID(rs.getInt("product_id"));
-                p.setImageID(rs.getInt("image_id"));
+                p.setImagePath(rs.getString("image_path"));
                 p.setProductName(rs.getString("product_name"));
                 p.setProductPrice(rs.getDouble("product_price"));
                 p.setProductImportPrice(rs.getDouble("product_import_price"));
@@ -338,7 +340,7 @@ public class ProductDAO {
             while (rs.next()) {
                 Product p = new Product();
                 p.setProductID(rs.getInt("product_id"));
-                p.setImageID(rs.getInt("image_id"));
+                p.setImagePath(rs.getString("image_path"));
                 p.setProductName(rs.getString("product_name"));
                 p.setProductPrice(rs.getDouble("product_price"));
                 p.setProductImportPrice(rs.getDouble("product_import_price"));
@@ -371,7 +373,7 @@ public class ProductDAO {
         ResultSet rs = null;
         int result = 0;
         String sql = "UPDATE Product\n"
-                + "SET image_id = " + product.getImageID() + ",\n"
+                + "SET image_id = " + product.getImagePath() + ",\n"
                 + "product_name = N'" + product.getProductName() + "',\n"
                 + "provider_id = " + product.getProviderID() + ",\n"
                 + "product_price = " + product.getProductPrice() + ",\n"

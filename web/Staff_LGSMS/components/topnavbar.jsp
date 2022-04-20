@@ -37,7 +37,7 @@
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=account.getFullname()%><br><%=account.getRole().getRoleName()%>
 
                     </span>
-                    <img class="img-profile rounded-circle" alt src="assets/image/img/undraw_profile.svg">
+                    <img class="img-profile rounded-circle" alt src="<%=account.getImagePath()%>">
                 </a>
                 <!-- Dropdown - User Information -->
                 <ul class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

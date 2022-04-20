@@ -56,7 +56,8 @@
                             </div>
                         </div>
                         <div class="img-box">
-                            <img src="Customer_LGSMS/images/product-1.jpg" alt="">
+                            <img src="<%= listProduct.get(i).getImagePath()%>" 
+                                 alt="<%= listProduct.get(i).getProductName() %>">
                         </div>
                         <div class="detail-box">
                             <h5>

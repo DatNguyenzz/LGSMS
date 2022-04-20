@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <div class="img-box">
-                        <img src="assets/image/gastank12kg_vanchuc.jpg" alt="">
+                        <img src="<%=product.getImagePath()%>" alt="<%=product.getProductName()%>">
                     </div>
                     <div class="detail-box">
                         <h5>

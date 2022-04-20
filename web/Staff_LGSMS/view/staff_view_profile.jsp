@@ -62,7 +62,7 @@
 
                             <div class="col-md-5" >
                                 <div class="d-flex flex-column align-items-center">
-                                    <img class="rounded-circle mt-5" src="assets/image/avatar.jpg" style="border: 2px solid lightgray;">
+                                    <img class="rounded-circle mt-5" src="<%=account.getImagePath()%>" style="border: 2px solid lightgray;">
                                     <span class="font-weight-bold" style="color: rgb(255, 255, 255);"><%=account.getUsername()%></span>
                                     <span><input type="file" id="user_avatar" accept="image/png, image/jpeg"></span>
                                 </div>

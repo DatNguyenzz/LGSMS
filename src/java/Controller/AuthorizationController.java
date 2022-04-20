@@ -77,7 +77,7 @@ public class AuthorizationController extends HttpServlet {
             //Login success
             HttpSession session = request.getSession();
             session.setAttribute("account", acc);
-            if (acc.getRole().getRoleID() == 4 || acc.getRole().getRoleName().equals("Customer")) {
+            if (acc.getRole().getRoleID() == 4 || acc.getRole().getRoleName().equals("Khách hàng")) {
                 response.sendRedirect(request.getContextPath() + "/Home");
             } else {
                 response.sendRedirect(request.getContextPath() + "/StaffHome");

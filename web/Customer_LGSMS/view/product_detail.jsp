@@ -32,7 +32,7 @@
     <div class="small-container single-product">
         <div class="row">
             <div class="col-2">
-                <img src="Customer_LGSMS/images/gallery-1.jpg" width="100%" id="productImg">
+                <img src="<%=product.getImagePath()%>" width="100%" id="productImg">
                 
             </div>
             <div class="col-2">
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="img-box">
-                            <img src="Customer_LGSMS/images/product-1.jpg" alt="">
+                            <img src="<%= listProduct.get(i).getImagePath() %>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>

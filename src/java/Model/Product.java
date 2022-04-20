@@ -8,7 +8,7 @@ import java.sql.Date;
  */
 public class Product {
     private int productID;
-    private int imageID;
+    private String imagePath;
     private String productName;
     private double productPrice;
     private double productImportPrice;
@@ -24,13 +24,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productID, int productImage, String productName, 
+    public Product(int productID, String productImage, String productName, 
             double productPrice, double productImportPrice, int productInstock, 
             int productInuse, String productDescription, Date productCreatedAt, 
             Date productUpdatedAt, boolean isActive, int providerID,
             String providerName) {
         this.productID = productID;
-        this.imageID = productImage;
+        this.imagePath = productImage;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productImportPrice = productImportPrice;
@@ -52,12 +52,12 @@ public class Product {
         this.productID = productID;
     }
 
-    public int getImageID() {
-        return imageID;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImageID(int imageID) {
-        this.imageID = imageID;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public String getProductName() {

@@ -39,7 +39,7 @@ public class ProductService {
             int providerID) {
         Product product = new Product();
         product.setProductName(productName);
-        product.setImageID(productImage);
+//        product.setImagePath(productImage);
         product.setProductInstock(productQuantity);
         product.setProductEmpty(0);
         product.setProductPrice(productPrice);
@@ -67,7 +67,7 @@ public class ProductService {
         Product product = getProductByID(productID);
         product.setProductName(productName);
         product.setProviderID(providerID);
-        product.setImageID(image);
+//        product.setImagePath(image);
         product.setProductPrice(productPrice);
         product.setIsActive(productStatus);
         product.setProductDescription(productDescription);
