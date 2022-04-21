@@ -17,6 +17,15 @@ public class ImportationService {
     public ArrayList<Importation> getAllImportation() {
         return importDAO.getAllImportation();
     }
+    
+      public Importation getImportationById(int id){
+        return importDAO.getImportationById(id);
+    }
+    
+     public ArrayList<Importation>  getAllImportationForStaff(int id) {
+        return importDAO.getAllImportationForStaff(id);
+    }
+
 
     public boolean importFromCustomer(int productID, int providerID, 
             int productImportQuantity, double productImportPrice, String importNote, int accountID) {

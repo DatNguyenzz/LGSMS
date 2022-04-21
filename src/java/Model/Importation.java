@@ -23,6 +23,9 @@ public class Importation {
     private String staffName;
     private String productName;
     private String providerName;
+    private String manageName;
+    private int importStatus;
+    private Date updateDate;
 
     public Importation() {
     }
@@ -30,7 +33,7 @@ public class Importation {
     public Importation(int importID, int productID, 
             int productImportQuantity, Date importDate, int accountID, 
             int providerID, String note, double importAmount, 
-            String staffName, String productName, String providerName) {
+            String staffName, String productName, String providerName, int importStatus,String manageName,Date updateDate) {
         this.importID = importID;
         this.productID = productID;
         this.productImportQuantity = productImportQuantity;
@@ -42,8 +45,41 @@ public class Importation {
         this.staffName = staffName;
         this.productName = productName;
         this.providerName = providerName;
+        this.importStatus = importStatus;
+        this.manageName= manageName;
+        this.updateDate=updateDate;
     }
 
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+    
+    
+
+    public String getManageName() {
+        return manageName;
+    }
+
+    public void setManageName(String manageName) {
+        this.manageName = manageName;
+    }
+    
+    
+
+    public int getImportStatus() {
+        return importStatus;
+    }
+
+    public void setImportStatus(int importStatus) {
+        this.importStatus = importStatus;
+    }
+
+    
+    
     public int getImportID() {
         return importID;
     }
