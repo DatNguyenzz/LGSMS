@@ -16,6 +16,8 @@
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <link href="Customer_LGSMS/css/profile.css" rel="stylesheet" type="text/css">
+    <link href="Customer_LGSMS/css/custom_box.css" rel="stylesheet" type="text/css">
+    <link href="Customer_LGSMS/css/fnon.min.css" rel="stylesheet" type="text/css">
 </head>
     <%
         Account account = (Account) request.getSession().getAttribute("account");
@@ -40,12 +42,29 @@
 
             <div class="col-md-5 border-left">
                 <div class="p-3 py-5">
-                    <form action="<%=request.getContextPath()%>/ChangePassword" method="POST">
+                    <form action="<%=request.getContextPath()%>/ChangePassword" method="POST" id="form">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Hồ Sơ Của Tôi</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-12">
+                        
+                        <div class="form-group">
+                            <label class="labels">Mật Khẩu Cũ</label>
+                            <input type="password" class="form-control" placeholder="Nhập mật khẩu cũ" value="" id="old-pass" maxlength="50">
+                            <div class="fail"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="labels">Mật Khẩu Mới</label>
+                            <input type="password" class="form-control" placeholder="Nhập mật khẩu mới" value="" id="new-pass" maxlength="50">
+                            <div class="fail"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="labels">Xác Nhận Mật Khẩu Mới</label>
+                            <input type="password" class="form-control" placeholder="Xác nhận mật khẩu mới" value="" id="re-pass" maxlength="50">
+                            <div class="fail"></div>
+                        </div>
+                        
+<!--                        <div class="col-md-12">
                             <label class="labels">Mật Khẩu Cũ</label>
                             <input type="password" name="old-password" class="form-control" placeholder="Nhập mật khẩu cũ" value="">
                         </div> 
@@ -58,7 +77,7 @@
                         <div class="col-md-12">
                             <label class="labels">Xác Nhận Mật Khẩu Mới</label>
                             <input type="password" class="form-control" placeholder="Xác nhận mật khẩu mới" value="">
-                        </div>
+                        </div>-->
                     </div>
                     <div class="mt-3 float-right text-center">
                         <input class="btn btn-primary profile-button" type="submit" value="Lưu">
@@ -75,14 +94,18 @@
         </div>
 
 
-        <!-- footer-->
-        <!-- <div include-html="footer.html" id="footer"></div> -->
-        <!-- footer-->
+                <!-- footer-->
+                <!-- <div include-html="footer.html" id="footer"></div> -->
+                <!-- footer-->
 
 
 
-        <script src="/js/jquery-3.6.0.min.js"></script>
-        <script src="/js/include-html.min.js"></script>
+        
+    <script src="Customer_LGSMS/js/jquery-3.6.0.min.js"></script>
+    <script src="Customer_LGSMS/js/include-html.min.js"></script>
+        <script src="Customer_LGSMS/js/fnon.min.js"></script>
+        <script src="Customer_LGSMS/js/validation/change_pass.js"></script>
+        <script src="Customer_LGSMS/js/validation/alert.js"></script>
 
 </body>
 

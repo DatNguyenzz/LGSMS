@@ -76,7 +76,7 @@
                         <img src="<%=product.getImagePath()%>" alt="<%=product.getProductName()%>">
                     </div>
                     <div class="detail-box">
-                        <h5>
+                        <h5 style="width: 150px; height: 60px">
                             <%=product.getProductName()%>
                         </h5>
 

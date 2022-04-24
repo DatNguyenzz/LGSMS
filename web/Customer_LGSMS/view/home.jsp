@@ -38,7 +38,7 @@
             <h2 class="title ">Sản phẩm</h2>
             <div class="row ">
                 <%for(int i=0;i<4;i++){%>
-                <div class="col-4">
+                <!--// <div class="col-4">-->
                     <div class="box">
                         <div class="option_container">
                             <div class="options">
@@ -60,7 +60,7 @@
                                  alt="<%= listProduct.get(i).getProductName() %>">
                         </div>
                         <div class="detail-box">
-                            <h5>
+                            <h5 style="width: 150px; height: 60px">
                                 <%= listProduct.get(i).getProductName() %>
                             </h5>
 
@@ -69,7 +69,7 @@
                             </h6>
                         </div>
                     </div>
-                </div>
+                <!--</div>-->
                 <%if(i == listProduct.size()-1){break;} }%>
             </div>
 
