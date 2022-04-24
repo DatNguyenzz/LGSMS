@@ -79,7 +79,7 @@
             <div class="small-container ">
                 <div class="row ">
                     <div class="col-2 ">
-                        <img src="Customer_LGSMS/images/exclusive.png " class="offer-img ">
+                        <img src="Customer_LGSMS/images/gashong.png " class="offer-img ">
                     </div>
                     <div class="col-2 ">
                         <p>Sản phẩm được lựa chọn nhiều nhất</p>

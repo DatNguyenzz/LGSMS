@@ -65,7 +65,7 @@ nav .search_box input {
     height: 100%;
     padding: 0 10px;
     font-size: 15px;
-    width: 350px;
+    width: 90vw;
 }
 
 nav .search_box span {
@@ -166,7 +166,7 @@ input[type="checkbox"] {
         margin-bottom: 15px;
     }
     nav .search_box input {
-        width: 90%;
+        width: 90vw;
     }
     nav ol {
         display: flex;
@@ -220,7 +220,7 @@ input[type="checkbox"] {
     }
     #check:checked~nav ol {
         visibility: visible;
-        height: 465px;
+        height: 35%;
     }
     #check:checked~nav ol li:nth-child(1),
     #check:checked~nav ol li:nth-child(2),
