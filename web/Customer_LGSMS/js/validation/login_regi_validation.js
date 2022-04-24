@@ -6,8 +6,6 @@ const password = document.getElementById('password');
 const form1 = document.getElementById('registerForm');
 const regiacc = document.getElementById('refiUsername');
 const reemail = document.getElementById('regiEmail');
-const regipass = document.getElementById('regiPass');
-const repass = document.getElementById('regiRepass');
 //Chạy hàm validate form add
 form.addEventListener('submit', e => {
     e.preventDefault();
