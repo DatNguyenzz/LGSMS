@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author admin
- */
+ * @author admin 
+*/
 public class ShoppingCartDAO {
 
     private static final String BASE_SQL = "";
@@ -155,7 +155,7 @@ public class ShoppingCartDAO {
         return null;
     }
 
-    //checl product co trong cart ko
+    //check product co trong cart ko
     public boolean isProductExist(int productID, int cusID) {
         DBContext db = null;
         Connection con = null;
@@ -316,7 +316,7 @@ public class ShoppingCartDAO {
     }
     
     
-     public int deleteCartByID(int cartID) {
+    public int deleteCartByID(int cartID) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
@@ -344,7 +344,7 @@ public class ShoppingCartDAO {
         return result;
     }
      
-     public int deleteCartByCustomerID(int cusID) {
+    public int deleteCartByCustomerID(int cusID) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
@@ -355,32 +355,6 @@ public class ShoppingCartDAO {
                 + "DELETE Shopping_Cart\n"              
                 + "WHERE customer_id = " + cusID + "\n"
                 + "COMMIT;";
-        try {
-            db = new DBContext();
-            con = db.getConnection();
-            ps = con.prepareStatement(sql);
-            result = ps.executeUpdate();
-        } catch (Exception e) {
-            Logger.getLogger(ShoppingCartDAO.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            try {
-                db.closeConnection(con, ps, rs);
-            } catch (SQLException ex) {
-                Logger.getLogger(ShoppingCartDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return result;
-    }
-
-    public int clearCartForCusByID(int accountID) {
-        DBContext db = null;
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        int result = 0;
-        String sql
-                = "DELETE FROM Shopping_Cart\n"
-                + "WHERE customer_id = " + accountID;
         try {
             db = new DBContext();
             con = db.getConnection();

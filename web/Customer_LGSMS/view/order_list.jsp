@@ -44,7 +44,10 @@
                 <li class="list" data-filter="completed">Đã giao</li>
                 <li class="list" data-filter="canceled">Đã hủy</li>
             </ul>
-            <% for(Orders order : listOrder){%>
+            <% if(listOrder.size() == 0){
+                
+            }else{
+                for(Orders order : listOrder){%>
             <!-- container -->
             <div class="project-container">
                 <a href="<%=request.getContextPath()%>/OrderDetail?orderID=<%=order.getOrderID()%>" class="project-box 
@@ -85,7 +88,7 @@
 
                 </a>
             </div>
-            <%}%>
+            <%}}%>
         </section>
 
         <div include-html="Customer_LGSMS/view/footer.jsp" id="footer"></div>

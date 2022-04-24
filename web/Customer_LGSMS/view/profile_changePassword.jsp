@@ -73,16 +73,17 @@
                 </div>
             </div>
         </div>
+    </div>
 
 
         <!-- footer-->
-        <!-- <div include-html="footer.html" id="footer"></div> -->
+        <div include-html="Customer_LGSMS/view/footer.jsp" id="footer"></div>
         <!-- footer-->
 
 
 
-        <script src="/js/jquery-3.6.0.min.js"></script>
-        <script src="/js/include-html.min.js"></script>
+        <script src="Customer_LGSMS/js/jquery-3.6.0.min.js"></script>
+        <script src="Customer_LGSMS/js/include-html.min.js"></script>
 
 </body>
 

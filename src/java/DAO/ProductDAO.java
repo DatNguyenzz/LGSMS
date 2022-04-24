@@ -84,7 +84,7 @@ public class ProductDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = BASE_SQL + "where p.is_active =1";
+        String sql = BASE_SQL + " where p.is_active =1";
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
             db = new DBContext();

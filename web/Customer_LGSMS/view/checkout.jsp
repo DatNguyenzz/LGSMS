@@ -45,7 +45,7 @@
                             <label for="adr"><i class="fa fa-address-card"></i> Địa chỉ*</label>
                             <input type="text" id="adr" name="address" placeholder="<%=account.getAddress()%>" value="<%=account.getAddress()%>">
                             <label for="note"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ghi chú<small>(tùy chọn)</small></label>
-                            <input type="text" id="note" name="note" placeholder="something">
+                            <input type="text" id="note" name="note">
                             <p class="checkout_note">Quý khách hàng lưu ý phần <strong>"Tiền cọc vỏ"</strong> và <strong>"Tổng tiền"</strong> sẽ được cập nhật sau khi nhân viên cửa hàng liên hệ để xác nhận thông tin đơn hàng.</p>
                         </div>
                     </div>

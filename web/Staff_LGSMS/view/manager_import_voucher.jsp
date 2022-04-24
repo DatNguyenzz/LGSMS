@@ -1,9 +1,8 @@
-<%-- 
-    Document   : manager_import_voucher
-    Created on : Apr 13, 2022, 10:48:49 PM
-    Author     : Minh
---%>
 
+<%@page import="Model.Provider"%>
+<%@page import="Model.Product"%>
+<%@page import="Model.Importation"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -34,13 +33,18 @@
 </head>
 
 <body id="page-top">
+    <%
+        ArrayList<Importation> listImport = (ArrayList<Importation>) request.getAttribute("listImportation");
+        ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
+        ArrayList<Provider> listProvider = (ArrayList<Provider>) request.getAttribute("listProvider");
+    %>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div include-html="Staff_LGSMS/components/sidebar.html" id="sidebar" style="display: contents;"></div>
+            <div include-html="Staff_LGSMS/components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -58,7 +62,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Navbar -->
-                    <div include-html="Staff_LGSMS/components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                    <div include-html="Staff_LGSMS/components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
 
@@ -80,41 +84,37 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="" id="form">
+                                        <form action="<%=request.getContextPath()%>/ImportNewProduct" method="POST" id="form" >
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="row">
                                                         <div class="col-8 col-sm-12 ">
                                                             <div class="form-group">
                                                                 <label for="product-name">Tên sản phẩm:</label>
-                                                                <select name="product-name" id="product-name"
-                                                                    class="border border-secondary w-100 label_box rounded">
-                                                                    <option value="product-1">Bình gas 12kg van ngang
-                                                                    </option>
-                                                                    <option value="product-2">Bình gas 12kg van chụp
-                                                                    </option>
-                                                                    <option value="product-3">Bình gas 45kg công nghiệp
-                                                                    </option>
-                                                                    <option value="product-4">Bình gas 13kg van ngang
-                                                                    </option>
-                                                                    <option value="product-5">Bình gas 13 van chụp
-                                                                    </option>
-                                                                </select>
+                                                               <select name="product-id" id="product-name"
+                                                                            class="border border-secondary w-100 label_box rounded">
+                                                                        <%for(Product pro : listProduct){%>
+                                                                        <option value="<%=pro.getProductID()%>"><%=pro.getProductName()%></option>
+                                                                        <%}%>
+                                                                    </select>
                                                             </div>
                                                             <br>
                                                             <div class="form-group">
                                                                 <label for="provider-name" class="col-form-label">Tên
                                                                     nhà cung cấp:</label>
-                                                                <select name="provider-name" id="provider-status"
-                                                                    class="border border-secondary w-100 label_box rounded">
-                                                                    <option value="provider-1">Petrolimex Gas</option>
-                                                                </select>
+                                                                <select name="provider-id" id="product-status"
+                                                                            class="border border-secondary w-100 label_box rounded">
+                                                                        <%for(Provider provider : listProvider){%>
+                                                                        <option value="<%=provider.getProviderID()%>"><%=provider.getProviderName()%></option>
+                                                                        <%}%>
+                                                                    </select>
                                                             </div>
                                                             <br>
                                                             <div class="form-group">
                                                                 <label for="product-quantity">Số lượng:</label>
                                                                 <input type="number" id="product-quantity"
-                                                                    name="product-quantity" class="form-control" />
+                                                                           name="product-quantity"
+                                                                           class="form-control" maxlength="4"/>
                                                                 <div class="fail"></div>
                                                             </div>
                                                             <div class="form-group" hidden>
@@ -123,11 +123,11 @@
                                                                 <select name="import-status" id="import-status"
                                                                     class="border border-secondary w-100 p-2 rounded"
                                                                     style="margin-bottom: 8px;">
-                                                                    <option selected value="status-1">Đang xử lí
+                                                                    <option selected value="0">Đang xử lí
                                                                     </option>
-                                                                    <option disabled value="status-2">Đơn đã xác nhận
+                                                                    <option disabled value="1">Đơn đã xác nhận
                                                                     </option>
-                                                                    <option disabled value="status-3">Đơn bị hủy
+                                                                    <option disabled value="2">Đơn bị hủy
                                                                     </option>
                                                                 </select>
                                                             </div>
@@ -135,8 +135,8 @@
                                                             <div class="form-group">
                                                                 <label for="product-price" class="col-form-label">Giá
                                                                     nhập:</label>
-                                                                <input type="number" class="form-control"
-                                                                    id="product-price" />
+                                                                <input type="number" class="form-control" name="product-import-price"
+                                                                           id="product-price" maxlength="25"/>
                                                                 <div class="fail"></div>
                                                             </div>
                                                             <div class="form-group">
@@ -144,7 +144,8 @@
                                                                     chú:</label>
                                                                 <textarea class="form-control"
                                                                     style="resize: none; overflow: auto;"
-                                                                    id="product-note"></textarea>
+                                                                    id="product-note" name="import-note"
+                                                                              id="product-note" maxlength="500"></textarea>
 
                                                             </div>
                                                             <br>
@@ -202,27 +203,42 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <%for (Importation importation : listImport) {%>
                                         <tr>
-                                            <td>Bình gas 12kg van ngang</td>
-                                            <td>Petrolimex Gas</td>
-                                            <td>500</td>
-                                            <td>2010/01/04</td>
-                                            <td>599.000</td>
+                                            <td><%=importation.getProductName()%></td>
+                                            <td><%=importation.getProviderName()%></td>
+                                            <td><%=importation.getProductImportQuantity()%></td>
+                                            <td><%=importation.getImportDate()%></td>
+                                            <td><%=importation.getImportAmount()%></td>
                                             <td>
-                                                <p id="status_pending">Đang xử lý</p>
+                                                <%switch (importation.getImportStatus()) {
+                                                        case 0: {%>
+                                                    <p id="status_pending">Đang xử lý</p>
+                                                    <%break;
+                                                        }
+                                                        case 1: {%>
+                                                    <p id="status_complete">Đã hoàn thành</p>
+                                                    <%break;
+                                                        }
+                                                        case 2: {%>
+                                                    <p id="status_cancel">Đã hủy</p>
+                                                    <%break;
+                                                        }
+                                                    }%>
                                             </td>
-                                            <td>MinhPQ</td>
+                                            <td><%=importation.getManageName()%></td>
                                             <td>
-                                                <a href="#viewImportModal" class="view" data-toggle="modal"><i
-                                                        class="bi bi-pencil-square" data-toggle="tooltip"
+                                                <a href="#viewImportModal" onclick="handleClick('<%=importation.getImportID()%>', '<%=importation.getManageName()%>','<%=importation.getProductName()%>',
+                                                   '<%=importation.getProviderName()%>','<%=importation.getProductImportQuantity()%>','<%=importation.getImportDate()%>',
+                                                   '<%=importation.getImportStatus()%>', '<%=importation.getImportAmount()%>','<%=importation.getUpdateDate()%>',
+                                                   '<%=importation.getStaffName()%>', '<%=importation.getNote()%>')"
+                                                   class="view" data-toggle="modal"><i
+                                                        class="fas fa-eye" data-toggle="tooltip"
                                                         title="View"></i></a>
                                             </td>
-                                            <!-- <td>
-                                                <a href="#viewImportModal" class="view" data-toggle="modal"><i class="fas fa-eye" data-toggle="tooltip" title="View"></i></a>
-                                                <a href="#" class="accept" data-toggle="modal"><i class="fas fa-check-circle" data-toggle="tooltip" title="accept"></i></a>
-                                                <a href="#" class="reject" data-toggle="modal"><i class="fas fa-times-circle" data-toggle="tooltip" title="reject"></i></a>
-                                            </td> -->
+                                            
                                         </tr>
+                                        <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -248,7 +264,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="" id="form1">
+                        <form id="form1">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="row">
@@ -257,57 +273,45 @@
                                                 <label for="product-name" class="col-form-label">Tên sản phẩm:</label>
                                                 <input type="text" id="productNameInfo" name="productNameINfo" readonly
                                                     class="border border-secondary w-100 p-2 rounded"
-                                                    value="Bình gas 12kg van chụp" />
-                                                <!-- <select name="product-name" id="product-name" aria-readonly="true"
-                                                    class="border border-secondary w-100 label_box rounded">
-                                                    <option value="product-1">Bình gas 12kg van ngang
-                                                    </option>
-                                                    <option value="product-2">Bình gas 12kg van chụp
-                                                    </option>
-                                                    <option value="product-3">Bình gas 45kg công nghiệp
-                                                    </option>
-                                                    <option value="product-4">Bình gas 13kg van ngang
-                                                    </option>
-                                                    <option value="product-5">Bình gas 13 van chụp
-                                                    </option>
-                                                </select> -->
+                                                     />
+                                               
                                             </div>
                                             <br>
                                             <div class="form-group">
                                                 <label for="create-staff" class="col-form-label">Người tạo đơn:</label>
-                                                <input type="text" id="create-staff" name="confirm-staff"
-                                                    class="border border-secondary w-100 p-2 rounded" readonly value="Phạm Quang Minh" />
+                                                <input type="text" id="create-staff" name="create-staff"
+                                                    class="border border-secondary w-100 p-2 rounded" readonly />
                                             </div>
                                             <br>
                                             <div class="form-group">
                                                 <label for="product-quantity1" class="col-form-label">Số lượng:</label>
                                                 <input type="number" id="product-quantity1" name="product-quantity1"
-                                                    class="border border-secondary w-100 p-2 rounded" value="20" />
+                                                    class="border border-secondary w-100 p-2 rounded" readonly  />
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="product-price" class="col-form-label">Giá
                                                     nhập:</label>
                                                 <input type="number" class="border border-secondary w-100 p-2 rounded"
-                                                    id="product-price1" value="599000" />
+                                                    id="product-price1" readonly  />
                                                 <div class="fail"></div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">
                                                     <label for="order-create" class="col-form-label">Ngày
                                                         tạo:</label>
-                                                    <label type="text"
+                                                    <input type="text"
                                                         class="border border-secondary w-100 rounded label_box"
                                                 readonly class=" form-control-plaintext"
-                                                        id="order-create">11/03/2022</label>
+                                                        id="order-create"/>
                                                 </div>
                                                 <div class="col">
                                                     <label for="order-update" class="col-form-label"
                                                         style="text-align: right;">Ngày cập nhật:</label>
-                                                    <label type="text"
+                                                    <input type="text"
                                                         class="border border-secondary w-100 rounded label_box" readonly
                                                         class="form-control-plaintext"
-                                                        id="order-update">15/03/2022</label>
+                                                        id="order-update"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -318,17 +322,14 @@
                                                     nhà cung cấp:</label>
                                                 <input type="text" id="providerNameInfo" name="providerNameInfo"
                                                     readonly class="border border-secondary w-100 p-2 rounded"
-                                                    value="Petrolimex Gas" />
-                                                <!-- <select name="provider-name" id="provider-status" aria-readonly="true"
-                                                        class="border border-secondary w-100 label_box rounded">
-                                                        <option value="provider-1">Petrolimex Gas</option>
-                                                    </select> -->
+                                                     />
+                                               
                                             </div>
                                             <br>
                                             <div class="form-group">
                                                 <label for="confirm-staff" class="col-form-label">Người xác nhận:</label>
                                                 <input type="text" id="confirm-staff" name="confirm-staff"
-                                                    class="border border-secondary w-100 p-2 rounded" readonly value="Nguyễn Quốc Long" />
+                                                    class="border border-secondary w-100 p-2 rounded" readonly  />
                                             </div>
                                             <br>
                                             <div class="form-group">
@@ -336,17 +337,18 @@
                                                     thái:</label>
                                                 <select name="import-status" id="import-status"
                                                     class="border border-secondary w-100 p-2 rounded">
-                                                    <option selected value="status-1">Đang xử lí</option>
-                                                    <option disabled value="status-2">Đơn đã hoàn thành</option>
-                                                    <option disabled value="status-3">Đơn bị hủy</option>
+                                                    <option  value="0">Đang xử lí</option>
+                                                    <option  value="1">Đơn đã hoàn thành</option>
+                                                    <option  value="2">Đơn bị hủy</option>
                                                 </select>
                                             </div>
                                             <br>
                                             <div class="form-group">
                                                 <label for="product-note" class="col-form-label">Ghi
                                                     chú:</label>
-                                                <textarea class="border border-secondary w-100 p-2 rounded"
-                                                    id="product-note"></textarea>
+                                                <input type="text" id="product-note" name="product-note"
+                                                    class="border border-secondary w-100 p-2 rounded" readonly  />
+                                                
 
                                             </div>
                                             <br>
@@ -361,12 +363,7 @@
                                                             readonly class="form-control bg-white border-0"
                                                             id="import-pay1" value="" />
                                                     </div>
-                                                    <div style="margin-top: 2%; float: right">
-                                                        <input type="submit" class="btn btn-primary"
-                                                            value="Lưu"></input>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Hủy</button>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -388,6 +385,36 @@
     </a>
 
     <!-- Bootstrap core JavaScript-->
+     <script type="text/javascript">
+        
+        const productName = document.getElementById("productNameInfo");
+        const providerName = document.getElementById("providerNameInfo");
+        const manageName = document.getElementById("create-staff");
+        const quantity2 = document.getElementById("product-quantity1");
+        const price2 = document.getElementById("import-pay1");
+        const dateCreate = document.getElementById("order-create");
+        const dateUpdate = document.getElementById("order-update");
+        const staffName = document.getElementById("confirm-staff");
+        const status = document.getElementById("import-status");
+        const note = document.getElementById("product-note");
+        
+        const handleClick = (idInput, manageNameIn, productNameInput,
+                    providerNameIn, productImportQuantity, importDateIn,
+                    importStatusIn, priceIn, updateDateIn,
+                    staffNameIn,noteIn) => {
+                        productName.value = productNameInput;
+                        providerName.value = providerNameIn;
+                        manageName.value =  manageNameIn;
+                        quantity2.value = productImportQuantity;
+                        price2.value = priceIn;
+                        dateCreate.value = importDateIn;
+                        dateUpdate.value = updateDateIn;
+                        staffName.value = staffNameIn;
+                        note.value = noteIn;
+                        status.value=importStatusIn;
+                        
+                    };
+    </script>
     <script src="Staff_LGSMS/vendor/jquery/jquery.min.js"></script>
     <script src="Staff_LGSMS/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

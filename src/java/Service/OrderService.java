@@ -102,7 +102,7 @@ public class OrderService {
         if(orderDao.createNewOrder(order) != 0){
             //Clear cart if create order success
             boolean flag = new ShoppingCartService().clearCartForCusByID(accountID);
-            return true;
+            return flag;
         }else{
             return false;
         }

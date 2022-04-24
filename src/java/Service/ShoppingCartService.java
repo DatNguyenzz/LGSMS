@@ -101,6 +101,6 @@ public class ShoppingCartService {
     }
 
     boolean clearCartForCusByID(int accountID) {
-        return (cartDao.clearCartForCusByID(accountID)!=0);
+        return (cartDao.deleteCartByCustomerID(accountID)!=0);
     }
 }

@@ -120,7 +120,7 @@
     </a>
     <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="">Danh sách phiếu nhập</a>
+            <a class="collapse-item" href="<%=request.getContextPath()%>/ManageImport">Danh sách phiếu nhập</a>
         </div>
     </div>
 </li>
