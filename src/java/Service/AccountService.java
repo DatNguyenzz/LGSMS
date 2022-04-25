@@ -209,6 +209,10 @@ public class AccountService {
     public boolean isEmailExist(String email) {
         return accountDao.isEmailExist(email);
     }
+    
+    public boolean isUserNameExist(String userName) {
+        return accountDao.isUserNameExist(userName);
+    }
 
     // doi mk cu thanh mat khau random
     public int updatePass(String email, String password) {
@@ -225,7 +229,7 @@ public class AccountService {
 
     }
 
-    public static void send(String to, String sub,
+    public void send(String to, String sub,
             String msg, final String user, final String pass) {
         //create an instance of Properties Class   
         Properties props = new Properties();

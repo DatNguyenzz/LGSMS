@@ -229,9 +229,10 @@ public class AccountDAO {
         int result = 0;
         String sql
                 = "INSERT INTO Profile ( \n"
-                + " email, created_at)\n"
+                + " email,image_id, created_at)\n"
                 + "VALUES( \n"
                 + "'" + acc.getEmail() + "', \n"
+                + 1 + ", \n"
                 + "'" + getCurrentSQLDate() + "');\n"
                 + "INSERT INTO Account(username, password, role_id, profile_id, is_active)\n"
                 + "VALUES('" + acc.getUsername() + "', "
@@ -456,6 +457,36 @@ public class AccountDAO {
         ResultSet rs = null;
         String sql = BASE_SQL
                 + "WHERE p.email = '" + email + "'\n"
+                + "AND a.is_active = 1";
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                return false;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return true;
+    }
+    
+     // kiểm tra username có tồn tại ko
+    public boolean isUserNameExist(String userName) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = BASE_SQL
+                + "WHERE a.username = '" + userName + "'\n"
                 + "AND a.is_active = 1";
         try {
             db = new DBContext();
