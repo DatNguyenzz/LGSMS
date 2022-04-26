@@ -17,8 +17,13 @@ public class FormatNumber {
         return formatter.format(in) + " VNĐ";
     }
     
-    public String formatDouble(double in){
+    public String formatDoubleToString(double in){
         DecimalFormat formatter = new DecimalFormat("###,###,###.##");
+        return formatter.format(in);
+    }
+    
+    public String formatDoubleToNumber(double in){
+        DecimalFormat formatter = new DecimalFormat("#########.##");
         return formatter.format(in);
     }
 }

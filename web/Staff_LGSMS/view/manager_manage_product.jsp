@@ -1,3 +1,4 @@
+<%@page import="Utility.FormatNumber"%>
 <%@page import="Model.Provider"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Product"%>
@@ -35,6 +36,7 @@
         <%
             ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
             ArrayList<Provider> listProvider = (ArrayList<Provider>) request.getAttribute("listProvider");
+            FormatNumber formatNumber = new FormatNumber();
         %>
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -163,8 +165,8 @@
                                                 </td>
                                                 <td><%=product.getProviderName()%></td>
                                                 <td><%=product.getProductInstock()%></td>
-                                                <td><%=product.getProductPrice()%></td>
-                                                <td><%=product.getProductImportPrice()%></td>
+                                                <td><%=formatNumber.formatDoubleToVND(product.getProductPrice())%></td>
+                                                <td><%=formatNumber.formatDoubleToVND(product.getProductImportPrice())%></td>
                                                 <td>
                                                     <%if (product.isIsActive()) {%>
                                                     <p id="status_complete">Hoạt động</p>

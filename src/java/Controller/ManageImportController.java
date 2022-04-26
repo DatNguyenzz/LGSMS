@@ -49,25 +49,29 @@ public class ManageImportController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-       Account account = (Account) request.getSession().getAttribute("account");
+        Account account = (Account) request.getSession().getAttribute("account");
         String url = request.getServletPath();
         switch (url) {
             case "/ManageImport":
-                ArrayList<Importation> listImport = importationService.getAllImportation();
-                ArrayList<Product> listProduct = new ProductService().getAllProduct();
-                ArrayList<Provider> listProvider = new ProviderService().getAllProvider();
-
-                request.setAttribute("listImportation", listImport);
-                request.setAttribute("listProduct", listProduct);
-                request.setAttribute("listProvider", listProvider);
-                request.getRequestDispatcher("Staff_LGSMS/view/manager_import_voucher.jsp").forward(request, response);
+                if (account.getRole().getRoleID() == 2 || account.getRole().getRoleName().equalsIgnoreCase("Quản lý")) {
+                    //Manage import page for manager
+                    ArrayList<Importation> listImport = importationService.getAllImportation();
+                    ArrayList<Product> listProduct = new ProductService().getAllProduct();
+                    ArrayList<Provider> listProvider = new ProviderService().getAllProvider();
+                    request.setAttribute("listImportation", listImport);
+                    request.setAttribute("listProduct", listProduct);
+                    request.setAttribute("listProvider", listProvider);
+                    request.getRequestDispatcher("Staff_LGSMS/view/manager_import_voucher.jsp").forward(request, response);
+                } else {
+                    //Manage import page for bussiness staff
+                    ArrayList<Importation> listImport = importationService.getAllImportationByStaff(account.getAccountID());
+                    ArrayList<Product> listProduct = new ProductService().getAllProduct();
+                    request.setAttribute("listImport", listImport);
+                    request.setAttribute("listProduct", listProduct);
+                    request.getRequestDispatcher("Staff_LGSMS/view/business_confirm_import.jsp").forward(request, response);
+                }
                 break;
-            case "/ManageImportForStaff":
-                 ArrayList<Importation> listImportStaff = importationService.getAllImportationForStaff(account.getAccountID());
-                 request.setAttribute("listImportStaff", listImportStaff);
-                request.getRequestDispatcher("Staff_LGSMS/view/business_confirm_import.jsp").forward(request, response);
-                break;
-    }
+        }
     }
 
     /**
@@ -82,34 +86,51 @@ public class ManageImportController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-                String url = request.getServletPath();
+        String url = request.getServletPath();
         switch (url) {
-            case "/ImportNewProduct":
+            case "/CreateNewImport": {
                 int productID = Integer.parseInt(request.getParameter("product-id"));
                 int providerID = Integer.parseInt(request.getParameter("provider-id"));
                 int productImportQuantity = Integer.parseInt(request.getParameter("product-quantity"));
                 double productImportPrice = Double.parseDouble(request.getParameter("product-import-price"));
                 String importNote = request.getParameter("import-note");
-
                 Account account = (Account) request.getSession().getAttribute("account");
-                if (request.getParameter("import-from-customer") != null) {
-                    //Import from customer
-                    if (importationService.importFromCustomer(productID, providerID,
-                            productImportQuantity, productImportPrice, importNote, account.getAccountID())) {
-                        response.sendRedirect(request.getContextPath() + "/ManageImport");
-                    } else {
-
-                    }
+                //Import from provider
+                if (importationService.createNewImport(productID, providerID,
+                        productImportQuantity, productImportPrice, importNote, account.getAccountID())) {
+                    response.sendRedirect(request.getContextPath() + "/ManageImport");
                 } else {
-                    //Import from provider
-                    if (importationService.importFromProvider(productID, providerID,
-                            productImportQuantity, productImportPrice, importNote, account.getAccountID())) {
-                        response.sendRedirect(request.getContextPath() + "/ManageImport");
-                    } else {
 
-                    }
+                }
+
+                break;
+            }
+            case "/ImportFromCustomer": {
+                int productID = Integer.parseInt(request.getParameter("product-id"));
+                int productImportQuantity = Integer.parseInt(request.getParameter("product-quantity"));
+                String importNote = request.getParameter("import-note");
+                Account account = (Account) request.getSession().getAttribute("account");
+                if (importationService.importFromCustomer(productID, productImportQuantity,
+                        importNote, account.getAccountID())) {
+                    response.sendRedirect(request.getContextPath() + "/ManageImport");
+                } else {
+
                 }
                 break;
+            }
+            case "/ConfirmNewImport": {
+                int importID = Integer.parseInt(request.getParameter("import-id").trim());
+                int productImportQuantity = Integer.parseInt(request.getParameter("product-quantity").trim());
+                int productImportPrice = Integer.parseInt(request.getParameter("product-price").trim());
+                int importStatus = Integer.parseInt(request.getParameter("import-status").trim());
+                Account account = (Account) request.getSession().getAttribute("account");
+                if(importationService.confirmNewImport(importID, productImportPrice, productImportQuantity, importStatus, account.getAccountID())){
+                    response.sendRedirect(request.getContextPath() + "/ManageImport");
+                }else{
+                    
+                }
+                break;
+            }
         }
     }
 

@@ -373,7 +373,8 @@ public class ProductDAO {
         ResultSet rs = null;
         int result = 0;
         String sql = "UPDATE Product\n"
-                + "SET image_id = " + product.getImagePath() + ",\n"
+                + "SET "
+//                + "image_id = " + product.getImagePath() + ",\n"
                 + "product_name = N'" + product.getProductName() + "',\n"
                 + "provider_id = " + product.getProviderID() + ",\n"
                 + "product_price = " + product.getProductPrice() + ",\n"

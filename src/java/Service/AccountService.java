@@ -225,7 +225,7 @@ public class AccountService {
 
     }
 
-    public static void send(String to, String sub,
+    public void send(String to, String sub,
             String msg, final String user, final String pass) {
         //create an instance of Properties Class   
         Properties props = new Properties();

@@ -79,7 +79,9 @@
     <servlet-mapping>
         <servlet-name>ManageImportController</servlet-name>
         <url-pattern>/ManageImport</url-pattern>
-        <url-pattern>/ImportNewProduct</url-pattern>
+        <url-pattern>/CreateNewImport</url-pattern>
+        <url-pattern>/ImportFromCustomer</url-pattern>
+        <url-pattern>/ConfirmNewImport</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManageProviderController</servlet-name>

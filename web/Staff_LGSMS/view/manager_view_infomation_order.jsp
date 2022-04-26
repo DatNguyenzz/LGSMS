@@ -78,7 +78,9 @@
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <span class="m-0 font-weight-bold text-primary">Đơn hàng</span>
+                                        <%if(order.getOrderStatus()!=0){%>
                                         <a href="Manager_view_information_order.html" class="order-voucher">Xem phiếu thu</a>
+                                        <%}%>
                                     </div>
                                     <div class="card-body">
                                         <!-- <div class="table-responsive"> -->

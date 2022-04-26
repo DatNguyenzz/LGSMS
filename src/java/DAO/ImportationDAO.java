@@ -26,13 +26,13 @@ public class ImportationDAO {
             + "AS provider_name,\n"
             + "(SELECT p.product_name FROM Product p WHERE p.product_id = i.product_id) \n"
             + "AS product_name,\n"
-            + "(SELECT p.full_name FROM Account a INNER JOIN Profile p \n"
+            + "(SELECT a.username FROM Account a INNER JOIN Profile p \n"
             + "ON a.profile_id = p.profile_id WHERE a.account_id = i.staff_id) \n"
             + "as staff_name,\n"
-            + "(SELECT p.full_name FROM Account a INNER JOIN Profile p \n"
+            + "(SELECT a.username FROM Account a INNER JOIN Profile p \n"
             + "ON a.profile_id = p.profile_id WHERE a.account_id = i.manager_id) \n"
-            + "as manage_name\n"
-            + "FROM Importation i";
+            + "as manager_name\n"
+            + "FROM Importation i\n";
 
     public java.sql.Date getCurrentSQLDate() {
         Date utilDate = new Date();
@@ -57,8 +57,8 @@ public class ImportationDAO {
                 importation.setImportID(rs.getInt("import_id"));
                 importation.setProductID(rs.getInt("product_id"));
                 importation.setProductImportQuantity(rs.getInt("product_import_quantity"));
-                importation.setImportDate(rs.getDate("created_at"));
-                importation.setAccountID(rs.getInt("manager_id"));
+                importation.setCreatedAt(rs.getDate("created_at"));
+                importation.setManagerID(rs.getInt("manager_id"));
                 importation.setProviderID(rs.getInt("provider_id"));
                 importation.setNote(rs.getString("note"));
                 importation.setImportAmount(rs.getDouble("import_amount"));
@@ -66,8 +66,8 @@ public class ImportationDAO {
                 importation.setProductName(rs.getString("product_name"));
                 importation.setProviderName(rs.getString("provider_name"));
                 importation.setImportStatus(rs.getInt("import_status"));
-                importation.setManageName(rs.getString("manage_name"));
-                importation.setUpdateDate(rs.getDate("updated_at"));
+                importation.setManagerName(rs.getString("manager_name"));
+                importation.setUpdatedAt(rs.getDate("updated_at"));
                 listImport.add(importation);
             }
         } catch (SQLException ex) {
@@ -77,12 +77,12 @@ public class ImportationDAO {
     }
 
     //Add new import
-    public int addImport(Importation importation) {
+    public int createNewImport(Importation importation) {
         String sql
                 = "INSERT INTO Importation (product_id, product_import_quantity, "
                 + "created_at, manager_id, provider_id, note, "
-                + "import_amount,import_status)\n"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                + "import_amount, import_status)\n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
@@ -95,11 +95,10 @@ public class ImportationDAO {
             ps.setInt(1, importation.getProductID());
             ps.setInt(2, importation.getProductImportQuantity());
             ps.setDate(3, getCurrentSQLDate());
-            ps.setInt(4, importation.getAccountID());
+            ps.setInt(4, importation.getManagerID());
             ps.setInt(5, importation.getProviderID());
             ps.setString(6, importation.getNote());
             ps.setDouble(7, importation.getImportAmount());
-            ps.setInt(8, importation.getImportStatus());
             result = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,8 +106,7 @@ public class ImportationDAO {
         return result;
     }
 
-    
-    public Importation getImportationById(int id){
+    public Importation getImportationById(int id) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
@@ -125,13 +123,12 @@ public class ImportationDAO {
 
             while (rs.next()) {
                 Importation importation = new Importation();
-                
-                
+
                 importation.setImportID(rs.getInt("import_id"));
                 importation.setProductID(rs.getInt("product_id"));
                 importation.setProductImportQuantity(rs.getInt("product_import_quantity"));
-                importation.setImportDate(rs.getDate("created_at"));
-                importation.setAccountID(rs.getInt("staff_id"));
+                importation.setCreatedAt(rs.getDate("created_at"));
+                importation.setManagerID(rs.getInt("staff_id"));
                 importation.setProviderID(rs.getInt("provider_id"));
                 importation.setNote(rs.getString("note"));
                 importation.setImportAmount(rs.getDouble("import_amount"));
@@ -139,10 +136,9 @@ public class ImportationDAO {
                 importation.setProductName(rs.getString("product_name"));
                 importation.setProviderName(rs.getString("provider_name"));
                 importation.setImportStatus(rs.getInt("import_status"));
-                importation.setManageName(rs.getString("manage_name"));
+                importation.setManagerName(rs.getString("manager_name"));
 
                 return importation;
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,15 +151,17 @@ public class ImportationDAO {
         }
         return null;
     }
-    
-    
-       //get all importation for staff
+
+    //get all importation for staff
     public ArrayList<Importation> getAllImportationForStaff(int id) {
         DBContext db = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = BASE_SQL +"where i.staff_id="+id +"Or i.import_status="+0;
+        String sql
+                = BASE_SQL
+                + "WHERE i.staff_id = " + id + "\n"
+                + "OR i.import_status=0";
         ArrayList<Importation> listImport = new ArrayList<>();
         try {
             db = new DBContext();
@@ -175,8 +173,8 @@ public class ImportationDAO {
                 importation.setImportID(rs.getInt("import_id"));
                 importation.setProductID(rs.getInt("product_id"));
                 importation.setProductImportQuantity(rs.getInt("product_import_quantity"));
-                importation.setImportDate(rs.getDate("created_at"));
-                importation.setAccountID(rs.getInt("staff_id"));
+                importation.setCreatedAt(rs.getDate("created_at"));
+                importation.setManagerID(rs.getInt("staff_id"));
                 importation.setProviderID(rs.getInt("provider_id"));
                 importation.setNote(rs.getString("note"));
                 importation.setImportAmount(rs.getDouble("import_amount"));
@@ -184,13 +182,72 @@ public class ImportationDAO {
                 importation.setProductName(rs.getString("product_name"));
                 importation.setProviderName(rs.getString("provider_name"));
                 importation.setImportStatus(rs.getInt("import_status"));
-                importation.setManageName(rs.getString("manage_name"));
-                importation.setUpdateDate(rs.getDate("updated_at"));
+                importation.setManagerName(rs.getString("manager_name"));
+                importation.setUpdatedAt(rs.getDate("updated_at"));
                 listImport.add(importation);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listImport;
+    }
+
+    public int creatNewImportFromCus(Importation importation) {
+        String sql
+                = "INSERT INTO Importation "
+                + "(product_id, "
+                + "product_import_quantity, "
+                + "created_at, "
+                + "staff_id, "
+                + "note, "
+                + "import_amount, "
+                + "import_status)\n"
+                + "VALUES (?, ?, ?, ?, ?, ?, 1)";
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, importation.getProductID());
+            ps.setInt(2, importation.getProductImportQuantity());
+            ps.setDate(3, getCurrentSQLDate());
+            ps.setInt(4, importation.getStaffID());
+            ps.setString(5, importation.getNote());
+            ps.setDouble(6, importation.getImportAmount());
+            result = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+    public int updateImport(Importation importation) {
+        String sql
+                = "BEGIN TRANSACTION\n"
+                + "UPDATE Importation\n"
+                + "SET import_status = " + importation.getImportStatus() + ",\n"
+                + "	staff_id = " + importation.getStaffID() + ",\n"
+                + "	product_import_quantity = " + importation.getProductImportQuantity() + ",\n"
+                + "	import_amount = " + importation.getImportAmount() + "\n"
+                + "WHERE import_id = " + importation.getImportID() + "\n"
+                + "COMMIT;";
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 }

@@ -57,7 +57,7 @@ public class ManageOrderController extends HttpServlet {
                 ArrayList<OrderDetail> listOrderDetailByOrderID = orderService.getListOrderDetailByOrderID(order.getOrderID());
                 request.setAttribute("listOrderDetail", listOrderDetailByOrderID);
                 request.setAttribute("orderInfor", order);
-                if(staffAccount.getRole().getRoleID() == 2 || staffAccount.getRole().getRoleName().equalsIgnoreCase("Manager")){
+                if(staffAccount.getRole().getRoleID() == 2 || staffAccount.getRole().getRoleName().equalsIgnoreCase("Quản lý")){
                     String staffName = orderService.getStaffNameByOrderID(orderId);
                     request.setAttribute("staffName", staffName);
                     request.getRequestDispatcher("Staff_LGSMS/view/manager_view_infomation_order.jsp").forward(request, response);

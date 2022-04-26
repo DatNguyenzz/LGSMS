@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="Utility.FormatNumber"%>
 <%@page import="Model.Provider"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Product"%>
@@ -32,6 +34,8 @@
     <%
         Product product = (Product) request.getAttribute("product");
         ArrayList<Provider> listProvider = (ArrayList<Provider>) request.getAttribute("listProvider");
+        FormatNumber formatNumber = new FormatNumber();
+        DecimalFormat formatter = new DecimalFormat("#########.##");
     %>
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -83,19 +87,18 @@
                                         <form id="form" action="<%=request.getContextPath()%>/EditProduct" method="POST">
                                             <div class="row" style="padding: auto;">
                                                 <div class="col-8 col-sm-4" style="text-align: center ;">
-                                                    <img src="assets/image/gastank12kg_vanchuc.jpg" alt="..."
+                                                    <img src="<%=product.getImagePath()%>" alt="..."
                                                          class="img-thumbnail" style="height: 400px; width: 400px;">
                                                     <span><input type="file" id="user_avatar"
                                                                  accept="image/png, image/jpeg"></span>
                                                 </div>
                                                 <div class="col-8 col-sm-4">
-                                                    <div class="form-group">
+                                                    <div class="form-group" hidden>
                                                         <label for="product-code" class="col-form-label">Mã sản phẩm:</label>
                                                         <input type="text" class="border border-secondary w-100 rounded label_box" 
                                                                readonly class="form-control-plaintext"
                                                                id="product-code" name="productID" value="<%=product.getProductID()%>">
                                                     </div>
-                                                    <br>
                                                     <div class="form-group">
                                                         <label for="product-name" class="col-form-label">Tên sản phẩm:</label>
                                                         <input type="text" class="form-control" id="product-name" name="productName"
@@ -152,15 +155,16 @@
                                                 <div class="col-8 col-sm-4">
                                                     <div class="form-group">
                                                         <label for="product-price" class="col-form-label">Giá bán:</label>
-                                                        <input type="number" class="form-control" id="product-price" min="1"
-                                                               value="<%=product.getProductPrice()%>" name="productPrice" maxlength="25"/>
+                                                        <input type="number" class="form-control" id="product-price" min="1" placeholder="<%=formatNumber.formatDouble(product.getProductPrice())%>"
+                                                               value="<%=formatter.format(product.getProductPrice())%>" name="productPrice" maxlength="25"/>
                                                         <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="product-import" class="col-form-label">Giá nhập:</label>
                                                         <label type="text" class="border border-secondary w-100 rounded label_box" 
-                                                               readonly class="form-control-plaintext" id="product-import"
-                                                               ><%=product.getProductImportPrice()%></label>
+                                                               readonly class="form-control-plaintext" id="product-import">
+                                                            <%=formatNumber.formatDoubleToVND(product.getProductImportPrice())%>
+                                                        </label>
                                                     </div>
                                                     <br>
                                                     <div class="form-group">

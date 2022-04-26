@@ -81,7 +81,6 @@
 
                         <div class="item5">
                             <p>Tổng số tiền: <span><%=formatNumber.formatDoubleToVND(order.getTotalPrice())%></span></p>
-                            <button class="option3">Mua Lại</button>
                         </div>
 
                     </div>

@@ -103,17 +103,16 @@
                                                     <%break;
                                                         }
                                                         case 3: {%>
-                                                    <p id="status_complete">Hoàn thành</p>
-                                                    <%break;
+                                                            <p id="status_complete">Hoàn thành</p>
+                                                        <%  break;
                                                         }
-                                                    }%>
+                                                        }%>
 
                                                 </td>
                                                 <td>
-
-                                                    <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
-
-                                                    <a href="#editAccountModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
+                                                    <a href="ViewDetailOrder?id=<%=order.getOrderID()%>" class="view">
+                                                        <i class="fas fa-eye" data-toggle="tooltip" title="view"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <%}%>

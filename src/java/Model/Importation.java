@@ -15,17 +15,18 @@ public class Importation {
     private int importID;
     private int productID;
     private int productImportQuantity;
-    private Date importDate;
-    private int accountID;
+    private Date createdAt;
+    private int managerID;
+    private int staffID;
     private int providerID;
     private String note;
     private double importAmount;
     private String staffName;
     private String productName;
     private String providerName;
-    private String manageName;
+    private String managerName;
     private int importStatus;
-    private Date updateDate;
+    private Date updatedAt;
 
     public Importation() {
     }
@@ -38,8 +39,8 @@ public class Importation {
         this.importID = importID;
         this.productID = productID;
         this.productImportQuantity = productImportQuantity;
-        this.importDate = importDate;
-        this.accountID = accountID;
+        this.createdAt = importDate;
+        this.managerID = accountID;
         this.providerID = providerID;
         this.note = note;
         this.importAmount = importAmount;
@@ -47,26 +48,34 @@ public class Importation {
         this.productName = productName;
         this.providerName = providerName;
         this.importStatus = importStatus;
-        this.manageName= manageName;
-        this.updateDate=updateDate;
+        this.managerName= manageName;
+        this.updatedAt=updateDate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public int getStaffID() {
+        return staffID;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setStaffID(int staffID) {
+        this.staffID = staffID;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
     
     
 
-    public String getManageName() {
-        return manageName;
+    public String getManagerName() {
+        return managerName;
     }
 
-    public void setManageName(String manageName) {
-        this.manageName = manageName;
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
     }
     
     
@@ -103,20 +112,20 @@ public class Importation {
         this.productImportQuantity = productImportQuantity;
     }
 
-    public Date getImportDate() {
-        return importDate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setImportDate(Date importDate) {
-        this.importDate = importDate;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public int getAccountID() {
-        return accountID;
+    public int getManagerID() {
+        return managerID;
     }
 
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
+    public void setManagerID(int managerID) {
+        this.managerID = managerID;
     }
 
     public int getProviderID() {

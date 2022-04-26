@@ -11,7 +11,7 @@ const price = document.getElementById('product-price');
 const quantity = document.getElementById('product-quantity');
 
 const form1 = document.getElementById('form1');
-const aname = document.getElementById('provider-name');
+//const aname = document.getElementById('provider-name');
 const imQuantity = document.getElementById('return-quantity');
 //Chạy hàm validate form add
 form.addEventListener('submit', e => {
@@ -72,7 +72,7 @@ form1.addEventListener('submit', e => {
 //Trim input và các thông báo form add
 const validateInputs1 = () => {
     const imQuantityValue = imQuantity.value.trim();
-    const anameValue = aname.value.trim();
+//    const anameValue = aname.value.trim();
     
     //Thông báo nhập địa chỉ
     if (imQuantityValue === '') {

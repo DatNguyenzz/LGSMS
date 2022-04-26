@@ -89,7 +89,7 @@ public class OrderService {
         order.setOrderCode(genOrderCode());
         order.setOrderStatus(0);
         ArrayList<OrderDetail> listOrderDetail = new ArrayList<>();
-        for(ShoppingCart cart : listCartByCusID){
+        for (ShoppingCart cart : listCartByCusID) {
             OrderDetail od = new OrderDetail();
             od.setOrderID(accountID);
             od.setProductID(cart.getProductID());
@@ -99,36 +99,36 @@ public class OrderService {
             listOrderDetail.add(od);
         }
         order.setOrderDetail(listOrderDetail);
-        if(orderDao.createNewOrder(order) != 0){
+        if (orderDao.createNewOrder(order) != 0) {
             //Clear cart if create order success
             boolean flag = new ShoppingCartService().clearCartForCusByID(accountID);
             return flag;
-        }else{
+        } else {
             return false;
         }
     }
-    
+
     //GENERATE ORDERCODE
-    public String genOrderCode(){
+    public String genOrderCode() {
         String[] stringDate = orderDao.getCurrentSQLDate().toString().split("-");
-        String code=  "DH" + stringDate[2] + stringDate[1] + stringDate[0];
-        for(int i=0;;i++){
+        String code = "DH" + stringDate[2] + stringDate[1] + stringDate[0];
+        for (int i = 1;; i++) {
             Orders o = getOrderByOrderCode(code + i);
-            if(o == null)
+            if (o == null) {
                 return code + i;
+            }
         }
     }
-    
+
     //Get order by order code
-    public Orders getOrderByOrderCode(String code){
+    public Orders getOrderByOrderCode(String code) {
         return orderDao.getOrderByOrderCode(code);
     }
 
-    
-    public ArrayList<Orders> getListOrdersByCusId(int id){
+    public ArrayList<Orders> getListOrdersByCusId(int id) {
         return orderDao.getListOrderByCusID(id);
     }
-    
+
     //Get name of staff who confirm the order
     public String getStaffNameByOrderID(int orderId) {
         return orderDao.getStaffCodeByOrderID(orderId);

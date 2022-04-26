@@ -140,7 +140,7 @@
                             </div>
 
                         </div>
-                        <a href="CheckOrder" class="fa fa-chevron-left"> Trở lại</a>
+                        <a href="<%=request.getContextPath()%>/TrackOrder" class="fa fa-chevron-left">Trở lại</a>
                     </div>
                 </div>
             </div>
