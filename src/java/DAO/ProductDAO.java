@@ -173,41 +173,42 @@ public class ProductDAO {
         String sql = "";
 
         switch (filter) {
-            case 0:
+            case 0://lấy tất cả sản phẩm
                 sql += BASE_SQL + "where p.is_active =1";
-                //lấy tất cả sản phẩm
+                
                 break;
-            case 1:
+            case 1:// lấy sản phẩm theo giá tăng
                 sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_price ASC";
-                // lấy sản phẩm theo giá tăng
+                
                 break;
-            case 2:
+            case 2://lấy sản phẩm theo giá giảm
                 sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_price DESC";
-                //lấy sản phẩm theo giá giảm
+                
                 break;
-            case 3:
+            case 3://lấy sản phẩm tuwf A-Z
                 sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_name ASC";
-                //lấy sản phẩm tuwf A-Z
+                
                 break;
-            case 4:
+            case 4://lấy sản phẩm từ Z-A
                 sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_name DESC";
-                //lấy sản phẩm từ Z-A
+                
                 break;
-            case 5:
-                sql 
-                        = "SELECT p.product_id, p.image_id, p.product_name, \n"
+            case 5://lấy sản phẩm bán chạy
+                sql     = "SELECT p.product_id, p.image_id, p.product_name, \n"
                         + "p.product_price, p.product_import_price, p.product_instock, \n"
                         + "p.product_empty, p.product_description, p.product_created_at, \n"
-                        + "p.product_updated_at, p.is_active, p.provider_id, pv.provider_name,\n"
-                        + "(SELECT SUM(od.product_quantity) \n"
-                        + "FROM Order_Detail od INNER JOIN Orders o\n"
-                        + "ON od.order_id = o.order_id\n"
-                        + "WHERE od.product_id = p.product_id\n"
-                        + "AND o.order_status = 3) as sold\n"
+                        + "p.product_updated_at, p.is_active, p.provider_id, pv.provider_name, \n"
+                        + "i.image_path, i.image_name,\n"
+                        + "(	SELECT SUM(od.product_quantity) \n"
+                        + "	FROM Order_Detail od INNER JOIN Orders o\n"
+                        + "	ON od.order_id = o.order_id\n"
+                        + "	WHERE od.product_id = p.product_id\n"
+                        + "	AND o.order_status = 3) AS sold\n"
                         + "FROM Product p\n"
+                        + "INNER JOIN Image i ON p.image_id = i.image_id\n"
                         + "INNER JOIN Provider pv ON p.provider_id = pv.provider_id \n"
+                        + "WHERE p.is_active = 1\n"
                         + "ORDER BY sold DESC";
-                //lấy sản phẩm từ Z-A
                 break;
 
             default:
@@ -374,7 +375,7 @@ public class ProductDAO {
         int result = 0;
         String sql = "UPDATE Product\n"
                 + "SET "
-//                + "image_id = " + product.getImagePath() + ",\n"
+                //                + "image_id = " + product.getImagePath() + ",\n"
                 + "product_name = N'" + product.getProductName() + "',\n"
                 + "provider_id = " + product.getProviderID() + ",\n"
                 + "product_price = " + product.getProductPrice() + ",\n"

@@ -41,9 +41,9 @@ public class AuthorizationController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getServletPath();
+        Account acc = (Account) request.getSession().getAttribute("account");
         if (url.equals("/login")) {
             //Get login
-            Account acc = (Account) request.getSession().getAttribute("account");
             if (acc == null) {
                 request.getRequestDispatcher("Staff_LGSMS/view/login.jsp").forward(request, response);
             } else {
@@ -51,8 +51,13 @@ public class AuthorizationController extends HttpServlet {
             }
         } else if (url.equals("/logout")) {
             //Get logut
-            request.getSession().removeAttribute("account");
-            response.sendRedirect(request.getContextPath() + "/Home");
+            if (acc.getRole().getRoleID() == 4 || acc.getRole().getRoleName().equalsIgnoreCase("Khách hàng")) {
+                request.getSession().removeAttribute("account");
+                response.sendRedirect(request.getContextPath() + "/Home");
+            } else {
+                request.getSession().removeAttribute("account");
+                response.sendRedirect(request.getContextPath() + "/login");
+            }
         }
     }
 

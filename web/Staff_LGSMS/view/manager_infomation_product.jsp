@@ -1,4 +1,3 @@
-<%@page import="java.text.DecimalFormat"%>
 <%@page import="Utility.FormatNumber"%>
 <%@page import="Model.Provider"%>
 <%@page import="java.util.ArrayList"%>
@@ -35,7 +34,6 @@
         Product product = (Product) request.getAttribute("product");
         ArrayList<Provider> listProvider = (ArrayList<Provider>) request.getAttribute("listProvider");
         FormatNumber formatNumber = new FormatNumber();
-        DecimalFormat formatter = new DecimalFormat("#########.##");
     %>
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -155,8 +153,8 @@
                                                 <div class="col-8 col-sm-4">
                                                     <div class="form-group">
                                                         <label for="product-price" class="col-form-label">Giá bán:</label>
-                                                        <input type="number" class="form-control" id="product-price" min="1" placeholder="<%=formatNumber.formatDouble(product.getProductPrice())%>"
-                                                               value="<%=formatter.format(product.getProductPrice())%>" name="productPrice" maxlength="25"/>
+                                                        <input type="number" class="form-control" id="product-price" min="1" placeholder="<%=formatNumber.formatDoubleToString(product.getProductPrice())%>"
+                                                               value="<%=formatNumber.formatDoubleToNumber(product.getProductPrice())%>" name="productPrice" maxlength="25"/>
                                                         <p class="fail"></p>
                                                     </div>
                                                     <div class="form-group">

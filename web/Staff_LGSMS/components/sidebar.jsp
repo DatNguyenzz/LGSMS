@@ -108,7 +108,7 @@
     </a>
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="Manager_view_voucher.html">Danh sách phiếu thu</a>
+            <a class="collapse-item" href="<%=request.getContextPath()%>/ManageReceiptVoucher">Danh sách phiếu thu</a>
         </div>
     </div>
 </li>

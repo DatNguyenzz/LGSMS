@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Account;
 import Model.Orders;
 import Model.ReceiptVoucher;
 import Service.OrderService;
@@ -45,11 +46,18 @@ public class ManageReceiptVoucherController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getServletPath();
+        Account acc = (Account) request.getSession().getAttribute("account");
         switch (url) {
             case "/ManageReceiptVoucher": {
-                ArrayList<ReceiptVoucher> listReceiptVoucher = receiptVoucherService.getAllReceiptVoucher();
-                request.setAttribute("listReceiptVoucher", listReceiptVoucher);
-                request.getRequestDispatcher("Staff_LGSMS/view/business_manage_voucher.jsp").forward(request, response);
+                if (acc.getRole().getRoleID() == 2 || acc.getRole().getRoleName() == "Quản lý") {
+                    ArrayList<ReceiptVoucher> listReceiptVoucher = receiptVoucherService.getAllReceiptVoucher();
+                    request.setAttribute("listReceiptVoucher", listReceiptVoucher);
+                    request.getRequestDispatcher("Staff_LGSMS/view/manager_view_voucher.jsp").forward(request, response);
+                } else {
+                    ArrayList<ReceiptVoucher> listReceiptVoucher = receiptVoucherService.getAllReceiptVoucherByStaffID();
+                    request.setAttribute("listReceiptVoucher", listReceiptVoucher);
+                    request.getRequestDispatcher("Staff_LGSMS/view/business_manage_voucher.jsp").forward(request, response);
+                }
                 break;
             }
             case "/ReceiptInfo": {
@@ -61,7 +69,11 @@ public class ManageReceiptVoucherController extends HttpServlet {
                 request.setAttribute("receiptVoucher", receiptVoucher);
                 request.setAttribute("orderCode", orderCode);
                 request.setAttribute("orderTotalMoney", orderTotalMoney);
-                request.getRequestDispatcher("Staff_LGSMS/view/business_information_voucher.jsp").forward(request, response);
+                if (acc.getRole().getRoleID() == 2 || acc.getRole().getRoleName() == "Quản lý") {
+                    request.getRequestDispatcher("Staff_LGSMS/view/manager_view_infomation_voucher.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("Staff_LGSMS/view/business_information_voucher.jsp").forward(request, response);
+                }
                 break;
             }
             case "/ReceiptInfoByOrderID": {
@@ -73,7 +85,11 @@ public class ManageReceiptVoucherController extends HttpServlet {
                 request.setAttribute("receiptVoucher", receiptVoucher);
                 request.setAttribute("orderCode", orderCode);
                 request.setAttribute("orderTotalMoney", orderTotalMoney);
-                request.getRequestDispatcher("Staff_LGSMS/view/business_information_voucher.jsp").forward(request, response);
+                if (acc.getRole().getRoleID() == 2 || acc.getRole().getRoleName() == "Quản lý") {
+                    request.getRequestDispatcher("Staff_LGSMS/view/manager_view_infomation_voucher.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("Staff_LGSMS/view/business_information_voucher.jsp").forward(request, response);
+                }
                 break;
             }
         }

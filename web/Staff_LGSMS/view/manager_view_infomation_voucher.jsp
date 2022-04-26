@@ -1,11 +1,9 @@
-<%-- 
-    Document   : manager_view_infomation_voucher
-    Created on : Apr 6, 2022, 9:31:53 PM
-    Author     : Minh
---%>
-
+<%@page import="Utility.FormatNumber"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.ReceiptVoucher"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -35,16 +33,17 @@
 
 <body id="page-top">
     <%
-                
-        
-        
-        
+        ReceiptVoucher receiptVoucher = (ReceiptVoucher) request.getAttribute("receiptVoucher");
+        String[] listReceiptStatus = {"Đang xử lý", "Đã hoàn thành", "Đã hủy"};
+        String orderCode = (String) request.getAttribute("orderCode");
+        Double orderTotalMoney = (Double) request.getAttribute("orderTotalMoney");
+        FormatNumber formatNumber = new FormatNumber();
     %>
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div include-html="Staff_LGSMS/components/sidebar.html" id="sidebar" style="display: contents;"></div>
+            <div include-html="Staff_LGSMS/components/sidebar.jsp" id="sidebar" style="display: contents;"></div>
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -63,7 +62,7 @@
                     </button>
 
                     <!-- Topbar Navbar -->
-                    <div include-html="Staff_LGSMS/components/topnavbar.html" id="topnavbar" class="ml-auto"></div>
+                    <div include-html="Staff_LGSMS/components/topnavbar.jsp" id="topnavbar" class="ml-auto"></div>
                 </nav>
                 <!-- End of Topbar -->
 
@@ -84,87 +83,101 @@
                                     <!--Tôi giữ nguyên class với
                                     link đúng id với nhau nhé -->
                                     <span class="m-0 font-weight-bold text-primary">Phiếu thu</span>
-                                    <a href="manager_view_information_order.jsp" class="order-voucher">Chuyển đơn hàng</a>
+                                    <a href="<%=request.getContextPath()%>/ViewDetailOrder?id=<%=receiptVoucher.getOrderID()%>" class="order-voucher">Xem đơn hàng</a>
                                 </div>
-                                <form id="form" action="business_new_order.jsp">
-                                    <div class="card-body">
-                                        <!-- <div class="table-responsive"> -->
-                                        <div class="row">
-                                            <div class="col-8 col-sm-1"></div>
-                                            <div class="col-8 col-sm-5">
-                                                <label for="order-code" class="col-form-label">Mã đơn
-                                                    hàng:</label>
-                                                <input type="text" class="border border-secondary w-100 p-2 rounded"
-                                                    id="order-code" required value="LG240" />
-                                                <br><br>
-                                                <label for="order-price" class="col-form-label">Tổng giá
-                                                    tiền (VNĐ):</label>
-                                                <input type="number" readonly
-                                                    class="border border-secondary w-100 p-2 rounded" id="order-price"
-                                                    value="6589000" />
-                                                <br><br>
-                                                <label for="order-deposit" class="col-form-label">Tiền cọc vỏ
-                                                    bình (VNĐ):</label>
-                                                <input type="number" readonly
-                                                    class="border border-secondary w-100 p-2 rounded" id="order-deposit"
-                                                    value="500000" />
-                                                <br><br>
-                                            
-                                            <label for="staff-order" class="col-form-label">Nhân viên nhận
-                                                đơn:</label>
-                                            <input type="text" readonly
-                                                class="border border-secondary w-100 p-2 rounded" id="staff-order"
-                                                value="Truong Quang Phuoc" />
-                                            <br><br>
-                                            <label for="order-date" class="col-form-label">Ngày nhận
-                                                đơn:</label>
-                                            <input type="text" readonly
-                                                class="border border-secondary w-100 p-2 rounded" id="order-date"
-                                                value="10/03/2022" />
-                                        </div>
-                                        <div class="col-8 col-sm-5">
-                                            <label for="voucher-code" class="col-form-label">Mã phiếu thu:</label>
-                                            <input type="text" readonly
-                                                class="border border-secondary w-100 p-2 rounded" id="voucher-code"
-                                                value="LG240" />
-                                            <br><br>
-                                            <label for="customer-name" class="col-form-label">Tên khách
-                                                hàng:</label>
-                                            <input type="text" readonly
-                                                class="border border-secondary w-100 p-2 rounded" id="customer-name"
-                                                value="Truong Gia Viet Anh" />
-                                            <br><br>
-                                            <label for="order-status" class="col-form-label">Trạng
-                                                thái:</label><br>
-                                            <select name="order-status" id="order-status"
-                                                class="border border-secondary w-100 p-2 rounded">
-                                                <option selected value="0" <%   %>>Đang xử lí</option>
-                                                <option disabled value="1" <%   %>>Hoàn thành</option>
-                                            </select>
-                                            <!-- tôi không biết để select box kiểu disabled từng lựa chọn thế kia được không, không dc thì dùng label box ở dưới nhé -->
-                                            <!-- <label for="order-status" class="col-form-label">Trạng
-                                                thái:</label>
-                                                <label type="text" class="border border-secondary w-100 p-2 rounded"
-                                                id="order-status">Đang xử lí</label> -->
-                                            <br><br>
-                                            <label for="order-note" class="col-form-label">Ghi chú:</label>
-                                            <textarea class="border border-secondary w-100 p-2 rounded" readonly
-                                                id="order-note" style="resize: none; overflow: auto;"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-around">
-                                        <div class="col-4"></div>
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <label for="cus-pay" style="float: right;" class="col-form-label">Tổng
-                                                    tiền khách phải trả (VNĐ):</label>
-                                                <input type="number" style="text-align: right;font-size: 36px;" readonly
-                                                    class="form-control bg-white border-0" id="cus-pay" />
+                                <form id="form" action="">
+                                        <div class="card-body">
+                                            <!-- <div class="table-responsive"> -->
+                                            <div class="row">
+                                                <div class="col-8 col-sm-1"></div>
+                                                <div class="col-8 col-sm-5">
+                                                    <label for="order-code" class="col-form-label">Mã đơn
+                                                        hàng:</label>
+                                                    <input type="text" class="border border-secondary w-100 p-2 rounded"
+                                                           id="order-code" readonly value="<%=orderCode%>" />
+                                                    <br><br>
+                                                    <label for="order-price" class="col-form-label">Tiền tạm tính (VNĐ):</label>
+                                                    <input type="number" readonly
+                                                           class="border border-secondary w-100 p-2 rounded" id="order-price"
+                                                           value="<%=formatNumber.formatDoubleToNumber(orderTotalMoney)%>"/>
+                                                    <br><br>
+                                                    <div class="form-group">
+                                                        <label for="order-deposit" class="col-form-label">Tiền cọc vỏ
+                                                            bình (VNĐ):</label>
+                                                        <input type="number" value="<%=formatNumber.formatDoubleToNumber(receiptVoucher.getDeposit())%>"
+                                                               class="form-control border border-secondary p-2 rounded"
+                                                               <%if (receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2) {%> 
+                                                               disabled
+                                                               <%}%>
+                                                               id="order-deposit" name="deposit"/>
+                                                        <div class="fail"></div>
+                                                    </div>
+                                                    <!--                                                    <label for="staff-order" class="col-form-label">Nhân viên nhận
+                                                                                                            đơn:</label>
+                                                                                                        <input type="text" readonly
+                                                                                                               class="border border-secondary w-100 p-2 rounded" id="staff-order"
+                                                                                                               value="<%=receiptVoucher.getStaffName()%>" />
+                                                                                                        <br><br>-->
+                                                    <label for="order-date" class="col-form-label">Ngày nhận
+                                                        đơn:</label>
+                                                    <input type="text" readonly
+                                                           class="border border-secondary w-100 p-2 rounded" id="order-date"
+                                                           value="<%=receiptVoucher.getReceiptCreatedAt()%>" />
+                                                </div>
+                                                <div class="col-8 col-sm-5">
+                                                    <!--<label for="voucher-code" class="col-form-label">Mã phiếu thu:</label>-->
+                                                    <input type="text" readonly name="receipt-id" hidden
+                                                           class="border border-secondary w-100 p-2 rounded" id="voucher-code"
+                                                           value="<%=receiptVoucher.getReceiptID()%>" />
+                                                    <!--                                                    <br><br>-->
+                                                    <label for="customer-name" class="col-form-label">Tên khách
+                                                        hàng:</label>
+                                                    <input type="text" readonly
+                                                           class="border border-secondary w-100 p-2 rounded" id="customer-name"
+                                                           value="<%=receiptVoucher.getCustomerName()%>" />
+                                                    <br><br>
+                                                    <label for="order-status" class="col-form-label">Trạng
+                                                        thái:</label><br>
+                                                    <select name="receipt-status" id="order-status"
+                                                            class="border border-secondary w-100 p-2 rounded">
+                                                        <% for (int i = 0; i < listReceiptStatus.length; i++) {%>
+                                                        <option value="<%=i%>" <%if (i == receiptVoucher.getStatus()) {%>selected<%}%>
+                                                                <%if (i < receiptVoucher.getStatus() || receiptVoucher.getStatus() == 1) {%> disabled<%}%>  >
+                                                            <%=listReceiptStatus[i].toString()%>
+                                                        </option>
+                                                        <%}%>
+
+                                                    </select>
+                                                    <br><br>
+                                                    <label for="order-note" class="col-form-label">Ghi chú:</label>
+                                                    <textarea class="border border-secondary w-100 p-2 rounded" name="note"
+                                                              <%if (receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2) {%> 
+                                                              disabled
+                                                              <%}%>
+                                                              id="order-note" style="resize: none; overflow: auto;"><%=(receiptVoucher.getNote() != null) ? receiptVoucher.getNote() : ""%></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-around">
+                                                <div class="col-4"></div>
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <label for="cus-pay" style="float: right;"
+                                                               class="col-form-label">Tổng tiền khách phải trả (VNĐ):</label>
+                                                        <input type="number" style="text-align: right;font-size: 36px;" readonly name="total-money"
+                                                               class="form-control bg-white border-0" id="cus-pay" 
+                                                               value="<%=formatNumber.formatDoubleToNumber(receiptVoucher.getTotalMoney())%>" />
+                                                    </div>
+<!--                                                    <div style="margin-top: 2%; float: right">
+                                                        <input type="button" class="btn btn-primary submit px-3" 
+                                                               <%if (receiptVoucher.getStatus() == 1 || receiptVoucher.getStatus() == 2) {%> 
+                                                               disabled
+                                                               <%}%>
+                                                               value="Lưu" onclick="alertFunction()"></input>
+                                                    </div>-->
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                            </div>
-                            </form>
+                                    </form>
                         </div>
                     </div>
                 </div>

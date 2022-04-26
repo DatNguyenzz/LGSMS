@@ -35,10 +35,11 @@
             <ol>
                 <li><a href="<%=request.getContextPath()%>/Home" class="fas fa-home" > Trang chủ</a></li>
                 <li><a href="<%=request.getContextPath()%>/Product" class="fas fa-boxes" style="text-decoration: none;"> Sản phẩm</a></li>
-                <li><a href="<%=request.getContextPath()%>/ShoppingCart" class="fas fa-shopping-cart" style="text-decoration: none;">Giỏ hàng </a></li>
+                
                     <%if(account == null){%>
                 <li><a href="<%=request.getContextPath()%>/login" class="fas fa-user" style="text-decoration: none;"> Đăng nhập</a></li>
                     <%}else{%>
+                <li><a href="<%=request.getContextPath()%>/ShoppingCart" class="fas fa-shopping-cart" style="text-decoration: none;">Giỏ hàng </a></li>
                 <li>
                     <div class="dropdown">
                         <a href="#" class="dropbtn fas fa-user-alt" onclick="toggleMenu()"></a>

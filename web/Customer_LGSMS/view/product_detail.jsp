@@ -18,7 +18,7 @@
               rel="stylesheet">
         <link href="Customer_LGSMS/css/style.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
-        <link href="Customer_LGSMS/css/product_slider.css" rel="stylesheet">>
+        <link href="Customer_LGSMS/css/product_slider.css" rel="stylesheet">
     </head>
 
     <body>

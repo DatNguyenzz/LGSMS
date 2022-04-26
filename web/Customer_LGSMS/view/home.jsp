@@ -41,42 +41,42 @@
             <div class="row ">
                 <%for(int i=0;i<4;i++){%>
                 <!--// <div class="col-4">-->
-                    <div class="box">
-                        <div class="option_container">
-                            <div class="options">
-                                <%if(account!=null){%>
-                                <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=listProduct.get(i).getProductID()%>" class="option1">
-                                    Thêm vào giỏ
-                                </a>
-                                <%}%>
-                                <a href="" class="option2">
-                                    Mua ngay
-                                </a>
-                                <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=listProduct.get(i).getProductID()%>" class="option3">
-                                    Chi tiết
-                                </a>
-                            </div>
-                        </div>
-                        <div class="img-box">
-                            <img src="<%= listProduct.get(i).getImagePath()%>" 
-                                 alt="<%= listProduct.get(i).getProductName() %>">
-                        </div>
-                        <div class="detail-box">
-                            <h5 style="width: 150px; height: 60px">
-                                <%= listProduct.get(i).getProductName() %>
-                            </h5>
-
-                            <h6>
-                                <%= formatNumber.formatDoubleToVND(listProduct.get(i).getProductPrice()) %>
-                            </h6>
+                <div class="box">
+                    <div class="option_container">
+                        <div class="options">
+                            <%if(account!=null){%>
+                            <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=listProduct.get(i).getProductID()%>" class="option1">
+                                Thêm vào giỏ
+                            </a>
+                            <%}%>
+                            <a href="" class="option2">
+                                Mua ngay
+                            </a>
+                            <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=listProduct.get(i).getProductID()%>" class="option3">
+                                Chi tiết
+                            </a>
                         </div>
                     </div>
+                    <div class="img-box">
+                        <img src="<%= listProduct.get(i).getImagePath()%>" 
+                             alt="<%= listProduct.get(i).getProductName() %>">
+                    </div>
+                    <div class="detail-box">
+                        <h5 style="width: 150px; height: 60px">
+                            <%= listProduct.get(i).getProductName() %>
+                        </h5>
+
+                        <h6>
+                            <%= formatNumber.formatDoubleToVND(listProduct.get(i).getProductPrice()) %>
+                        </h6>
+                    </div>
+                </div>
                 <!--</div>-->
                 <%if(i == listProduct.size()-1){break;} }%>
             </div>
 
         </div>
-            <br><br>
+        <br><br>
         <!-- Item slider-->
         <div class="container">
             <h2 class="title ">Sản Phẩm</h2>
@@ -85,44 +85,17 @@
                 <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom: 20px;">
                     <div class="carousel carousel-showmanymoveone slide" id="itemslider">
                         <div class="carousel-inner">
-                            <div class="item active">
+                            <%for(int i=0;i<listProduct.size()-1;i++){%>
+                            <div class="item <%if(i==0){%> active <%}%>">
                                 <div class="box"> 
                                     <div class="col-xs-12 col-sm-6 col-md-2">
                                         <div class="option_container">
                                             <div class="options">
-                                                
-                                                <a href="" class="option1">
-                                                    Thêm vào giỏ
-                                                </a>
-                                                <a href="" class="option2">
-                                                    Mua ngay
-                                                </a>
-                                                <a href="" class="option3">
-                                                    Chi tiết
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <img src="Assets/images/product/Gas12kg.png"alt="" style="height: 300px; width: 200px">
-                                        <h5>
-
-                                        </h5>
-
-                                        <h6>
-
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <%for(int i=0;i<5;i++){%>
-                            <div class="item">
-                                <div class="box"> 
-                                    <div class="col-xs-12 col-sm-6 col-md-2">
-                                        <div class="option_container">
-                                            <div class="options">
-                                                
+                                                <%if(account!=null){%>
                                                 <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=listProduct.get(i).getProductID()%>" class="option1">
                                                     Thêm vào giỏ
                                                 </a>
+                                                <%}%>
                                                 <a href="" class="option2">
                                                     Mua ngay
                                                 </a>
@@ -133,12 +106,12 @@
                                         </div>
                                         <img src="<%= listProduct.get(i).getImagePath() %>" alt="" style="height: 250px; width: 150px">
                                         <h5 style="text-align: center">
-                                                <%= listProduct.get(i).getProductName() %>
-                                            </h5>
+                                            <%= listProduct.get(i).getProductName() %>
+                                        </h5>
 
-                                            <h6 style="text-align: center">
-                                                <%= formatNumber.formatDoubleToVND(listProduct.get(i).getProductPrice()) %>
-                                            </h6>
+                                        <h6 style="text-align: center">
+                                            <%= formatNumber.formatDoubleToVND(listProduct.get(i).getProductPrice()) %>
+                                        </h6>
                                     </div>
                                 </div>
 
@@ -179,7 +152,7 @@
         <!-- <script src="/js/header.js"></script> -->
         <script src="Customer_LGSMS/js/jquery-3.6.0.min.js"></script>
         <script src="Customer_LGSMS/js/include-html.min.js"></script>
-        
+
         <script src="Customer_LGSMS/js/slider_product.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

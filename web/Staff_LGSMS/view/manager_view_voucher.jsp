@@ -1,3 +1,4 @@
+<%@page import="Utility.FormatNumber"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.ReceiptVoucher"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,6 +29,7 @@
 </head>
 <%
     ArrayList<ReceiptVoucher> listReceiptVoucher = (ArrayList<ReceiptVoucher>) request.getAttribute("listReceiptVoucher");
+    FormatNumber formatNumber = new FormatNumber();
 %>
 <body id="page-top">
 
@@ -87,17 +89,19 @@
                                             <td><%=rv.getReceiptID()%></td>
                                             <td><%=rv.getReceiptCreatedAt()%></td>
                                             <td><%=rv.getCustomerName()%></td>
-                                            <td><%=rv.getTotalMoney()%></td>
+                                            <td><%=formatNumber.formatDoubleToVND(rv.getTotalMoney())%></td>
                                             <td><%=rv.getStaffName()%></td>
                                             <td>
                                                 <%if(rv.getStatus()==0){%>
                                                 <p id="status_pending">Đang xử lý</p>
-                                                <%}else{%>
+                                                <%}else if(rv.getStatus()==1){%>
                                                 <p id="status_complete">Hoàn thành</p>
+                                                <%}else{%>
+                                                <p id="status_reject">Đã hủy</p>
                                                 <%}%>
                                             </td>
                                             <td>
-                                                <a href="manager_view_information_voucher.jsp" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
+                                                <a href="<%=request.getContextPath()%>/ReceiptInfo?id=<%=rv.getReceiptID()%>" class="view"><i class="fas fa-eye" data-toggle="tooltip" title="view"></i></a>
                                             </td>
                                         </tr>
                                         <%}%>

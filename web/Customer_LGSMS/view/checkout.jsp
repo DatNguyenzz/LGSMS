@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <label for="note"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ghi
                                     chú<small>(tùy chọn)</small></label>
-                                <input type="text" id="note" name="note" placeholder="something"  maxlength="500">
+                                <input type="text" id="note" name="note" placeholder=""  maxlength="500">
                             </div>
                             <p class="checkout_note">Quý khách hàng lưu ý phần <strong>"Tiền cọc vỏ"</strong> và
                                 <strong>"Tổng tiền"</strong> sẽ được cập nhật sau khi nhân viên cửa hàng liên hệ để xác
@@ -80,7 +80,7 @@
                     <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=cart.getProductID()%>">
                         <%=cart.getProduct().getProductName()%> x <%=cart.getProductQuantity()%> 
                     </a>
-                    <span class="price"><%=formatNumber.formatDouble(cart.getProduct().getProductPrice())%></span>
+                    <span class="price"><%=formatNumber.formatDoubleToString(cart.getProduct().getProductPrice())%></span>
                 </p>
                 <hr>
                 <%}%>

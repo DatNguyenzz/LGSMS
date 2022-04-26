@@ -86,7 +86,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="<%=request.getContextPath()%>/CreateNewImport" method="POST" id="form" >
+                                            <form action="<%=request.getContextPath()%>/CreateNewImport" method="POST" id="form">
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="row">
@@ -102,8 +102,7 @@
                                                                 </div>
                                                                 <br>
                                                                 <div class="form-group">
-                                                                    <label for="provider-name" class="col-form-label">Tên
-                                                                        nhà cung cấp:</label>
+                                                                    <label for="provider-name" class="col-form-label">Tên nhà cung cấp:</label>
                                                                     <select name="provider-id" id="product-status"
                                                                             class="border border-secondary w-100 label_box rounded">
                                                                         <%for (Provider provider : listProvider) {%>
@@ -209,7 +208,7 @@
                                                     <%break;
                                                         }
                                                         case 2: {%>
-                                                    <p id="status_cancel">Đã hủy</p>
+                                                    <p id="status_reject">Đã hủy</p>
                                                     <%break;
                                                             }
                                                         }%>

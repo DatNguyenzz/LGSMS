@@ -49,5 +49,9 @@ public class ReceiptVoucherService {
     public ReceiptVoucher getReceiptVoucherByOrderID(int orderID) {
         return receiptVoucherDAO.getReceiptVoucherByOrderID(orderID);
     }
+
+    public ArrayList<ReceiptVoucher> getAllReceiptVoucherByStaffID() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

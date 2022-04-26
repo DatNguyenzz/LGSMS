@@ -172,7 +172,7 @@
                                                 <td class="header">&emsp;  Tiền hàng bán ra</td>
                                                 <td><%=formatNumber.formatDoubleToVND(revenuesByQuarterBefore.getRevenue())%></td>
                                                 <td><%=formatNumber.formatDoubleToVND(revenuesByQuarterNow.getRevenue())%></td>
-                                                <td><%=formatNumber.formatDouble(revenuesByQuarterBefore.getRevenue()/revenuesByQuarterNow.getRevenue()*100)%>%</td>
+                                                <td><%=formatNumber.formatDoubleToString(revenuesByQuarterBefore.getRevenue()/revenuesByQuarterNow.getRevenue()*100)%>%</td>
                                             </tr>
                                             <tr>
                                                 <td class="header"><b>2. Chi phí bán hàng</b></td>
@@ -182,13 +182,13 @@
                                                 <td class="header">&emsp;  Tiền hàng nhập</td>
                                                 <td><%=formatNumber.formatDoubleToVND(costByQuarterBefore.getCost())%></td>
                                                 <td><%=formatNumber.formatDoubleToVND(costByQuarterNow.getCost())%></td>
-                                                <td><%=formatNumber.formatDouble(costByQuarterBefore.getCost()/costByQuarterNow.getCost()*100)%>%</td>
+                                                <td><%=formatNumber.formatDoubleToString(costByQuarterBefore.getCost()/costByQuarterNow.getCost()*100)%>%</td>
                                             </tr>
                                             <tr>
                                                 <td class="header" style="font-size: 18px; color: #4e73df;"><b>Lợi nhuận</b></td>
                                                 <td><%=formatNumber.formatDoubleToVND(revenuesByQuarterBefore.getRevenue()-costByQuarterBefore.getCost())%></td>
                                                 <td><%=formatNumber.formatDoubleToVND(revenuesByQuarterNow.getRevenue()-costByQuarterNow.getCost())%></td>
-                                                <td><%=formatNumber.formatDouble((revenuesByQuarterBefore.getRevenue()-costByQuarterBefore.getCost())/(revenuesByQuarterNow.getRevenue()-costByQuarterNow.getCost())*100) %>%</td>
+                                                <td><%=formatNumber.formatDoubleToString((revenuesByQuarterBefore.getRevenue()-costByQuarterBefore.getCost())/(revenuesByQuarterNow.getRevenue()-costByQuarterNow.getCost())*100) %>%</td>
                                             </tr>
                                         </tbody>
                                     </table>
