@@ -33,6 +33,13 @@ body {
     justify-content: space-around;
 }
 
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 .col-2 {
     flex-basis: 50%;
     min-width: 300px;
@@ -61,6 +68,22 @@ body {
 }
 
 .btn:hover {
+    background: linear-gradient(135deg, #ff5289 40%, #fc955e);
+    ;
+}
+
+.btn-add {
+    display: inline-block;
+    background: linear-gradient(135deg, #f34079 40%, #fc894d);
+    color: white;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.5s;
+}
+
+.btn-add:hover {
     background: linear-gradient(135deg, #ff5289 40%, #fc955e);
     ;
 }
@@ -259,6 +282,9 @@ h4 {
     font-size: 14px;
 }
 
+.p1 {
+    font-size: 16px;
+}
 
 /* Feature offer */
 
@@ -397,6 +423,8 @@ ul li {
     max-height: 100%;
     -webkit-transition: all .3s;
     transition: all .3s;
+    width: 160px;
+    height: 280px;
 }
 
 .product_section .box .detail-box {
@@ -410,7 +438,7 @@ ul li {
 
 .product_section .box h6 {
     margin-top: 10px;
-    color: #555;
+    color: red;
     font-weight: 600;
 }
 
@@ -498,7 +526,6 @@ ul li {
 
 .option3:hover {
     background-position: right center;
-    /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
@@ -521,7 +548,6 @@ ul li {
 
 .option2:hover {
     background-position: right center;
-    /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
@@ -544,7 +570,6 @@ ul li {
 
 .option1:hover {
     background-position: right center;
-    /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
 }
@@ -614,7 +639,9 @@ select {
 
 
 /* product detail */
-
+.single-product a{
+ text-decoration: none;
+}
 .single-product {
     margin-top: 30px;
 }
@@ -633,6 +660,21 @@ select {
     font-weight: bold;
 }
 
+.single-product .btn-add{
+    display: inline-block;
+    background: linear-gradient(135deg, #f34079 40%, #fc894d);
+    color: white;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.5s;
+}
+
+.single-product .btn-add:hover {
+    background: linear-gradient(135deg, #ff5289 40%, #fc955e);
+    
+}
 .single-product input {
     width: 50px;
     height: 40px;
@@ -772,7 +814,7 @@ td {
 
 td input {
     width: 40px;
-    height: 30px;
+    height: 40px;
     padding: 5px;
 }
 
@@ -1099,7 +1141,6 @@ form input {
     /* margin: 10px 0; */
     padding: 0 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 form .btn {

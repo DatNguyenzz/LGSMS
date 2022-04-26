@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="Customer_LGSMS/css/style.css" rel="stylesheet" type="text/css">
-
+    <link href="Customer_LGSMS/css/custom_box.css" rel="stylesheet" type="text/css">
+    <link href="Customer_LGSMS/css/fnon.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -34,20 +35,33 @@
     <div class="small-container row-checkout">
         <div class="col-75">
             <div class="container-checkout">
-                <form action="<%=request.getContextPath()%>/CheckOut" method="POST">
+                <form action="<%=request.getContextPath()%>/CheckOut" method="POST" id="form">
                     <div class="row-checkout">
                         <div class="col-50">
-                            <h3>Thông tin giao hàng</h3>
-                            <label for="fname"><i class="fa fa-user"></i> Tên*</label>
-                            <input type="text" id="fname" name="name" placeholder="<%=account.getFullname()%>"  value="<%=account.getFullname()%>">
-                            <label for="phone"><i class="fa fa-phone"></i> Điện thoại*</label>
-                            <input type="text" id="phone" name="phone" placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>">
-                            <label for="adr"><i class="fa fa-address-card"></i> Địa chỉ*</label>
-                            <input type="text" id="adr" name="address" placeholder="<%=account.getAddress()%>" value="<%=account.getAddress()%>">
-                            <label for="note"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ghi chú<small>(tùy chọn)</small></label>
-                            <input type="text" id="note" name="note">
-                            <p class="checkout_note">Quý khách hàng lưu ý phần <strong>"Tiền cọc vỏ"</strong> và <strong>"Tổng tiền"</strong> sẽ được cập nhật sau khi nhân viên cửa hàng liên hệ để xác nhận thông tin đơn hàng.</p>
-                        </div>
+                            <div class="form-group">
+                                <label for="fname"><i class="fa fa-user"></i> Tên*</label>
+                                <input type="text" id="fname" name="firstname" placeholder="<%=account.getFullname()%>"  value="<%=account.getFullname()%>"  maxlength="50">
+                                <div class="fail"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone"><i class="fa fa-phone"></i> Điện thoại*</label>
+                                <input type="text" id="phone" name="phone" placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>"  maxlength="15">
+                                <div class="fail"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="adr"><i class="fa fa-address-card"></i> Địa chỉ*</label>
+                                <input type="text" id="adr" name="address" placeholder="<%=account.getAddress()%>" value="<%=account.getAddress()%>"  maxlength="500">
+                                <div class="fail"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="note"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ghi
+                                    chú<small>(tùy chọn)</small></label>
+                                <input type="text" id="note" name="note" placeholder="something"  maxlength="500">
+                            </div>
+                            <p class="checkout_note">Quý khách hàng lưu ý phần <strong>"Tiền cọc vỏ"</strong> và
+                                <strong>"Tổng tiền"</strong> sẽ được cập nhật sau khi nhân viên cửa hàng liên hệ để xác
+                                nhận thông tin đơn hàng.</p>
+                            </div>
                     </div>
                     <input type="submit" value="Đặt hàng" class="btnCheckOut">
                 </form>
@@ -84,7 +98,9 @@
     <!-- <script src="/js/header.js"></script> -->
     <script src="Customer_LGSMS/js/jquery-3.6.0.min.js"></script>
     <script src="Customer_LGSMS/js/include-html.min.js"></script>
-
+    <script src="Customer_LGSMS/js/fnon.min.js"></script>
+    <script src="Customer_LGSMS/js/validation/checkout_validation.js"></script>
+    <script src="Customer_LGSMS/js/validation/alert.js"></script>
 
 
 </body>

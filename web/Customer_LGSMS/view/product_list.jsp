@@ -22,7 +22,7 @@
     <body>
         <div class="header">
             <div include-html="Customer_LGSMS/view/header.jsp" id="header"></div>
-        </div>
+        </div> 
 
         <%
             ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
@@ -36,8 +36,9 @@
                     <hr>
                 </h1>
                 <form action="<%=request.getContextPath()%>/Product" method="GET" class="float-right">
+                    <div>
                     <label for="filter">Bộ lọc <i class="bi bi-funnel-fill"></i>:</label>
-                    <select name="filter" id="filters">
+                    <select name="filter" id="filters" onChange="this.form.submit()">
                         <option value="0">Tất cả sản phẩm</option>
                         <option value="1">Thấp dến cao</option>
                         <option value="2">Cao đến thấp</option>
@@ -45,14 +46,15 @@
                         <option value="4">Từ Z-A</option>
                         <option value="5">Sản phẩm bán chạy</option>
                     </select>
-                    <input type="submit" value="Ấn" > 
+                    <!--<input type="submit" value="Ấn" >-->
+                    </div>
                 </form>
             </div>
 
 
             <div class="row">
                 <%if(listProduct.size()==0){%>
-                <h2>Không tìm thấy sản phẩm</h2>
+                <h2 style="padding-bottom: 45vh">Không tìm thấy sản phẩm phù hợp</h2>
                 <%}else{
                     for (Product product : listProduct) {
                 %>
@@ -76,7 +78,7 @@
                         <img src="<%=product.getImagePath()%>" alt="<%=product.getProductName()%>">
                     </div>
                     <div class="detail-box">
-                        <h5>
+                        <h5 style="width: 160px; height: 70px">
                             <%=product.getProductName()%>
                         </h5>
 

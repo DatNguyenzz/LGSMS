@@ -16,7 +16,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-        <!-- <link href="/css/style.css" rel="stylesheet" type="text/css"> -->
+        <link href="Customer_LGSMS/css/style.css" rel="stylesheet" type="text/css">
         <link href="Customer_LGSMS/css/order.css" rel="stylesheet" type="text/css">
     </head>
 
@@ -81,6 +81,7 @@
 
                         <div class="item5">
                             <p>Tổng số tiền: <span><%=formatNumber.formatDoubleToVND(order.getTotalPrice())%></span></p>
+                            <!--<button class="option3">Mua Lại</button>-->
                         </div>
 
                     </div>

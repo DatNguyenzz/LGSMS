@@ -1,5 +1,10 @@
+<%-- 
+    Document   : account
+    Created on : Apr 25, 2022, 12:25:23 AM
+    Author     : Minh
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -25,25 +30,43 @@
     <div class="account-page">
         <div class="container">
             <div class="logo">
-                <a href="#"><img src="Customer_LGSMS/images/logoNgang.PNG" width="125px" alt=""></a>
+                <a href="#"><img src="../images/logoNgang.PNG" width="125px" alt=""></a>
             </div>
             <div class="row">
                 <div class="col-2">
-                    <img src="Customer_LGSMS/images/account.png" width="100%">
+                    <img src="../images/account.png" width="100%">
                 </div>
                 <div class="col-2">
-                    <div class="form-container-forgot">
+                    <div class="form-container" >
                         <div class="form-btn">
-                            <span>Đặt Lại Mật Khẩu</span>
-                            <hr id="indicator-forgot">
+                            <span onclick="login()">Đăng Nhập</span>
+                            <span onclick="register()">Đăng Ký</span>
+                            <hr id="indicator">
                         </div>
-                        <form action="<%=request.getContextPath()%>/ForgotPassword" method="post" id="form">
-                            <div class="form-group" style="width: 260px;">
-                                <input type="email" placeholder="Nhập địa chỉ email của bạn" id="email"  maxlength="50">
+                        <form id="loginForm" style="width: 100%;">
+                            <div class="form-group">
+                                <input type="text" placeholder="Tên đăng nhập" id="username" maxlength="50">
                                 <div class="fail"></div>
                             </div>
-                            <button type="submit" class="btn">Gửi Email</button>
+                            <div class="form-group">
+                                <input type="password" placeholder="Mật khẩu" id="password" maxlength="50">
+                                <div class="fail"></div>
+                            </div>
+                            <button type="submit" class="btn">Đăng Nhập</button>
+                            <a href="forgotPassword.jsp">Quên mật khẩu?</a>
                         </form>
+                        <form id="registerForm" style="width: 100%;">
+                            <div class="form-group">
+                                <input type="text" placeholder="Tên đăng nhập" id="refiUsername"  maxlength="50">
+                                <div class="fail"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email" id="regiEmail" maxlength="50">
+                                <div class="fail"></div>
+                            </div>
+                            <button type="submit" class="btn">Đăng Ký</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -57,33 +80,8 @@
     <script src="Customer_LGSMS/js/jquery-3.6.0.min.js"></script>
     <script src="Customer_LGSMS/js/include-html.min.js"></script>
     <script src="Customer_LGSMS/js/fnon.min.js"></script>
+    <script src="Customer_LGSMS/js/validation/login_regi_validation.js"></script>
     <script src="Customer_LGSMS/js/validation/alert.js"></script>
-    <script>
-        const form = document.getElementById('form');
-        const email = document.getElementById('email');
-        const validateInputs = () => {
-            const emailValue = email.value.trim();
-
-            //Thông báo nhập địa chỉ email
-            if (emailValue === '') {
-                setError(email, 'Yêu cầu nhập địa chỉ email');
-            } else if (!isValidEmail(emailValue)) {
-                setError(email, 'Nhập đúng định dạng email your@example.com');
-            } else {
-                setSuccess(email);
-            }
-        }
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            x = 0;
-            validateInputs();
-            if (x == 1) {
-                document.getElementById("form").submit();
-            }
-
-        });
-    </script>
-
 </body>
 
 </html>
