@@ -76,7 +76,7 @@ public class ProviderDAO {
         int result = 0;
         String sql = "UPDATE provider  \n" +
 "                SET provider.provider_name =  ?   , provider.provider_phone = ?, \n" +
-"                provider.provider_address = ? , provider.provider_email = ? , provider.provider_updated_at=?" +
+"                provider.provider_address = ? , provider.provider_email = ? , provider.provider_updated_at=?, provider.is_active=?" +
 "                 WHERE provider.provider_id = ? ";
                
         try{
@@ -88,8 +88,10 @@ public class ProviderDAO {
             ps.setString(2, provider.getProviderPhone());
             ps.setString(3, provider.getProviderAddress());
             ps.setString(4, provider.getProviderEmail());
-            ps.setInt(6, provider.getProviderID());
+            
             ps.setDate(5, getCurrentSQLDate());
+            ps.setInt(6, (provider.isIsActive() ? 1 : 0));
+            ps.setInt(7, provider.getProviderID());
              result = ps.executeUpdate();
         }catch(Exception e){
             System.out.println(e);

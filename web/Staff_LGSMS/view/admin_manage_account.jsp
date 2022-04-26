@@ -132,7 +132,7 @@
                                                                         <label for="gender" class="col-form-label">Giới tính:</label>
                                                                         <select class="form-control" name="gender" id="gender">
                                                                             <option value="true">Nam</option>
-                                                                            <option value="false">Nữ</option>
+                                                                            <option value="false" >Nữ</option>
                                                                         </select>
                                                                     </div>
                                                                     <br>
@@ -199,9 +199,11 @@
                                                 <td>
                                                     <a href="#editAccountModal" class="edit"
                                                        onclick="handleClick('<%=account.getAccountID()%>', '<%=account.getUsername()%>',
-                                                                       '<%=account.getFullname()%>', '<%=account.getEmail()%>', '<%=account.getPhone()%>',
-                                                                       '<%=account.getAddress()%>', '<%=account.getRole().getRoleID()%>', '<%=account.getDOB()%>',
-                                                                       '<%=account.isGender()%>', '<%=account.getCreatedAt()%>', '<%=account.getUpdatedAt()%>')"
+                                                                       '<%=account.getFullname()%>', '<%=account.getEmail()%>', 
+                                                                       '<%=account.getPhone()%>', '<%=account.getAddress()%>',
+                                                                       '<%=account.getRole().getRoleID()%>', '<%=account.getDOB()%>',
+                                                                       '<%=account.isGender()%>', '<%=account.getCreatedAt()%>', 
+                                                                       '<%=account.getUpdatedAt()%>','<%=account.isIsActive()%>')"
                                                        data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
                                                 </td>
                                             </tr>
@@ -278,9 +280,9 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="staff-status" class="col-form-label">Trạng thái:</label>
-                                                    <select class="form-control" name="staff-status" id="roles">
-                                                        <option value="status-1">Hoạt động</option>
-                                                        <option value="status-2">Ngừng hoạt động</option>
+                                                    <select class="form-control" name="staff-status" id="status">
+                                                        <option value="true">Hoạt động</option>
+                                                        <option value="false">Ngừng hoạt động</option>
                                                     </select>
                                                 </div>
                                                 <br>
@@ -376,12 +378,14 @@
             const roleID = document.getElementById("roleEditInput");
             const createdAt = document.getElementById("createdAtEditInput");
             const updatedAt = document.getElementById("updatedAtEditInput");
+            const accountStatus = document.getElementById("status");
+
 
 
             const handleClick = (idInput, usernameInput, fullnameInput,
                     emailInput, phoneInput, addressInput,
                     roleIdInput, dobInput, genderInput,
-                    createdAtInput, updatedAtInput) => {
+                    createdAtInput, updatedAtInput, statusInput) => {
                         id.value = idInput;
                         fullname.value = fullnameInput;
                         username.value = usernameInput;
@@ -393,6 +397,7 @@
                         gender.value = genderInput;
                         createdAt.value = createdAtInput;
                         updatedAt.value = updatedAtInput;
+                        accountStatus.value = statusInput;
                     };
         </script>
         <script src="Staff_LGSMS/vendor/jquery/jquery.min.js"></script>

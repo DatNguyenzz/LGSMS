@@ -90,7 +90,8 @@ public class ManageAccountController extends HttpServlet {
                 Boolean gender = (request.getParameter("gender").equals("true"));
                 String email = request.getParameter("email");
                 int roleId = Integer.parseInt(request.getParameter("role"));
-                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId)) {
+                Boolean isActive = (request.getParameter("staff-status").equals("true"));
+                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId,isActive)) {
                     //Update success 
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
@@ -175,7 +176,7 @@ public class ManageAccountController extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/login");
 
                 } else {
-                   response.sendRedirect(request.getContextPath() + "/Home");
+                   
                 }
                 break;
             }

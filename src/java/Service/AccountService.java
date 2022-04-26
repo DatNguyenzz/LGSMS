@@ -105,6 +105,24 @@ public class AccountService {
     //Update account information
     public boolean updateAccount(int accountId, String fullname, String phone,
             String address, String dob, Boolean gender,
+            String email, int roleId, Boolean isActive) {
+        Account acc = getAccountByID(accountId);
+        acc.setFullname(fullname);
+        acc.setPhone(phone);
+        acc.setAddress(address);
+        acc.setDOB(parseStringToDate(dob));
+        acc.setGender(gender);
+        acc.setEmail(email);
+        acc.getRole().setRoleID(roleId);
+        acc.setIsActive(isActive);
+        int result = accountDao.updateAccount(acc);
+        return (result != 0);
+    }
+    
+    
+    //Update account information
+    public boolean updateAccountInProfile(int accountId, String fullname, String phone,
+            String address, String dob, Boolean gender,
             String email, int roleId) {
         Account acc = getAccountByID(accountId);
         acc.setFullname(fullname);
@@ -114,6 +132,7 @@ public class AccountService {
         acc.setGender(gender);
         acc.setEmail(email);
         acc.getRole().setRoleID(roleId);
+        
         int result = accountDao.updateAccount(acc);
         return (result != 0);
     }

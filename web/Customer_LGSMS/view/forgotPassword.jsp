@@ -1,7 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
-
+<% String emailMessage =  (String)request.getAttribute("emailMessage"); 
+    
+%>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +34,10 @@
                         <form action="<%=request.getContextPath()%>/ForgotPassword" method="post" id="form">
                             <div class="form-group">
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email của bạn" maxlength="50">
+                                
+                                <% if(emailMessage!=null){%>
+                                <div class="fail"  style="color:#ff3860;" > &emsp;<%=request.getAttribute("emailMessage")%> </div>
+                               <%}%>
                                 <div class="fail"></div>
                             </div>
                             <button type="submit"  class="form-control btn btn-primary submit px-3">Gửi Email</button>

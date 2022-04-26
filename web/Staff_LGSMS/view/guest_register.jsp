@@ -36,7 +36,7 @@
                                 <input  id="account" name="username" type="text" class="form-control" placeholder="Tên tài khoản">
                                 
                                 <% if(userNameMessage!=null){%>
-                                <p style="color:#ff3860;" > &emsp; <%=request.getAttribute("userNameMessage")%> </p>
+                                <div class="fail"  style="color:#ff3860;" > &emsp; <%=request.getAttribute("userNameMessage")%> </div>
                                 <%}%>
                                  
                                 <p class="fail"></p>
@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <input  id="email" name="email" type="text" class="form-control" placeholder="Tài khoản email">
                                 <% if(emailMessage!=null){%>
-                                  <p style="color:#ff3860;" > &emsp;  <%=request.getAttribute("emailMessage")%> </p>
+                                  <div class="fail"  style="color:#ff3860;" > style="color:#ff3860;" > &emsp;  <%=request.getAttribute("emailMessage")%> </div>
                                 <%}%>
                                 
                                 <p class="fail"></p>

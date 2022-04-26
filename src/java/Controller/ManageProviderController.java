@@ -77,7 +77,8 @@ public class ManageProviderController extends HttpServlet {
                 String email = request.getParameter("email");
                 String address = request.getParameter("address");
                 String phone = request.getParameter("providerPhone");
-
+                
+                Boolean isActive =(request.getParameter("provider-status").equals("true"));
                 Provider provider = new Provider();
 
                 provider.setProviderID(providerId);
@@ -85,7 +86,7 @@ public class ManageProviderController extends HttpServlet {
                 provider.setProviderEmail(email);
                 provider.setProviderAddress(address);
                 provider.setProviderPhone(phone);
-
+                provider.setIsActive(isActive);
                 int result = providerService.getPoviderUpdate(provider);
                 if (result != 0) {
                     response.sendRedirect(request.getContextPath() + "/ManageProvider");
