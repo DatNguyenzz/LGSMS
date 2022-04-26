@@ -3,7 +3,6 @@ let x = 0;
 let y = 0;
 const form = document.getElementById('form');
 const aname = document.getElementById('user-name');
-const username = document.getElementById('username');
 const email = document.getElementById('user-email');
 const phone = document.getElementById('user-phone');
 const address = document.getElementById('user-address');
@@ -14,7 +13,7 @@ form.addEventListener('submit', e => {
     e.preventDefault();
     x = 0;
     validateInputs();
-    if (x == 6) {
+    if (x == 5) {
         alertFunction();
     }
 });
@@ -26,7 +25,6 @@ const validateInputs = () => {
     const nameValue = aname.value.trim();
     const addressValue = address.value.trim();
     const dobValue = dob.value.trim();
-    const usernameValue = username.value.trim();
     // Thông báo nhập số điện thoại
 
     if (phoneValue === '') {
@@ -58,14 +56,6 @@ const validateInputs = () => {
         setError(aname, 'Nhập đúng định dạng email your@example.com');
     } else {
         setSuccess(aname);
-    }
-    //Thông báo tên nhân viên
-    if (usernameValue === '') {
-        setError(username, 'Yêu cầu nhập tên đăng nhập');
-    }else if (isValidUsername(usernameValue)) {
-        setError(username, 'Tên tài khoản không được có ký tự đặc biệt')
-    } else {
-        setSuccess(username);
     }
     //Thông báo ngày sinh 
     if (dobValue === '') {

@@ -37,7 +37,7 @@
         <div include-html="Customer_LGSMS/view/why_us.html" id="whyus"></div>
         <!-- Feature product-->
         <div class="small-container product_section ">
-            <h2 class="title ">Sản Phẩm</h2>
+            <h2 class="title ">Sản Phẩm Nổi Bật</h2>
             <div class="row ">
                 <%for(int i=0;i<4;i++){%>
                 <!--// <div class="col-4">-->
@@ -79,7 +79,7 @@
             <br><br>
         <!-- Item slider-->
         <div class="container">
-            <h2 class="title ">Sản Phẩm Nổi Bật</h2>
+            <h2 class="title ">Sản Phẩm</h2>
             <br>
             <div class="row ">
                 <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom: 20px;">
@@ -90,6 +90,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-2">
                                         <div class="option_container">
                                             <div class="options">
+                                                
                                                 <a href="" class="option1">
                                                     Thêm vào giỏ
                                                 </a>
@@ -118,6 +119,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-2">
                                         <div class="option_container">
                                             <div class="options">
+                                                
                                                 <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=listProduct.get(i).getProductID()%>" class="option1">
                                                     Thêm vào giỏ
                                                 </a>
@@ -166,7 +168,7 @@
                         <p>Sản phẩm được lựa chọn nhiều nhất</p>
                         <h1>Bình gas 12kg</h1>
                         <small>Là loại bình gas phổ biến trong mỗi gia đình, cho chất lượng lửa xanh, tiết kiệm nhiên liệu, độ bền cao, chống cháy nổ tốt</small><br>
-                        <a href=" " class="btn ">Mua Ngay</a>
+                        <a href=" " class="btn-add">Mua Ngay</a>
                     </div>
                 </div>
             </div>

@@ -48,13 +48,7 @@
                                 <h4 class="text-right">Hồ Sơ Của Tôi</h4>
                             </div>
                             <div class="row mt-2">
-                                <div class="form-group">
-                                    <label class="labels">Tên Đăng Nhập </label>
-                                    <input type="text" class="form-control" placeholder="<%=account.getFullname()%>" value="<%=account.getFullname()%>"
-                                           id="username"  maxlength="50"/>
-                                    <div class="fail"></div>
-                                </div>
-
+                               
                                 <div class="form-group">
                                     <label class="labels">Họ và Tên</label>
                                     <input type="text" class="form-control" placeholder="<%=account.getFullname()%>" value="<%=account.getFullname()%>"

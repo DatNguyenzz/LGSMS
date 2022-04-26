@@ -72,6 +72,22 @@ body {
     ;
 }
 
+.btn-add {
+    display: inline-block;
+    background: linear-gradient(135deg, #f34079 40%, #fc894d);
+    color: white;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.5s;
+}
+
+.btn-add:hover {
+    background: linear-gradient(135deg, #ff5289 40%, #fc955e);
+    ;
+}
+
 .btn-buynow {
     display: inline-block;
     background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
@@ -798,7 +814,7 @@ td {
 
 td input {
     width: 40px;
-    height: 30px;
+    height: 40px;
     padding: 5px;
 }
 
