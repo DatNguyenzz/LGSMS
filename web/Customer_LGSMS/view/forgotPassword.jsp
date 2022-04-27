@@ -1,89 +1,86 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        LGSMS-acoount
-    </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="Customer_LGSMS/css/style.css" rel="stylesheet" type="text/css">
-    <link href="Customer_LGSMS/css/custom_box.css" rel="stylesheet" type="text/css">
-    <link href="Customer_LGSMS/css/fnon.min.css" rel="stylesheet" type="text/css">
-
-</head>
-
-<body>
-
-    <!--Account-->
-    <div class="account-page">
-        <div class="container">
-            <div class="logo">
-                <a href="#"><img src="Customer_LGSMS/images/logoNgang.PNG" width="125px" alt=""></a>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <img src="Customer_LGSMS/images/account.png" width="100%">
-                </div>
-                <div class="col-2">
-                    <div class="form-container-forgot">
-                        <div class="form-btn">
-                            <span>Đặt Lại Mật Khẩu</span>
-                            <hr id="indicator-forgot">
-                        </div>
-                        <form action="<%=request.getContextPath()%>/ForgotPassword" method="post" id="form">
-                            <div class="form-group" style="width: 260px;">
-                                <input type="email" placeholder="Nhập địa chỉ email của bạn" id="email"  maxlength="50">
-                                <div class="fail"></div>
-                            </div>
-                            <button type="submit" class="btn">Gửi Email</button>
-                        </form>
+<% 
+    String emailMessage =  (String)request.getAttribute("emailMessage"); 
+%>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            LGSMS-acount
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="Staff_LGSMS/css/lgin_reg_fgpw.css">
+        <link href="Staff_LGSMS/assets/styles/custom_box.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+    <body class="img js-fullHeight" style="background-image: url(Staff_LGSMS/assets/image/bg4.webp); background-attachment: fixed;">
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-5">
+                        <a href="<%=request.getContextPath()%>/Home">
+                            <img src="Staff_LGSMS/assets/image/logophuoc-01.PNG" width="150" height="180" style="padding-bottom: 5%;">
+                        </a>
                     </div>
                 </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4" style="background-color: rgba(28, 100, 168, 0.521); border: 5px solid rgb(117, 105, 105);">
+                        <div class="text-center">
+                            <h3 class="mb-4 text-center">Quên mật khẩu?</h3>
+                            <p class="mb-4">Bạn hãy nhập địa chỉ email đã đăng ký, chúng tôi sẽ gửi cho bạn một mã xác nhận qua email.</p>
+                        </div>
+                        <form action="<%=request.getContextPath()%>/ForgotPassword" method="post" id="form">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email của bạn" maxlength="50">
+                                
+                                <% if(emailMessage!=null){%>
+                                <div class="fail"  style="color:#ff3860;" > &emsp;<%=request.getAttribute("emailMessage")%> </div>
+                               <%}%>
+                                <div class="fail"></div>
+                            </div>
+                            <button type="submit"  class="form-control btn btn-primary submit px-3">Gửi Email</button>
+                        </form>
+                        <br>
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </div>
 
-    <!-- footer-->
-    <div include-html="footer.html" id="footer"></div>
-    <!--js for toggle menu-->
-    <!-- <script src="/js/header.js"></script> -->
-    <script src="Customer_LGSMS/js/jquery-3.6.0.min.js"></script>
-    <script src="Customer_LGSMS/js/include-html.min.js"></script>
-    <script src="Customer_LGSMS/js/fnon.min.js"></script>
-    <script src="Customer_LGSMS/js/validation/alert.js"></script>
-    <script>
-        const form = document.getElementById('form');
-        const email = document.getElementById('email');
-        const validateInputs = () => {
-            const emailValue = email.value.trim();
+        </section>
+        <!--js for toggle menu-->
+        <!-- <script src="/js/header.js"></script> -->
+        <script src="Customer_LGSMS/js/jquery-3.6.0.min.js"></script>
+        <script src="Customer_LGSMS/js/include-html.min.js"></script>
+        <script src="Customer_LGSMS/js/fnon.min.js"></script>
+        <script src="Staff_LGSMS/js/valdation/alert.js"></script>
+        <script>
+            const form = document.getElementById('form');
+            const email = document.getElementById('email');
+            const validateInputs = () => {
+                const emailValue = email.value.trim();
 
-            //Thông báo nhập địa chỉ email
-            if (emailValue === '') {
-                setError(email, 'Yêu cầu nhập địa chỉ email');
-            } else if (!isValidEmail(emailValue)) {
-                setError(email, 'Nhập đúng định dạng email your@example.com');
-            } else {
-                setSuccess(email);
+                //Thông báo nhập địa chỉ email
+                if (emailValue === '') {
+                    setError(email, 'Yêu cầu nhập địa chỉ email');
+                } else if (!isValidEmail(emailValue)) {
+                    setError(email, 'Nhập đúng định dạng email your@example.com');
+                } else {
+                    setSuccess(email);
+                }
             }
-        }
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            x = 0;
-            validateInputs();
-            if (x == 1) {
-                document.getElementById("form").submit();
-            }
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                x = 0;
+                validateInputs();
+                if (x == 1) {
+                    document.getElementById("form").submit();
+                }
 
-        });
-    </script>
+            });
+        </script>
 
-</body>
+    </body>
 
 </html>

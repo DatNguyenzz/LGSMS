@@ -90,7 +90,8 @@ public class ManageAccountController extends HttpServlet {
                 Boolean gender = (request.getParameter("gender").equals("true"));
                 String email = request.getParameter("email");
                 int roleId = Integer.parseInt(request.getParameter("role"));
-                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId)) {
+                Boolean isActive = (request.getParameter("staff-status").equals("true"));
+                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId,isActive)) {
                     //Update success 
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
@@ -117,9 +118,26 @@ public class ManageAccountController extends HttpServlet {
             case "/Register": {
                 String username = request.getParameter("username");
                 String email = request.getParameter("email");
-                String password = request.getParameter("password");
+                String password = accountService.randomPassword();
+                String subject = "New Account.";
+                String message = "<!DOCTYPE html>\n"
+                        + "<html lang=\"en\">\n"
+                        + "\n"
+                        + "<head>\n"
+                        + "<meta charset=\"UTF-8\">\n"
+                        + "</head>\n"
+                        + "\n"
+                        + "<body>\n"
+                        + "    <h3 style=\"color: blue;\">Your password.</h3>\n"
+                        + "    <div>Password : " + password + "</div>\n"
+                        + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
+                        + "\n"
+                        + "</body>\n"
+                        + "\n"
+                        + "</html>";
 
                 if (accountService.register(username, email, password, 4)) {
+                    accountService.send(email, subject, message, "lgsmsvanhsibun@gmail.com", "vanhsibun123");
                     response.sendRedirect(request.getContextPath() + "/Register");
                 } else {
 

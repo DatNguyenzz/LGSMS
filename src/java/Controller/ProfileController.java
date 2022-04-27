@@ -87,7 +87,7 @@ public class ProfileController extends HttpServlet {
                 boolean gender = Boolean.valueOf(request.getParameter("gender"));
                 String address = request.getParameter("address");
                 String email = request.getParameter("email");
-                if (accountService.updateAccount(account.getAccountID(), fullname, phone, address, dob, gender, email, account.getRole().getRoleID())) {
+                if (accountService.updateAccountInProfile(account.getAccountID(), fullname, phone, address, dob, gender, email, account.getRole().getRoleID())) {
                     //Update success 
                     account = accountService.getAccountByID(account.getAccountID());
                     request.getSession().setAttribute("account", account);

@@ -99,6 +99,8 @@ public class ImportationDAO {
             ps.setInt(5, importation.getProviderID());
             ps.setString(6, importation.getNote());
             ps.setDouble(7, importation.getImportAmount());
+            
+            ps.setInt(8, importation.getImportStatus());
             result = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);

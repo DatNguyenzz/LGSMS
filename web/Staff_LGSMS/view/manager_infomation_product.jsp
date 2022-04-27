@@ -111,9 +111,9 @@
                                                                 class="border border-secondary w-100 label_box rounded">
                                                             <%for (Provider pv : listProvider) {%>
                                                             <option value="<%=pv.getProviderID()%>"
-                                                                                <%if(product.getProviderID() == pv.getProviderID()){%>selected<%}%>
-                                                                                    ><%=pv.getProviderName()%> </option>
-                                                                        <%}%>
+                                                                    <%if (product.getProviderID() == pv.getProviderID()) {%>selected<%}%>
+                                                                    ><%=pv.getProviderName()%> </option>
+                                                            <%}%>
                                                         </select>
                                                     </div>
                                                     <br>
@@ -168,10 +168,10 @@
                                                     <div class="form-group">
                                                         <label for="product-status" class="col-form-label">Trạng
                                                             thái:</label><br>
-                                                        <select name="productStatus" id="product-status"
-                                                                class="border border-secondary w-100 label_box rounded">
+                                                        
+                                                        <select class="form-control" name="productStatus" id="product-status" class="border border-secondary w-100 label_box rounded">
                                                             <option value="true">Hoạt động</option>
-                                                            <option value="false"<%if (!product.isIsActive()) {%>selected<%}%>>Ngừng hoạt động</option>
+                                                            <option value="false" <%if (!product.isIsActive()) {%>selected<%}%>>Ngừng hoạt động</option>
                                                         </select>
                                                     </div>
                                                     <br>
@@ -180,11 +180,11 @@
                                                         <textarea type="text" class="form-control" name="productDescription"
                                                                   id="product-description" style="resize: none; height: 115px;"><%=product.getProductDescription()%></textarea>
                                                     </div>
-                                                        <div style="margin-top: 7%; float: right ; padding:5%">
+                                                    <div style="margin-top: 7%; float: right ; padding:5%">
                                                         <input type="submit" class="btn btn-primary submit px-3"
-                                                            value="Lưu"></input>
+                                                               value="Lưu"></input>
                                                     </div>
-                                                    
+
 
                                                 </div>
                                             </div>
