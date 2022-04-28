@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="item2">
-                            <img src="Customer_LGSMS/images/buy-1.jpg" alt="work">
+                            <img src="<%=order.getOrderDetail().get(0).getProductImagePath()%>" alt="work">
                         </div>
                         <div class="item3">
                             <h3>Sản phẩm: <%=order.getOrderDetail().get(0).getProductName()%></h3>

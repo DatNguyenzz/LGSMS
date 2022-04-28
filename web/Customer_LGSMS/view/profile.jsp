@@ -51,21 +51,27 @@
                                
                                 <div class="form-group">
                                     <label class="labels">Họ và Tên</label>
-                                    <input type="text" class="form-control" placeholder="<%=account.getFullname()%>" value="<%=account.getFullname()%>"
+                                    <input type="text" class="form-control" name="fullname"
+                                           placeholder="<%=account.getFullname()%>" 
+                                           value="<%=account.getFullname()%>"
                                            id="user-name" maxlength="50"/>
                                     <div class="fail"></div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="labels" for="gender">Giới tính</label>
-                                    <label class="labels">Giới Tính</label>
-                                    <input type="text" name="gender" class="form-control" placeholder="<%=account.isGender()?"Nam":"Nữ"%>" value="<%=account.isGender()?"Nam":"Nữ"%>">
-                                    <br>
+                                    <label for="gender" class="col-form-label">Giới tính:</label>
+                                        <select class="form-control" name="gender" id="gender">
+                                            <option value="true" >Nam</option>
+                                            <option value="false" <% if(!account.isGender()){ %> selected <%}%>>Nữ</option>
+                                        </select><br>
+                                    
                                 </div>
 
                                 <div class="form-group">
                                     <label class="labels">Ngày Sinh</label>
-                                    <input type="date" class="form-control" placeholder="<%=account.getDOB()%>" value="<%=account.getDOB()%>" id="user-dob" />
+                                    <input type="date" class="form-control" name="dob"
+                                           placeholder="<%=account.getDOB()%>" 
+                                           value="<%=account.getDOB()%>" id="user-dob" />
                                     <div class="fail"></div>
                                 </div>
 
@@ -74,19 +80,26 @@
                                 
                                 <div class="form-group">
                                     <label class="labels">Email</label>
-                                    <input type="email" class="form-control" placeholder="<%=account.getEmail()%>" value="<%=account.getEmail()%>" id="user-email"  maxlength="255"/>
+                                    <input type="email" class="form-control" name="email"
+                                           placeholder="<%=account.getEmail()%>" 
+                                           value="<%=account.getEmail()%>" id="user-email"  
+                                           maxlength="255"/>
                                     <div class="fail"></div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="labels">Điện Thoại</label>
-                                    <input type="text" class="form-control" placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>"
+                                    <input type="text" class="form-control" name="phone"
+                                           placeholder="<%=account.getPhone()%>" 
+                                           value="<%=account.getPhone()%>"
                                         id="user-phone"  maxlength="15"/>
                                     <div class="fail"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="labels">Địa Chỉ</label>
-                                    <input type="text" class="form-control" placeholder="<%=account.getAddress()%>" value="<%=account.getAddress()%>"
+                                    <input type="text" class="form-control" name="address"
+                                           placeholder="<%=account.getAddress()%>" 
+                                           value="<%=account.getAddress()%>"
                                         id="user-address" maxlength="500" />
                                     <div class="fail"></div>
                                 </div>

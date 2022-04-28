@@ -49,12 +49,12 @@ public class ManageReceiptVoucherController extends HttpServlet {
         Account acc = (Account) request.getSession().getAttribute("account");
         switch (url) {
             case "/ManageReceiptVoucher": {
-                if (acc.getRole().getRoleID() == 2 || acc.getRole().getRoleName() == "Quản lý") {
+                if (acc.getRole().getRoleID() == 2 || acc.getRole().getRoleName().equalsIgnoreCase("Quản lý")) {
                     ArrayList<ReceiptVoucher> listReceiptVoucher = receiptVoucherService.getAllReceiptVoucher();
                     request.setAttribute("listReceiptVoucher", listReceiptVoucher);
                     request.getRequestDispatcher("Staff_LGSMS/view/manager_view_voucher.jsp").forward(request, response);
                 } else {
-                    ArrayList<ReceiptVoucher> listReceiptVoucher = receiptVoucherService.getAllReceiptVoucherByStaffID();
+                    ArrayList<ReceiptVoucher> listReceiptVoucher = receiptVoucherService.getAllReceiptVoucherByStaffID(acc.getAccountID());
                     request.setAttribute("listReceiptVoucher", listReceiptVoucher);
                     request.getRequestDispatcher("Staff_LGSMS/view/business_manage_voucher.jsp").forward(request, response);
                 }

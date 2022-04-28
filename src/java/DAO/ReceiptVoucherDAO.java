@@ -212,4 +212,43 @@ public class ReceiptVoucherDAO {
         return null;
     }
 
+    public ArrayList<ReceiptVoucher> getAllReceiptVoucherByStaffID(int accountID) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = BASE_SQL
+                + "WHERE r.business_staff_id = " + accountID;
+        ArrayList<ReceiptVoucher> listReceiptVoucher = new ArrayList<>();
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ReceiptVoucher receiptVoucher = new ReceiptVoucher();
+                receiptVoucher.setReceiptID(rs.getInt("receipt_id"));
+                receiptVoucher.setOrderID(rs.getInt("order_id"));
+                receiptVoucher.setReceiptCreatedAt(rs.getDate("create_at"));
+                receiptVoucher.setBussinessStaffID(rs.getInt("business_staff_id"));
+                receiptVoucher.setTotalMoney(rs.getDouble("total_money"));
+                receiptVoucher.setDeposit(rs.getDouble("deposit"));
+                receiptVoucher.setNote(rs.getString("note"));
+                receiptVoucher.setStatus(rs.getInt("voucher_status"));
+                receiptVoucher.setCustomerName(rs.getString("customer_name"));
+                receiptVoucher.setStaffName(rs.getString("staff_name"));
+                listReceiptVoucher.add(receiptVoucher);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReceiptVoucherDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return listReceiptVoucher;
+    }
+
 }

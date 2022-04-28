@@ -28,6 +28,14 @@
             ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
             FormatNumber formatNumber = new FormatNumber();
             Account account = (Account) request.getSession().getAttribute("account");
+            String[] listFilter = {"Tất cả sản phẩm", "Giá tăng", "Giá giảm", "Tên A-Z", "Tên Z-A", "Sản phẩm bán chạy"};
+            String filterString = request.getAttribute("filter").toString();
+            int filter;
+            if(filterString == null){
+                filter = 0;
+            }else{
+                filter = Integer.parseInt(filterString);
+            }
         %>
         <!-- Feature product-->
         <div class="small-container product_section">
@@ -37,16 +45,17 @@
                 </h1>
                 <form action="<%=request.getContextPath()%>/Product" method="GET" class="float-right">
                     <div>
-                    <label for="filter">Bộ lọc <i class="bi bi-funnel-fill"></i>:</label>
-                    <select name="filter" id="filters" onChange="this.form.submit()">
-                        <option value="0">Tất cả sản phẩm</option>
-                        <option value="1">Thấp dến cao</option>
-                        <option value="2">Cao đến thấp</option>
-                        <option value="3">Từ A-Z</option>
-                        <option value="4">Từ Z-A</option>
-                        <option value="5">Sản phẩm bán chạy</option>
-                    </select>
-                    <!--<input type="submit" value="Ấn" >-->
+                        <label for="filter">Bộ lọc <i class="bi bi-funnel-fill"></i>:</label>
+                        <select name="filter" id="filters" onChange="this.form.submit()">
+                            <% for(int i=0; i<listFilter.length; i++){%>
+                            <option value="<%=i%>" 
+                                    <%if(filter == i){%> selected <%}%>  >
+
+                                <%=listFilter[i]%>
+                            </option>
+                            <%}%>
+                        </select>
+                        <!--<input type="submit" value="Ấn" >-->
                     </div>
                 </form>
             </div>
@@ -61,7 +70,8 @@
                 <div class="box">
                     <div class="option_container">
                         <div class="options">
-                            <%if(account!=null){%>
+                            <%  if(product.getProductInstock() > 0){ %>
+                            <%  if(account != null){%>
                             <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=product.getProductID()%>" class="option1">
                                 Thêm vào giỏ
                             </a>
@@ -69,6 +79,7 @@
                             <a href="" class="option2">
                                 Mua ngay
                             </a>
+                            <% } %>
                             <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=product.getProductID()%>" class="option3">
                                 Xem chi tiết
                             </a>

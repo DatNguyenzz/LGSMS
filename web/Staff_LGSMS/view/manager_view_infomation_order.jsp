@@ -28,6 +28,7 @@
         <!-- Custom styles for this page -->
         <link href="Staff_LGSMS/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <link href="Staff_LGSMS/css/fnon.min.css" rel="stylesheet">
+        <link href="Staff_LGSMS/assets/styles/custom_box.css" rel="stylesheet">
     </head>
     <%
         Orders order = (Orders) request.getAttribute("orderInfor");
@@ -79,7 +80,7 @@
                                     <div class="card-header py-3">
                                         <span class="m-0 font-weight-bold text-primary">Đơn hàng</span>
                                         <%if(order.getOrderStatus()!=0){%>
-                                        <a href="Manager_view_information_order.html" class="order-voucher">Xem phiếu thu</a>
+                                        <a href="ReceiptInfoByOrderID?id=<%=order.getOrderID()%>" class="order-voucher">Xem phiếu thu</a>
                                         <%}%>
                                     </div>
                                     <div class="card-body">

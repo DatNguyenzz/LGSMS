@@ -87,36 +87,6 @@ public class Importation {
     public void setImportStatus(int importStatus) {
         this.importStatus = importStatus;
     }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-    
-    
-
-    public String getManageName() {
-        return manageName;
-    }
-
-    public void setManageName(String manageName) {
-        this.manageName = manageName;
-    }
-    
-    
-
-    public int getImportStatus() {
-        return importStatus;
-    }
-
-    public void setImportStatus(int importStatus) {
-        this.importStatus = importStatus;
-    }
-
-    
     
     public int getImportID() {
         return importID;

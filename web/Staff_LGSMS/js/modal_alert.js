@@ -1,5 +1,5 @@
 const ModalWindow = {
-    init(){
+    init() {
         document.body.addEventListener("click", e => {
             if (e.target.classList.contains("modal_close")) {
                 this.closeModal(e.target);
@@ -7,12 +7,12 @@ const ModalWindow = {
         });
         document.body.addEventListener("click", e => {
             if (e.target.classList.contains("modal_overlay")) {
-                this.closeModal1(e.target);
+                this.closeModal11(e.target);
             }
         });
     },
 
-    getHtmlTemplate(modalOptions){
+    getHtmlTemplate(modalOptions) {
         return `
                 <div class="modal_overlay" id="overlay">
                 <div class="modal_window">
@@ -30,13 +30,19 @@ const ModalWindow = {
         `;
     },
 
-    closeModal(closeButton){
+    closeModal(closeButton) {
         const modalOverlay = closeButton.parentElement.parentElement.parentElement;
-        
+
         document.body.removeChild(modalOverlay);
-        
+
     },
 
+    closeModal1(closeOverlay) {
+        const modalOverlay1 = closeOverlay;
+
+        document.body.removeChild(modalOverlay1);
+
+    },
     openModal(modalOptions = {}){
         modalOptions = Object.assign({
             title: 'Modal title',
@@ -44,10 +50,10 @@ const ModalWindow = {
         }, modalOptions);
 
         const modalTemplate = this.getHtmlTemplate(modalOptions);
-        document.body.insertAdjacentHTML("afterbegin",modalTemplate);
+        document.body.insertAdjacentHTML("afterbegin", modalTemplate);
         setTimeout(() => {
-        const element = document.getElementById("overlay");
-        element.remove();
+            const element = document.getElementById("overlay");
+            element.remove();
         }, 2000);
     }
 };

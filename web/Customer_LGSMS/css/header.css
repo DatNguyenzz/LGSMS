@@ -23,6 +23,10 @@ nav .icon {
     color: #fff;
     cursor: pointer;
 }
+nav .icon a{
+    text-decoration: none; 
+    color:#fff!important ; 
+}
 
 nav ol {
     display: flex;

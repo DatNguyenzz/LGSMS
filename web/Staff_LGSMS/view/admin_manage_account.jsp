@@ -27,6 +27,7 @@
         <link href="Staff_LGSMS/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <link href="Staff_LGSMS/assets/styles/custom_box.css" rel="stylesheet">
         <link href="Staff_LGSMS/css/fnon.min.css" rel="stylesheet">
+        <link href="Staff_LGSMS/css/alert.css" rel="stylesheet">
     </head>
     <body id="page-top">
         <%
@@ -190,20 +191,27 @@
                                                 <td><%=account.getEmail()%></td>
                                                 <td><%=account.getRole().getRoleName()%></td>
                                                 <td>
-                                                        <%if (account.isIsActive()) {%> <p id="status_complete">Đang hoạt động</p> 
-                                                        <%}else{%><p id="status_reject">Ngừng hoạt động</p>
-                                                        <%}%>
+                                                    <%if (account.isIsActive()) {%> <p id="status_complete">Đang hoạt động</p> 
+                                                    <%} else {%><p id="status_reject">Ngừng hoạt động</p>
+                                                    <%}%>
                                                 </td>
                                                 <td><%=account.getCreatedAt()%></td>
                                                 <td><%=account.getUpdatedAt()%></td>
                                                 <td>
                                                     <a href="#editAccountModal" class="edit"
-                                                       onclick="handleClick('<%=account.getAccountID()%>', '<%=account.getUsername()%>',
-                                                                       '<%=account.getFullname()%>', '<%=account.getEmail()%>', 
-                                                                       '<%=account.getPhone()%>', '<%=account.getAddress()%>',
-                                                                       '<%=account.getRole().getRoleID()%>', '<%=account.getDOB()%>',
-                                                                       '<%=account.isGender()%>', '<%=account.getCreatedAt()%>', 
-                                                                       '<%=account.getUpdatedAt()%>','<%=account.isIsActive()%>')"
+                                                       onclick="handleClick('<%=account.getAccountID()%>', 
+                                                                            '<%=account.getUsername()%>',
+                                                                            '<%=account.getFullname()%>', 
+                                                                            '<%=account.getEmail()%>',
+                                                                            '<%=account.getPhone()%>', 
+                                                                            '<%=account.getAddress()%>',
+                                                                            '<%=account.getRole().getRoleID()%>', 
+                                                                            '<%=account.getDOB()%>',
+                                                                            '<%=account.isGender()%>', 
+                                                                            '<%=account.getCreatedAt()%>',
+                                                                            '<%=account.getUpdatedAt()%>', 
+                                                                            '<%=account.isIsActive()%>',
+                                                                            '<%=account.getImagePath()%>')"
                                                        data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
                                                 </td>
                                             </tr>
@@ -237,67 +245,67 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    
-                        <div class="modal-body">
-                            <form id="form1" action="<%=request.getContextPath()%>/EditAccount" method="post">
-                                <div class="col-8 col-sm-12" style="text-align: center ;">
-                                    <img src="assets/image/long.png" alt="..."
-                                         class="img-thumbnail"
-                                         style="height: 200px; width: 200px; border-radius: 50%;">
-                                    <div><input type="file" id="user_avatar" accept="image/png, image/jpeg">
-                                    </div>
+
+                    <div class="modal-body">
+                        <form id="form1" action="<%=request.getContextPath()%>/EditAccount" method="post">
+                            <div class="col-8 col-sm-12" style="text-align: center ;">
+                                <img src="assets/image/long.png" alt="..."
+                                     class="img-thumbnail" id="profileImage"
+                                     style="height: 200px; width: 200px; border-radius: 50%;">
+                                <div><input type="file" id="user_avatar" accept="image/png, image/jpeg">
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-8 col-sm-6">
-                                                <div class="form-group" hidden>
-                                                    <label for="staff-code" class="col-form-label">Mã nhân viên:</label>
-                                                    <input type="text" class="border border-secondary w-100 rounded label_box" 
-                                                           readonly class="form-control-plaintext" name="accountId"
-                                                           id="accountIdEditInput">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="user-name" class="col-form-label">Họ và
-                                                        tên*:</label>
-                                                    <input type="text" class="form-control" id="fullnameEditInput"
-                                                           name="fullname" maxlength="50"/>
-                                                    <div class="fail"></div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="staff-phone" class="col-form-label">Số điện
-                                                        thoại*:</label>
-                                                    <input type="text" class="form-control"
-                                                           id="staff-phone" name="phone" maxlength="15"/>
-                                                    <div class="fail"></div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="user-address" class="col-form-label">Địa chỉ*:
-                                                    </label>
-                                                    <input type="text" class="form-control"
-                                                           id="addressEditInput" name="address" maxlength="255"/>
-                                                    <div class="fail"></div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="staff-status" class="col-form-label">Trạng thái:</label>
-                                                    <select class="form-control" name="staff-status" id="status">
-                                                        <option value="true">Hoạt động</option>
-                                                        <option value="false">Ngừng hoạt động</option>
-                                                    </select>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label for="user-dob"
-                                                                   class="col-form-label">Ngày sinh*</label>
-                                                            <input class="form-control" id="dobEditInput"
-                                                                   name="dob"
-                                                                   type="date" />
-                                                            <div class="fail"></div>
-                                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-8 col-sm-6">
+                                            <div class="form-group" hidden>
+                                                <label for="staff-code" class="col-form-label">Mã nhân viên:</label>
+                                                <input type="text" class="border border-secondary w-100 rounded label_box" 
+                                                       readonly class="form-control-plaintext" name="accountId"
+                                                       id="accountIdEditInput">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="user-name" class="col-form-label">Họ và
+                                                    tên*:</label>
+                                                <input type="text" class="form-control" id="fullnameEditInput"
+                                                       name="fullname" maxlength="50"/>
+                                                <div class="fail"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="staff-phone" class="col-form-label">Số điện
+                                                    thoại*:</label>
+                                                <input type="text" class="form-control"
+                                                       id="staff-phone" name="phone" maxlength="15"/>
+                                                <div class="fail"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="user-address" class="col-form-label">Địa chỉ*:
+                                                </label>
+                                                <input type="text" class="form-control"
+                                                       id="addressEditInput" name="address" maxlength="255"/>
+                                                <div class="fail"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="staff-status" class="col-form-label">Trạng thái:</label>
+                                                <select class="form-control" name="staff-status" id="status">
+                                                    <option value="true">Hoạt động</option>
+                                                    <option value="false">Ngừng hoạt động</option>
+                                                </select>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="user-dob"
+                                                               class="col-form-label">Ngày sinh*</label>
+                                                        <input class="form-control" id="dobEditInput"
+                                                               name="dob"
+                                                               type="date" />
+                                                        <div class="fail"></div>
                                                     </div>
-                                                
+                                                </div>
+
                                                 <div class="col">
                                                     <label for="gender" class="col-form-label">Giới tính:</label>
                                                     <select class="form-control" name="gender" id="genderEditInput">
@@ -305,16 +313,16 @@
                                                         <option value="false">Nữ</option>
                                                     </select>
                                                 </div>
-                                                </div>
                                             </div>
-                                        
+                                        </div>
+
                                         <div class="col-8 col-sm-6">
                                             <div class="form-group">
                                                 <label for="username" class="col-form-label">Tên đăng
                                                     nhập*:</label>
                                                 <input type="text" class="form-control" id="usernameEditInput"
                                                        name="username" readonly maxlength="50"/>
-                                                       <br>
+                                                <br>
                                             </div>
 
                                             <div class="form-group">
@@ -379,26 +387,36 @@
             const createdAt = document.getElementById("createdAtEditInput");
             const updatedAt = document.getElementById("updatedAtEditInput");
             const accountStatus = document.getElementById("status");
+            const profileImage = document.getElementById("profileImage");
 
 
-
-            const handleClick = (idInput, usernameInput, fullnameInput,
-                    emailInput, phoneInput, addressInput,
-                    roleIdInput, dobInput, genderInput,
-                    createdAtInput, updatedAtInput, statusInput) => {
-                        id.value = idInput;
-                        fullname.value = fullnameInput;
-                        username.value = usernameInput;
-                        email.value = emailInput;
-                        staffPhone.value = phoneInput;
-                        address.value = addressInput;
-                        roleID.value = roleIdInput;
-                        dob.value = dobInput;
-                        gender.value = genderInput;
-                        createdAt.value = createdAtInput;
-                        updatedAt.value = updatedAtInput;
-                        accountStatus.value = statusInput;
-                    };
+            const handleClick = (   idInput, 
+                                    usernameInput, 
+                                    fullnameInput,
+                                    emailInput, 
+                                    phoneInput, 
+                                    addressInput,
+                                    roleIdInput, 
+                                    dobInput, 
+                                    genderInput,
+                                    createdAtInput, 
+                                    updatedAtInput, 
+                                    statusInput,
+                                    imageInput) => {
+                id.value = idInput;
+                fullname.value = fullnameInput;
+                username.value = usernameInput;
+                email.value = emailInput;
+                staffPhone.value = phoneInput;
+                address.value = addressInput;
+                roleID.value = roleIdInput;
+                dob.value = dobInput;
+                gender.value = genderInput;
+                createdAt.value = createdAtInput;
+                updatedAt.value = updatedAtInput;
+                accountStatus.value = statusInput;
+                profileImage.src = imageInput;
+            };
         </script>
         <script src="Staff_LGSMS/vendor/jquery/jquery.min.js"></script>
         <script src="Staff_LGSMS/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -416,6 +434,22 @@
         <script src="Staff_LGSMS/js/fnon.min.js"></script>
         <script src="Staff_LGSMS/js/valdation/alert.js"></script>
         <script src="Staff_LGSMS/js/valdation/admin_validate_1.js"></script>
+        <script src="Staff_LGSMS/js/modal_alert.js"></script>
+        <% 
+            String message = (String) request.getAttribute("message");
+            if(message != null){
+        %>
+        <script>
+            ModalWindow.openModal(
+                {
+                    title: "Confirm",
+                    content: "Pôp"
+                }
+            )
+        </script>
+        <%}%>
+        
+
     </body>
 
 </html>

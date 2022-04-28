@@ -40,23 +40,35 @@ public class OrderService {
         return orderDao.getAllAcceptedOrderByStaff(staffID);
     }
 
-    public boolean updateOrderStatus(int orderId, int orderStatus, int accountID) {
+    public boolean updateOrderStatus(int orderId, int orderStatus, int accountID, String note2) {
         boolean result = false;
+        Orders order = getOrderByID(orderId);
+        if(order.getOrderStatus() == 0){
+            order.setBussinessStaffID(accountID);
+        }
         switch (orderStatus) {
             case 1: //Accept new order
                 //Update status and staff for order
                 int updateDbResult = orderDao.staffUpdateOrderStatus(orderId, accountID, orderStatus);
                 //Create mew receipt voucher for staff
                 boolean createNewReceiptVoucher = new ReceiptVoucherService().creatNewReceiptVoucher(orderId, accountID);
+                
                 return (updateDbResult != 0 && createNewReceiptVoucher);
-            case 2: //Order being delivered
-
-                break;
-            case 3: //Order completed
-
-                break;
-            case 4: //Cancel order
-                return (orderDao.staffUpdateOrderStatus(orderId, accountID, orderStatus) != 0);
+            case 2: {//Order being delivered
+                order.setOrderNote2(note2);
+                order.setOrderStatus(orderStatus);
+                return (orderDao.updateOrderStatus(order) != 0);
+            }
+            case 3: {//Order completed
+                order.setOrderNote2(note2);
+                order.setOrderStatus(orderStatus);
+                return (orderDao.updateOrderStatus(order) != 0);
+            }
+            case 4: {//Cancel order
+                order.setOrderNote2(note2);
+                order.setOrderStatus(orderStatus);
+                return (orderDao.updateOrderStatus(order) != 0);
+            }
         }
         return result;
     }

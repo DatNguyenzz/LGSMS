@@ -138,7 +138,13 @@ public class OrderDAO {
         ResultSet rs = null;
         String sql
                 = "SELECT od.order_detail_id, od.order_id, od.price, od.product_id, od.product_quantity,\n"
-                + "(SELECT p.product_name FROM Product p WHERE p.product_id = od.product_id) AS product_name\n"
+                + "(	SELECT p.product_name \n"
+                + "	FROM Product p \n"
+                + "	WHERE p.product_id = od.product_id) AS product_name,\n"
+                + "(	SELECT i.image_path\n"
+                + "	FROM Product p \n"
+                + "	INNER JOIN Image i ON p.image_id = i.image_id\n"
+                + "	WHERE p.product_id = od.product_id) AS image_path\n"
                 + "FROM Order_Detail od\n"
                 + "WHERE od.order_id = " + id;
         ArrayList<OrderDetail> listOrderDetail = new ArrayList<>();
@@ -155,6 +161,7 @@ public class OrderDAO {
                 orderDetail.setProductName(rs.getString("product_name"));
                 orderDetail.setProductQuantity(rs.getInt("product_quantity"));
                 orderDetail.setPrice(rs.getDouble("price"));
+                orderDetail.setProductImagePath(rs.getString("image_path"));
                 listOrderDetail.add(orderDetail);
             }
         } catch (SQLException ex) {
@@ -196,7 +203,7 @@ public class OrderDAO {
                 order.setBussinessStaffID(rs.getInt("business_staff_id"));
                 order.setOrderNote1(rs.getString("order_note_1"));
                 order.setOrderNote2(rs.getString("order_note_2"));
-
+                
                 order.setTotalPrice(rs.getDouble("total_money"));
                 order.setCustomerPhone(rs.getString("phone"));
                 order.setCustomerAddress(rs.getString("address"));
@@ -512,10 +519,10 @@ public class OrderDAO {
             con = db.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 return rs.getString("username");
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

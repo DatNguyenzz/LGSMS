@@ -5,8 +5,6 @@
  */
 package Model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -19,6 +17,7 @@ public class OrderDetail {
     private String productName;
     private int productQuantity;
     private double price;
+    private String productImagePath;
     
 
     public OrderDetail() {
@@ -81,4 +80,13 @@ public class OrderDetail {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public String getProductImagePath() {
+        return productImagePath;
+    }
+
+    public void setProductImagePath(String productImagePath) {
+        this.productImagePath = productImagePath;
+    }
+    
 }

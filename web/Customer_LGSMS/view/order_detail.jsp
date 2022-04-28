@@ -21,6 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link href="Customer_LGSMS/css/order_detail.css" rel="stylesheet" type="text/css">
+    <link href="Customer_LGSMS/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -62,39 +63,14 @@
                                 <label type="text" class="w-100 " id="order-note">Ghi chú: <span><%=order.getOrderNote1()%></span></label>
                             </div>
                             <div class="col-8 col-sm-5 ml-3">
-                                <!-- <ul class="timeline">
-                                    <li>
-                                        <span>24/03/2022</span>
-                                        <span>Hoàn thành đơn hàng</span>
-                                    </li>
-                                    <li>
-                                        <span>23/03/2022</span>
-                                        <span>Giao hàng thành công</span>
-                                    </li>
-                                    <li>
-                                        <span>22/03/2022</span>
-                                        <span>Đơn hàng đang vận chuyển</span>
-
-                                    </li>
-                                    <li>
-                                        <span>20/03/2022</span>
-                                        <span>Đơn hàng đang được chuẩn bị</span>
-
-                                    </li>
-                                    <li>
-                                        <span>19/03/2022</span>
-                                        <span>Đơn hàng đã được xác nhận</span>
-
-                                    </li> -->
-
                             </div>
 
                             <div class="table-responsive mt-4">
                                 <table class="table table-bordered" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th width="8%"></th>
-                                            <th width="10%">#</th>
+                                            <th width="8%">#</th>
+                                            <th width="10%"></th>
                                             <th width="20%">Tên sản phẩm</th>
                                             <th width="8%">Số lượng</th>
                                             <th width="10%">Giá </th>
@@ -108,13 +84,12 @@
                                                 count++;
                                         %>
                                         <tr>
-                                            <td><img src="Customer_LGSMS/assets/image/gastank12kg_vanngang.jpg" width="70" height="70">
-                                            </td>
                                             <td><%=count%></td>
+                                            <td><img src="<%=od.getProductImagePath()%>" width="70" height="70"></td>
                                             <td><%=od.getProductName()%></td>
                                             <td><%=od.getProductQuantity()%></td>
-                                            <td><%=formatNumber.formatDouble(od.getPrice() / od.getProductQuantity())%></td>
-                                            <td><%=formatNumber.formatDouble(od.getPrice())%></td>
+                                            <td><%=formatNumber.formatDoubleToString(od.getPrice() / od.getProductQuantity())%></td>
+                                            <td><%=formatNumber.formatDoubleToString(od.getPrice())%></td>
                                             
                                         </tr>
                                         <%}%>
@@ -122,12 +97,12 @@
                                         <tfoot>
                                             <tr>
                                                 <td colSpan="5" style="text-align: right;">Tổng tiền hàng</td>
-                                                <td><%=formatNumber.formatDouble(order.getTotalPrice())%></td>
+                                                <td><%=formatNumber.formatDoubleToString(order.getTotalPrice())%></td>
                                             </tr>
                                             <%if(receiptVoucher!=null){%>
                                             <tr>
                                                 <td colSpan="5" style="text-align: right;">Chiết khấu</td>
-                                                <td><%=formatNumber.formatDouble(receiptVoucher.getDeposit())%></td>
+                                                <td><%=formatNumber.formatDoubleToString(receiptVoucher.getDeposit())%></td>
                                             </tr>
                                             <tr>
                                                 <td colSpan="5" style="text-align: right;">Tổng số tiền</td>

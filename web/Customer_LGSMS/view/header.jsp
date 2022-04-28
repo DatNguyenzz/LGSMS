@@ -22,9 +22,9 @@
     <body>
         <input type="checkbox" id="check">
         <nav>
-            <div class="icon">LGS <b style="color: red;">M</b>S</div>
+            <div class="icon"><a href="<%=request.getContextPath()%>/Home" >LGS <b style="color: red;">M</b>S</a></div>
             <div class="search_box">
-                <form action="<%=request.getContextPath()%>/Product" method="post" id="form">
+                <form action="<%=request.getContextPath()%>/Product" method="post" id="search">
                     <div class="search_box">
                         <input type="search" name="searchName" placeholder="Nhập từ khóa...." required>
                         <!--<button  type="submit" class="button-search"><i class="fas fa-search"></i></<button>-->
@@ -65,7 +65,7 @@
         <script>
             function submitForm()
             {
-                document.getElementById("form").submit();
+                document.getElementById("search").submit();
             }
         </script>
     </body>

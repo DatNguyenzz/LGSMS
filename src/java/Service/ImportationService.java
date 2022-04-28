@@ -26,11 +26,6 @@ public class ImportationService {
         return importDAO.getAllImportationForStaff(id);
     }
 
-
-    public Importation getImportationById(int id) {
-        return importDAO.getImportationById(id);
-    }
-
     public ArrayList<Importation> getAllImportationByStaff(int id) {
         return importDAO.getAllImportationForStaff(id);
     }

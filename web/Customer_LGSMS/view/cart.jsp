@@ -59,7 +59,7 @@
 
                     <td>
                         <div class="cart-info">
-                            <img src="Customer_LGSMS/images/buy-1.jpg">
+                            <img src="<%=cart.getProduct().getImagePath()%>">
                             <div class="">
                                 <p><%=cart.getProduct().getProductName()%> </p>
                                 <small> <%=formatNumber.formatDoubleToVND(cart.getProduct().getProductPrice())%></small><br>

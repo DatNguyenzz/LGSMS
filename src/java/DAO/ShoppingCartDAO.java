@@ -37,9 +37,10 @@ public class ShoppingCartDAO {
         ResultSet rs = null;
         String sql
                 = "SELECT c.cart_id, c.product_id, c.product_quantity, c.customer_id, \n"
-                + "p.product_name, p.product_price  \n"
+                + "p.product_name, p.product_price, i.image_path  \n"
                 + "FROM Shopping_Cart c\n"
-                + "INNER JOIN Product p on c.product_id= p.product_id\n"
+                + "INNER JOIN Product p ON c.product_id= p.product_id\n"
+                + "INNER JOIN Image i ON i.image_id = p.image_id\n"
                 + "WHERE c.customer_id=" + id;
         ArrayList<ShoppingCart> listCart = new ArrayList<>();
         try {
@@ -55,6 +56,7 @@ public class ShoppingCartDAO {
                 cart.setCustomerID(rs.getInt("customer_id"));
 
                 Product product = new Product();
+                product.setImagePath(rs.getString("image_path"));
                 product.setProductName(rs.getString("product_name"));
                 product.setProductPrice(rs.getDouble("product_price"));
 

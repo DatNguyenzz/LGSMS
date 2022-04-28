@@ -40,7 +40,7 @@
                         <div class="col-50">
                             <div class="form-group">
                                 <label for="fname"><i class="fa fa-user"></i> Tên*</label>
-                                <input type="text" id="fname" name="firstname" placeholder="<%=account.getFullname()%>"  value="<%=account.getFullname()%>"  maxlength="50">
+                                <input type="text" id="fname" name="name" placeholder="<%=account.getFullname()%>"  value="<%=account.getFullname()%>"  maxlength="50">
                                 <div class="fail"></div>
                             </div>
                             <div class="form-group">

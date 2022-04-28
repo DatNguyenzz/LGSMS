@@ -100,7 +100,7 @@ public class ManageImportController extends HttpServlet {
                         productImportQuantity, productImportPrice, importNote, account.getAccountID())) {
                     response.sendRedirect(request.getContextPath() + "/ManageImport");
                 } else {
-
+                    
                 }
 
                 break;

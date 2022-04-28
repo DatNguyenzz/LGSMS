@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Product"%>
+<%@page import="Model.Account"%>
 <%@page import="Utility.FormatNumber"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,6 +28,7 @@
             Product product = (Product) request.getAttribute("product");
             ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("productByProvider");
             FormatNumber formatNumber = new FormatNumber();
+            Account account = (Account) request.getSession().getAttribute("account");
         %>
         <div class="header">
             <div include-html="Customer_LGSMS/view/header.jsp" id="header"></div>
@@ -38,14 +40,15 @@
                     <img src="<%=product.getImagePath()%>" width="100%" id="productImg">
 
                 </div>
-                <div class="col-2">
-                    <h1 class="p1"><b><%=product.getProductName()%></b></h1>
-                    <p class="p1"> <%=product.getProviderName()%></p>
-                    <small> <% if(product.getProductInstock()>0){ %> Còn hàng<%} else{%>Hết hàng <%}%></small>
+                <div class="col-2 ">
+                    <h1 class="product_detail"><b><%=product.getProductName()%></b></h1>
+                    <p class="p1">Thương hiệu: <%=product.getProviderName()%></p>
+                    <p>Tình trạng: <% if(product.getProductInstock()>0){ %> <strong style="color:green;">Còn hàng</strong><%} else{%><strong style="color:red;">Hết hàng </strong><%}%></p>
                     <h4><%= formatNumber.formatDoubleToVND(product.getProductPrice()) %></h4>
-
+                    <% if(product.getProductInstock() > 0){%>
                     <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=product.getProductID()%>" class="btn-add"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
                     <a href="" class="btn-buynow">Mua Ngay</a>
+                    <%}%>
                 </div>
             </div>
 
@@ -62,7 +65,7 @@
             </div>
         </div>
         <!-- Feature product-->
-        
+
         <!-- Item slider-->
         <div class="container">
             <div class="row ">
@@ -70,45 +73,22 @@
                 <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom: 20px;">
                     <div class="carousel carousel-showmanymoveone slide" id="itemslider">
                         <div class="carousel-inner">
-                            <div class="item active">
+                            <%for(int i=0;i<listProduct.size()-1;i++){%>
+                            <div class="item <% if(i==0){ %> active <%}%>">
                                 <div class="box"> 
                                     <div class="col-xs-12 col-sm-6 col-md-2">
                                         <div class="option_container">
                                             <div class="options">
-                                                <a href="" class="option1">
-                                                    Thêm vào giỏ
-                                                </a>
-                                                <a href="" class="option2">
-                                                    Mua ngay
-                                                </a>
-                                                <a href="" class="option3">
-                                                    Chi tiết
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <img src="Assets/images/product/Gas12kg.png"alt="" style="height: 300px; width: 200px">
-                                        <h5>
-
-                                        </h5>
-
-                                        <h6>
-
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <%for(int i=0;i<5;i++){%>
-                            <div class="item">
-                                <div class="box"> 
-                                    <div class="col-xs-12 col-sm-6 col-md-2">
-                                        <div class="option_container">
-                                            <div class="options">
+                                                <%  if(listProduct.get(i).getProductInstock() > 0){ %>
+                                                <%  if(account != null){%>
                                                 <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=listProduct.get(i).getProductID()%>" class="option1">
                                                     Thêm vào giỏ
                                                 </a>
+                                                <%}%>
                                                 <a href="" class="option2">
                                                     Mua ngay
                                                 </a>
+                                                <% } %>
                                                 <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=listProduct.get(i).getProductID()%>" class="option3">
                                                     Chi tiết
                                                 </a>
@@ -116,12 +96,12 @@
                                         </div>
                                         <img src="<%= listProduct.get(i).getImagePath() %>" alt="" style="height: 250px; width: 150px">
                                         <h5 style="text-align: center">
-                                                <%= listProduct.get(i).getProductName() %>
-                                            </h5>
+                                            <%= listProduct.get(i).getProductName() %>
+                                        </h5>
 
-                                            <h6 style="text-align: center">
-                                                <%= formatNumber.formatDoubleToVND(listProduct.get(i).getProductPrice()) %>
-                                            </h6>
+                                        <h6 style="text-align: center">
+                                            <%= formatNumber.formatDoubleToVND(listProduct.get(i).getProductPrice()) %>
+                                        </h6>
                                     </div>
                                 </div>
 

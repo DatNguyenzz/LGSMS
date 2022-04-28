@@ -27,7 +27,7 @@
                     <h3>Sản phẩm</h3>
                     <ul>
                         <li> <a href="<%=request.getContextPath()%>/Product" class=" ">Tất cả sản phẩm</a></li>
-                        <li> <a href="<%=request.getContextPath()%>/Product" class=" ">Sản phẩm bán chạy</a></li>
+                        <li> <a href="<%=request.getContextPath()%>/Product?filter=5" class=" ">Sản phẩm bán chạy</a></li>
                         <li> <a href="<%=request.getContextPath()%>/Product" class=" ">Sản phẩm mới</a></li>
 
 

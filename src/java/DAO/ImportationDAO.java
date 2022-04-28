@@ -100,7 +100,6 @@ public class ImportationDAO {
             ps.setString(6, importation.getNote());
             ps.setDouble(7, importation.getImportAmount());
             
-            ps.setInt(8, importation.getImportStatus());
             result = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,7 +233,8 @@ public class ImportationDAO {
                 + "SET import_status = " + importation.getImportStatus() + ",\n"
                 + "	staff_id = " + importation.getStaffID() + ",\n"
                 + "	product_import_quantity = " + importation.getProductImportQuantity() + ",\n"
-                + "	import_amount = " + importation.getImportAmount() + "\n"
+                + "	import_amount = " + importation.getImportAmount() + ",\n"
+                + "     updated_at = '" + getCurrentSQLDate() + "'\n"
                 + "WHERE import_id = " + importation.getImportID() + "\n"
                 + "COMMIT;";
         DBContext db = null;

@@ -44,7 +44,8 @@
                 <div class="box">
                     <div class="option_container">
                         <div class="options">
-                            <%if(account!=null){%>
+                            <%  if(listProduct.get(i).getProductInstock() > 0){ %>
+                            <%  if(account != null){%>
                             <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=listProduct.get(i).getProductID()%>" class="option1">
                                 Thêm vào giỏ
                             </a>
@@ -52,6 +53,7 @@
                             <a href="" class="option2">
                                 Mua ngay
                             </a>
+                            <% } %>
                             <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=listProduct.get(i).getProductID()%>" class="option3">
                                 Chi tiết
                             </a>
@@ -91,7 +93,8 @@
                                     <div class="col-xs-12 col-sm-6 col-md-2">
                                         <div class="option_container">
                                             <div class="options">
-                                                <%if(account!=null){%>
+                                                <%  if(listProduct.get(i).getProductInstock() > 0){ %>
+                                                <%  if(account != null){%>
                                                 <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=listProduct.get(i).getProductID()%>" class="option1">
                                                     Thêm vào giỏ
                                                 </a>
@@ -99,6 +102,7 @@
                                                 <a href="" class="option2">
                                                     Mua ngay
                                                 </a>
+                                                <% } %>
                                                 <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=listProduct.get(i).getProductID()%>" class="option3">
                                                     Chi tiết
                                                 </a>

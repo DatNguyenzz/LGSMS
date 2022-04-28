@@ -66,11 +66,13 @@ public class CustomerProductController extends HttpServlet {
                 // filter product
                 if (filter == null) {
                     listProduct = productService.getAllProductIsActive();
+                    request.setAttribute("filter", 0);
                     request.setAttribute("listProduct", listProduct);
                     request.getRequestDispatcher("Customer_LGSMS/view/product_list.jsp").forward(request, response);
                 } else {
                     int filterID = Integer.parseInt(filter);
                     listProduct = productService.getAllProductFilter(filterID);
+                    request.setAttribute("filter", filterID);
                     request.setAttribute("listProduct", listProduct);
                     request.getRequestDispatcher("Customer_LGSMS/view/product_list.jsp").forward(request, response);
                 }
@@ -111,7 +113,7 @@ public class CustomerProductController extends HttpServlet {
 
         switch (url) {
             case "/Product":
-                String search = request.getParameter("searchName");
+                String search = request.getParameter("searchName").trim();
                 ArrayList<Product> listProduct = productService.getSearchProduct(search);
                 request.setAttribute("listProduct", listProduct);
                 request.getRequestDispatcher("Customer_LGSMS/view/product_list.jsp").forward(request, response);

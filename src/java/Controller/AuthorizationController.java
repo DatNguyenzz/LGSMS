@@ -47,7 +47,11 @@ public class AuthorizationController extends HttpServlet {
             if (acc == null) {
                 request.getRequestDispatcher("Staff_LGSMS/view/login.jsp").forward(request, response);
             } else {
-                response.sendRedirect(request.getContextPath() + "/Home");
+                if (acc.getRole().getRoleID() == 4 || acc.getRole().getRoleName().equalsIgnoreCase("Khách hàng")) {
+                    response.sendRedirect(request.getContextPath() + "/Home");
+                }else{
+                    response.sendRedirect(request.getContextPath() + "/StaffHome");
+                }
             }
         } else if (url.equals("/logout")) {
             //Get logut

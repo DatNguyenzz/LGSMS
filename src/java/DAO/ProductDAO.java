@@ -25,9 +25,9 @@ public class ProductDAO {
             = "SELECT p.product_id, p.image_id, p.product_name, \n"
             + "p.product_price, p.product_import_price, p.product_instock, \n"
             + "p.product_empty, p.product_description, p.product_created_at, \n"
-            + "p.product_updated_at, p.is_active, p.provider_id, pv.provider_name\n,"
-            + "i.image_path, i.image_name\n"
-            + "FROM Product p\n"
+            + "p.product_updated_at, p.is_active, p.provider_id, pv.provider_name, \n"
+            + "i.image_path, i.image_name \n"
+            + "FROM Product p \n"
             + "INNER JOIN Provider pv ON p.provider_id = pv.provider_id \n"
             + "INNER JOIN Image i ON p.image_id = i.image_id \n";
 
@@ -128,7 +128,7 @@ public class ProductDAO {
         ResultSet rs = null;
         String sql = BASE_SQL
                 + "WHERE p.is_active = 1 \n"
-                + "AND p.product_name LIKE '%" + search + "%'";
+                + "AND p.product_name LIKE 'N%" + search + "%'";
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
             db = new DBContext();

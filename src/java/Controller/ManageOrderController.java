@@ -5,7 +5,6 @@
  */
 package Controller;
 
-import DAO.OrderDAO;
 import Model.Account;
 import Model.OrderDetail;
 import Model.Orders;
@@ -44,8 +43,9 @@ public class ManageOrderController extends HttpServlet {
         int orderId = Integer.parseInt(request.getParameter("id"));
         switch (url) {
             case "/ManageNewOrder":
+                //Accept new order from new order list
                 int orderStatus = Integer.parseInt(request.getParameter("statusOrder"));
-                if (orderService.updateOrderStatus(orderId, orderStatus, staffAccount.getAccountID())) {
+                if (orderService.updateOrderStatus(orderId, orderStatus, staffAccount.getAccountID(),"")) {
 //                    response.sendRedirect(request.getContextPath() + "/ManageNewOrder");
                     response.sendRedirect(request.getContextPath() + "/ViewDetailOrder?id=" + orderId);
                 } else {
@@ -57,14 +57,14 @@ public class ManageOrderController extends HttpServlet {
                 ArrayList<OrderDetail> listOrderDetailByOrderID = orderService.getListOrderDetailByOrderID(order.getOrderID());
                 request.setAttribute("listOrderDetail", listOrderDetailByOrderID);
                 request.setAttribute("orderInfor", order);
-                if(staffAccount.getRole().getRoleID() == 2 || staffAccount.getRole().getRoleName().equalsIgnoreCase("Quản lý")){
+                if (staffAccount.getRole().getRoleID() == 2 || staffAccount.getRole().getRoleName().equalsIgnoreCase("Quản lý")) {
                     String staffName = orderService.getStaffNameByOrderID(orderId);
                     request.setAttribute("staffName", staffName);
                     request.getRequestDispatcher("Staff_LGSMS/view/manager_view_infomation_order.jsp").forward(request, response);
-                }else{
+                } else {
                     request.getRequestDispatcher("Staff_LGSMS/view/business_information_order.jsp").forward(request, response);
                 }
-                
+
                 break;
         }
 
@@ -128,19 +128,15 @@ public class ManageOrderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        try {
-            int orderID = Integer.parseInt(request.getParameter("orderId").trim());
-            String note2 = request.getParameter("order-note2");
-            int orderStatus = Integer.parseInt(request.getParameter("order-status").trim());
-
-            if (orderService.updateOrder(orderID, note2, orderStatus)) {
-                response.sendRedirect(request.getContextPath() + "/ViewDetailOrder?id=" + orderID);
-            } else {
-                response.sendRedirect("123123");
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(ManageOrderController.class.getName()).log(Level.SEVERE, null, ex);
+        Account account = (Account) request.getSession().getAttribute("account");
+        int orderID = Integer.parseInt(request.getParameter("orderId").trim());
+        String note2 = request.getParameter("order-note2");
+        int orderStatus = Integer.parseInt(request.getParameter("order-status").trim());
+        
+        if (orderService.updateOrderStatus(orderID, orderStatus, account.getAccountID(), note2)) {
+            response.sendRedirect(request.getContextPath() + "/ViewDetailOrder?id=" + orderID);
+        } else {
+            response.sendRedirect("123123");
         }
     }
 

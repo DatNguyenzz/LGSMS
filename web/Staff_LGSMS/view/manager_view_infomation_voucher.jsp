@@ -97,9 +97,9 @@
                                                            id="order-code" readonly value="<%=orderCode%>" />
                                                     <br><br>
                                                     <label for="order-price" class="col-form-label">Tiền tạm tính (VNĐ):</label>
-                                                    <input type="number" readonly
+                                                    <input type="text" readonly
                                                            class="border border-secondary w-100 p-2 rounded" id="order-price"
-                                                           value="<%=formatNumber.formatDoubleToNumber(orderTotalMoney)%>"/>
+                                                           value="<%=formatNumber.formatDoubleToVND(orderTotalMoney)%>"/>
                                                     <br><br>
                                                     <div class="form-group">
                                                         <label for="order-deposit" class="col-form-label">Tiền cọc vỏ
@@ -138,16 +138,9 @@
                                                     <br><br>
                                                     <label for="order-status" class="col-form-label">Trạng
                                                         thái:</label><br>
-                                                    <select name="receipt-status" id="order-status"
-                                                            class="border border-secondary w-100 p-2 rounded">
-                                                        <% for (int i = 0; i < listReceiptStatus.length; i++) {%>
-                                                        <option value="<%=i%>" <%if (i == receiptVoucher.getStatus()) {%>selected<%}%>
-                                                                <%if (i < receiptVoucher.getStatus() || receiptVoucher.getStatus() == 1) {%> disabled<%}%>  >
-                                                            <%=listReceiptStatus[i].toString()%>
-                                                        </option>
-                                                        <%}%>
-
-                                                    </select>
+                                                        <input type="text" class="border border-secondary w-100 p-2 rounded" readonly
+                                                               id="order-status" value="<%=listReceiptStatus[receiptVoucher.getStatus()]%>"> 
+                                                </label>
                                                     <br><br>
                                                     <label for="order-note" class="col-form-label">Ghi chú:</label>
                                                     <textarea class="border border-secondary w-100 p-2 rounded" name="note"
@@ -163,9 +156,9 @@
                                                     <div class="form-group">
                                                         <label for="cus-pay" style="float: right;"
                                                                class="col-form-label">Tổng tiền khách phải trả (VNĐ):</label>
-                                                        <input type="number" style="text-align: right;font-size: 36px;" readonly name="total-money"
+                                                        <input type="text" style="text-align: right;font-size: 36px;" readonly name="total-money"
                                                                class="form-control bg-white border-0" id="cus-pay" 
-                                                               value="<%=formatNumber.formatDoubleToNumber(receiptVoucher.getTotalMoney())%>" />
+                                                               value="<%=formatNumber.formatDoubleToVND(receiptVoucher.getTotalMoney())%>" />
                                                     </div>
 <!--                                                    <div style="margin-top: 2%; float: right">
                                                         <input type="button" class="btn btn-primary submit px-3" 
@@ -209,11 +202,13 @@
     <!-- Page level custom scripts -->
     <script src="Staff_LGSMS/js/include-html.min.js"></script>
     <script>
-        var deposit = document.getElementById('order-deposit'),
-            total = document.getElementById('order-price'),
-            payment = document.getElementById('cus-pay');
-        const num = 0;
-        payment.value = total.value - deposit.value;
+//        var deposit = document.getElementById('order-deposit'),
+//            total = document.getElementById('order-price'),
+//            payment = document.getElementById('cus-pay');
+//        const num = 0;
+//        payment.value = total.value - deposit.value;
+        
+        
 //        deposit.onchange = function () {
 //            if (deposit.value == "") {
 //                var result = parseFloat(total.value) - parseFloat(num);

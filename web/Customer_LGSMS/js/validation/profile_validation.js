@@ -53,7 +53,7 @@ const validateInputs = () => {
     if (nameValue === '') {
         setError(aname, 'Yêu cần nhập họ và tên');
     } else if (!isValidName(nameValue)) {
-        setError(aname, 'Nhập đúng định dạng email your@example.com');
+        setError(aname, 'Nhập đúng định dạng tên');
     } else {
         setSuccess(aname);
     }
