@@ -22,7 +22,7 @@
     <body>
         <input type="checkbox" id="check">
         <nav>
-            <div class="icon">LGS <b style="color: red;">M</b>S</div>
+            <div class="icon"><a href="Customer_LGSMS/view/home.jsp">LGS <b style="color: red;">M</b>S</a></div>
             <div class="search_box">
                 <form action="<%=request.getContextPath()%>/Product" method="post">
                     <input type="search" name="searchName" placeholder="Nhập từ khóa...." required>

@@ -91,7 +91,7 @@ public class ManageAccountController extends HttpServlet {
                 String email = request.getParameter("email");
                 int roleId = Integer.parseInt(request.getParameter("role"));
                 Boolean isActive = (request.getParameter("staff-status").equals("true"));
-                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId,isActive)) {
+                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId, isActive)) {
                     //Update success 
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
@@ -118,29 +118,42 @@ public class ManageAccountController extends HttpServlet {
             case "/Register": {
                 String username = request.getParameter("username");
                 String email = request.getParameter("email");
-                String password = accountService.randomPassword();
-                String subject = "New Account.";
-                String message = "<!DOCTYPE html>\n"
-                        + "<html lang=\"en\">\n"
-                        + "\n"
-                        + "<head>\n"
-                        + "<meta charset=\"UTF-8\">\n"
-                        + "</head>\n"
-                        + "\n"
-                        + "<body>\n"
-                        + "    <h3 style=\"color: blue;\">Your password.</h3>\n"
-                        + "    <div>Password : " + password + "</div>\n"
-                        + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
-                        + "\n"
-                        + "</body>\n"
-                        + "\n"
-                        + "</html>";
 
-                if (accountService.register(username, email, password, 4)) {
-                    accountService.send(email, subject, message, "lgsmsvanhsibun@gmail.com", "vanhsibun123");
-                    response.sendRedirect(request.getContextPath() + "/Register");
+                if (accountService.isEmailExist(email) && accountService.isUserNameExist(username)) {
+                    request.setAttribute("emailMessage", "Email đã tồn tại!");
+                    request.setAttribute("userNameMessage", "Tên đăng nhập đã tồn tại!");
+                    request.getRequestDispatcher("Staff_LGSMS/view/guest_register.jsp").forward(request, response);
+                } else if (accountService.isEmailExist(email)) {
+                    request.setAttribute("emailMessage", "Email đã tồn tại! ");
+                    request.getRequestDispatcher("Staff_LGSMS/view/guest_register.jsp").forward(request, response);
+                } else if (accountService.isUserNameExist(username)) {
+                    request.setAttribute("userNameMessage", "Tên đăng nhập đã tồn tại! ");
+                    request.getRequestDispatcher("Staff_LGSMS/view/guest_register.jsp").forward(request, response);
                 } else {
+                    String password = accountService.randomPassword();
+                    String subject = "New Account.";
+                    String message = "<!DOCTYPE html>\n"
+                            + "<html lang=\"en\">\n"
+                            + "\n"
+                            + "<head>\n"
+                            + "<meta charset=\"UTF-8\">\n"
+                            + "</head>\n"
+                            + "\n"
+                            + "<body>\n"
+                            + "    <h3 style=\"color: blue;\">Your password.</h3>\n"
+                            + "    <div>Password : " + password + "</div>\n"
+                            + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
+                            + "\n"
+                            + "</body>\n"
+                            + "\n"
+                            + "</html>";
+                    if (accountService.register(username, email, password, 4)) {
+                        accountService.send(email, subject, message, "lgsmsvanhsibun@gmail.com", "vanhsibun123");
+//                        request.setAttribute("sucessfulMessage", "Mật khẩu đã được gửi đến email của bạn. ");
+                        response.sendRedirect(request.getContextPath() + "/Register");
+                    } else {
 
+                    }
                 }
 
                 break;
@@ -176,7 +189,9 @@ public class ManageAccountController extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/login");
 
                 } else {
-                   
+                    request.setAttribute("emailMessage", "Email không đúng!");
+
+                    request.getRequestDispatcher("Customer_LGSMS/view/forgotPassword.jsp").forward(request, response);
                 }
                 break;
             }

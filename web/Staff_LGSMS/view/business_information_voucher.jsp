@@ -208,20 +208,20 @@
 <script src="Staff_LGSMS/js/valdation/alert.js"></script>
 <script>
     var deposit =   document.getElementById('order-deposit'),
-                    total = document.getElementById('order-price'),
-                    payment = document.getElementById('cus-pay');
-                    const num = 0;
-                    //payment.value = total.value
-    deposit.onchange = function () {
-                        if (deposit.value == "") 
-                        {
-                            var result = parseFloat(total.value) - parseFloat(num);
-                            payment.value = result;
-                        } else {
-                            var result = parseFloat(total.value) - parseFloat(deposit.value);
-                            payment.value = !isNaN(result) ? result : '';
-                        }
-                    };
+                                                                           total = document.getElementById('order-price'),
+                                                                           payment = document.getElementById('cus-pay');
+                                                                   const num = 0;
+                                                                   //payment.value = total.value
+                                                                   deposit.onchange = function () {
+                                                                       if (deposit.value == "")
+                                                                       {
+                                                                           var result = parseFloat(total.value) - parseFloat(num);
+                                                                           payment.value = result;
+                                                                       } else {
+                                                                           var result = parseFloat(total.value) - parseFloat(deposit.value);
+                                                                           payment.value = !isNaN(result) ? result : '';
+                                                                       }
+                                                                   };
 </script>
 </body>
 

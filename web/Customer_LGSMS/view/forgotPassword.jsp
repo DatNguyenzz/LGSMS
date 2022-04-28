@@ -33,7 +33,7 @@
                         </div>
                         <form action="<%=request.getContextPath()%>/ForgotPassword" method="post" id="form">
                             <div class="form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email của bạn" maxlength="50">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email của bạn" maxlength="50">
                                 
                                 <% if(emailMessage!=null){%>
                                 <div class="fail"  style="color:#ff3860;" > &emsp;<%=request.getAttribute("emailMessage")%> </div>

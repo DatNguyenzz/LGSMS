@@ -23,7 +23,11 @@ nav .icon {
     color: #fff;
     cursor: pointer;
 }
-
+nav .icon a {
+   
+    color: #fff;
+   text-decoration: none;
+}
 nav ol {
     display: flex;
     list-style: none;
