@@ -29,12 +29,15 @@
             FormatNumber formatNumber = new FormatNumber();
             Account account = (Account) request.getSession().getAttribute("account");
             String[] listFilter = {"Tất cả sản phẩm", "Giá tăng", "Giá giảm", "Tên A-Z", "Tên Z-A", "Sản phẩm bán chạy"};
-            String filterString = request.getAttribute("filter").toString();
             int filter;
+            try{
+            String filterString = request.getAttribute("filter").toString();
             if(filterString == null){
                 filter = 0;
             }else{
                 filter = Integer.parseInt(filterString);
+            }}catch(NullPointerException e){
+                filter = 0;
             }
         %>
         <!-- Feature product-->

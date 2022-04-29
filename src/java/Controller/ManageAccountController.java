@@ -118,36 +118,50 @@ public class ManageAccountController extends HttpServlet {
             case "/Register": {
                 String username = request.getParameter("username");
                 String email = request.getParameter("email");
-                String password = accountService.randomPassword();
-                String subject = "New Account.";
-                String message = "<!DOCTYPE html>\n"
-                        + "<html lang=\"en\">\n"
-                        + "\n"
-                        + "<head>\n"
-                        + "<meta charset=\"UTF-8\">\n"
-                        + "</head>\n"
-                        + "\n"
-                        + "<body>\n"
-                        + "    <h3 style=\"color: blue;\">Your password.</h3>\n"
-                        + "    <div>Password : " + password + "</div>\n"
-                        + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
-                        + "\n"
-                        + "</body>\n"
-                        + "\n"
-                        + "</html>";
-
-                if (accountService.register(username, email, password, 4)) {
-                    accountService.send(email, subject, message, "lgsmsvanhsibun@gmail.com", "vanhsibun123");
-                    response.sendRedirect(request.getContextPath() + "/Register");
+                if (accountService.isEmailExist(email) && accountService.isUserNameExist(username)) {
+                    request.setAttribute("emailMessage", "Email đã tồn tại!");
+                    request.setAttribute("userNameMessage", "Tên đăng nhập đã tồn tại!");
+                    request.getRequestDispatcher("Staff_LGSMS/view/guest_register.jsp").forward(request, response);
+                } else if (accountService.isEmailExist(email)) {
+                    request.setAttribute("emailMessage", "Email đã tồn tại! ");
+                    request.getRequestDispatcher("Staff_LGSMS/view/guest_register.jsp").forward(request, response);
+                } else if (accountService.isUserNameExist(username)) {
+                    request.setAttribute("userNameMessage", "Tên đăng nhập đã tồn tại! ");
+                    request.getRequestDispatcher("Staff_LGSMS/view/guest_register.jsp").forward(request, response);
                 } else {
+                    String password = accountService.randomPassword();
+                    String subject = "New Account.";
+                    String message = "<!DOCTYPE html>\n"
+                            + "<html lang=\"en\">\n"
+                            + "\n"
+                            + "<head>\n"
+                            + "<meta charset=\"UTF-8\">\n"
+                            + "</head>\n"
+                            + "\n"
+                            + "<body>\n"
+                            + "    <h3 style=\"color: blue;\">Your password.</h3>\n"
+                            + "    <div>Password : " + password + "</div>\n"
+                            + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
+                            + "\n"
+                            + "</body>\n"
+                            + "\n"
+                            + "</html>";
+                    if (accountService.register(username, email, password, 4)) {
+                        accountService.send(email, subject, message, "lgsmsvanhsibun@gmail.com", "vanhsibun123");
+//                        request.setAttribute("sucessfulMessage", "Mật khẩu đã được gửi đến email của bạn. ");
+                        response.sendRedirect(request.getContextPath() + "/Register");
+                    } else {
 
+                    }
                 }
 
                 break;
             }
 
             case "/ForgotPassword": {
+
                 String email = request.getParameter("email");
+
                 if (accountService.isEmailExist(email)) {
                     String password = accountService.randomPassword();
                     String subject = "Forgot password.";
@@ -159,23 +173,24 @@ public class ManageAccountController extends HttpServlet {
                             + "</head>\n"
                             + "\n"
                             + "<body>\n"
-                            + "    <h3 style=\"color: blue;\">New password.</h3>\n"
-                            + "    <div>Username :" + accountService.getAccountByEmail(email).getUsername()+ "</div>\n"
+                            + "    <h3 style=\"color: blue;\">Forgot password.</h3>\n"
+                            + "    <div>Full tên Name :" + accountService.getAccountByEmail(email).getUsername() + "</div>\n"
                             + "    <div>Password : " + password + "</div>\n"
                             + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
                             + "\n"
                             + "</body>\n"
                             + "\n"
                             + "</html>";
-
                     accountService.updatePass(email, password);
+
                     accountService.send(email, subject, message, "lgsmsvanhsibun@gmail.com", "vanhsibun123");
 
                     response.sendRedirect(request.getContextPath() + "/login");
 
                 } else {
-//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-                    response.sendRedirect(request.getContextPath() + "/Home");
+                    request.setAttribute("emailMessage", "Email không đúng!");
+
+                    request.getRequestDispatcher("Customer_LGSMS/view/forgotPassword.jsp").forward(request, response);
                 }
                 break;
             }

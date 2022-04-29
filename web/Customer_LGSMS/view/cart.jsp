@@ -41,7 +41,9 @@
                     <th>Thành tiền</th>
                 </tr>
 
-                <%if(listCart.isEmpty()){%>
+                <%
+                    if(listCart.isEmpty()){
+                %>
                 <tr>
 
                     <td colspan="3">
@@ -81,20 +83,22 @@
                 </tr>
                 <%}}%>
             </table>
+            <%if(!listCart.isEmpty()){%>
             <div class="total-price">
                 <table>
                     <tr>
                         <td>Tổng tiền sản phẩm: <%=formatNumber.formatDoubleToVND(totalMoney)%></td>
                     </tr>
-
                     <tr>
-
-                        <td> <button class="button-cart"<%if(listCart.isEmpty()){%>disabled<%}%>>
+                        <td> 
+                            <button class="button-cart">
                                 <a href="<%=request.getContextPath()%>/CheckOut" style="color: #fff"> Mua Hàng </a>
-                            </button></td>
+                            </button>
+                        </td>
                     </tr>
                 </table>
             </div>
+            <%}%>
 
 
 

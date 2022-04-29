@@ -69,6 +69,7 @@ nav .search_box input {
     height: 100%;
     padding: 0 10px;
     font-size: 15px;
+    width: 350px;
 }
 
 nav .search_box span {
@@ -169,7 +170,7 @@ input[type="checkbox"] {
         margin-bottom: 15px;
     }
     nav .search_box input {
-        width: 90vw;
+        width: 90%;
     }
     nav ol {
         display: flex;

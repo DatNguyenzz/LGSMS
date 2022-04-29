@@ -128,7 +128,7 @@ public class ProductDAO {
         ResultSet rs = null;
         String sql = BASE_SQL
                 + "WHERE p.is_active = 1 \n"
-                + "AND p.product_name LIKE 'N%" + search + "%'";
+                + "AND p.product_name LIKE N'%" + search + "%'";
         ArrayList<Product> listProduct = new ArrayList<>();
         try {
             db = new DBContext();
