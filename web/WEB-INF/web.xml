@@ -32,7 +32,23 @@
         <filter-name>ManageOrderFilter</filter-name>
         <filter-class>Filter.ManageOrderFilter</filter-class>
     </filter>
-    <filter-mapping>
+    <filter>
+        <filter-name>OrderStaffFilter</filter-name>
+        <filter-class>Filter.OrderStaffFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>ReceiptVoucherOfStaffFilter</filter-name>
+        <filter-class>Filter.ReceiptVoucherOfStaffFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>OrderDetailOfCusFilter</filter-name>
+        <filter-class>Filter.OrderDetailOfCusFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>GuestFilter</filter-name>
+        <filter-class>Filter.GuestFilter</filter-class>
+    </filter>
+     <filter-mapping>
         <filter-name>StaffFilter</filter-name>
         <servlet-name>CustomerProductController</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -52,6 +68,12 @@
         <servlet-name>ManageReceiptVoucherController</servlet-name>
         <url-pattern>/StaffHome</url-pattern>
         <servlet-name>ManageReportController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>GuestFilter</filter-name>
+        <servlet-name>ShoppingCartController</servlet-name>
+        <servlet-name>CheckOutController</servlet-name>
+        <servlet-name>TrackOrderController</servlet-name>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AccountFilter</filter-name>
@@ -76,6 +98,18 @@
     <filter-mapping>
         <filter-name>ManageReportFilter</filter-name>
         <servlet-name>ManageReportController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>OrderStaffFilter</filter-name>
+        <url-pattern>/ViewDetailOrder</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ReceiptVoucherOfStaffFilter</filter-name>
+        <url-pattern>/ReceiptInfo</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>OrderDetailOfCusFilter</filter-name>
+        <url-pattern>/OrderDetail</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>ManageProductController</servlet-name>
