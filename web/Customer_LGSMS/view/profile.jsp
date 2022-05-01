@@ -80,7 +80,7 @@
                                 
                                 <div class="form-group">
                                     <label class="labels">Email</label>
-                                    <input type="email" class="form-control" name="email"
+                                    <input type="text" class="form-control" name="email"
                                            placeholder="<%=account.getEmail()%>" 
                                            value="<%=account.getEmail()%>" id="user-email"  
                                            maxlength="255"/>
@@ -89,7 +89,7 @@
                                 
                                 <div class="form-group">
                                     <label class="labels">Điện Thoại</label>
-                                    <input type="text" class="form-control" name="phone"
+                                    <input type="number" class="form-control" name="phone"
                                            placeholder="<%=account.getPhone()%>" 
                                            value="<%=account.getPhone()%>"
                                         id="user-phone"  maxlength="15"/>
