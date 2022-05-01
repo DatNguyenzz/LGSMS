@@ -98,7 +98,7 @@
                                                                 <div class="form-group">
                                                                     <label for="staff-phone" class="col-form-label">Số điện
                                                                         thoại*:</label>
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="number" class="form-control"
                                                                            id="staff-phone1" name="phone" maxlength="15"/>
                                                                     <div class="fail"></div>
                                                                 </div>
@@ -275,7 +275,7 @@
                                             <div class="form-group">
                                                 <label for="staff-phone" class="col-form-label">Số điện
                                                     thoại*:</label>
-                                                <input type="text" class="form-control"
+                                                <input type="number" class="form-control"
                                                        id="staff-phone" name="phone" maxlength="15"/>
                                                 <div class="fail"></div>
                                             </div>

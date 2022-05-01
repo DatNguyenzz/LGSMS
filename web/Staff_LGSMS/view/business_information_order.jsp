@@ -86,7 +86,6 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-
                                             <table  class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                 <div class="row" style="border: 2px solid lightgray;">
                                                     <div class="col-8 col-sm-1"></div>

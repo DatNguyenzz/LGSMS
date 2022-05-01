@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageAccountController.java</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/guest_register.jsp</file>
-            <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/admin_manage_account.jsp</file>
+            <file>file:/E:/FPT_Uni/Semester_9/Capstone/LGS-Manager%20Official/LGSMS-BE/LGSMS/web/Staff_LGSMS/view/staff_view_profile.jsp</file>
+            <file>file:/E:/FPT_Uni/Semester_9/Capstone/LGS-Manager%20Official/LGSMS-BE/LGSMS/web/Staff_LGSMS/view/business_information_order.jsp</file>
+            <file>file:/E:/FPT_Uni/Semester_9/Capstone/LGS-Manager%20Official/LGSMS-BE/LGSMS/src/java/Filter/OrderStaffFilter.java</file>
         </group>
     </open-files>
 </project-private>
