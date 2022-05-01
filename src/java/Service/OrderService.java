@@ -6,8 +6,10 @@
 package Service;
 
 import DAO.OrderDAO;
+import DAO.ProductDAO;
 import Model.OrderDetail;
 import Model.Orders;
+import Model.Product;
 import Model.ShoppingCart;
 import java.util.ArrayList;
 
@@ -44,13 +46,33 @@ public class OrderService {
         boolean result = false;
         Orders order = getOrderByID(orderId);
         if(order.getOrderStatus() == 0){
+            //Update staff accept new order
             order.setBussinessStaffID(accountID);
+            if(orderStatus != 4){
+                //Update product quantity if staff accept new order
+                ArrayList<OrderDetail> listOrderDetail = getListOrderDetailByOrderID(orderId);
+                ArrayList<Product> listProduct = new ArrayList<>();
+                ProductDAO productDAO = new ProductDAO();
+                for(OrderDetail od : listOrderDetail){
+                    Product p = productDAO.getProductByID(od.getProductID());
+                    if(p.getProductInstock() < od.getProductQuantity()){
+                        //Dont have enough product instock to sell for customer
+                        return false;
+                    }
+                    p.setProductInstock(p.getProductInstock() - od.getProductQuantity());
+                    int resultUpdateProduct = productDAO.updateProductQuantity(p);
+                    if(resultUpdateProduct == 0){
+                        System.out.println("Update product fail");
+                        return false;
+                    }
+                }
+            }
         }
         switch (orderStatus) {
             case 1: //Accept new order
                 //Update status and staff for order
                 int updateDbResult = orderDao.staffUpdateOrderStatus(orderId, accountID, orderStatus);
-                //Create mew receipt voucher for staff
+                //Create new receipt voucher for staff
                 boolean createNewReceiptVoucher = new ReceiptVoucherService().creatNewReceiptVoucher(orderId, accountID);
                 
                 return (updateDbResult != 0 && createNewReceiptVoucher);

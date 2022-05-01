@@ -6,6 +6,7 @@
 package Filter;
 
 import Model.Account;
+import Model.ReceiptVoucher;
 import Service.ReceiptVoucherService;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -50,13 +51,18 @@ public class ReceiptVoucherOfStaffFilter implements Filter {
         }
 
         Account acc = (Account) request.getSession().getAttribute("account");
-        int receiptID = Integer.parseInt(request.getParameter("id"));
-        HttpServletRequest req = (HttpServletRequest) request;
-        if (acc != null) {
-            if (acc.getAccountID() != receiptVoucherService.getReceiptVoucherByID(receiptID).getBussinessStaffID()) {
-                request.getRequestDispatcher("Staff_LGSMS/view/404_staff.jsp").forward(request, response);
+        int receiptID = Integer.parseInt(request.getParameter("id").trim());
+        ReceiptVoucher rv = receiptVoucherService.getReceiptVoucherByID(receiptID);
+        if (rv == null) {
+            request.getRequestDispatcher("Staff_LGSMS/view/404_staff.jsp").forward(request, response);
+        } else {
+            if (acc != null) {
+                if (acc.getAccountID() != rv.getBussinessStaffID() && acc.getRole().getRoleID() == 3) {
+                    request.getRequestDispatcher("Staff_LGSMS/view/404_staff.jsp").forward(request, response);
+                }
             }
         }
+
         // Write code here to process the request and/or response before
         // the rest of the filter chain is invoked.
         // For example, a filter that implements setParameter() on a request

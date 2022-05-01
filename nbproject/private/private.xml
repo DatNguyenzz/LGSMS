@@ -5,6 +5,7 @@
         <group>
             <file>file:/D:/Documents/Capstone/LGSMS/src/java/Controller/ManageAccountController.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/guest_register.jsp</file>
+            <file>file:/D:/Documents/Capstone/LGSMS/src/java/Filter/StaffFilter.java</file>
             <file>file:/D:/Documents/Capstone/LGSMS/web/Staff_LGSMS/view/admin_manage_account.jsp</file>
         </group>
     </open-files>

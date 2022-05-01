@@ -6,6 +6,7 @@
 package Filter;
 
 import Model.Account;
+import Model.Orders;
 import Service.OrderService;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -51,12 +52,19 @@ OrderService orderService = new OrderService();
 
         Account acc = (Account) request.getSession().getAttribute("account");
         int orderID = Integer.parseInt(request.getParameter("id").trim());
-        HttpServletRequest req = (HttpServletRequest) request;
-        if (acc != null) {
-            if (acc.getAccountID() != orderService.getOrderByID(orderID).getBussinessStaffID()) {
-                request.getRequestDispatcher("Staff_LGSMS/view/404_staff.jsp").forward(request, response);
+        Orders order = orderService.getOrderByID(orderID);
+        if(order == null){
+            request.getRequestDispatcher("Staff_LGSMS/view/404_staff.jsp").forward(request, response);
+        }else{
+            if (acc != null) {
+                if (acc.getAccountID() != order.getBussinessStaffID() 
+                        && acc.getRole().getRoleID() == 3
+                        && order.getOrderStatus() != 0) {
+                    request.getRequestDispatcher("Staff_LGSMS/view/404_staff.jsp").forward(request, response);
+                }
             }
         }
+        
 
       
 

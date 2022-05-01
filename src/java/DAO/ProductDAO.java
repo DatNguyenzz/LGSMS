@@ -402,4 +402,32 @@ public class ProductDAO {
         }
         return result;
     }
+
+    public int updateProductQuantity(Product product) {
+        DBContext db = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+        String sql 
+                = "UPDATE Product\n"
+                + "SET  product_instock = " + product.getProductInstock() + ",\n"
+                + "     product_empty = " + product.getProductEmpty() + "\n"
+                + "WHERE product_id = " + product.getProductID();
+        try {
+            db = new DBContext();
+            con = db.getConnection();
+            ps = con.prepareStatement(sql);
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                db.closeConnection(con, ps, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
 }

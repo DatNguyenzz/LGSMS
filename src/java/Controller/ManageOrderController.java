@@ -132,7 +132,6 @@ public class ManageOrderController extends HttpServlet {
         int orderID = Integer.parseInt(request.getParameter("orderId").trim());
         String note2 = request.getParameter("order-note2");
         int orderStatus = Integer.parseInt(request.getParameter("order-status").trim());
-        
         if (orderService.updateOrderStatus(orderID, orderStatus, account.getAccountID(), note2)) {
             response.sendRedirect(request.getContextPath() + "/ViewDetailOrder?id=" + orderID);
         } else {

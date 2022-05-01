@@ -54,7 +54,7 @@ public class ManageOrderFilter implements Filter {
         if (acc != null) {
             int roleID = acc.getRole().getRoleID();
 
-            if (roleID == 1 || roleID == 2  ) {
+            if (roleID == 1) {
                 request.getRequestDispatcher("Staff_LGSMS/view/404_staff.jsp").forward(request, response);
             }
 

@@ -36,7 +36,7 @@ public class ImportationService {
         ProductDAO productDAO = new ProductDAO();
         Product productImport = productDAO.getProductByID(productID);
         productImport.setProductEmpty(productImport.getProductEmpty() + productImportQuantity);
-        int resultUpdateProduct = productDAO.updateProduct(productImport);
+        int resultUpdateProduct = productDAO.updateProductQuantity(productImport);
 
         //Add new importation to list
         Importation importation = new Importation();

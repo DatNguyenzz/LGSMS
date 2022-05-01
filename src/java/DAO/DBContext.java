@@ -18,6 +18,12 @@ import java.util.logging.Logger;
  * @author Dat Nguyen
  */
 public class DBContext {
+    private final String serverName = "localhost";
+    private final String dbName = "LGSMS";
+    private final String portNumber = "1433";
+    private final String userID = "sa";
+    private final String password = "sa";
+    
     public Connection getConnection(){
         try {
             String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
@@ -28,11 +34,6 @@ public class DBContext {
             return null;
         }
     }
-    private final String serverName = "localhost";
-    private final String dbName = "LGSMS";
-    private final String portNumber = "1433";
-    private final String userID = "sa";
-    private final String password = "sa";
 
     public void closeConnection(Connection con, PreparedStatement ps, ResultSet rs) throws SQLException {
         if (rs != null && !rs.isClosed()) {
