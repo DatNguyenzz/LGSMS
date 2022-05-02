@@ -85,9 +85,9 @@
                                                     Thêm vào giỏ
                                                 </a>
                                                 <%}%>
-                                                <a href="" class="option2">
+<!--                                                <a href="" class="option2">
                                                     Mua ngay
-                                                </a>
+                                                </a>-->
                                                 <% } %>
                                                 <a href="<%=request.getContextPath()%>/CustomerProductInformation?productID=<%=listProduct.get(i).getProductID()%>" class="option3">
                                                     Chi tiết

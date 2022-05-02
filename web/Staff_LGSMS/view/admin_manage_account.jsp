@@ -27,6 +27,7 @@
         <link href="Staff_LGSMS/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <link href="Staff_LGSMS/assets/styles/custom_box.css" rel="stylesheet">
         <link href="Staff_LGSMS/css/fnon.min.css" rel="stylesheet">
+        
         <link href="Staff_LGSMS/css/alert.css" rel="stylesheet">
     </head>
     <body id="page-top">
@@ -434,6 +435,8 @@
         <script src="Staff_LGSMS/js/fnon.min.js"></script>
         <script src="Staff_LGSMS/js/valdation/alert.js"></script>
         <script src="Staff_LGSMS/js/valdation/admin_validate_1.js"></script>
+        
+        
         <script src="Staff_LGSMS/js/modal_alert.js"></script>
         <% 
             String message = (String) request.getAttribute("message");
@@ -445,7 +448,7 @@
                     title: "Confirm",
                     content: "Pôp"
                 }
-            )
+            );
         </script>
         <%}%>
         

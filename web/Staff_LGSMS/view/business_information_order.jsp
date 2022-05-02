@@ -118,14 +118,12 @@
                                                         <label for="order-address" class="col-form-label">Địa chỉ khách
                                                             hàng:</label>
                                                         <label type="text" class="border border-secondary w-100 p-2 rounded" id="order-address"><%=order.getCustomerAddress()%></label>
-                                                        </lable>
+                                                        
 
                                                         <form id="form" action="ViewDetailOrder" method="post">
+                                                            <input type="text" class="form-control" hidden="true" name="orderId" value="<%=order.getOrderID()%>"  />
                                                             <label for="order-status" class="col-form-label">Trạng
                                                                 thái:</label><br>
-
-                                                            <input type="text" class="form-control" hidden="true" name="orderId" value="<%=order.getOrderID()%>"  />
-
                                                             <select name="order-status" id="order-status" class="border border-secondary w-100 p-2 rounded" style="margin-bottom: 8px;">
                                                                 <%for (int i = 0; i < listOrderStatus.length; i++) {%>
                                                                 <option value="<%=i%>"
@@ -147,8 +145,7 @@
                                                                 <input type="submit" class="btn btn-primary submit px-3" value="Lưu"
                                                                        <%if(order.getOrderStatus()== 3 || order.getOrderStatus() == 4){%> 
                                                                disabled
-                                                               <%}%>></input>
-                                                                <!-- <a href="business_new_order.html"><button type="button" class="btn btn-secondary" >Hủy</button></a> -->
+                                                               <%}%>>
                                                             </div>
                                                         </form>
 

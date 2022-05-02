@@ -45,23 +45,22 @@ public class OrderService {
     public boolean updateOrderStatus(int orderId, int orderStatus, int accountID, String note2) {
         boolean result = false;
         Orders order = getOrderByID(orderId);
-        if(order.getOrderStatus() == 0){
+        if (order.getOrderStatus() == 0) {
             //Update staff accept new order
             order.setBussinessStaffID(accountID);
-            if(orderStatus != 4){
+            if (orderStatus != 4) {
                 //Update product quantity if staff accept new order
                 ArrayList<OrderDetail> listOrderDetail = getListOrderDetailByOrderID(orderId);
-                ArrayList<Product> listProduct = new ArrayList<>();
                 ProductDAO productDAO = new ProductDAO();
-                for(OrderDetail od : listOrderDetail){
+                for (OrderDetail od : listOrderDetail) {
                     Product p = productDAO.getProductByID(od.getProductID());
-                    if(p.getProductInstock() < od.getProductQuantity()){
+                    if (p.getProductInstock() < od.getProductQuantity()) {
                         //Dont have enough product instock to sell for customer
                         return false;
                     }
                     p.setProductInstock(p.getProductInstock() - od.getProductQuantity());
                     int resultUpdateProduct = productDAO.updateProductQuantity(p);
-                    if(resultUpdateProduct == 0){
+                    if (resultUpdateProduct == 0) {
                         System.out.println("Update product fail");
                         return false;
                     }
@@ -74,7 +73,7 @@ public class OrderService {
                 int updateDbResult = orderDao.staffUpdateOrderStatus(orderId, accountID, orderStatus);
                 //Create new receipt voucher for staff
                 boolean createNewReceiptVoucher = new ReceiptVoucherService().creatNewReceiptVoucher(orderId, accountID);
-                
+
                 return (updateDbResult != 0 && createNewReceiptVoucher);
             case 2: {//Order being delivered
                 order.setOrderNote2(note2);
@@ -87,6 +86,21 @@ public class OrderService {
                 return (orderDao.updateOrderStatus(order) != 0);
             }
             case 4: {//Cancel order
+                if (order.getOrderStatus() != 0) {
+                    //Cancel confirmed order
+                    ArrayList<OrderDetail> listOrderDetail = getListOrderDetailByOrderID(orderId);
+                    ProductDAO productDAO = new ProductDAO();
+                    for (OrderDetail od : listOrderDetail) {
+                        Product p = productDAO.getProductByID(od.getProductID());
+                        p.setProductInstock(p.getProductInstock() + od.getProductQuantity());
+                        int resultUpdateProduct = productDAO.updateProductQuantity(p);
+                        if (resultUpdateProduct == 0) {
+                            System.out.println("Update product fail");
+                            return false;
+                        }
+                    }
+                }
+                //Reject new order
                 order.setOrderNote2(note2);
                 order.setOrderStatus(orderStatus);
                 return (orderDao.updateOrderStatus(order) != 0);
