@@ -37,12 +37,18 @@ public class ReceiptVoucherService {
     }
 
     public boolean updateReceiptVoucher(int receiptID, int receiptStatus, double deposit, String note, double totalMoney) {
-        ReceiptVoucher receiptVoucher = new ReceiptVoucher();
-        receiptVoucher.setReceiptID(receiptID);
+        ReceiptVoucher receiptVoucher = getReceiptVoucherByID(receiptID);
         receiptVoucher.setStatus(receiptStatus);
         receiptVoucher.setDeposit(deposit);
         receiptVoucher.setNote(note);
         receiptVoucher.setTotalMoney(totalMoney);
+        if(receiptStatus == 1){
+            //Receipt voucher is complete -> Update order status to complete
+            boolean result = new OrderService().updateOrder(receiptVoucher.getOrderID(), "", 3);
+            if(!result){
+                System.out.println("Update order failed");
+            }
+        }
         return (receiptVoucherDAO.updateReceiptVoucher(receiptVoucher) != 0);
     }
 
