@@ -27,7 +27,7 @@
         <link href="Staff_LGSMS/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <link href="Staff_LGSMS/assets/styles/custom_box.css" rel="stylesheet">
         <link href="Staff_LGSMS/css/fnon.min.css" rel="stylesheet">
-
+         <link href="Staff_LGSMS/css/alert.css" rel="stylesheet">
     </head>
 
     <body id="page-top">
@@ -284,6 +284,20 @@
         <script src="Staff_LGSMS/js/valdation/provider_validate.js"></script>
         <script src="Staff_LGSMS/js/valdation/alert.js"></script>
         <script src="Staff_LGSMS/js/fnon.min.js"></script>
+        
+         <% 
+            String message = (String) request.getSession().getAttribute("SucMessage") ;
+            if(message != null){
+        %>
+        <script>
+            ModalWindow.openModal(
+                {
+                    title: "Confirm",
+                    content: "<%=message%>"
+                }
+            );
+        </script>
+        <%}%>
     </body>
 
 </html>

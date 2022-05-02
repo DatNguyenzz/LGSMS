@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
 </head>
-
+ <% String failMessage = (String) request.getAttribute("failMessage");
+      
+    %>
 <body class="img js-fullHeight" style="background-image: url(Staff_LGSMS/assets/image/bg4.webp); background-attachment: fixed;">
     <section class="ftco-section">
         <div class="container">
@@ -38,6 +40,12 @@
                                 <input id="password" name="password" type="password" class="form-control" placeholder="Mật khẩu" required oninvalid="this.setCustomValidity('Xin hãy nhập mật khẩu của bạn.')" oninput="this.setCustomValidity('')" />
                                 <div class="error"></div>
                             </div>
+                            <!-- thông báo Đăng nhập fail -->
+                            <div class="form-group">
+                                  <% if(failMessage != null){%>
+                                    <div class="fail"  style="color:#ff3860;" >  &emsp;  <%=request.getAttribute("failMessage")%> </div>
+                                    <%}%>
+                                </div>
                             <!-- Đăng nhập btn -->
                             <div class="form-group">
                                 <input type="submit" class="form-control btn btn-primary submit px-3" value="Đăng nhập"></input>
@@ -45,6 +53,7 @@
                             <div class="form-group w-100 text-center">
                                 <a href="<%=request.getContextPath()%>/ForgotPassword" style="color: #fff; text-decoration: underline;">Quên mật khẩu?</a>
                             </div>
+                            
                         </form>
                         <!-- URL tạo tài khoản -->
                         <div class="w-100 text-center">

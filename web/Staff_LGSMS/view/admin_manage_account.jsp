@@ -439,14 +439,14 @@
         
         <script src="Staff_LGSMS/js/modal_alert.js"></script>
         <% 
-            String message = (String) request.getAttribute("message");
+            String message = (String) request.getSession().getAttribute("message") ;
             if(message != null){
         %>
         <script>
             ModalWindow.openModal(
                 {
                     title: "Confirm",
-                    content: "Pôp"
+                    content: "<%=message%>"
                 }
             );
         </script>

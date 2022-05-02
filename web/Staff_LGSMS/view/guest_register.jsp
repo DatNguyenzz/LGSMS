@@ -14,7 +14,7 @@
     </head>
     <% String emailMessage = (String) request.getAttribute("emailMessage");
         String userNameMessage = (String) request.getAttribute("userNameMessage");
-        
+        String sucessfulMessage= (String) request.getAttribute("sucessfulMessage");
     %>
     <body class="img js-fullHeight" style="background-image: url(Staff_LGSMS/assets/image/bg4.webp);background-attachment: fixed;">
         <section class="ftco-section">
@@ -39,7 +39,7 @@
                                     <div class="fail"  style="color:#ff3860;" > &emsp; <%=request.getAttribute("userNameMessage")%> </div>
                                     <%}%>
 
-                                    <p class="fail"></p>
+                                  <br> 
                                 </div>
                                 <!-- Nhập email -->
                                 <div class="form-group">
@@ -48,13 +48,13 @@
                                     <div class="fail"  style="color:#ff3860;" >  &emsp;  <%=request.getAttribute("emailMessage")%> </div>
                                     <%}%>
 
-                                    <p class="fail"></p>
+                                    
                                 </div>
-                                    
+                                  <br>   
                                 <div class="form-group">
-                                   
+                                  <% if(sucessfulMessage != null){%>
                                     <div class="success"  style="color:white;" >  &emsp;  <%=request.getAttribute("sucessfulMessage")%> </div>
-                                    
+                                    <%}%>
                                 </div>
                                     
                                 <!-- Đăng nhập btn -->
