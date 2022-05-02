@@ -129,6 +129,7 @@
                                                                 <option value="<%=i%>"
                                                                         <%if (order.getOrderStatus() == i) {%>selected<%}%>
                                                                         <%if (order.getOrderStatus() == 3 || order.getOrderStatus() > i) {%> disabled <%}%>
+                                                                        <%if (i == 3){ %> disabled <%}%>
                                                                         >
                                                                     <%=listOrderStatus[i]%>
                                                                 </option>
