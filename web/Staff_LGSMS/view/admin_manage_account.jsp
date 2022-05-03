@@ -253,7 +253,7 @@
                                 <img src="assets/image/long.png" alt="..."
                                      class="img-thumbnail" id="profileImage"
                                      style="height: 200px; width: 200px; border-radius: 50%;">
-                                <div><input type="file" id="user_avatar" accept="image/png, image/jpeg">
+                                <div>
                                 </div>
                             </div>
                             <div class="row">

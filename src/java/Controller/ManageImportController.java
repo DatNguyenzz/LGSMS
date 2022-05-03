@@ -123,8 +123,11 @@ public class ManageImportController extends HttpServlet {
                 int productImportQuantity = Integer.parseInt(request.getParameter("product-quantity").trim());
                 int productImportPrice = Integer.parseInt(request.getParameter("product-price").trim());
                 int importStatus = Integer.parseInt(request.getParameter("import-status").trim());
+                String importNote = request.getParameter("import-note");
                 Account account = (Account) request.getSession().getAttribute("account");
-                if(importationService.confirmNewImport(importID, productImportPrice, productImportQuantity, importStatus, account.getAccountID())){
+                if(importationService.confirmNewImport(importID, 
+                        productImportPrice, productImportQuantity, importStatus, 
+                        account.getAccountID())){
                     response.sendRedirect(request.getContextPath() + "/ManageImport");
                 }else{
                     

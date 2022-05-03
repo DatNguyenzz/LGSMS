@@ -130,8 +130,8 @@
                                                                         chú:</label>
                                                                     <textarea class="form-control"
                                                                               style="resize: none; overflow: auto;"
-                                                                              id="product-note" name="import-note"
-                                                                              id="product-note" maxlength="500"></textarea>
+                                                                              id="product-note1" name="import-note"
+                                                                              maxlength="500"></textarea>
 
                                                                 </div>
                                                                 <br>

@@ -81,7 +81,7 @@
                                         </div>
                                         <!-- Add new product -->
                                         <div class="modal-body">
-                                            <form action="<%=request.getContextPath()%>/AddProduct" method="POST" id="form">
+                                            <form action="<%=request.getContextPath()%>/AddProduct" method="POST" id="form" enctype="multipart/form-data">
                                                 <div class="row" style="width: 100%;">
                                                     <div class="col-sm-12">
                                                         <div class="row">

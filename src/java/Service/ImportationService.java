@@ -17,12 +17,12 @@ public class ImportationService {
     public ArrayList<Importation> getAllImportation() {
         return importDAO.getAllImportation();
     }
-    
-      public Importation getImportationById(int id){
+
+    public Importation getImportationById(int id) {
         return importDAO.getImportationById(id);
     }
-    
-     public ArrayList<Importation>  getAllImportationForStaff(int id) {
+
+    public ArrayList<Importation> getAllImportationForStaff(int id) {
         return importDAO.getAllImportationForStaff(id);
     }
 
@@ -102,11 +102,12 @@ public class ImportationService {
             //Import is edited
             importation.setProductImportQuantity(productImportQuantity);
             importation.setImportAmount(productImportPrice * productImportQuantity);
-            importation.setNote(importation.getNote() + "\nHàng nhập có chỉnh sửa\n");
+            importation.setNote(((importation.getNote() != null) ? importation.getNote() : "")
+                    + "\nHàng nhập có chỉnh sửa\n");
         }
         importation.setStaffID(accountID);
         importation.setImportStatus(importStatus);
-        
+
         if (importStatus == 1) {
             //Confirm new import
             ProductDAO productDAO = new ProductDAO();
@@ -128,9 +129,9 @@ public class ImportationService {
             int resultUpdateImport = importDAO.updateImport(importation);
 
             return (resultUpdateImport != 0 && resultUpdateProduct != 0);
-        }else{
+        } else {
             //Cancel new import
-            return (importDAO.updateImport(importation)!=0);
+            return (importDAO.updateImport(importation) != 0);
         }
     }
 

@@ -88,7 +88,6 @@ public class ManageAccountController extends HttpServlet {
         switch (url) {
             case "/EditAccount": {
                 int accountId = Integer.parseInt(request.getParameter("accountId"));
-                Account accountEdit = accountService.getAccountByID(accountId);
                 String fullname = request.getParameter("fullname");
                 String phone = request.getParameter("phone");
                 String address = request.getParameter("address");
@@ -104,9 +103,12 @@ public class ManageAccountController extends HttpServlet {
                 } else {
                     if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId, isActive)) {
                         //Update success 
+                        request.getSession().setAttribute("message", "Thay đổi thông tin thành công");
                         response.sendRedirect(request.getContextPath() + "/ManageAccount");
                     } else {
                         //Update fail
+                        request.getSession().setAttribute("message", "Thay đổi thông tin thất bại");
+                        response.sendRedirect(request.getContextPath() + "/ManageAccount");
                     }
                 }
 

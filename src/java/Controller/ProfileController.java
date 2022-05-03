@@ -111,6 +111,7 @@ public class ProfileController extends HttpServlet {
                     List<FileItem> items = upload.parseRequest(request);
                     // Process the uploaded items
                     Iterator<FileItem> iter = items.iterator();
+                    
                     String filename = "";
                     String fullname  = acc.getFullname();
                     String phone  = acc.getPhone();

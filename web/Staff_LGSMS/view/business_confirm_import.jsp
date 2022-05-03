@@ -271,7 +271,8 @@
                                                     <div class="form-group">
                                                         <label for="product-note" class="col-form-label">Ghi
                                                             chú:</label>
-                                                        <textarea class="form-control" readonly id="import-note"></textarea>
+                                                        <textarea class="form-control" name="import-note"
+                                                                  readonly id="import-note"></textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="checkbox" uncheck id="import-fullfill" name="import-fullfill" onclick='handleClick(this);'
