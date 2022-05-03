@@ -68,7 +68,7 @@ public class ReceiptVoucherDAO {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReceiptVoucherDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return listReceiptVoucher;
@@ -100,7 +100,7 @@ public class ReceiptVoucherDAO {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReceiptVoucherDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return result;
@@ -138,7 +138,7 @@ public class ReceiptVoucherDAO {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReceiptVoucherDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
@@ -168,7 +168,7 @@ public class ReceiptVoucherDAO {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReceiptVoucherDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return result;
@@ -206,7 +206,7 @@ public class ReceiptVoucherDAO {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReceiptVoucherDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
@@ -245,7 +245,7 @@ public class ReceiptVoucherDAO {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ReceiptVoucherDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return listReceiptVoucher;

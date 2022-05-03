@@ -76,4 +76,8 @@ public class ProductService {
         
     }
     
+     public boolean isProductNameIsExsit(String productName){
+        return productDAO.isProductNameExist(productName);
+    }
+    
 }

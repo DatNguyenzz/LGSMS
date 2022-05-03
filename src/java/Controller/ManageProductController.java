@@ -95,12 +95,18 @@ public class ManageProductController extends HttpServlet {
                 double productPrice = Double.parseDouble(request.getParameter("product-price"));
                 String productDescription = request.getParameter("product-des");
                 int providerID = Integer.parseInt(request.getParameter("provider-id"));
-                if (productService.addNewProductToDB(productName, productImage,
-                        productQuantity, productPrice, productDescription, providerID)) {
+                if (productService.isProductNameIsExsit(productName)) {
+                    request.getSession().setAttribute("message", "Tên sản phẩm này đã được sử dụng");
                     response.sendRedirect(request.getContextPath() + "/ManageProduct");
                 } else {
-                    //Add failed
-                    System.err.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+                    if (productService.addNewProductToDB(productName, productImage,
+                            productQuantity, productPrice, productDescription, providerID)) {
+                        response.sendRedirect(request.getContextPath() + "/ManageProduct");
+                    } else {
+                        //Add failed
+                        System.err.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                    }
                 }
                 break;
             }
@@ -112,13 +118,18 @@ public class ManageProductController extends HttpServlet {
                 double productPrice = Double.parseDouble(request.getParameter("productPrice"));
                 boolean productStatus = Boolean.valueOf(request.getParameter("productStatus"));
                 String productDescription = request.getParameter("productDescription");
-                if (productService.updateProduct(productID, productName,
-                        providerID, image, productPrice,
-                        productStatus, productDescription)) {
+                if (productService.isProductNameIsExsit(productName)) {
+                    request.getSession().setAttribute("message", "Tên sản phẩm này đã được sử dụng");
                     response.sendRedirect(request.getContextPath() + "/ManageProduct");
                 } else {
-                    //Update failed
-                    System.err.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                    if (productService.updateProduct(productID, productName,
+                            providerID, image, productPrice,
+                            productStatus, productDescription)) {
+                        response.sendRedirect(request.getContextPath() + "/ManageProduct");
+                    } else {
+                        //Update failed
+                        System.err.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                    }
                 }
             }
         }

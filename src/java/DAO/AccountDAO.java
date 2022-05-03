@@ -78,7 +78,7 @@ public class AccountDAO {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return listAccount;

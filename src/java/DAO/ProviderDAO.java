@@ -51,12 +51,12 @@ public class ProviderDAO {
                 listProvider.add(p);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProviderDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProviderDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return listProvider;
