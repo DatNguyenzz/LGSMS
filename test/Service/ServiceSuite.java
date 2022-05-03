@@ -17,7 +17,10 @@ import org.junit.runners.Suite;
  * @author admin
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({Service.ReportServiceTest.class, Service.OrderServiceTest.class, Service.ReceiptVoucherServiceTest.class, Service.AccountServiceTest.class, Service.ProductServiceTest.class, Service.ShoppingCartServiceTest.class, Service.ProviderServiceTest.class, Service.ImportationServiceTest.class})
+@Suite.SuiteClasses({Service.ReportServiceTest.class, Service.OrderServiceTest.class, 
+    Service.ReceiptVoucherServiceTest.class, Service.AccountServiceTest.class, 
+    Service.ProductServiceTest.class, Service.ProviderServiceTest.class, 
+    Service.ImportationServiceTest.class})
 public class ServiceSuite {
 
     @BeforeClass

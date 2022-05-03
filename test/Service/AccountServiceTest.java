@@ -54,19 +54,9 @@ public class AccountServiceTest {
             System.out.println(e.getAccountID());
         });
 
-        assertEquals(6, actualOutput.size());
+        assertEquals(9, actualOutput.size());
     }
 
-    @Test
-    public void testGetAllAccount_UTCID02() {
-        ArrayList<Account> accounts = new ArrayList();
-        ArrayList<Account> actualOutput = this.accountService.getAllAccount();
-        actualOutput.stream().forEach(e -> {
-            System.out.println(e.getAccountID());
-        });
-
-        assertEquals(6, actualOutput.size());
-    }
 
     @Test
     public void testGetAccountByID_nomal_UTCID01() {
