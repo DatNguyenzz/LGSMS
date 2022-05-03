@@ -59,12 +59,12 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
                         <div class="row" style="background-color: rgba(28, 100, 168, 0.521); border: 1px solid rgb(117, 105, 105); color: #f2f2f2">
-
+                            <form id="form" action="<%=request.getContextPath()%>/MyProfile" method="POST" enctype="multipart/form-data">
                             <div class="col-md-5" >
                                 <div class="d-flex flex-column align-items-center">
                                     <img class="rounded-circle mt-5" src="<%=account.getImagePath()%>" style="border: 2px solid lightgray;">
                                     <span class="font-weight-bold" style="color: rgb(255, 255, 255);"><%=account.getUsername()%></span>
-                                    <span><input type="file" id="user_avatar" accept="image/png, image/jpeg"></span>
+                                    <span><input type="file" id="user_avatar" accept="image/png, image/jpeg" form="form" name="image"></span>
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -72,7 +72,7 @@
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4 class="text-right">Hồ sơ của tôi</h4>
                                     </div>
-                                    <form id="form" action="<%=request.getContextPath()%>/MyProfile" method="POST">
+                                    
                                         <div class="row mt-3">
                                             <div class="form-group">
                                                 <label class="col-form-label">Họ và tên*:</label>
@@ -122,13 +122,14 @@
 
 
 
-                                            </form>
-                                            <input class="btn btn-primary profile-button" style="margin-left: 5%;"
-                                                   type="button"data-toggle="modal" data-target="#changePassModal" value="Đổi mật khẩu">
+                                            
+                                            
                                         </div>
                                 </div>
                             </div>
-
+                            </form>
+                                                <input class="btn btn-primary profile-button" style="margin-left: 5%;"
+                                                   type="button"data-toggle="modal" data-target="#changePassModal" value="Đổi mật khẩu">
                         </div>
                     </div>
                     <!-- /.container-fluid -->

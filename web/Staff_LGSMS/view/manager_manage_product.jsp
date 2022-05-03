@@ -86,7 +86,7 @@
                                                     <div class="col-sm-12">
                                                         <div class="row">
                                                             <div class="col-8 col-sm-5 text-center">
-                                                                <img src="assets/image/img/undraw_posting_photo.svg" alt="..." class="img-thumbnail">
+                                                                <img src="Staff_LGSMS/assets/image/img/undraw_posting_photo.svg" alt="..." class="img-thumbnail">
                                                                 <button type="button" class="btn btn-primary ">Tải ảnh</button>
                                                             </div>
                                                             <div class="col-8 col-sm-7">

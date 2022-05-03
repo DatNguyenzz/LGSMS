@@ -40,31 +40,31 @@
 
                     </div>
                 </div>
+                <form aciton="<%=request.getContextPath()%>/MyProfile" enctype="multipart/form-data" method="POST" id="form">
+                    <div class="col-md-5 border-left">
 
-                <div class="col-md-5 border-left">
-                    <form aciton="<%=request.getContextPath()%>/MyProfile" method="POST" id="form">
                         <div class="p-3 py-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="text-right">Hồ Sơ Của Tôi</h4>
                             </div>
                             <div class="row mt-2">
-                               
+
                                 <div class="form-group">
                                     <label class="labels">Họ và Tên</label>
                                     <input type="text" class="form-control" name="fullname"
-                                           placeholder="<%=account.getFullname()%>" 
-                                           value="<%=account.getFullname()%>"
+                                           placeholder="<%=(account.getFullname()!=null)?account.getFullname():""%>" 
+                                           value="<%=(account.getFullname()!=null)?account.getFullname():""%>"
                                            id="user-name" maxlength="50"/>
                                     <div class="fail"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="gender" class="col-form-label">Giới tính:</label>
-                                        <select class="form-control" name="gender" id="gender">
-                                            <option value="true" >Nam</option>
-                                            <option value="false" <% if(!account.isGender()){ %> selected <%}%>>Nữ</option>
-                                        </select><br>
-                                    
+                                    <select class="form-control" name="gender" id="gender">
+                                        <option value="true" >Nam</option>
+                                        <option value="false" <% if(!account.isGender()){ %> selected <%}%>>Nữ</option>
+                                    </select><br>
+
                                 </div>
 
                                 <div class="form-group">
@@ -77,7 +77,7 @@
 
                             </div>
                             <div class="row mt-3">
-                                
+
                                 <div class="form-group">
                                     <label class="labels">Email</label>
                                     <input type="email" class="form-control" name="email"
@@ -86,40 +86,40 @@
                                            maxlength="255"/>
                                     <div class="fail"></div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label class="labels">Điện Thoại</label>
                                     <input type="text" class="form-control" name="phone"
-                                           placeholder="<%=account.getPhone()%>" 
-                                           value="<%=account.getPhone()%>"
-                                        id="user-phone"  maxlength="15"/>
+                                           placeholder="<%=(account.getPhone()!=null)?account.getPhone():""%>" 
+                                           value="<%=(account.getPhone()!=null)?account.getPhone():""%>"
+                                           id="user-phone"  maxlength="15"/>
                                     <div class="fail"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="labels">Địa Chỉ</label>
                                     <input type="text" class="form-control" name="address"
-                                           placeholder="<%=account.getAddress()%>" 
-                                           value="<%=account.getAddress()%>"
-                                        id="user-address" maxlength="500" />
+                                           placeholder="<%=(account.getAddress()!=null)?account.getAddress():""%>" 
+                                           value="<%=(account.getAddress()!=null)?account.getAddress():""%>"
+                                           id="user-address" maxlength="500" />
                                     <div class="fail"></div>
                                 </div>
-                                
+
                             </div>
                             <div class="mt-3 float-right text-center">
                                 <input class="btn btn-primary profile-button" type="submit" value="Lưu">
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="col-md-4 border-right border-left">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <img class="rounded-circle mt-5" width="150px" src="<%=account.getImagePath()%>">
-                        <span class="font-weight-bold"><%=account.getUsername()%></span>
-                        <input class="text-black-50" type="file" accept="image/*">
-                    </div>
-                    </span>
-                </div>
 
+                    </div>
+                    <div class="col-md-4 border-right border-left">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                            <img class="rounded-circle mt-5" width="150px" src="<%=account.getImagePath()%>">
+                            <span class="font-weight-bold"><%=account.getUsername()%></span>
+                            <input class="text-black-50" type="file" accept="image/*" name="image">
+                        </div>
+                        </span>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

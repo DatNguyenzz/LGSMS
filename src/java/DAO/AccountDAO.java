@@ -138,8 +138,13 @@ public class AccountDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int result = 0;
+        String imageName = "avatar_image_" + account.getUsername();
         String sql
                 = "BEGIN TRANSACTION;\n"
+                + "UPDATE Image\n"
+                + "SET image_path = '" + account.getImagePath() + "'\n"
+                + "WHERE image_name = '" + imageName + "';\n"
+                + "\n"
                 + "UPDATE Account\n"
                 + "SET username = '" + account.getUsername() + "',\n"
                 + "role_id = " + account.getRole().getRoleID() + ",\n"
@@ -220,7 +225,7 @@ public class AccountDAO {
         }
         return result;
     }
-    
+
     //Register
     public int register(Account acc) {
         DBContext db = null;
@@ -228,21 +233,44 @@ public class AccountDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int result = 0;
+        String imageName = "avatar_image_" + acc.getUsername();
         String sql
-                = "INSERT INTO Profile ( \n"
-                + " email,image_id, created_at)\n"
-                + "VALUES( \n"
-                + "'" + acc.getEmail() + "', \n"
-                + 1 + ", \n"
-                + "'" + getCurrentSQLDate() + "');\n"
+                = "INSERT INTO Image (image_path, image_name) \n"
+                + "VALUES ('" + acc.getImagePath() + "',"
+                +           "'" + imageName + "');\n"
+                + "\n"
+                + "INSERT INTO Profile (email,image_id, created_at, gender, dob) \n"
+                + "VALUES('" + acc.getEmail() + "', \n"
+                + "	(\n"
+                + "	SELECT image_id \n"
+                + "	FROM Image \n"
+                + "	WHERE image_name = '" + imageName + "'\n"
+                + "	),'" + getCurrentSQLDate() + "', 1, '2000-1-1');\n"
+                + "\n"
                 + "INSERT INTO Account(username, password, role_id, profile_id, is_active)\n"
-                + "VALUES('" + acc.getUsername() + "', "
-                + "'" + acc.getPassword() + "', " + acc.getRole().getRoleID() + ", \n"
-                + "(\n"
-                + "	SELECT p.profile_id FROM Profile p\n"
-                + "	WHERE \n"
-                + "	 p.email = '" + acc.getEmail() + "'\n"
-                + "), 1)";
+                + "VALUES('" + acc.getUsername() + "',"
+                +           "'" + acc.getPassword() + "', "
+                +           acc.getRole().getRoleID() + ", \n"
+                + "	(\n"
+                + "	SELECT p.profile_id \n"
+                + "     FROM Profile p \n"
+                + "     WHERE p.email = '" + acc.getEmail() + "'\n"
+                + "	), 1);";
+
+//                = "INSERT INTO Profile ( \n"
+//                + "email,image_id, created_at)\n"
+//                + "VALUES( \n"
+//                + "'" + acc.getEmail() + "', \n"
+//                + 1 + ", \n"
+//                + "'" + getCurrentSQLDate() + "');\n"
+//                + "INSERT INTO Account(username, password, role_id, profile_id, is_active)\n"
+//                + "VALUES('" + acc.getUsername() + "', "
+//                + "'" + acc.getPassword() + "', " + acc.getRole().getRoleID() + ", \n"
+//                + "(\n"
+//                + "	SELECT p.profile_id FROM Profile p\n"
+//                + "	WHERE \n"
+//                + "	 p.email = '" + acc.getEmail() + "'\n"
+//                + "), 1)";
         try {
             db = new DBContext();
             con = db.getConnection();
@@ -479,8 +507,8 @@ public class AccountDAO {
         }
         return true;
     }
-    
-     // kiểm tra username có tồn tại ko
+
+    // kiểm tra username có tồn tại ko
     public boolean isUserNameExist(String userName) {
         DBContext db = null;
         Connection con = null;

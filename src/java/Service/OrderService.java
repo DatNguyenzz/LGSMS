@@ -7,9 +7,11 @@ package Service;
 
 import DAO.OrderDAO;
 import DAO.ProductDAO;
+import DAO.ReceiptVoucherDAO;
 import Model.OrderDetail;
 import Model.Orders;
 import Model.Product;
+import Model.ReceiptVoucher;
 import Model.ShoppingCart;
 import java.util.ArrayList;
 
@@ -91,6 +93,7 @@ public class OrderService {
                     ArrayList<OrderDetail> listOrderDetail = getListOrderDetailByOrderID(orderId);
                     ProductDAO productDAO = new ProductDAO();
                     for (OrderDetail od : listOrderDetail) {
+                        //Update product quantity
                         Product p = productDAO.getProductByID(od.getProductID());
                         p.setProductInstock(p.getProductInstock() + od.getProductQuantity());
                         int resultUpdateProduct = productDAO.updateProductQuantity(p);
@@ -99,11 +102,26 @@ public class OrderService {
                             return false;
                         }
                     }
+                    //Update receipt voucher
+                    ReceiptVoucher rv = new ReceiptVoucherService().getReceiptVoucherByOrderID(orderId);
+                    rv.setStatus(2);
+                    rv.setNote(((rv.getNote()!=null)?rv.getNote():"") + "\n"
+                            + "Nhân viên hủy đơn");
+                    int resultUpdateRV = new ReceiptVoucherDAO().updateReceiptVoucher(rv);
+                    if (resultUpdateRV == 0) {
+                        System.out.println("Update receipt voucher fail");
+                        return false;
+                    }
+                    //Update order status
+                    order.setOrderNote2(note2);
+                    order.setOrderStatus(orderStatus);
+                    return (orderDao.updateOrderStatus(order) != 0);
+                } else {
+                    //Reject new order
+                    order.setOrderNote2(note2);
+                    order.setOrderStatus(orderStatus);
+                    return (orderDao.staffUpdateOrderStatus(orderId, accountID, orderStatus) != 0);
                 }
-                //Reject new order
-                order.setOrderNote2(note2);
-                order.setOrderStatus(orderStatus);
-                return (orderDao.updateOrderStatus(order) != 0);
             }
         }
         return result;

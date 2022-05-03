@@ -37,6 +37,7 @@ import javax.mail.internet.MimeMessage;
 public class AccountService {
 
     private static final String DEFAULT_PASSWORD = "123456";
+    private static final String DEFAULT_AVATAR_IMAGE_PATH = "Assets/images/avatar/ava0.jpg";
 
     AccountDAO accountDao = new AccountDAO();
 
@@ -123,7 +124,7 @@ public class AccountService {
     //Update account information
     public boolean updateAccountInProfile(int accountId, String fullname, String phone,
             String address, String dob, Boolean gender,
-            String email, int roleId) {
+            String email, int roleId, String imagePath) {
         Account acc = getAccountByID(accountId);
         acc.setFullname(fullname);
         acc.setPhone(phone);
@@ -133,6 +134,7 @@ public class AccountService {
         acc.setEmail(email);
         acc.getRole().setRoleID(roleId);
         
+        acc.setImagePath(imagePath);
         int result = accountDao.updateAccount(acc);
         return (result != 0);
     }
@@ -174,6 +176,7 @@ public class AccountService {
         Role role = new Role();
         role.setRoleID(roleId);
         acc.setRole(role);
+        acc.setImagePath(DEFAULT_AVATAR_IMAGE_PATH);
         int result = accountDao.register(acc);
         return (result != 0);
     }
@@ -183,10 +186,10 @@ public class AccountService {
         in = removeAccent(in);
         String[] split = in.split(" ");
         String name = split[split.length - 1].toLowerCase();
-        for (int i = 1; i < split.length - 1; i++) {
+        for (int i = 0; i < split.length - 1; i++) {
             name += split[i].subSequence(0, 1).toString().toLowerCase();
         }
-        for (int i = 0;; i++) {
+        for (int i = 1;; i++) {
             String nameCode = name + i;
             if (accountDao.getAccountByUsername(nameCode) == null) {
                 name = nameCode;

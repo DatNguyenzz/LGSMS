@@ -101,7 +101,7 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>OrderStaffFilter</filter-name>
-        <url-pattern>/ViewDetailOrder</url-pattern>
+        <url-pattern>/ViewDetailOrder?id=</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>ReceiptVoucherOfStaffFilter</filter-name>

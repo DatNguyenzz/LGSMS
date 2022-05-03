@@ -40,17 +40,22 @@
                         <div class="col-50">
                             <div class="form-group">
                                 <label for="fname"><i class="fa fa-user"></i> Tên*</label>
-                                <input type="text" id="fname" name="name" placeholder="<%=account.getFullname()%>"  value="<%=account.getFullname()%>"  maxlength="50">
+                                <input type="text" id="fname" name="name" placeholder="<%=(account.getFullname()!=null)?account.getFullname():""%>"  
+                                       value="<%=(account.getFullname()!=null)?account.getFullname():""%>"  maxlength="50">
                                 <div class="fail"></div>
                             </div>
                             <div class="form-group">
                                 <label for="phone"><i class="fa fa-phone"></i> Điện thoại*</label>
-                                <input type="text" id="phone" name="phone" placeholder="<%=account.getPhone()%>" value="<%=account.getPhone()%>"  maxlength="15">
+                                <input type="text" id="phone" name="phone" 
+                                       placeholder="<%=(account.getPhone()!=null)?account.getPhone():""%>" 
+                                       value="<%=(account.getPhone()!=null)?account.getPhone():""%>"  maxlength="15">
                                 <div class="fail"></div>
                             </div>
                             <div class="form-group">
                                 <label for="adr"><i class="fa fa-address-card"></i> Địa chỉ*</label>
-                                <input type="text" id="adr" name="address" placeholder="<%=account.getAddress()%>" value="<%=account.getAddress()%>"  maxlength="500">
+                                <input type="text" id="adr" name="address" 
+                                       placeholder="<%=(account.getAddress()!=null)?account.getAddress():""%>" 
+                                       value="<%=(account.getAddress()!=null)?account.getAddress():""%>"  maxlength="500">
                                 <div class="fail"></div>
                             </div>
                             <div class="form-group">
@@ -83,9 +88,9 @@
                     <span class="price"><%=formatNumber.formatDoubleToString(cart.getProduct().getProductPrice())%></span>
                 </p>
                 <hr>
-                <%}%>
+                <%  }   %>
                
-                <p>Tổng tạm số tiền <span class="price" style="color:black"><b><%=formatNumber.formatDoubleToVND(sum)%></b></span></p>
+                <p>Tổng tạm tính <span class="price" style="color:black"><b><%=formatNumber.formatDoubleToVND(sum)%></b></span></p>
             </div>
             
         </div>
