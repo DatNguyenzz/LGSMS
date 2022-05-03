@@ -88,7 +88,7 @@
                                                             <div class="col-8 col-sm-5 text-center">
                                                                 <img src="Staff_LGSMS/assets/image/img/undraw_posting_photo.svg" alt="..." class="img-thumbnail">
                                                                 <!--<button type="button" class="btn btn-primary ">Tải ảnh</button>-->
-                                                                <span><input type="file" id="product-img" accept="image/png, image/jpeg" form="form" name="image"></span>
+                                                                <span><input type="file" id="product-img" accept="image/png, image/jpeg" form="form" name="image" required></span>
                                                             </div>
                                                             <div class="col-8 col-sm-7">
                                                                 <div class="form-group">

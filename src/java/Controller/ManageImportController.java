@@ -100,7 +100,7 @@ public class ManageImportController extends HttpServlet {
                         productImportQuantity, productImportPrice, importNote, account.getAccountID())) {
                     response.sendRedirect(request.getContextPath() + "/ManageImport");
                 } else {
-                    
+                    response.sendRedirect(request.getContextPath() + "/ManageImport");
                 }
 
                 break;
@@ -114,7 +114,7 @@ public class ManageImportController extends HttpServlet {
                         importNote, account.getAccountID())) {
                     response.sendRedirect(request.getContextPath() + "/ManageImport");
                 } else {
-
+                    response.sendRedirect(request.getContextPath() + "/ManageImport");
                 }
                 break;
             }
@@ -130,7 +130,7 @@ public class ManageImportController extends HttpServlet {
                         account.getAccountID())){
                     response.sendRedirect(request.getContextPath() + "/ManageImport");
                 }else{
-                    
+                    response.sendRedirect(request.getContextPath() + "/ManageImport");
                 }
                 break;
             }

@@ -10,10 +10,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -249,6 +251,12 @@ public class ProductDAO {
         }
         return listProduct;
     }
+    
+    public String removeAccent(String s) {
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(temp).replaceAll("");
+    }
 
     //Add new product to database
     public int addNewProductToDB(Product product) {
@@ -256,7 +264,7 @@ public class ProductDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        String imageName = "product_image_" + product.getProductName();
+        String imageName = "product_image_" + removeAccent(product.getProductName());
         String sql
                 = "INSERT INTO Image (image_path, image_name) \n"
                 + "VALUES ('" + product.getImagePath() + "',"

@@ -79,7 +79,7 @@
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <span class="m-0 font-weight-bold text-primary">Đơn hàng</span>
-                                        <%if(order.getOrderStatus()!=0){%>
+                                        <%if(order.getOrderStatus()!=0 && order.getOrderStatus()!=4 ){%>
                                         <a href="ReceiptInfoByOrderID?id=<%=order.getOrderID()%>" class="order-voucher">Xem phiếu thu</a>
                                         <%}%>
                                     </div>

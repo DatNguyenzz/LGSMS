@@ -9,9 +9,11 @@ import DAO.ProductDAO;
 import Model.Product;
 import java.io.File;
 import java.sql.Date;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import org.apache.commons.fileupload.FileItem;
 
 /**
@@ -45,7 +47,7 @@ public class ProductService {
             String storePath, FileItem item) {
         Product product = new Product();
         product.setProductName(productName);
-        product.setImagePath(storeProductImage(storePath, item, productName));
+        product.setImagePath(storeProductImage(storePath, item, removeAccent(productName) ));
         product.setProductInstock(productQuantity);
         product.setProductEmpty(0);
         product.setProductPrice(productPrice);
@@ -73,7 +75,9 @@ public class ProductService {
         Product product = getProductByID(productID);
         product.setProductName(productName);
         product.setProviderID(providerID);
-        product.setImagePath(storeProductImage(storePath, item, productName));
+        if (!storePath.equals("") || item != null) {
+            product.setImagePath(storeProductImage(storePath, item, productName));
+        }
         product.setProductPrice(productPrice);
         product.setIsActive(productStatus);
         product.setProductDescription(productDescription);
@@ -84,6 +88,12 @@ public class ProductService {
 
     public boolean isProductNameIsExsit(String productName) {
         return productDAO.isProductNameExist(productName);
+    }
+    
+    public String removeAccent(String s) {
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(temp).replaceAll("");
     }
 
     public String storeProductImage(String storePath, FileItem item, String productName) {
