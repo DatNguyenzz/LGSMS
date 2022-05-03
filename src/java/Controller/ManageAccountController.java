@@ -115,9 +115,12 @@ public class ManageAccountController extends HttpServlet {
                 } else {
                     if (accountService.addAccount(fullname, phone, address, dob, gender, email, roleId)) {
                         //Add success
+                        request.getSession().setAttribute("message", "Tạo tài khoản mới thành công");
                         response.sendRedirect(request.getContextPath() + "/ManageAccount");
                     } else {
                         //Add fail
+                        request.getSession().setAttribute("message", "Tạo tài khoản mới thất bại");
+                        response.sendRedirect(request.getContextPath() + "/ManageAccount");
                     }
                 }
                 break;
