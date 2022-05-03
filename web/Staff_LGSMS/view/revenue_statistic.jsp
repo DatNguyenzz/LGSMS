@@ -120,7 +120,7 @@
                                 <div class="card shadow mb-4" >
                                     <!-- Card Header - Dropdown -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Tổng quát lợi nhập</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Chênh lệch tiền (giá nhập và giá bán)</h6>
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
@@ -185,7 +185,7 @@
                                                 <td><%=formatNumber.formatDoubleToString(costByQuarterBefore.getCost()/costByQuarterNow.getCost()*100)%>%</td>
                                             </tr>
                                             <tr>
-                                                <td class="header" style="font-size: 18px; color: #4e73df;"><b>Lợi nhuận</b></td>
+                                                <td class="header" style="font-size: 18px; color: #4e73df;"><b>Chênh lệch tiền</b></td>
                                                 <td><%=formatNumber.formatDoubleToVND(revenuesByQuarterBefore.getRevenue()-costByQuarterBefore.getCost())%></td>
                                                 <td><%=formatNumber.formatDoubleToVND(revenuesByQuarterNow.getRevenue()-costByQuarterNow.getCost())%></td>
                                                 <td><%=formatNumber.formatDoubleToString((revenuesByQuarterBefore.getRevenue()-costByQuarterBefore.getCost())/(revenuesByQuarterNow.getRevenue()-costByQuarterNow.getCost())*100) %>%</td>
