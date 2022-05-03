@@ -115,16 +115,16 @@ public class ManageAccountController extends HttpServlet {
                 int roleId = Integer.parseInt(request.getParameter("role"));
                 if (accountService.isEmailExist(email)) {
                     System.out.println("Email exitst");
-                    request.getSession().setAttribute("messageAccountPage", "Email này đã được sử dụng");
+                    request.getSession().setAttribute("message", "Email này đã được sử dụng");
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
                     if (accountService.addAccount(fullname, phone, address, dob, gender, email, roleId)) {
                         //Add success
-                        request.getSession().setAttribute("messageAccountPage", "Tạo tài khoản mới thành công");
+                        request.getSession().setAttribute("message", "Tạo tài khoản mới thành công");
                         response.sendRedirect(request.getContextPath() + "/ManageAccount");
                     } else {
                         //Add fail
-                        request.getSession().setAttribute("messageAccountPage", "Tạo tài khoản mới thất bại");
+                        request.getSession().setAttribute("message", "Tạo tài khoản mới thất bại");
                         response.sendRedirect(request.getContextPath() + "/ManageAccount");
                     }
                 }

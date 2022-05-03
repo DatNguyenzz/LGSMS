@@ -439,7 +439,7 @@
         
         <script src="Staff_LGSMS/js/modal_alert.js"></script>
         <% 
-            String message = (String) request.getSession().getAttribute("messageAccountPage");
+            String message = (String) request.getSession().getAttribute("message");
             System.out.println(message);
             System.out.println(message!=null);
             if(message != null){
@@ -452,7 +452,7 @@
                 }
             );
         </script>
-        <%}request.getSession().removeAttribute("messageAccountPage");%>
+        <%}request.getSession().removeAttribute("message");%>
         
 
     </body>
