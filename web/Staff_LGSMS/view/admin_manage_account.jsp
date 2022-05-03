@@ -78,13 +78,13 @@
                                         </div>
                                         <div class="modal-body">
                                             <form id="form" action="<%=request.getContextPath()%>/AddAccount" method="POST">
-                                                <div class="col-8 col-sm-12" style="text-align: center ;">
+<!--                                                <div class="col-8 col-sm-12" style="text-align: center ;">
                                                     <img src="assets/image/avatar.jpg" alt="..."
                                                          class="img-thumbnail"
                                                          style="height: 200px; width: 200px; border-radius: 50%;">
                                                     <div><input type="file" id="user_avatar" accept="image/png, image/jpeg">
                                                     </div>
-                                                </div>
+                                                </div>-->
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="row">

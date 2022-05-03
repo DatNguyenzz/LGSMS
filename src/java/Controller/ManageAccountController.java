@@ -80,7 +80,7 @@ public class ManageAccountController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = null;
+        request.getSession().removeAttribute("message");
         String url = request.getServletPath();
         switch (url) {
             case "/EditAccount": {
@@ -93,7 +93,7 @@ public class ManageAccountController extends HttpServlet {
                 String email = request.getParameter("email");
                 int roleId = Integer.parseInt(request.getParameter("role"));
                 Boolean isActive = (request.getParameter("staff-status").equals("true"));
-                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId,isActive)) {
+                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId, isActive)) {
                     //Update success 
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
@@ -109,19 +109,17 @@ public class ManageAccountController extends HttpServlet {
                 Boolean gender = (request.getParameter("gender").equals("true"));
                 String email = request.getParameter("email");
                 int roleId = Integer.parseInt(request.getParameter("role"));
-                if(accountService.isEmailExist(email)){
-                    session = request.getSession();
-                    session.setAttribute("message", "Email nay đã được sử dụng");
-
-                    response.sendRedirect(request.getContextPath() + "/ManageAccount");
-                }{
-                 request.getSession().removeAttribute("message");
-                if (accountService.addAccount(fullname, phone, address, dob, gender, email, roleId)) {
-                    //Add success
+                if (accountService.isEmailExist(email)) {
+                    request.getSession().setAttribute("message", "Email này đã được sử dụng");
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
-                    //Add fail
-                }}
+                    if (accountService.addAccount(fullname, phone, address, dob, gender, email, roleId)) {
+                        //Add success
+                        response.sendRedirect(request.getContextPath() + "/ManageAccount");
+                    } else {
+                        //Add fail
+                    }
+                }
                 break;
             }
             case "/Register": {
