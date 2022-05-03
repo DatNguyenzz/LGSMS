@@ -38,8 +38,7 @@
                                     <% if (userNameMessage != null) {%>
                                     <div class="fail"  style="color:#ff3860;" > &emsp; <%=request.getAttribute("userNameMessage")%> </div>
                                     <%}%>
-
-                                  <br> 
+                                    <div class="fail">
                                 </div>
                                 <!-- Nhập email -->
                                 <div class="form-group">
@@ -47,10 +46,9 @@
                                     <% if (emailMessage != null) {%>
                                     <div class="fail"  style="color:#ff3860;" >  &emsp;  <%=request.getAttribute("emailMessage")%> </div>
                                     <%}%>
-
+                                    <div class="fail">
                                     
                                 </div>
-                                  <br>   
                                 <div class="form-group">
                                   <% if(sucessfulMessage != null){%>
                                     <div class="success"  style="color:white;" >  &emsp;  <%=request.getAttribute("sucessfulMessage")%> </div>

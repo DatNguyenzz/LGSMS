@@ -158,6 +158,7 @@ public class AccountService {
             Role role = new Role();
             role.setRoleID(roleId);
             acc.setRole(role);
+            acc.setImagePath(DEFAULT_AVATAR_IMAGE_PATH);
             int result = accountDao.addNewAccount(acc);
             return (result != 0);
         } else {

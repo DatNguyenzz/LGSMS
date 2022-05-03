@@ -439,8 +439,9 @@
         
         <script src="Staff_LGSMS/js/modal_alert.js"></script>
         <% 
-            String message = (String) request.getSession().getAttribute("message") ;
-            if(message != null){
+            String message = (String) request.getSession().getAttribute("messageAccountPage");
+            System.out.println(message);
+            if(!message.equals("")){
         %>
         <script>
             ModalWindow.openModal(

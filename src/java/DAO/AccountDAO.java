@@ -187,16 +187,26 @@ public class AccountDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int result = 0;
+        String imageName = "avatar_image_" + acc.getUsername();
         String sql
-                = "INSERT INTO Profile (full_name, phone, dob, \n"
-                + "gender, address, email, created_at)\n"
+                = "INSERT INTO Image (image_path, image_name) \n"
+                + "VALUES ('" + acc.getImagePath() + "',"
+                +           "'" + imageName + "');\n"
+                + "\n"
+                + "INSERT INTO Profile (full_name, phone, dob, \n"
+                + "gender, address, email, created_at, image_id)\n"
                 + "VALUES(N'" + acc.getFullname() + "', \n"
                 + "'" + acc.getPhone() + "', \n"
                 + "'" + acc.getDOB() + "', \n"
                 + "'" + (acc.isGender() ? 1 : 0) + "',\n"
                 + "N'" + acc.getAddress() + "', \n"
                 + "'" + acc.getEmail() + "', \n"
-                + "'" + getCurrentSQLDate() + "');\n"
+                + "'" + getCurrentSQLDate() + "', \n"
+                + "(\n"
+                + "	SELECT image_id \n"
+                + "	FROM Image \n"
+                + "	WHERE image_name = '" + imageName + "'\n"
+                + "	));\n"
                 + "INSERT INTO Account(username, password, role_id, profile_id, is_active)\n"
                 + "VALUES('" + acc.getUsername() + "', "
                 + "'" + acc.getPassword() + "', " + acc.getRole().getRoleID() + ", \n"

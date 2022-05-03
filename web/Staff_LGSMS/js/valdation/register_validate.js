@@ -16,8 +16,8 @@ form.addEventListener('submit', e => {
 //Trim input và các thông báo
 const validateInputs = () => {
     // const phoneValue = phone.value.trim();
-    const emailValue = email.value.trim();
-    const accountValue = account.value.trim();
+    const emailValue = email1.value.trim();
+    const accountValue = account1.value.trim();
     //Thông báo nhập địa chỉ email
     if (emailValue === '') {
         setError(email1, 'Yêu cầu nhập địa chỉ email');

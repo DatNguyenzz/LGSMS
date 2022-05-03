@@ -9,6 +9,7 @@ import Model.Account;
 import Model.Role;
 import Service.AccountService;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +23,8 @@ import javax.servlet.http.HttpSession;
  */
 public class ManageAccountController extends HttpServlet {
 
+    private static final Charset UTF_8 = Charset.forName("UTF-8");
+    private static final Charset ISO = Charset.forName("ISO-8859-1");
     AccountService accountService = new AccountService();
 
     /**
@@ -49,6 +52,7 @@ public class ManageAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.getSession().setAttribute("messageAccountPage", "");
         String url = request.getServletPath();
         switch (url) {
             case "/ManageAccount":
@@ -80,11 +84,12 @@ public class ManageAccountController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        request.getSession().removeAttribute("message");
+        request.getSession().setAttribute("messageAccountPage", "");
         String url = request.getServletPath();
         switch (url) {
             case "/EditAccount": {
                 int accountId = Integer.parseInt(request.getParameter("accountId"));
+                Account accountEdit = accountService.getAccountByID(accountId);
                 String fullname = request.getParameter("fullname");
                 String phone = request.getParameter("phone");
                 String address = request.getParameter("address");
@@ -110,16 +115,16 @@ public class ManageAccountController extends HttpServlet {
                 String email = request.getParameter("email");
                 int roleId = Integer.parseInt(request.getParameter("role"));
                 if (accountService.isEmailExist(email)) {
-                    request.getSession().setAttribute("message", "Email này đã được sử dụng");
+                    request.getSession().setAttribute("messageAccountPage", "Email này đã được sử dụng");
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
                     if (accountService.addAccount(fullname, phone, address, dob, gender, email, roleId)) {
                         //Add success
-                        request.getSession().setAttribute("message", "Tạo tài khoản mới thành công");
+                        request.getSession().setAttribute("messageAccountPage", "Tạo tài khoản mới thành công");
                         response.sendRedirect(request.getContextPath() + "/ManageAccount");
                     } else {
                         //Add fail
-                        request.getSession().setAttribute("message", "Tạo tài khoản mới thất bại");
+                        request.getSession().setAttribute("messageAccountPage", "Tạo tài khoản mới thất bại");
                         response.sendRedirect(request.getContextPath() + "/ManageAccount");
                     }
                 }

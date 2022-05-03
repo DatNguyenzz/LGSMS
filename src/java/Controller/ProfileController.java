@@ -103,7 +103,6 @@ public class ProfileController extends HttpServlet {
                 ServletContext servletContext = this.getServletConfig().getServletContext();
                 File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
                 factory.setRepository(repository);
-
                 // Create a new file upload handler
                 ServletFileUpload upload = new ServletFileUpload(factory);
 
