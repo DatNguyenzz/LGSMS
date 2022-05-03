@@ -212,7 +212,7 @@
                     total = document.getElementById('order-price'),
                     payment = document.getElementById('cus-pay');
     deposit.onchange = function () {
-                        if (deposit.value === "") 
+                        if (deposit.value === "" || deposit.value > total.value) 
                         {
                             deposit.value = 0;
                             var result = parseFloat(total.value) - parseFloat(deposit.value);

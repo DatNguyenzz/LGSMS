@@ -372,7 +372,7 @@
                 var imprice = document.getElementById('product-price'),
                     imquantity = document.getElementById('product-quantity'),
                     payment = document.getElementById('import-pay');
-                payment.value =handleClick imprice.value * imquantity.value;
+                payment.value =imprice.value * imquantity.value;
                 imquantity.onchange = function () {
                     var result = parseFloat(imquantity.value) * parseFloat(imprice.value);
                     payment.value = !isNaN(result) ? result : '';

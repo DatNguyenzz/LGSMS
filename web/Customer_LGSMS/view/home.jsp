@@ -37,7 +37,7 @@
         <div include-html="Customer_LGSMS/view/why_us.html" id="whyus"></div>
         <!-- Feature product-->
         <div class="small-container product_section ">
-            <h2 class="title ">Sản Phẩm Nổi Bật</h2>
+            <h2 class="title ">SẢN PHẨM NỔI BẬT</h2>
             <div class="row ">
                 <%for(int i=0;i<4;i++){%>
                 <!--// <div class="col-4">-->
@@ -81,7 +81,7 @@
         <br><br>
         <!-- Item slider-->
         <div class="container">
-            <h2 class="title ">Sản Phẩm</h2>
+            <h2 class="title ">SẢN PHẨM</h2>
             <br>
             <div class="row ">
                 <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom: 20px;">

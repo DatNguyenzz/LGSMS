@@ -179,7 +179,7 @@
                                                 <!-- <br> -->
                                                 <div class="modal-footer">
                                                     <input type="submit" class="btn btn-primary"
-                                                           value="Nhập"form="form1">
+                                                           value="Lưu"form="form1">
                                                     <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Hủy</button>
                                                 </div>

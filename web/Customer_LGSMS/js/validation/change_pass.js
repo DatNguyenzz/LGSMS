@@ -1,6 +1,6 @@
 let x = 0;
 const form = document.getElementById('form');
-//const oldpass = document.getElementById('old-pass');
+const oldpass = document.getElementById('old-pass');
 const newpass = document.getElementById('new-pass');
 const repass = document.getElementById('re-pass');
 
@@ -9,7 +9,7 @@ form.addEventListener('submit', e => {
     e.preventDefault();
     x = 0;
     validateInputs();
-    if (x == 2) {
+    if (x == 3) {
         // document.getElementById("form").submit();
         alertFunction();
         //form đã được submit tôi chưa biết so sánh form với database tn nên bạn thử sau đây noti trong if hoạt động oke
@@ -19,7 +19,7 @@ form.addEventListener('submit', e => {
 
 //Trim input và các thông báo
 const validateInputs = () => {
-//    const old_passValue = oldpass.value.trim();
+    const old_passValue = oldpass.value.trim();
     const new_passValue = newpass.value.trim();
     const re_passValue = repass.value.trim();
 
@@ -41,11 +41,9 @@ const validateInputs = () => {
     }
 
     //Thông báo mật khẩu
-//    if (old_passValue === '') {
-//        setError(oldpass, 'Yêu cầu nhập mật khẩu cũ');
-//    }else if (!isValidPass(old_passValue)) {
-//        setError(oldpass, 'Tối thiểu 8 kí tự, có 1 số và 1 chữ hoa.')
-//    }  else {
-//        setSuccess(oldpass);
-//    }
+    if (old_passValue === '') {
+        setError(oldpass, 'Yêu cầu nhập mật khẩu cũ');
+    }  else {
+        setSuccess(oldpass);
+    }
 };
