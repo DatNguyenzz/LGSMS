@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -68,6 +69,7 @@ public class ManageProviderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+         HttpSession session = null;
         try {
 
             String url = request.getServletPath();
@@ -89,8 +91,12 @@ public class ManageProviderController extends HttpServlet {
                 provider.setIsActive(isActive);
                 int result = providerService.getPoviderUpdate(provider);
                 if (result != 0) {
+                     session = request.getSession();
+                    session.setAttribute("SucMessage", "Sửa thành công");
                     response.sendRedirect(request.getContextPath() + "/ManageProvider");
+                    
                 } else {
+                    session.setAttribute("failMessage", "Sửa không thành công");
                     response.sendRedirect("123123");
                 }
             } else if (url.equals("/AddProvider")) {

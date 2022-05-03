@@ -105,7 +105,9 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>ReceiptVoucherOfStaffFilter</filter-name>
-        <url-pattern>/ReceiptInfo</url-pattern>
+        
+         <url-pattern>/ReceiptInfoByOrderID?id=</url-pattern>
+        
     </filter-mapping>
     <filter-mapping>
         <filter-name>OrderDetailOfCusFilter</filter-name>

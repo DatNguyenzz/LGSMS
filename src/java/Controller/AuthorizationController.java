@@ -81,6 +81,7 @@ public class AuthorizationController extends HttpServlet {
         Account acc = new AccountService().login(username, password);
         if (acc == null) {
             //Login failed
+            request.setAttribute("failMessage", "Đăng nhập không thành công");
             request.getRequestDispatcher("Staff_LGSMS/view/login.jsp").forward(request, response);
         } else {
             //Login success
