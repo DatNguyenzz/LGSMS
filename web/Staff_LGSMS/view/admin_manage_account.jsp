@@ -441,7 +441,8 @@
         <% 
             String message = (String) request.getSession().getAttribute("messageAccountPage");
             System.out.println(message);
-            if(!message.equals("")){
+            System.out.println(message!=null);
+            if(message != null){
         %>
         <script>
             ModalWindow.openModal(
@@ -451,7 +452,7 @@
                 }
             );
         </script>
-        <%}%>
+        <%}request.getSession().removeAttribute("messageAccountPage");%>
         
 
     </body>

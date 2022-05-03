@@ -52,7 +52,6 @@ public class ManageAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().setAttribute("messageAccountPage", "");
         String url = request.getServletPath();
         switch (url) {
             case "/ManageAccount":
@@ -84,7 +83,7 @@ public class ManageAccountController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        request.getSession().setAttribute("messageAccountPage", "");
+        request.getSession().removeAttribute("messageAccountPage");
         String url = request.getServletPath();
         switch (url) {
             case "/EditAccount": {
@@ -115,6 +114,7 @@ public class ManageAccountController extends HttpServlet {
                 String email = request.getParameter("email");
                 int roleId = Integer.parseInt(request.getParameter("role"));
                 if (accountService.isEmailExist(email)) {
+                    System.out.println("Email exitst");
                     request.getSession().setAttribute("messageAccountPage", "Email này đã được sử dụng");
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
