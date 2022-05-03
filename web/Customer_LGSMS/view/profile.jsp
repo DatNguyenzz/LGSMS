@@ -28,9 +28,21 @@
             </div>
         </div>
         <div class="container rounded bg-white mt-5 mb-5">
-            <div class="row">
+            <!--<div class="row">-->
+<!--                <div class="col-md-3">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="far fa-user"> Tài Khoản Của Tôi</h4>
+                        </div>
+                        <div class="col-md-12 ml-3"><a href="<%=request.getContextPath()%>/MyProfile" class="d-flex justify-content-between align-items-center">Hồ Sơ</a></div>
+                        <div class="col-md-12 ml-3"><a href="<%=request.getContextPath()%>/ChangePassword" class="d-flex justify-content-between align-items-center">Đổi Mật Khẩu</a></div><br>
 
-                <div class="col-md-3">
+                    </div>
+                </div>-->
+            <!--</div>-->
+                <form aciton="<%=request.getContextPath()%>/MyProfile" enctype="multipart/form-data" method="POST" id="form">
+                    <div class="row">
+                        <div class="col-md-3">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4 class="far fa-user"> Tài Khoản Của Tôi</h4>
@@ -40,7 +52,6 @@
 
                     </div>
                 </div>
-                <form aciton="<%=request.getContextPath()%>/MyProfile" enctype="multipart/form-data" method="POST" id="form">
                     <div class="col-md-5 border-left">
 
                         <div class="p-3 py-5">
@@ -80,7 +91,7 @@
 
                                 <div class="form-group">
                                     <label class="labels">Email</label>
-                                    <input type="email" class="form-control" name="email"
+                                    <input type="text" class="form-control" name="email"
                                            placeholder="<%=account.getEmail()%>" 
                                            value="<%=account.getEmail()%>" id="user-email"  
                                            maxlength="255"/>
@@ -89,7 +100,7 @@
 
                                 <div class="form-group">
                                     <label class="labels">Điện Thoại</label>
-                                    <input type="text" class="form-control" name="phone"
+                                    <input type="number" class="form-control" name="phone"
                                            placeholder="<%=(account.getPhone()!=null)?account.getPhone():""%>" 
                                            value="<%=(account.getPhone()!=null)?account.getPhone():""%>"
                                            id="user-phone"  maxlength="15"/>
@@ -119,8 +130,10 @@
                         </div>
                         </span>
                     </div>
+                    </div>
                 </form>
-            </div>
+            <!--</div>-->
+                           
         </div>
     </div>
 

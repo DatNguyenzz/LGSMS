@@ -211,13 +211,11 @@
     var deposit =   document.getElementById('order-deposit'),
                     total = document.getElementById('order-price'),
                     payment = document.getElementById('cus-pay');
-                    const num = 0;
-                    //payment.value = total.value
     deposit.onchange = function () {
-                        if (deposit.value == "") 
+                        if (deposit.value === ""|| deposit.value > total.value) 
                         {
-                            var result = parseFloat(total.value) - parseFloat(num);
-                            payment.value = result;
+                            deposit.value = 0;
+                            var result = parseFloat(total.value) - parseFloat(deposit.value);
                         } else {
                             var result = parseFloat(total.value) - parseFloat(deposit.value);
                             payment.value = !isNaN(result) ? result : '';

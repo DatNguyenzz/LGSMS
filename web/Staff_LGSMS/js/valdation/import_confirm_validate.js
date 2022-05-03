@@ -52,9 +52,11 @@ function handleClick(cb) {
     if (cb.checked == true) {
         document.getElementById('product-price').removeAttribute('readonly');
         document.getElementById('product-quantity').removeAttribute('readonly');
+        document.getElementById('import-note').removeAttribute('readonly');
     } else {
         document.getElementById('product-price').setAttribute('readonly', true);
         document.getElementById('product-quantity').setAttribute('readonly', true);
+        document.getElementById('import-note').setAttribute('readonly', true);
     }
 }
 

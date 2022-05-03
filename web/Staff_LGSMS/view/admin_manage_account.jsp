@@ -99,7 +99,7 @@
                                                                 <div class="form-group">
                                                                     <label for="staff-phone" class="col-form-label">Số điện
                                                                         thoại*:</label>
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="number" class="form-control"
                                                                            id="staff-phone1" name="phone" maxlength="15"/>
                                                                     <div class="fail"></div>
                                                                 </div>
@@ -115,7 +115,7 @@
                                                                 <div class="form-group">
                                                                     <label for="staff-email"
                                                                            class="col-form-label">Email*:</label>
-                                                                    <input type="email" class="form-control"
+                                                                    <input type="text" class="form-control"
                                                                            id="staff-email" name="email" maxlength="80"/>
                                                                     <div class="fail"></div>
                                                                 </div>
@@ -276,7 +276,7 @@
                                             <div class="form-group">
                                                 <label for="staff-phone" class="col-form-label">Số điện
                                                     thoại*:</label>
-                                                <input type="text" class="form-control"
+                                                <input type="number" class="form-control"
                                                        id="staff-phone" name="phone" maxlength="15"/>
                                                 <div class="fail"></div>
                                             </div>
@@ -329,7 +329,7 @@
                                             <div class="form-group">
                                                 <label for="staff-email"
                                                        class="col-form-label">Email:</label>
-                                                <input type="email" class="form-control"
+                                                <input type="text" class="form-control"
                                                        id="emailEditInput" name="email" maxlength="50"/>
                                                 <div class="fail"></div>
                                             </div>

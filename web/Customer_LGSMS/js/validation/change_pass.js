@@ -43,9 +43,7 @@ const validateInputs = () => {
     //Thông báo mật khẩu
     if (old_passValue === '') {
         setError(oldpass, 'Yêu cầu nhập mật khẩu cũ');
-    }else if (!isValidPass(old_passValue)) {
-        setError(oldpass, 'Tối thiểu 8 kí tự, có 1 số và 1 chữ hoa.')
-    }  else {
+    }else {
         setSuccess(oldpass);
     }
 };
