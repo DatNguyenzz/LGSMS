@@ -141,12 +141,12 @@ public class ImportationDAO {
                 return importation;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 db.closeConnection(con, ps, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ImportationDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;

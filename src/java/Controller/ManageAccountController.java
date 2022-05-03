@@ -97,8 +97,11 @@ public class ManageAccountController extends HttpServlet {
                 int roleId = Integer.parseInt(request.getParameter("role"));
                 Boolean isActive = (request.getParameter("staff-status").equals("true"));
                 if (accountService.isEmailExist(email)) {
-                    System.out.println("Email exitst");
                     request.getSession().setAttribute("message", "Email này đã được sử dụng");
+                    response.sendRedirect(request.getContextPath() + "/ManageAccount");
+                }else{
+                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId, isActive)) {
+                    //Update success 
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
                     if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId, isActive)) {
