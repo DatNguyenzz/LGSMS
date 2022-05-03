@@ -175,26 +175,26 @@ public class ProductDAO {
         switch (filter) {
             case 0://lấy tất cả sản phẩm
                 sql += BASE_SQL + "where p.is_active =1";
-                
+
                 break;
             case 1:// lấy sản phẩm theo giá tăng
                 sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_price ASC";
-                
+
                 break;
             case 2://lấy sản phẩm theo giá giảm
                 sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_price DESC";
-                
+
                 break;
             case 3://lấy sản phẩm tuwf A-Z
                 sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_name ASC";
-                
+
                 break;
             case 4://lấy sản phẩm từ Z-A
                 sql += BASE_SQL + "where p.is_active =1" + "ORDER BY p.product_name DESC";
-                
+
                 break;
             case 5://lấy sản phẩm bán chạy
-                sql     = "SELECT p.product_id, p.image_id, p.product_name, \n"
+                sql = "SELECT p.product_id, p.image_id, p.product_name, \n"
                         + "p.product_price, p.product_import_price, p.product_instock, \n"
                         + "p.product_empty, p.product_description, p.product_created_at, \n"
                         + "p.product_updated_at, p.is_active, p.provider_id, pv.provider_name, \n"
@@ -256,12 +256,21 @@ public class ProductDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
+        String imageName = "product_image_" + product.getProductName();
         String sql
-                = "INSERT INTO product (image_id, product_name, \n"
+                = "INSERT INTO Image (image_path, image_name) \n"
+                + "VALUES ('" + product.getImagePath() + "',"
+                + "'" + imageName + "');\n"
+                + "\n"
+                + "INSERT INTO product (image_id, product_name, \n"
                 + "product_price, product_instock, product_empty, \n"
                 + "product_description, product_created_at, is_active, \n"
                 + "provider_id)\n"
-                + "VALUES('" + product.getImagePath() + "', "
+                + "VALUES((\n"
+                + "	SELECT image_id \n"
+                + "	FROM Image \n"
+                + "	WHERE image_name = '" + imageName + "'\n"
+                + "	), "
                 + "N'" + product.getProductName() + "', "
                 + product.getProductPrice() + ", "
                 + product.getProductInstock() + ", "
@@ -373,9 +382,10 @@ public class ProductDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int result = 0;
-        String sql = "UPDATE Product\n"
+        String imageName = "product_image_" + product.getProductName();
+        String sql 
+                = "UPDATE Product\n"
                 + "SET "
-                //                + "image_id = " + product.getImagePath() + ",\n"
                 + "product_name = N'" + product.getProductName() + "',\n"
                 + "provider_id = " + product.getProviderID() + ",\n"
                 + "product_price = " + product.getProductPrice() + ",\n"
@@ -385,7 +395,11 @@ public class ProductDAO {
                 + "is_active = " + (product.isIsActive() ? 1 : 0) + ",\n"
                 + "product_description = N'" + product.getProductDescription() + "',\n"
                 + "product_updated_at = '" + getCurrentSQLDate() + "'\n"
-                + "WHERE product_id = " + product.getProductID();
+                + "WHERE product_id = " + product.getProductID()
+                + "\n"
+                + "UPDATE Image\n"
+                + "SET image_path = '" + product.getImagePath() + "'\n"
+                + "WHERE image_name = '" + imageName + "';\n";
         try {
             db = new DBContext();
             con = db.getConnection();
@@ -409,7 +423,7 @@ public class ProductDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int result = 0;
-        String sql 
+        String sql
                 = "UPDATE Product\n"
                 + "SET  product_instock = " + product.getProductInstock() + ",\n"
                 + "     product_empty = " + product.getProductEmpty() + "\n"
@@ -430,7 +444,7 @@ public class ProductDAO {
         }
         return result;
     }
-    
+
     public boolean isProductNameExist(String productName) {
         DBContext db = null;
         Connection con = null;
@@ -438,7 +452,7 @@ public class ProductDAO {
         ResultSet rs = null;
         String sql = BASE_SQL
                 + "WHERE p.product_name = N'" + productName + "'\n";
-              
+
         try {
             db = new DBContext();
             con = db.getConnection();

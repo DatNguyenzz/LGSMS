@@ -222,6 +222,7 @@
         <script src="Staff_LGSMS/js/valdation/product_validate.js"></script>
         <script src="Staff_LGSMS/js/valdation/alert.js"></script>
         <script src="Staff_LGSMS/js/fnon.min.js"></script>
+        <script src="Staff_LGSMS/js/modal_alert.js"></script>
         <% 
             String message = (String) request.getSession().getAttribute("message") ;
             

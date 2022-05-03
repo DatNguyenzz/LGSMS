@@ -29,6 +29,8 @@
         <link href="Staff_LGSMS/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <link href="Staff_LGSMS/assets/styles/custom_box.css" rel="stylesheet">
         <link href="Staff_LGSMS/css/fnon.min.css" rel="stylesheet">
+        
+        <link href="Staff_LGSMS/css/alert.css" rel="stylesheet">
     </head>
     <%
         Product product = (Product) request.getAttribute("product");
@@ -82,12 +84,12 @@
                                         <!-- <div class="table-responsive"> -->
 
                                         <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
-                                        <form id="form" action="<%=request.getContextPath()%>/EditProduct" method="POST">
+                                        <form id="form" action="<%=request.getContextPath()%>/EditProduct" method="POST" enctype="multipart/form-data">
                                             <div class="row" style="padding: auto;">
                                                 <div class="col-8 col-sm-4" style="text-align: center ;">
                                                     <img src="<%=product.getImagePath()%>" alt="..."
                                                          class="img-thumbnail" style="height: 400px; width: 400px;">
-                                                    <span><input type="file" id="user_avatar"
+                                                    <span><input type="file" id="user_avatar" name="image"
                                                                  accept="image/png, image/jpeg"></span>
                                                 </div>
                                                 <div class="col-8 col-sm-4">

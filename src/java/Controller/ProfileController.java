@@ -22,7 +22,6 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-
 /**
  *
  * @author Dat Nguyen
@@ -111,11 +110,11 @@ public class ProfileController extends HttpServlet {
                     List<FileItem> items = upload.parseRequest(request);
                     // Process the uploaded items
                     Iterator<FileItem> iter = items.iterator();
-                    
+
                     String filename = "";
-                    String fullname  = acc.getFullname();
-                    String phone  = acc.getPhone();
-                    String dob  = acc.getDOB().toString();
+                    String fullname = acc.getFullname();
+                    String phone = acc.getPhone();
+                    String dob = acc.getDOB().toString();
                     boolean gender = acc.isGender();
                     String address = acc.getAddress();
                     String email = acc.getEmail();
@@ -130,15 +129,15 @@ public class ProfileController extends HttpServlet {
                                 break;
                             } else {
                                 String storePath = servletContext.getRealPath("/Assets/images/avatar");
-                                File uploadFile = new File(storePath + File.separator 
-                                        + "avatar_image_" + acc.getUsername() 
-                                        + item.getContentType().replaceFirst("image/", ".")); 
-                                if(uploadFile.exists()){
+                                File uploadFile = new File(storePath + File.separator
+                                        + "avatar_image_" + acc.getUsername()
+                                        + item.getContentType().replaceFirst("image/", "."));
+                                if (uploadFile.exists()) {
                                     uploadFile.delete();
                                 }
                                 item.write(uploadFile);
-                                imagePath = "Assets/images/avatar/" 
-                                        + "avatar_image_" + acc.getUsername() 
+                                imagePath = "Assets/images/avatar/"
+                                        + "avatar_image_" + acc.getUsername()
                                         + item.getContentType().replaceFirst("image/", ".");
                             }
                         } else {
@@ -167,15 +166,15 @@ public class ProfileController extends HttpServlet {
                             System.out.println(item.getFieldName() + "\t" + item.getString());
                         }
                     }
-                    if (accountService.updateAccountInProfile(acc.getAccountID(), fullname, phone, 
+                    if (accountService.updateAccountInProfile(acc.getAccountID(), fullname, phone,
                             address, dob, gender, email, acc.getRole().getRoleID(), imagePath)) {
-                    //Update success 
-                    acc = accountService.getAccountByID(acc.getAccountID());
-                    request.getSession().setAttribute("account", acc);
-                    response.sendRedirect(request.getContextPath() + "/MyProfile");
-                } else {
-                    //Update fail
-                }
+                        //Update success 
+                        acc = accountService.getAccountByID(acc.getAccountID());
+                        request.getSession().setAttribute("account", acc);
+                        response.sendRedirect(request.getContextPath() + "/MyProfile");
+                    } else {
+                        //Update fail
+                    }
                 } catch (FileUploadException ex) {
                     Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (Exception ex) {

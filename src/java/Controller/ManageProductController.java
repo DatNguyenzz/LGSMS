@@ -117,19 +117,22 @@ public class ManageProductController extends HttpServlet {
                     List<FileItem> items = upload.parseRequest(request);
                     // Process the uploaded items
                     Iterator<FileItem> iter = items.iterator();
-                    
                     String productName = "";
                     int productQuantity = 0;
                     double productPrice = 0;
                     String productDescription = "";
                     int providerID = 0;
-                    while(iter.hasNext()){
+                    FileItem imageItem = null;
+                    String storePath = "";
+                    while (iter.hasNext()) {
                         FileItem item = iter.next();
                         if (!item.isFormField()) {
                             //Process uploaded file
-                        }else{
+                            imageItem = item;
+                            storePath = servletContext.getRealPath("/Assets/images/product");
+                        } else {
                             //Process form field
-                            switch(item.getFieldName()){
+                            switch (item.getFieldName()) {
                                 case "product-name":
                                     productName = new String(item.getString().getBytes(ISO), UTF_8);
                                     break;
@@ -145,55 +148,94 @@ public class ManageProductController extends HttpServlet {
                                 case "provider-id":
                                     providerID = Integer.parseInt(item.getString().trim());
                                     break;
-                                    
+
                             }
+                        }
+                    }
+                    if (productService.isProductNameIsExsit(productName)) {
+                        request.getSession().setAttribute("message", "Tên sản phẩm này đã được sử dụng");
+                        response.sendRedirect(request.getContextPath() + "/ManageProduct");
+                    } else {
+                        if (productService.addNewProductToDB(productName, 
+                                productQuantity, productPrice, 
+                                productDescription, providerID,
+                                storePath, imageItem)) {
+                            request.getSession().setAttribute("message", "Thêm sản phẩm mới thành công");
+                            response.sendRedirect(request.getContextPath() + "/ManageProduct");
+                        } else {
+                            //Add failed
+                            request.getSession().setAttribute("message", "Thêm sản phẩm mới thất bại");
+                            response.sendRedirect(request.getContextPath() + "/ManageProduct");
                         }
                     }
                 } catch (FileUploadException ex) {
                     Logger.getLogger(ManageProductController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                String productName = request.getParameter("product-name");
-                int productImage = 1; //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-                int productQuantity = Integer.parseInt(request.getParameter("product-quantity"));
-                double productPrice = Double.parseDouble(request.getParameter("product-price"));
-                String productDescription = request.getParameter("product-des");
-                int providerID = Integer.parseInt(request.getParameter("provider-id"));
-                if (productService.isProductNameIsExsit(productName)) {
-                    request.getSession().setAttribute("message", "Tên sản phẩm này đã được sử dụng");
-                    response.sendRedirect(request.getContextPath() + "/ManageProduct");
-                } else {
-
-                    if (productService.addNewProductToDB(productName, productImage,
-                            productQuantity, productPrice, productDescription, providerID)) {
-                        response.sendRedirect(request.getContextPath() + "/ManageProduct");
-                    } else {
-                        //Add failed
-                        System.err.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                    }
-                }
                 break;
             }
             case "/EditProduct": {
-                int productID = Integer.parseInt(request.getParameter("productID"));
-                String productName = request.getParameter("productName");
-                int providerID = Integer.parseInt(request.getParameter("providerID"));
-                int image = 1;
-                double productPrice = Double.parseDouble(request.getParameter("productPrice"));
-                boolean productStatus = Boolean.valueOf(request.getParameter("productStatus"));
-                String productDescription = request.getParameter("productDescription");
-                if (productService.isProductNameIsExsit(productName)) {
-                    request.getSession().setAttribute("message", "Tên sản phẩm này đã được sử dụng");
-                    response.sendRedirect(request.getContextPath() + "/ManageProduct");
-                } else {
-                    if (productService.updateProduct(productID, productName,
-                            providerID, image, productPrice,
-                            productStatus, productDescription)) {
-                        response.sendRedirect(request.getContextPath() + "/ManageProduct");
-                    } else {
-                        //Update failed
-                        System.err.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                try {
+                    // Parse the request
+                    List<FileItem> items = upload.parseRequest(request);
+                    // Process the uploaded items
+                    Iterator<FileItem> iter = items.iterator();
+                    int productID = 0;
+                    String productName = "";
+                    boolean productStatus = true;
+                    double productPrice = 0;
+                    String productDescription = "";
+                    int providerID = 0;
+                    FileItem imageItem = null;
+                    String storePath = "";
+                    while (iter.hasNext()) {
+                        FileItem item = iter.next();
+                        if (!item.isFormField()) {
+                            //Process uploaded file
+                            imageItem = item;
+                            storePath = servletContext.getRealPath("/Assets/images/product");
+                        } else {
+                            //Process form field
+                            switch (item.getFieldName()) {
+                                case "productID":
+                                    productID = Integer.parseInt(item.getString());
+                                    break;
+                                case "productName":
+                                    productName = new String(item.getString().getBytes(ISO), UTF_8);
+                                    break;
+                                case "productStatus":
+                                    productStatus = Boolean.valueOf(item.getString().trim());
+                                    break;
+                                case "productPrice":
+                                    productPrice = Double.parseDouble(item.getString().trim());
+                                    break;
+                                case "productDescription":
+                                    productDescription = new String(item.getString().getBytes(ISO), UTF_8);
+                                    break;
+                                case "providerID":
+                                    providerID = Integer.parseInt(item.getString().trim());
+                                    break;
+
+                            }
+                        }
                     }
+//                    if (productService.isProductNameIsExsit(productName)) {
+//                        request.getSession().setAttribute("message", "Tên sản phẩm này đã được sử dụng");
+//                        response.sendRedirect(request.getContextPath() + "/ManageProduct");
+//                    } else {
+                        if (productService.updateProduct(productID, productName,
+                            providerID, productPrice,
+                            productStatus, productDescription,
+                            storePath, imageItem)) {
+                            request.getSession().setAttribute("message", "Thay đổi thông tin sản phẩm thành công");
+                            response.sendRedirect(request.getContextPath() + "/ManageProduct");
+                        } else {
+                            //Edit failed
+                            request.getSession().setAttribute("message", "Thay đổi thông tin sản phẩm thất bại");
+                            response.sendRedirect(request.getContextPath() + "/ManageProduct");
+                        }
+//                    }
+                } catch (FileUploadException ex) {
+                    Logger.getLogger(ManageProductController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

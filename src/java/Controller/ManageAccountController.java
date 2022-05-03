@@ -99,22 +99,22 @@ public class ManageAccountController extends HttpServlet {
                 if (accountService.isEmailExist(email)) {
                     request.getSession().setAttribute("message", "Email này đã được sử dụng");
                     response.sendRedirect(request.getContextPath() + "/ManageAccount");
-                }else{
-                if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId, isActive)) {
-                    //Update success 
-                    response.sendRedirect(request.getContextPath() + "/ManageAccount");
                 } else {
                     if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId, isActive)) {
                         //Update success 
-                        request.getSession().setAttribute("message", "Thay đổi thông tin thành công");
                         response.sendRedirect(request.getContextPath() + "/ManageAccount");
                     } else {
-                        //Update fail
-                        request.getSession().setAttribute("message", "Thay đổi thông tin thất bại");
-                        response.sendRedirect(request.getContextPath() + "/ManageAccount");
+                        if (accountService.updateAccount(accountId, fullname, phone, address, dob, gender, email, roleId, isActive)) {
+                            //Update success 
+                            request.getSession().setAttribute("message", "Thay đổi thông tin thành công");
+                            response.sendRedirect(request.getContextPath() + "/ManageAccount");
+                        } else {
+                            //Update fail
+                            request.getSession().setAttribute("message", "Thay đổi thông tin thất bại");
+                            response.sendRedirect(request.getContextPath() + "/ManageAccount");
+                        }
                     }
                 }
-
                 break;
             }
             case "/AddAccount": {
