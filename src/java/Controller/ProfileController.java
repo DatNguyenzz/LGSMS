@@ -129,11 +129,7 @@ public class ProfileController extends HttpServlet {
                             if (filename == null || filename.equals("")) {
                                 break;
                             } else {
-                                System.out.println("Processing uploaded file");
-                                Path path = Paths.get(filename);
-                                System.out.println(item.getContentType());
                                 String storePath = servletContext.getRealPath("/Assets/images/avatar");
-                                System.out.println(storePath);
                                 File uploadFile = new File(storePath + File.separator 
                                         + "avatar_image_" + acc.getUsername() 
                                         + item.getContentType().replaceFirst("image/", ".")); 

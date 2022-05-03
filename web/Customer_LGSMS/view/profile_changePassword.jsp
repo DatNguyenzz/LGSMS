@@ -50,12 +50,14 @@
                         
                         <div class="form-group">
                             <label class="labels">Mật Khẩu Cũ</label>
-                            <input type="password" class="form-control" placeholder="Nhập mật khẩu cũ" value="" id="old-pass" maxlength="50">
+                            <input type="password" class="form-control" name="old-password"
+                                   placeholder="Nhập mật khẩu cũ" value="" id="old-pass" maxlength="50">
                             <div class="fail"></div>
                         </div>
                         <div class="form-group">
                             <label class="labels">Mật Khẩu Mới</label>
-                            <input type="password" class="form-control" placeholder="Nhập mật khẩu mới" value="" id="new-pass" maxlength="50">
+                            <input type="password" class="form-control" name="new-password"
+                                   placeholder="Nhập mật khẩu mới" value="" id="new-pass" maxlength="50">
                             <div class="fail"></div>
                         </div>
                         <div class="form-group">
