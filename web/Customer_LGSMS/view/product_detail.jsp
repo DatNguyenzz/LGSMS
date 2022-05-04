@@ -45,9 +45,9 @@
                     <p class="p1">Thương hiệu: <%=product.getProviderName()%></p>
                     <p>Tình trạng: <% if(product.getProductInstock()>0){ %> <strong style="color:green;">Còn hàng</strong><%} else{%><strong style="color:red;">Hết hàng </strong><%}%></p>
                     <h4><%= formatNumber.formatDoubleToVND(product.getProductPrice()) %></h4>
-                    <% if(product.getProductInstock() > 0){%>
+                    <% if(product.getProductInstock() > 0 && account!=null){%>
                     <a href="<%=request.getContextPath()%>/AddProductToCart?productID=<%=product.getProductID()%>" class="btn-add"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
-                    <a href="" class="btn-buynow">Mua Ngay</a>
+<!--                    <a href="" class="btn-buynow">Mua Ngay</a>-->
                     <%}%>
                 </div>
             </div>
